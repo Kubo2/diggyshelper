@@ -1,19 +1,25 @@
 /**
- * Tento skript bol vytvorený pre Diggy's Helper fórum,
- * a jeho autor sa úzko podieľal na vzniku tohoto fóra.
- * Skript je voľne šíriteľný a upravovateľný. Nesmie sa 
- * však vydávať za svoj výtvor. Ak ho niekde použijete,
- * vždy uveďte, odkiaľ ste ho získali.
- *
- * @author Kubo2
- * @author WladinQ
- * @copyright 2013-2014 Kubo2, WladinQ. Some rights reserved.
- *
- *******************************************************/
+ **********************************************************
+ *                                                        |
+ * Tento skript bol vytvorený pre Diggy's Helper fórum,   |
+ * a jeho autor sa úzko podieľal na vzniku tohoto fóra.   |
+ * Skript je voľne šíriteľný a upravovateľný. Nesmie sa   |
+ * však vydávať za svoj výtvor. Ak ho niekde použijete,   |
+ * vždy uveďte, odkiaľ ste ho získali.                    |
+ * Za uvedenie zdroja sa považuje obdoba nasledovného:    |
+ * Zdroj: Diggy's Helper Project                          |
+ *                                                        |
+ * @author Kubo2                                          |
+ * @author WladinQ                                        |
+ * Copyright (c) Diggy's Helper Project                   |
+ *                                                        |
+ **********************************************************
+ */
 
-// získanie objektu XMLHttpRequest
-function HttpRequest() {
-	return window.ActiveXObject ? new ActiveXObject("Microsoft.XMLHTTP") : (window.XMLHttpRequest ? new XMLHttpRequest() : false);
+// http://djpw.cz/templates/djpw.js
+function getHttpRequest()
+{
+  return !window.XMLHttpRequest ? !window.ActiveXObject ? null : new ActiveXObject("Microsoft.XMLHTTP") : new XMLHttpRequest();
 }
 
 // kontrola hesla na stránke registrácia
