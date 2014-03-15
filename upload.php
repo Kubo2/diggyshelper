@@ -1,0 +1,76 @@
+<div id="upload">
+<html>
+<head>
+	<?php include 'includes/head.php'; ?>
+</head>
+<body>
+
+<center><br>
+<form action="" method="POST" enctype="multipart/form-data">
+
+<input class='input_button_obr' type="file" name="file"><br><br>
+<input class='input_button_obr' type="submit" name="submit" value="Nahrat obrazok">
+
+</form>
+
+<?php
+
+//include the connect.php file because we are going to write
+//the mysql info there.
+//add some quotes in ().. I had forgotten to write them in the previuos part of this
+//tutorial
+include ("connect.php");
+
+//we want all the script
+//part of code
+
+if (isset($_POST['submit'])) {
+
+//set the location
+$loc = "images/upload/";
+
+//let's check if the file in an image
+
+if ($_FILES["file"]["type"] == "image/png" || $_FILES["file"]["type"] == "image/jpeg" || $_FILES["file"]["type"] == "image/jpg" || $_FILES["file"]["type"] == "image/gif") {
+	
+//script
+//lets test is
+
+//lets insert the info of the image
+//first we have to separate
+
+$file = explode(".", $_FILES["file"]["name"]);
+
+//lets test it
+//it works fine
+//lets insert the info into db
+mysql_query("INSERT INTO images VALUES ('', '".$file[0]."', '".$file[1]."')");
+//now lets take the
+$id = mysql_insert_id();
+
+//now move the image
+//but we wont use
+//we will name the image
+
+$newname = "$id.$file[1]";
+
+//also lets add the whole path
+$path = "$loc$newname";
+
+move_uploaded_file($_FILES["file"]["tmp_name"], $path);
+echo "Vas obrazok bol uspesne ulozeny na nas server.<br><br>http://diggyshelper.php5.sk/$path<br><br>Pre zobrazenie obrazku <a class='button' target='blank' href='$path'>kliknite tu</a>";
+
+//lets test it
+	
+} else {
+	echo "Nahrat mozete len obrazky s formatom (png, jpg, jpeg a gif)!";
+}
+
+}
+
+?>
+
+</center>
+</body>
+</html>
+</div>

@@ -1,0 +1,95 @@
+<!doctype html>
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Comic Sans MS", Consolas, Arial;
+}
+
+.button_register,
+.input_button {
+    border-radius: 5px;
+    padding: 2px;
+    color: #fff;
+    text-decoration: none;
+    cursor: hand;
+    cursor: pointer;
+}
+
+.button_register {
+    background: #33cc00;
+}
+
+.button_register:hover {
+    background: #99e57f;
+}
+
+.input_button {
+    background: #106cb5;
+}
+
+.input_button:hover {
+    background: #87b5da;
+}
+
+/**/
+
+#profil img {
+    padding: 0 10px;
+    width: 128px;
+    height: 148px;
+}
+
+/*
+#profil table,
+#profil table th,
+#profil table td {
+    border: 2px solid #000;
+}
+*/
+
+#profil table th {
+    text-align: left;
+}
+
+#profil table tr > th+td {
+    width: 140px;
+    overflow: auto;
+}
+
+</style>
+<div id="profil">
+    <h3>Profil používateľa admin</h3>
+    <table><tr>
+        <td rowspan='6'>
+            <img src='/images/upload/avatar/{username}.jpg'>
+        </td>
+    </tr><tr>
+        <th>Oprávnenie:</th>
+        <td></td>
+    </tr><tr>
+        <th>E-mail:</th>
+        <td></td>
+    </tr><tr>
+        <th>Počet príspevkou:</th>
+        <td></td>
+    </tr><tr>
+        <th>Posledná návšteva:</th>
+        <td></td>
+    </tr><tr>
+        <th>Registrovaný dňa:</th>
+        <td></td>
+    </tr><tr>
+        <td valign='bottom' align='center'>
+            <a href='/profile/{$username}/?addfriend' class='button_register'>
+                Pridať priateľa
+            </a>
+        </td><td valign='bottom' colspan=2 style="text-align: right">
+            <a href='/profile/{$username}' class='input_button'>
+                Viac informácií
+            </a>
+        </td>
+    </tr></table>
+</div>

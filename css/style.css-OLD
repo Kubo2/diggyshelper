@@ -1,0 +1,300 @@
+body {
+	margin:0px;
+}
+
+div#header > p.in-development {
+	float:right;
+	margin-top:10px;
+	margin-right:5px;
+}
+
+#pages {
+	width:auto;
+	margin:10px;
+	border:2px #106CB5 solid;
+	border-radius:5px;
+	padding:5px;
+	font-family:"Comic Sans MS";
+}
+
+#loginpassage {
+	padding:5px;
+	padding-bottom:0px;
+	font-family:"Comic Sans MS";
+}
+
+#menu {
+	background:#33CC00;
+	color:#FFF;
+	font-family:"Comic Sans MS";
+	padding:5px;
+}
+
+#menu a {
+	text-decoration:none;
+	color:#FFF;
+}
+
+#menu a:hover {
+	padding:2px;
+	background:#106CB5;
+	border-radius:5px;
+	color:#FFF;
+}
+
+#header {
+	height:150px;
+	width:auto;
+	background:#106CB5 url(http://diggyshelper.php5.sk/images/bg/logo.png) no-repeat;
+}
+
+#header h1 {
+	font-size:25px;
+	padding-left:450px;
+	padding-top:20px;
+	padding-bottom:5px;
+	color:#87B5DA;
+	font-family:"Comic Sans MS";
+	cursor:default;
+}
+
+#header h2 {
+	font-size:15px;
+	padding-left:450px;
+	color:#87B5DA;
+	font-family:"Comic Sans MS";
+	cursor:default;
+}
+
+#forum {
+	width:auto;
+	margin:10px;
+	border:2px #106CB5 solid;
+	border-radius:5px;
+	padding:5px;
+	font-family:"Comic Sans MS";
+}
+
+.topic {
+	text-decoration:none;
+	color:#000;
+}
+
+.input_button {
+	background:#106CB5;
+	color:#FFF;
+	border:2px #106CB5 solid;
+	border-radius:5px;
+	font-family:"Comic Sans MS";
+	text-decoration:none;
+	cursor:pointer;
+}
+
+.input_button:hover {
+	background-color:#87B5DA;
+	border:2px #87B5DA solid;
+	text-decoration:none;
+	color:#FFF;
+}
+
+.input_button_register {
+	background:#33CC00;
+	color:#FFF;
+	border:2px #33CC00 solid;
+	border-radius:5px;
+	font-family:"Comic Sans MS";
+	text-decoration:none;
+	cursor:pointer;
+}
+
+.input_button_register:hover {
+	background-color:#99E57F;
+	border:2px #99E57F solid;
+	text-decoration:none;
+	color:#FFF;
+}
+
+.input {
+	padding:2px;
+	padding-left:5px;
+	border:2px #106CB5 solid;
+	
+}
+
+.input_login placeholder {
+	color:#FFF;
+}
+
+.button_obr {
+	background:#33CC00;
+	color:#FFF;
+	border:2px #33CC00 solid;
+	border-radius:5px;
+	font-family:"Comic Sans MS";
+	text-decoration:none;
+	cursor:pointer;
+	font-size:14px;
+	padding-left:4px;
+	padding-right:4px;
+}
+
+.button_obr:hover {
+	background-color:#99E57F;
+	border:2px #99E57F solid;
+	text-decoration:none;
+	color:#FFF;
+}
+
+.input_button_obr {
+	background:#33CC00;
+	color:#FFF;
+	border:2px #33CC00 solid;
+	border-radius:5px;
+	font-family:"Comic Sans MS";
+	text-decoration:none;
+	cursor:pointer;
+}
+
+.input_button_obr:hover {
+	background-color:#99E57F;
+	border:2px #99E57F solid;
+	text-decoration:none;
+	color:#FFF;
+}
+
+.button {
+	background:#106CB5;
+	color:#FFF;
+	border:2px #106CB5 solid;
+	border-radius:5px;
+	font-family:"Comic Sans MS";
+	text-decoration:none;
+	cursor:pointer;
+	font-size:14px;
+	padding-left:4px;
+	padding-right:4px;
+}
+
+.button:hover {
+	background-color:#87B5DA;
+	border:2px #87B5DA solid;
+	text-decoration:none;
+	color:#FFF;
+}
+
+.button_register {
+	background:#33CC00;
+	color:#FFF;
+	border:2px #33CC00 solid;
+	border-radius:5px;
+	font-family:"Comic Sans MS";
+	text-decoration:none;
+	cursor:pointer;
+	font-size:14px;
+	padding-left:4px;
+	padding-right:4px;
+}
+
+.button_register:hover {
+	background-color:#99E57F;
+	border:2px #99E57F solid;
+	text-decoration:none;
+	color:#FFF;
+}
+
+.button_logout {
+	background:#C00000;
+	color:#FFF;
+	border:2px #C00000 solid;
+	border-radius:5px;
+	font-family:"Comic Sans MS";
+	text-decoration:none;
+	cursor:pointer;
+	font-size:14px;
+	padding-left:4px;
+	padding-right:4px;
+}
+
+.button_logout:hover {
+	background-color:#DF7F7F;
+	border:2px #DF7F7F solid;
+	text-decoration:none;
+	color:#FFF;
+}
+
+.right {
+	float:right;
+	padding:5px;
+}
+
+.left {
+	float:left;
+	padding:5px;
+}
+
+.cat_links {
+	display: block;
+	padding:5px;
+	padding-top:10px;
+	padding-bottom:10px;
+	border:0px solid #000;
+	margin-bottom:5px;
+	background-color:#106CB5;
+	color:#FFF;
+	text-decoration:none;
+	text-align:left;
+}
+
+.cat_links:hover {
+	background-color:#87B5DA;
+	text-decoration:none;
+	text-align:left;
+}
+
+#upload {
+	min-height:400px;
+	width:auto;
+	overflow:hidden;
+	color:#FFF;
+	font-family:"Comic Sans MS";
+	background:#3399FF url(http://diggyshelper.php5.sk/images/bg/upload.png) no-repeat;
+}
+
+#footer {
+	background:#FFF url(http://diggyshelper.php5.sk/images/bg/footer.png) no-repeat;
+	background-position:bottom;
+	height:150px;
+	border-bottom:2px solid #106CB5;
+	width:auto;
+}
+
+#footer_right {
+	float:right;
+	width:126px;
+	padding-right:10px;
+	height:150px;
+	background:url(http://diggyshelper.php5.sk/images/bg/linda.png) no-repeat;
+}
+
+hr {
+	border:0px solid #ccc;
+}
+
+#statistiky {
+	width:auto;
+	margin:10px;
+	border:2px #106CB5 solid;
+	border-radius:5px;
+	padding:5px;
+	color:#000;
+	font-family:"Comic Sans MS";
+}
+
+#news {
+	border-radius:5px;
+	border:2px #106CB5 solid;
+	margin:10px;
+	font-family:"Comic Sans MS";
+	padding:5px;
+	min-height:20px;
+}

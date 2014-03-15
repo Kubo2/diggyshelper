@@ -1,0 +1,406 @@
+body {
+	margin:0px;
+	font-family:"Comic Sans MS";
+}
+
+/** Universal. */
+[class*='button'] {
+	color: #fff;
+	text-decoration:none;
+	font-family:"Comic Sans MS";
+	border-radius:5px;
+	cursor:pointer;
+}
+
+[class*='button']:hover {
+	color: #fff;
+	text-decoration:none;
+	font-family:"Comic Sans MS";
+	border-radius:5px;
+	cursor:pointer;
+}
+
+.input_button {
+	background:#5999cc;
+	border:2px #5999cc solid;
+	cursor:pointer;
+}
+
+.input_button:hover {
+	background-color:#106cb5;
+	border:2px #106cb5 solid;
+}
+
+.button {
+	background:#5999cc;
+	border:2px #5999cc solid;
+	font-size:14px;
+	padding-left:4px;
+	padding-right:4px;
+}
+
+.button:hover {
+	background-color:#106cb5;
+	border:2px #106cb5 solid;
+}
+
+.button_register {
+	background:#71dc4d;
+	border:2px #71dc4d solid;
+	font-size:14px;
+	padding-left:4px;
+	padding-right:4px;
+}
+
+.button_register:hover {
+	background-color:#33cc00;
+	border:2px #33cc00 solid;
+}
+
+.button_logout {
+	background:#d44d4d;
+	border:2px #d44d4d solid;
+	font-size:14px;
+	padding-left:4px;
+	padding-right:4px;
+}
+
+.button_logout:hover {
+	background-color:#c00000;
+	border:2px #c00000 solid;
+}
+
+/** Koniec universal. */
+
+div#header > p.in-development {
+	float:right;
+	margin-top:10px;
+	margin-right:5px;
+}
+
+.memberusers {
+	color:#5999cc;
+	text-decoration:none;
+}
+
+.memberusers:hover {
+	color:#106cb5;
+	text-decoration:none;
+}
+
+.box {
+	background:#87b5da;
+	color:#fff;
+	padding:10px;
+	border-radius:5px;
+	border:0px;
+	margin:10px 0px;
+	text-decoration:none;
+}
+
+.box:hover {
+	background:#106cb5;
+	color:#fff;
+	padding:10px;
+	border-radius:5px;
+	border:0px;
+	margin:10px 0px;
+	text-decoration:none;
+}
+
+.naj {
+	text-decoration:none;
+	color:#000;
+}
+
+#pages {
+	width:auto;
+	margin:10px;
+	border:2px #106cb5 solid;
+	border-radius:5px;
+	padding:5px;
+	font-family:"Comic Sans MS";
+}
+
+#pages table tr td {
+	text-align:center;
+}
+
+#zaujimavosti {
+	width:auto;
+	margin:10px;
+	border:2px #106cb5 solid;
+	border-radius:5px;
+	padding:5px;
+	font-family:"Comic Sans MS";
+}
+
+#zaujimavosti table {
+	width:100%;
+	color:#000;
+}
+
+#zaujimavosti table tr td {
+	text-align:center;
+	font-size:15px;
+	background:#5999cc;
+	color:#fff;
+}
+
+#provizorne {
+	color: #fff;
+	background: grey;
+	font-size: 90%;
+	height: auto;
+	width: 400px;
+	float: right;
+	padding: 10px;
+	border-radius: 5px;
+}
+
+#provizorne.warning {
+	background: red;
+}
+
+#provizorne.notice {
+	background: ligthgreen;
+}
+
+#pages .playgamepp {
+	background:#f54e07;
+	color:#fff;
+	text-decoration:none;
+	border:1px solid #d64000;
+	padding:5px;
+	border-radius:5px;
+}
+
+#pages .playgamepp a {
+	text-decoration:none;
+	color:#fff;
+}
+
+#pages .playgamepp a:hover {
+	background:#e64704;
+	border-radius:5px;
+	border:1px solid #d64000;
+	color:#fff;
+}
+
+#pages .playgamefb {
+	background:#eaeaea;
+	color:#000;
+	text-decoration:none;
+	border:1px solid #dddddd;
+	padding:5px;
+	border-radius:5px;
+}
+
+#pages .playgamefb a {
+	text-decoration:none;
+	color:#000;
+}
+
+#pages .playgamefb a:hover {
+	background:#4c66a4;
+	border-radius:5px;
+	border:1px solid #445c93;
+	color:#fff;
+}
+
+#loginpassage {
+	font-family:"Comic Sans MS";
+	text-align:center;
+}
+
+#menu {
+	background:#33cc00;
+	color:#fff;
+	font-family:"Comic Sans MS";
+	padding:5px;
+	height:23px;
+}
+
+#menu a {
+	text-decoration:none;
+	color:#fff;
+}
+
+#menu a:hover {
+	padding:2px;
+	background:#71dc4d;
+	border-radius:5px;
+	color:#fff;
+}
+
+.jazykon {
+	padding:2px;
+	background:#71dc4d;
+	border-radius:5px;
+	color:#fff;
+	margin-left:290px;
+}
+
+.jazykoff {
+	padding:2px;
+	background:#71dc4d;
+	border-radius:5px;
+	float:right;
+	color:#fff;
+}
+
+#header {
+	height:150px;
+	width:auto;
+	background:#106cb5 url(http://diggyshelper.php5.sk/images/bg/logo.png) no-repeat;
+}
+
+#header h1 {
+	font-size:25px;
+	padding-left:450px;
+	padding-top:20px;
+	padding-bottom:5px;
+	color:#87b5da;
+	font-family:"Comic Sans MS";
+	cursor:default;
+}
+
+#header h2 {
+	font-size:15px;
+	padding-left:450px;
+	color:#87b5da;
+	font-family:"Comic Sans MS";
+	cursor:default;
+}
+
+#forum {
+	width:auto;
+	margin:10px;
+	border:2px #106cb5 solid;
+	border-radius:5px;
+	padding:5px;
+	font-family:"Comic Sans MS";
+}
+
+.topic {
+	text-decoration:none;
+	color:#000;
+}
+
+.input {
+	padding:2px;
+	padding-left:5px;
+	border:2px #106cb5 solid;
+	
+}
+
+.input_login placeholder {
+	color:#fff;
+}
+
+.right {
+	float:right;
+	padding:5px;
+}
+
+.left {
+	float:left;
+	padding:5px;
+}
+
+.cat_links {
+	display: block;
+	padding:5px;
+	padding-top:10px;
+	padding-bottom:10px;
+	border:0px solid #000;
+	margin-bottom:5px;
+	background-color:#5999cc;
+	border-radius:5px;
+	color:#fff;
+	text-decoration:none;
+	text-align:left;
+}
+
+.cat_links:hover {
+	background-color:#106cb5;
+	text-decoration:none;
+	text-align:left;
+}
+
+#upload {
+	min-height:400px;
+	width:auto;
+	overflow:hidden;
+	color:#fff;
+	font-family:"Comic Sans MS";
+	background:#106cb5 url(http://diggyshelper.php5.sk/images/bg/upload.png) no-repeat;
+}
+
+#footer {
+	background:#fff url(http://diggyshelper.php5.sk/images/bg/footer.png) no-repeat;
+	background-position:bottom;
+	height:150px;
+	width:auto;
+}
+
+#footer_right {
+	float:right;
+	width:126px;
+	padding-right:10px;
+	height:150px;
+	background:url(http://diggyshelper.php5.sk/images/bg/linda.png) no-repeat;
+}
+
+hr {
+	border:0px solid #ccc;
+}
+
+#statistiky {
+	width:auto;
+	margin:10px;
+	border:2px #106cb5 solid;
+	border-radius:5px;
+	padding:5px;
+	color:#000;
+	font-family:"Comic Sans MS";
+}
+
+#news {
+	border-radius:5px;
+	border:2px #106cb5 solid;
+	margin:10px;
+	font-family:"Comic Sans MS";
+	padding:5px;
+	min-height:20px;
+}
+
+#profilinfo {
+	background:#fff;
+	border:0px;
+}
+
+div.dialog.profile {
+  position:absolute;
+  min-width:400px;
+  min-height:250px;
+  border:2px solid #000000;
+  font-family:"Comic Sans MS";
+  background-color:#fff;
+  float:center;
+  left:calc(50% - 200px);
+}
+
+div.dialog.profile h3 {
+  text-align:center;
+  font-family:"Comic Sans MS";
+}
+
+div.dialog.profile img {
+	border:1px solid #000000;
+	float:left;
+	margin-right:10px;
+	margin-left:10px;
+	width:130px;
+	height:150px;
+}
