@@ -224,12 +224,12 @@ div#header > p.in-development {
 #menu a {
 	text-decoration:none;
 	color:#fff;
+	padding: 2px;
 }
 
 #menu a:hover {
-	padding:2px;
-	background:#71dc4d;
-	border-radius:5px;
+	background: #71dc4d;
+	border-radius: 5px;
 	color:#fff;
 }
 
