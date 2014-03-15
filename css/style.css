@@ -158,6 +158,14 @@ div#header > p.in-development {
 	border-radius: 5px;
 }
 
+#provizorne p:first-child {
+	margin-top: 0;
+}
+
+#provizorne p:last-child {
+	margin-bottom: 0;
+}
+
 #provizorne.warning {
 	background: red;
 }

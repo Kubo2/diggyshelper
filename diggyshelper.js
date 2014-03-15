@@ -22,6 +22,20 @@ function getHttpRequest()
   return !window.XMLHttpRequest ? !window.ActiveXObject ? null : new ActiveXObject("Microsoft.XMLHTTP") : new XMLHttpRequest();
 }
 
+// oznámenie / hlavička
+function updateBoard(text, classification) {
+	if(!classification) classification = "notice";
+	var board = document.getElementById('provizorne');
+	if(!board) {
+		board = document.createElement('div');
+		board.id = 'provizorne';
+		document.getElementById('header').appendChild(board);
+	}
+	board.className = classification;
+	board.innerHTML = text;
+
+}
+
 // kontrola hesla na stránke registrácia
 var pswfield = document.getElementById('status');
 if(pswfield) {
@@ -47,28 +61,14 @@ if(pswfield) {
 	}
 }
 
-// hlavičkové informácie
-(function(header){
-	if(!header) return;
-	var info = "\
-Ospravedlňujeme sa za neočakávanú funkčnosť niektorých prvkov tohoto webu.<br>\
-Stránka je momentálne v prestavbe, čoskoro bude nasadená nová, vylepšená verzia.<br><br>\
-Ďakujeme za pochopenie.<br>\
-<span style=\"float:right\">~ Tím Diggy's Helper</span>\
-";
-	var p = document.createElement('p');
-	p.className = "warning in-development";
-	p.style.color = "#f00";
-	p.style.fontSize = "115%";
-	p.style.clear = "both";
-	p.innerHTML = info;
-	header.appendChild(p)
-})(document.getElementById('header'))
+// dočasne - po dokončení sa bude tzv. board používať pre zobrazovanie notifikácií
+updateBoard('<p>Ospravedlňujeme sa za neočakávanú funkčnosť niektorých prvkov tohoto webu.<br>Stránka je momentálne v prestavbe, čoskoro bude nasadená nová, vylepšená verzia.<p>Ďakujeme za pochopenie.<br><span style="text-align:right">~ Tím Diggy\'s Helper</span>', "warning");
+
 
 // zobrazenie userprofile dialógu, ak sme na hlavnej stránke a existuje hash #member
 var uzivatelDialog = location.hash.match(/#member=(\d+)$/);
 if((document.getElementsByClassName("cat_links") || document.querySelector(".cat_links")) && uzivatelDialog != null) {
-	var req = HttpRequest();
+	var req = getHttpRequest();
 	if(req) {
 		req.open('GET', "members-new.php");
 		req.setRequestHeader('X-Requested-With', "XMLHttpRequest");
