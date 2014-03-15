@@ -1,20 +1,5 @@
-<?php
-//error_reporting(E_ALL|E_STRICT);
-/* Session sa musí inicializovať ešte *pred* odoslaním akéhokoľvek výstupu */
-// @see http://php.net/session-start
-session_start();
-
-// zapnutie output bufferingu (nemám iný spôsob posielania hlavičiek po výstupe) 
-// @see http://php.net/ob-start
-@ob_start();
-
-// pridaná HTTP hlavička určujúca kódovanie (neviem, čo máš v head.php, ale pre istotu, keďže 
-// si mi písal, že ti nejde utf8) -- diakritika by už mala fachať 
-@header("Content-Type: text/html; charset=utf-8", true, 200);
-
-// pre odkomentovanie doctypu jednoducho odstráň sekvenciu -- zo začiatku aj z konca
-?>
-<!--DOCTYPE HTML-->
+﻿<?php header("Content-Type: text/html; charset=utf-8", true, 200); ?>
+<!DOCTYPE HTML>
 <html>
 <head>
 	<?php include 'includes/head.php'; ?>
@@ -24,48 +9,18 @@ session_start();
 	
 	<?php include 'includes/menu.php'; ?>
 	
-	<?php session_start(); ?>
-<center>
-<div id="loginpassage">
-<?php
-if (!isset($_SESSION['uid'])) {
-	echo "<form action='login.php' method='post'>
-	<input class='input' type='text' name='username' placeholder='Nickname' value='' />&nbsp;
-	<input class='input' type='password' name='password' placeholder='Heslo' value='' />&nbsp;
-	<input class='input' type='checkbox' name='remember'> Neodhlasovať ma&nbsp;
-	<input type='submit' name='submit' class='input_button' value='Prihlásiť sa' />&nbsp;
-	<a class='button_logout' href='#'>Zabudli ste heslo?</a>&nbsp;
-	<a class='button_register' href='register.php'>Registrovať sa</a>
-	";
-} else {
-	echo "Vitaj <font color='#106CB5'>".$_SESSION['username']."</font> !
-	<a class='button_logout' href='logout.php'>Odhlásiť sa</a>";
-}
-?>
-</div>
-</center>
-<div id="forum">
-<div id="content">
-	<?php
-		include_once("connect.php");
-		$sql = "SELECT * FROM categories ORDER BY category_title ASC";
-		$res = mysql_query($sql) or die(mysql_error());
-		$categories = "";
-		if (mysql_num_rows($res) > 0) {
-			while ($row = mysql_fetch_assoc($res)) {
-				$id = $row['id'];
-				$title = $row['category_title'];
-				$descrition = $row['category_description'];
-				$categories .= "<a href='view.php?cid=".$id."' class='cat_links'>".$title."<br><font size='-1'>".$descrition."</font></a>";
-			}
-			echo $categories;
-		} else {
-			echo "<p>Zatial nie sú k dispozícii žiadne kategórie.</p>";
-		}
-	?>
-</div>
-</div>
-</center>
+	<?php include 'includes/submenu.php'; ?>
+	
+	<div id="pages">
+		<center>
+			<h3>Vítam ťa na stránke Diggy's Helper</h3>
+		<img src="images/bg/logo-DA.png"></center><br>
+		Kto povedal, že všetky mýtické poklady už boli objavené? Prekop sa s Diggym k tajomstvám ukrytým pod zemou. Si pripravený na dobrodružstvo? Zbožňuješ staroveké civilizácie a ich záhady? Chcel by si objavovať dávno stratené chrámy a zabudnuté kobky? Tak potom si ten pravý. Tajomstvá ukryté tisícky rokov pod zemou legendárnych území po celom svete čakajú len na tvoje šikovné ruky a myseľ objaviteľa. Pridaj sa k Profesorovi, Linde a robotovi Rustymu, postav kemp a vydaj sa na dobrodružstvo tvojho života.<br><br>
+		<center><a href="http://portal.pixelfederation.com/diggysadventure/?lang=SK" target="blank" class="playgamepp">Hraj na Pixel Portáli</a> <a href="https://apps.facebook.com/diggysadventure/" target="blank" class="playgamefb">Hraj na Facebooku</a></center><br><br>
+		<b>O firme PIXEL FEDERATION:</b><br>
+		Firma <a class="memberusers" href="http://www.pixelfederation.com/?lang=sk" target="blank">PIXEL FEDERATION</a> bola založená v roku 2007 štyrmi nadšencami z herného priemyslu a venuje sa výhradne tvorbe online webových a mobilných hier, jednou z nich je aj spomínaný Diggy's Adventure. Inovatívne myslenie či entuziazmus v tíme dopĺňajú skúsenosti z vlastných herných projektov. Tá správna kombinácia ľudí s rôznym backgroundom nám umožňuje zdolávať výzvy, ktoré dnešný game development ponúka. Nájdete nás v hlavnom meste Slovenska, v Bratislave.
+	</div>
+
 	<?php include 'includes/footer.php'; ?>
 </body>
 </html>

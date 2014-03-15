@@ -1,3 +1,20 @@
+<?php
+//error_reporting(E_ALL|E_STRICT);
+/* Session sa musí inicializovať ešte *pred* odoslaním akéhokoľvek výstupu */
+// @see http://php.net/session-start
+session_start();
+
+// zapnutie output bufferingu (nemám iný spôsob posielania hlavičiek po výstupe) 
+// @see http://php.net/ob-start
+@ob_start();
+
+// pridaná HTTP hlavička určujúca kódovanie (neviem, čo máš v head.php, ale pre istotu, keďže 
+// si mi písal, že ti nejde utf8) -- diakritika by už mala fachať 
+@header("Content-Type: text/html; charset=utf-8", true, 200);
+
+// pre odkomentovanie doctypu jednoducho odstráň sekvenciu -- zo začiatku aj z konca
+?>
+<!--DOCTYPE HTML-->
 <div id="upload">
 <html>
 <head>
@@ -8,8 +25,8 @@
 <center><br>
 <form action="" method="POST" enctype="multipart/form-data">
 
-<input class='input_button_obr' type="file" name="file"><br><br>
-<input class='input_button_obr' type="submit" name="submit" value="Nahrat obrazok">
+<input class='button_register' type="file" name="file"><br><br>
+<input class='button_register' type="submit" name="submit" value="Nahrať obrázok">
 
 </form>
 

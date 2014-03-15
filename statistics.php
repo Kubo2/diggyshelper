@@ -34,24 +34,7 @@ session_start();
 	
 	<?php include 'includes/menu.php'; ?>
 	
-<center>
-<div id="loginpassage">
-<?php
-if (!isset($_SESSION['uid'])) {
-	echo "<form action='login.php' method='post'>
-	<input class='input' type='text' name='username' placeholder='Nickname' value='' />&nbsp;
-	<input class='input' type='password' name='password' placeholder='Heslo' value='' />&nbsp;
-	<input class='input' type='checkbox' name='remember'> Neodhlasovať ma&nbsp;
-	<input type='submit' name='submit' class='input_button' value='Prihlásiť sa' />&nbsp;
-	<a class='button_logout' href='#'>Zabudli ste heslo?</a>&nbsp;
-	<a class='button_register' href='register.php'>Registrovať sa</a>
-	";
-} else {
-	echo("Prihlásený používateľ: <b>$_SESSION[username]</b> &rsaquo; <a class='button_logout' href='logout.php'>Odhlásiť sa</a>");
-}
-?>
-</div>
-</center>
+	<?php include 'includes/submenu.php'; ?>
 	
 	<div id="statistiky">
 	
@@ -100,69 +83,43 @@ LIMIT 1");
 
 	?>
 	
-	<p style="text-align: center">
-		Na Diggy's Helper už máme ... <?php echo $membersCount[0]; ?> ... užívateľov.
-	</p>
-	<p style="text-align: center">NAJ zo stránky Diggy's Helper</p>
-	<table border="0" style="border-collapse:collapse;">
-		<tr>
-			<td>
-				<font color="#FFF">Najnovší člen</font>
-			</td>
-			<td>
-				<font color="#FFF">Najaktívnejší člen</font>
-			</td>
-			<td>
-				<font color="#FFF">Najnovšia téma</font>
-			</td>
-			<td>
-				<font color="#FFF">Najzobrazovanejšia téma</font>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<?php
+	<p>
+		<h3>Počet zaregistrovaných užívateľov: ... <?php echo $membersCount[0]; ?> ...</h3>
+		
+		Najnovší člen: <?php
 				if(!$newestMember)
 					echo "Nedostupný.";
 				else { ?>
-				<a class="memberusers" href="./#member=<?php echo $newestMember['id']; ?>" rel="nofollow">
+				<b><a class="memberusers" href="./#member=<?php echo $newestMember['id']; ?>" rel="nofollow">
 					<?php echo $newestMember['username']; ?>
-				</a>
-				<?php } ?>
-			</td>
-			<td>
-				<?php
+				</a></b>.
+				<?php } ?><br><br>
+		Najaktívnejší člen: <?php
 				if(!$mostActiveMember)
 					echo "Nedostupný.";
 				else { ?>
-				<a class="memberusers" href="./#member=<?php echo $mostActiveMember['id']; ?>" rel="nofollow">
+				<b><a class="memberusers" href="./#member=<?php echo $mostActiveMember['id']; ?>" rel="nofollow">
 					<?php echo $mostActiveMember['username']; ?>
-				</a> so svojimi <span style="color:red"><?php echo $mostActiveMember['posts_count']; ?></span> príspevkami
-				<?php } ?>
-			</td>
-			<td>
-				<?php
+				</a></b> so svojimi <span style="color:red"><?php echo $mostActiveMember['posts_count']; ?></span> príspevkami .
+				<?php } ?><br><br>
+		Najnovšia téma: <?php
 				if(!$newestTopic)
 					echo "Žiadna.";
 				else { ?>
-				<a href="./view_topic.php?tid=<?php echo $newestTopic['id']; ?>&amp;cid=<?php echo $newestTopic['category_id']; ?>">
+				<b><a class="naj" href="./view_topic.php?tid=<?php echo $newestTopic['id']; ?>&amp;cid=<?php echo $newestTopic['category_id']; ?>">
 					<?php echo $newestTopic['topic_title']; ?>
-				</a>
-				<?php } ?>
-			</td>
-			<td>
-				<?php
+				</a></b>.
+				<?php } ?><br><br>
+		Najzobrazovanejšia téma: <?php
 				if(!$mostViewedTopic)
 					echo "Nie je.";
 				else { ?>
-				<a href="./view_topic.php?tid=<?php echo $mostViewedTopic['id']; ?>&amp;cid=<?php echo $mostViewedTopic['category_id']; ?>">
+				<b><a class="naj" href="./view_topic.php?tid=<?php echo $mostViewedTopic['id']; ?>&amp;cid=<?php echo $mostViewedTopic['category_id']; ?>">
 					<?php echo $mostViewedTopic['topic_title']; ?>
-				</a>
-				&rsaquo; Zobrazená <span style="color:red"><?php echo $mostViewedTopic['views']; ?></span> krát
+				</a></b> 
+				zobrazená <span style="color:red"><?php echo $mostViewedTopic['views']; ?></span> krát .
 				<?php } ?>
-			</td>
-		</tr>
-	</table>
+	</p>
 	</div>
 	
 	<?php include 'includes/footer.php'; ?>

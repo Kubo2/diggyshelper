@@ -6,7 +6,8 @@
  * vždy uveďte, odkiaľ ste ho získali.
  *
  * @author Kubo2
- * @copyright 2013-2014 Kubo2. Some rights reserved.
+ * @author WladinQ
+ * @copyright 2013-2014 Kubo2, WladinQ. Some rights reserved.
  *
  *******************************************************/
 
@@ -45,7 +46,7 @@ if(pswfield) {
 	if(!header) return;
 	var info = "\
 Ospravedlňujeme sa za neočakávanú funkčnosť niektorých prvkov tohoto webu.<br>\
-Fórum je momentálne v prestavbe, čoskoro bude nasadená nová, vylepšená verzia.<br><br>\
+Stránka je momentálne v prestavbe, čoskoro bude nasadená nová, vylepšená verzia.<br><br>\
 Ďakujeme za pochopenie.<br>\
 <span style=\"float:right\">~ Tím Diggy's Helper</span>\
 ";
@@ -80,27 +81,28 @@ if((document.getElementsByClassName("cat_links") || document.querySelector(".cat
 			dialog.className = "js-object profile dialog";
 
 			// since the stylesheet doesn't contain definitions for above classes
-			dialog.style.position = "absolute";
-			dialog.style.left = (screen.availWidth / 2 - 400 / 2).toString() + "px";
-			dialog.style.width = "400px";
-			dialog.style.height = "180px";
-			dialog.style.zIndex = "3";
-			dialog.style.border = "2px solid navy";
-			dialog.style.backgroundColor = "#fff";
 
 			dialog.innerHTML = "\
-<h3>Profil používateľa</h3>\
-<table style='border:1px solid rgb(0,70,180);border-collapse:collapse;margin:auto'>\
+<h3>Profil používateľa " + info.prezyvka + "</h3>\
+<img src='' align='left'>\
+<table id='profilinfo' border='0'>\
 	<tr>\
-		<th>Prezývka</th>\
-		<td>" + info.prezyvka + "</td>\
+		<td colspan=2>Oprávnenie: <b>" + info.prava + "</b></td>\
 	</tr>\
 	<tr>\
-		<td rowspan=2>je " + info.prava + "</td>\
+		<td>E-mail: </td>\
 	</tr>\
 	<tr>\
-		<th>registrovaný</th>\
-		<td>" + info.registrovany + "</td>\
+		<td>Počet príspevkou: </td>\
+	</tr>\
+	<tr>\
+		<td>Posledná návšteva: </td>\
+	</tr>\
+	<tr>\
+		<td>Registrovaný dňa: " + info.registrovany + "</td>\
+	</tr>\
+	<tr>\
+		<td><p style='text-align:right'><a href='#'>Viac</a></p></td>\
 	</tr>\
 </table>\
 ";

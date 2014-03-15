@@ -1,0 +1,12 @@
+RewriteEngine On
+RewriteBase /
+
+RewriteCond %{REQUEST_URI} !-f
+RewriteCond %{REQUEST_URI} !-d
+#RewriteCond %{QUERY_STRING} ^$
+RewriteRule !phpinfo.php$ /test/phpinfo.php?uri=%{REQUEST_URI} [R=303,L]
+
+#php_value memory_limit 80M
+php_flag display_errors On
+php_value error_reporting 0
+php_value error_log "/test/phplog.txt"

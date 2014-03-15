@@ -21,7 +21,11 @@ session_start();
 </head>
 <body>
 	<?php include 'includes/header.php'; ?>
-	<div id="forum">
+	
+	<?php include 'includes/menu.php'; ?>
+	
+<center>
+<div id="loginpassage">
 <?php
 if(!isset($_SESSION['uid'])) {
 // prerobil som priraďovanie dlhších výsekov HTML kódu a reťazcov 
@@ -34,22 +38,21 @@ echo <<<LOGINFORM
 	<input class="input" type="text" name="username" placeholder="Nickname">&nbsp;
 	<input class="input" type="password" name="password" placeholder="Heslo">&nbsp;
 	<input class="input" type="checkbox" name="remember"> Neodhlasovať ma&nbsp;
-	<input type="submit" name="submit" class="input_button" value="Prihlásiť sa">&nbsp;
-	<a class="button_register" href="register.php">Registrovať sa</a>
+	<input type='submit' name='submit' class='input_button' value='Prihlasit sa' />&nbsp;
+	<a class='button_logout' href='#'>Zabudli ste heslo?</a>&nbsp;
+	<a class='button_register' href='register.php'>Registrovat sa</a>
 	<!-- v tvojom pôvodnom kóde si zabudol uzavrieť formulár, uzavrela ho až koncová značka div#forum, teda celý div#content bol vo forumulári
 	<!-- to by mohlo spôsobovať nečakané chovanie vyhľadávačov pri indexovaní, opravil som. ~Kubo2 -->
 </form>
 LOGINFORM;
 } else {
 // naviac opravený zastaralý HTML tag font 
-	echo <<<LOGOUTFORM
-Vitaj <span style="color:#106CB5">$_SESSION[username]</span>!
-<div class='right'><a class='button_logout' href='logout.php'>Odhlásiť sa</a></div>
-LOGOUTFORM;
+	echo("Prihlásený používateľ: <font color='#106CB5'>$_SESSION[username]</font> &rsaquo; <a class='button' href='#'>Môj profil</a> <a class='button_register' href='#'>Žiadosti o priateľstvo (0)</a> <a class='button_logout' href='logout.php'>Odhlásiť sa</a>");
 }
 ?>
-
-<hr>
+</div>
+</center>
+	<div id="forum">
 <div id="content">
 <?php
 include_once("connect.php");
@@ -60,15 +63,15 @@ $cid = !empty($_GET['cid']) ? intVal($_GET['cid']) : false;
 if(!$cid) {
 	// tu treba ošetriť situáciu, keď nebolo zadané id
 	// presmeruje sa na výpis kategórií
-	header("Location: http://$_SERVER[SERVER_NAME]" . dirName($_SERVER["PHP_SELF"]) . "/index.php", true, 301);
+	header("Location: http://$_SERVER[SERVER_NAME]" . dirName($_SERVER["PHP_SELF"]) . "/forum.php", true, 301);
 	// @see http://php.net/ob-end-clean
 	@ob_end_clean();
 	exit;
 } else {
 	if(isset($_SESSION['uid']))
-		$logged = " | <a href='create.php?cid=".$cid."' class='button'>Vytvorit temu</a>";
+		$logged = " | <a href='create.php?cid=".$cid."' class='button'>Vytvoriť tému</a>";
 	else
-		$logged = " | Na vytvorenie temy je potrebne sa <span style='color:#106CB5'><b>Prihlasit</b></span>, alebo sa <font color='#33CC00'><b>Registrovat</b></span>!";
+		$logged = " | Na vytvorenie témy je potrebné sa <span style='color:#106CB5'><b>Prihlásiť</b></span>, alebo sa <font color='#33CC00'><b>Registrovať</b></span>!";
 	
 	$sql = " SELECT `id` FROM `categories` WHERE `id` = $cid; ";
 	$res = mysql_query($sql);
@@ -106,11 +109,12 @@ SQLQUERY;
 <table style="width:100%;border-collapse:collapse;">
 	<tr>
 		<td colspan='3'>
-			<a href='index.php' class='button'>Návrat do fóra</a>$logged
+			<a href='forum.php' class='button'>Návrat do fóra</a>$logged
 			<hr>
 		</td>
 	</tr><tr style='background-color:#106CB5'>
-		<td>&nbsp;<span style='color:#FFF'>Nazov temy</span></td>
+		<td width='50' align='center'></td>
+		<td><span style='color:#FFF'>Názov témy</span></td>
 		<td width='100' align='center'><font color='#FFF'>Odpovedí</font></td>
 		<td width='100' align='center'><font color='#FFF'>Zobrazené</font></td>
 	</tr><tr>
@@ -124,6 +128,9 @@ TOPICSTABLE;
 					$topics .= <<<TOPICSTABLE
 	<tr>
 		<td>
+			<center><img width='40' height='40' src='http://diggyshelper.php5.sk/images/icon/icon2.jpg'></center>
+		</td>
+		<td>
 			<a class='topic' href='view_topic.php?cid=$cid&amp;tid=$topicId'>
 				<strong>$topicTitle</strong>
 			</a>
@@ -131,7 +138,7 @@ TOPICSTABLE;
 			<span class='post_info'>Pridal/a: 
 				<font color='#106CB5'>$topicCreatorName</font> 
 			dňa 
-				<font color='#009933'>$topicDate</font>
+				<font color='#33CC00'>$topicDate</font>
 			</span>
 		</td><td align='center'>$topicPostCount</td>
 		<td align='center'>$topicViews&nbsp;&times;</td>
@@ -154,7 +161,7 @@ NOTOPICSTEXT;
 	} else {
 			echo <<<NONEXISTING
 <a href='index.php' class='button'>Návrat do fóra</a><hr>
-<p>Pokusate sa zobrazit kategoriu, ktora este neexistuje.
+<p>Pokúšate sa zobraziť kategóriu, ktorá neexistuje.
 NONEXISTING;
 		}
 		// v prípade, že sa jeden z výsledkov nepodarilo načítať
@@ -171,9 +178,6 @@ OFFLINE_PAGE;
 
 ?>
 </div>
-</div>
-<div id="statistiky">
-	<?php include 'includes/statistiky.php'; ?>
 </div>
 </center>
 	<?php include 'includes/footer.php'; ?>

@@ -1,3 +1,20 @@
+<?php
+//error_reporting(E_ALL|E_STRICT);
+/* Session sa musí inicializovať ešte *pred* odoslaním akéhokoľvek výstupu */
+// @see http://php.net/session-start
+session_start();
+
+// zapnutie output bufferingu (nemám iný spôsob posielania hlavičiek po výstupe) 
+// @see http://php.net/ob-start
+@ob_start();
+
+// pridaná HTTP hlavička určujúca kódovanie (neviem, čo máš v head.php, ale pre istotu, keďže 
+// si mi písal, že ti nejde utf8) -- diakritika by už mala fachať 
+@header("Content-Type: text/html; charset=utf-8", true, 200);
+
+// pre odkomentovanie doctypu jednoducho odstráň sekvenciu -- zo začiatku aj z konca
+?>
+<!--DOCTYPE HTML-->
 <html>
 <head>
 	<?php include 'includes/head.php'; ?>
@@ -63,6 +80,8 @@
 <body>
 	<?php include 'includes/header.php'; ?>
 	
+	<?php include 'includes/menu.php'; ?>
+	
 	<?php session_start(); ?>
 	<?php
 		if ((!isset($_SESSION['uid'])) || ($_GET['cid'] == "")) {
@@ -72,30 +91,30 @@
 		$cid = $_GET['cid'];
 		$tid = $_GET['tid'];
 	?>
-<div id="forum">
+	
+<center>
+<div id="loginpassage">
 	<?php
-		echo "Vitaj <font color='#106CB5'>".$_SESSION['username']."</font> !
-	<div class='right'><a class='button_logout' href='logout.php'>Odhlasit sa</a></div>";
+		echo("Prihlásený používateľ: <font color='#106CB5'>$_SESSION[username]</font> &rsaquo; <a class='button' href='#'>Môj profil</a> <a class='button_register' href='#'>Žiadosti o priateľstvo (0)</a> <a class='button_logout' href='logout.php'>Odhlásiť sa</a>");
 	?>
-<hr />
+</div>
+</center>
+<div id="forum">
 <div id="content">
 
-	<a class='button' href='javascript:history.back(1)'>Spat</a> <a class='button_obr' onclick="window.open('upload.php', 'okno1', 'width=500,height=400')">Nahrat obrazok</a><hr />
+	<a class='button' href='javascript:history.back(1)'>Späť</a> <a class='button_register' onclick="window.open('upload.php', 'okno1', 'width=500,height=400')">Nahrať obrázok</a><hr />
 
 	<form action="post_reply_parse.php" method="post">
-		<p>Pridat odpoved:</p>
+		<p>Pridať odpoveď:</p>
 		<textarea name="reply_content" rows="5" cols="75"></textarea><br>
-		<button class='button' type=button onclick="addtag('b')"><b>tucne</b></button> <button class='button' type=button onclick="addtag('i')"><i>kurziva</i></button> <button class='button' type=button onclick="addtag('u')"><u>podciarknute</u></button> <button class='button' type=button onclick="addtag('s')"><s>preciarknute</s></button> <button class='button' type=button onclick="addtag('center')">center</button> <button class='button_obr' type=button onclick="addtag('docastne nefunkcne')">images/nefunkcne</button><br>
-		Tag na vlozenie obrazku: &lt;img src=&quot;link obrazku&quot; width=&quot;350&quot; height=&quot;250&quot;&gt;
+		<button class='button' type=button onclick="addtag('b')"><b>tučné</b></button> <button class='button' type=button onclick="addtag('i')"><i>kurzíva</i></button> <button class='button' type=button onclick="addtag('u')"><u>podčiarknuté</u></button> <button class='button' type=button onclick="addtag('s')"><s>prečiarknuté</s></button> <button class='button' type=button onclick="addtag('center')">center</button> <button class='button_register' type=button onclick="addtag('docastne nefunkcne')">images/nefunkčné</button><br>
+		Tag na vloženie obrázku: &lt;img src=&quot;link obrázku&quot; width=&quot;350&quot; height=&quot;250&quot;&gt;
 		<br /><br />
 		<input type="hidden" name="cid" value="<?php echo $cid; ?>" />
 		<input type="hidden" name="tid" value="<?php echo $tid; ?>" />
-		<input type="submit" name="reply_submit" class="input_button" value="Pridat odpoved">
+		<input type="submit" name="reply_submit" class="input_button" value="Pridať odpoveď">
 	</form>
 </div>
-</div>
-<div id="statistiky">
-	<?php include 'includes/statistiky.php'; ?>
 </div>
 </center>
 	<?php include 'includes/footer.php'; ?>

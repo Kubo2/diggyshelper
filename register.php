@@ -99,7 +99,7 @@ session_start();
 			<td><input class='input' name='email' placeholder='E-mail' value='<?php echo isset($_POST["submit"])&&!$reg?$email:''; ?>' type='text'> <font color='red'>*</font></td>
 		</tr>
 		<tr>
-			<td><input class='input_button_register' type='submit' name='submit' value='Registrovať sa'></td>
+			<td><input class='button_register' type='submit' name='submit' value='Registrovať sa'></td>
 		</tr>
 	</table>
 

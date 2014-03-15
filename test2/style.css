@@ -1,0 +1,97 @@
+@-webkit-keyframes hide_login {
+	0% {
+		-webkit-transform: rotateY(0deg);
+		box-shadow:0 0 5px #ff4800;
+	}
+	50% {
+		box-shadow:0 0 15px #ff4800;
+	}
+	100% {
+		-webkit-transform: rotateY(180deg);
+		box-shadow:0 0 5px #ff4800;
+	}
+}
+
+@-webkit-keyframes show_register {
+	0%{
+		-webkit-transform: rotateY(180deg);
+		box-shadow:0 0 5px #ff4800;
+	}
+	50% {
+		box-shadow:0 0 15px #ff4800;
+	}
+	100%{
+		-webkit-transform: rotateY(0deg);
+		box-shadow:0 0 5px #ff4800;
+	}
+}
+
+body {
+	font-family:tahoma;
+	font-size:12px;
+	background:#333;
+	color:#fff;
+}
+
+#body {
+	margin:100 auto;
+	width:50%;
+}
+
+#container {
+	width:300px;
+}
+
+#login, #register {
+	background:#fff;
+	padding:10px;
+	width:280px;
+	border-radius:5px;
+	height:300px;
+	color:#333;
+	position:absolute;
+}
+
+form {
+	margin:10px;
+}
+
+input {
+	background:#fff;
+	content:#333;
+	padding:5px;
+	font-family:tahoma;
+	font-size:12px;
+	border-radius:5px;
+	margin:10px;
+	border:0px;
+	box-shadow:0 0 5px #000;
+}
+
+.button {
+	background:#ff4800;
+	color:#fff;
+	border-radius:5px;
+	border:0px;
+	padding:10px;
+	font-size:12px;
+	font-family:tahoma;
+	text-decoration:none;
+}
+
+.button:hover {
+	color:#ff4800;
+	background:#fff;
+	cursor:pointer;
+}
+
+#login {
+	-webkit-animation-duration: 2s;
+	-webkit-backface-visibility:hidden;
+}
+
+#register {
+	-webkit-transform: rotateY(180deg);
+	-webkit-backface-visibility:hidden;
+	-webkit-animation-duration: 2s;
+}

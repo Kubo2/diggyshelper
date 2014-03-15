@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 @ob_start();
 session_start();
 ?>
@@ -17,7 +17,6 @@ session_start();
 		if (isset($_POST['username'])) {
 			$username = $_POST['username'];
 			$password = md5($_POST['password']);
-			//$password = $_POST["password"];
 			$remember = $_POST['remember'];
 			$sql = "SELECT COUNT(*), id FROM users WHERE username='".$username."' AND password='".$password."' LIMIT 1";
 			$res = mysql_query($sql);
