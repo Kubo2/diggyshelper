@@ -10,7 +10,7 @@ session_start();
 <body>
 	<?php include 'includes/header.php'; ?>
 <center>
-<div id="forum">
+<div id="pages">
 	<?php
 		include_once("connect.php");
 

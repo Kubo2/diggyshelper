@@ -92,13 +92,6 @@ session_start();
 		$tid = $_GET['tid'];
 	?>
 	
-<center>
-<div id="loginpassage">
-	<?php
-		echo("Prihlásený používateľ: <font color='#106CB5'>$_SESSION[username]</font> &rsaquo; <a class='button' href='#'>Môj profil</a> <a class='button_register' href='#'>Žiadosti o priateľstvo (0)</a> <a class='button_logout' href='logout.php'>Odhlásiť sa</a>");
-	?>
-</div>
-</center>
 <div id="forum">
 <div id="content">
 

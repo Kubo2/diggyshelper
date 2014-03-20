@@ -16,26 +16,26 @@ session_start();
 ?>
 <!--DOCTYPE HTML-->
 <div id="upload">
-<html>
-<head>
-	<?php include 'includes/head.php'; ?>
-</head>
-<body>
-
-<center><br>
-<form action="" method="POST" enctype="multipart/form-data">
-
-<input class='button_register' type="file" name="file"><br><br>
-<input class='button_register' type="submit" name="submit" value="Nahrať obrázok">
-
-</form>
-
-<?php
+<html>
+<head>
+	<?php include 'includes/head.php'; ?>
+</head>
+<body>
+
+<center><br>
+<form action="" method="POST" enctype="multipart/form-data">
+
+<input class='button_register' type="file" name="file"><br><br>
+<input class='button_register' type="submit" name="submit" value="Nahrať obrázok">
+
+</form>
+
+<?php
 
 //include the connect.php file because we are going to write
 //the mysql info there.
 //add some quotes in ().. I had forgotten to write them in the previuos part of this
-//tutorial
+//tutorial
 include ("connect.php");
 
 //we want all the script
@@ -44,7 +44,7 @@ include ("connect.php");
 if (isset($_POST['submit'])) {
 
 //set the location
-$loc = "images/upload/";
+$loc = "images/upload/";
 
 //let's check if the file in an image
 
@@ -84,10 +84,10 @@ echo "Vas obrazok bol uspesne ulozeny na nas server.<br><br>http://diggyshelper.
 }
 
 }
-
+
 ?>
-
-</center>
-</body>
+
+</center>
+</body>
 </html>
 </div>
