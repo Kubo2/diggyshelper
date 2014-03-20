@@ -24,6 +24,10 @@ session_start();
     a[href^='#']:not([href$='#']) {
         font-style: italic;
     }
+    div:target, body:target,
+    div:not(:target), body:not(:target) {
+        transition: none;
+    }
     [id]:target {
         outline: 1.8px solid #ff9e49;
         border-top-color: transparent;
