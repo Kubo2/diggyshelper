@@ -91,13 +91,6 @@ session_start();
 		$cid = $_GET['cid'];
 	?>
 	
-<center>
-<div id="loginpassage">
-	<?php
-		echo("Prihlásený používateľ: <font color='#106CB5'>$_SESSION[username]</font> &rsaquo; <a class='button' href='#'>Môj profil</a> <a class='button_register' href='#'>Žiadosti o priateľstvo (0)</a> <a class='button_logout' href='logout.php'>Odhlásiť sa</a>");
-	?>
-</div>
-</center>
 <div id="forum">
 <a class='button' href='javascript:history.back(1)'>Späť</a> <a class='button_register' onclick="window.open('upload.php', 'okno1', 'width=500,height=400')">Nahrať obrázok</a>
 <hr/>

@@ -1,6 +1,6 @@
 body {
 	margin:0px;
-	font-family:"Comic Sans MS";
+	font-family: "Comic Sans MS", "Consolas", "Arial";
 }
 
 /** Universal. */
@@ -71,64 +71,35 @@ body {
 }
 
 /** Koniec universal. */
+/** ID */
 
-div#header > p.in-development {
-	float:right;
-	margin-top:10px;
-	margin-right:5px;
+#sutaz {
+	position: fixed;
+	right: 0;
+	top: 50%;
+	width: auto;
+	margin: -2.5em 0 0 0;
+	margin-top: -2.5em;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	background: rgba(255, 0, 0, 0.5);
+	color: #fff;
+	display: none;
+	padding: 0.5em 0.5em 0.5em 0.5em;
+	box-shadow: 0 1px 3px black;
 }
 
-.memberusers {
-	color:#5999cc;
-	text-decoration:none;
-}
-
-.memberusers:hover {
-	color:#106cb5;
-	text-decoration:none;
-}
-
-.box {
-	background:#87b5da;
-	color:#fff;
-	padding:10px;
-	border-radius:5px;
-	border:0px;
-	margin:10px 0px;
-	text-decoration:none;
-}
-
-.box:hover {
-	background:#106cb5;
-	color:#fff;
-	padding:10px;
-	border-radius:5px;
-	border:0px;
-	margin:10px 0px;
-	text-decoration:none;
-}
-
-.naj {
-	text-decoration:none;
-	color:#000;
-}
-
-#pages {
-	width:auto;
-	margin:10px;
-	border:2px #106cb5 solid;
-	border-radius:5px;
-	padding:5px;
-	font-family:"Comic Sans MS";
-}
-
-#pages table tr td {
+#sutaz strong {
 	text-align:center;
 }
 
 #zaujimavosti {
 	width:auto;
-	margin:10px;
+	margin-right:5px;
+	margin-left:5px;
+	margin-bottom:5px;
+	margin-top:0px;
 	border:2px #106cb5 solid;
 	border-radius:5px;
 	padding:5px;
@@ -147,14 +118,35 @@ div#header > p.in-development {
 	color:#fff;
 }
 
+#loginprovizor {
+	background: #8CB8DC;
+	height: 130px;
+	width: 353px;
+	float: right;
+	border-radius: 5px;
+	margin-right: 5px;
+	margin-top: 5px;
+	padding:5px;
+	color:#fff;
+}
+
+#loginprovizor img {
+	width:80px;
+	height:76px;
+	border-radius:5px;
+	border:2px #106cb5 solid;
+}
+
 #provizorne {
 	color: #fff;
 	background: grey;
 	font-size: 90%;
 	height: auto;
-	width: 400px;
-	float: right;
-	padding: 10px;
+	width: 95%;
+	margin: 0 auto 23px;
+	
+	text-align: left;
+	padding: 5px;
 	border-radius: 5px;
 }
 
@@ -172,6 +164,22 @@ div#header > p.in-development {
 
 #provizorne.notice {
 	background: ligthgreen;
+}
+
+#pages {
+	width:auto;
+	margin-right:5px;
+	margin-left:5px;
+	margin-bottom:5px;
+	margin-top:0px;
+	border:2px #106cb5 solid;
+	border-radius:5px;
+	padding:5px;
+	font-family:"Comic Sans MS";
+}
+
+#pages table tr td {
+	text-align:center;
 }
 
 #pages .playgamepp {
@@ -216,17 +224,13 @@ div#header > p.in-development {
 	color:#fff;
 }
 
-#loginpassage {
-	font-family:"Comic Sans MS";
-	text-align:center;
-}
-
 #menu {
 	background:#33cc00;
 	color:#fff;
 	font-family:"Comic Sans MS";
 	padding:5px;
 	height:23px;
+	width: auto;
 }
 
 #menu a {
@@ -238,22 +242,6 @@ div#header > p.in-development {
 #menu a:hover {
 	background: #71dc4d;
 	border-radius: 5px;
-	color:#fff;
-}
-
-.jazykon {
-	padding:2px;
-	background:#71dc4d;
-	border-radius:5px;
-	color:#fff;
-	margin-left:290px;
-}
-
-.jazykoff {
-	padding:2px;
-	background:#71dc4d;
-	border-radius:5px;
-	float:right;
 	color:#fff;
 }
 
@@ -283,11 +271,123 @@ div#header > p.in-development {
 
 #forum {
 	width:auto;
-	margin:10px;
+	margin-right:5px;
+	margin-left:5px;
+	margin-bottom:5px;
+	margin-top:0px;
 	border:2px #106cb5 solid;
 	border-radius:5px;
 	padding:5px;
 	font-family:"Comic Sans MS";
+}
+
+#content {
+	
+}
+
+#upload {
+	min-height:400px;
+	width:auto;
+	overflow:hidden;
+	color:#fff;
+	font-family:"Comic Sans MS";
+	background:#106cb5 url(http://diggyshelper.php5.sk/images/bg/upload.png) no-repeat;
+}
+
+#footer {
+	background:#fff url(http://diggyshelper.php5.sk/images/bg/footer.png) no-repeat;
+	background-position:bottom;
+	height:150px;
+	width:auto;
+}
+
+#footer_right {
+	float:right;
+	width:126px;
+	padding-right:10px;
+	height:150px;
+	background:url(http://diggyshelper.php5.sk/images/bg/linda.png) no-repeat;
+}
+
+#statistiky {
+	width:auto;
+	margin-right:5px;
+	margin-left:5px;
+	margin-bottom:5px;
+	margin-top:0px;
+	border:2px #106cb5 solid;
+	border-radius:5px;
+	padding:5px;
+	color:#000;
+	font-family:"Comic Sans MS";
+}
+
+#news {
+	border-radius:5px;
+	border:2px #106cb5 solid;
+	margin:10px;
+	font-family:"Comic Sans MS";
+	padding:5px;
+	min-height:20px;
+}
+
+#profilinfo {
+	background:#fff;
+	border:0px;
+}
+
+/** Koniec ID */
+/** CLASS */
+
+.memberusers {
+	color:#5999cc;
+	text-decoration:none;
+}
+
+.memberusers:hover {
+	color:#106cb5;
+	text-decoration:none;
+}
+
+.box {
+	background:#87b5da;
+	color:#fff;
+	padding:10px;
+	border-radius:5px;
+	border:0px;
+	margin:10px 0px;
+	text-decoration:none;
+}
+
+.box:hover {
+	background:#106cb5;
+	color:#fff;
+	padding:10px;
+	border-radius:5px;
+	border:0px;
+	margin:10px 0px;
+	text-decoration:none;
+}
+
+.naj {
+	text-decoration:none;
+	color:#000;
+}
+
+.jazykon {
+	padding:2px;
+	background:#71dc4d;
+	border-radius:5px;
+	color:#fff;
+	margin-left:100px;
+}
+
+.jazykoff {
+	padding:2px;
+	background:#71dc4d;
+	border-radius:5px;
+	float:right;
+	color:#fff;
 }
 
 .topic {
@@ -336,56 +436,16 @@ div#header > p.in-development {
 	text-align:left;
 }
 
-#upload {
-	min-height:400px;
-	width:auto;
-	overflow:hidden;
-	color:#fff;
-	font-family:"Comic Sans MS";
-	background:#106cb5 url(http://diggyshelper.php5.sk/images/bg/upload.png) no-repeat;
-}
+/** Koniec CLASS */
 
-#footer {
-	background:#fff url(http://diggyshelper.php5.sk/images/bg/footer.png) no-repeat;
-	background-position:bottom;
-	height:150px;
-	width:auto;
-}
-
-#footer_right {
+div#header > p.in-development {
 	float:right;
-	width:126px;
-	padding-right:10px;
-	height:150px;
-	background:url(http://diggyshelper.php5.sk/images/bg/linda.png) no-repeat;
+	margin-top:10px;
+	margin-right:5px;
 }
 
 hr {
 	border:0px solid #ccc;
-}
-
-#statistiky {
-	width:auto;
-	margin:10px;
-	border:2px #106cb5 solid;
-	border-radius:5px;
-	padding:5px;
-	color:#000;
-	font-family:"Comic Sans MS";
-}
-
-#news {
-	border-radius:5px;
-	border:2px #106cb5 solid;
-	margin:10px;
-	font-family:"Comic Sans MS";
-	padding:5px;
-	min-height:20px;
-}
-
-#profilinfo {
-	background:#fff;
-	border:0px;
 }
 
 div.dialog.profile {

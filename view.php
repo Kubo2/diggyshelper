@@ -24,34 +24,7 @@ session_start();
 	
 	<?php include 'includes/menu.php'; ?>
 	
-<center>
-<div id="loginpassage">
-<?php
-if(!isset($_SESSION['uid'])) {
-// prerobil som priraďovanie dlhších výsekov HTML kódu a reťazcov 
-// na heredoc syntax, je to prehľadnejšie 
-// @see http://php.net/heredoc
-// ~
-// <ot>z HTML kódu som odstránil NET zápis - lomítko pred koncovou zátvorkou nepárového tagu</ot>
-echo <<<LOGINFORM
-<form action="login.php" method="post">
-	<input class="input" type="text" name="username" placeholder="Nickname">&nbsp;
-	<input class="input" type="password" name="password" placeholder="Heslo">&nbsp;
-	<input class="input" type="checkbox" name="remember"> Neodhlasovať ma&nbsp;
-	<input type='submit' name='submit' class='input_button' value='Prihlasit sa' />&nbsp;
-	<a class='button_logout' href='#'>Zabudli ste heslo?</a>&nbsp;
-	<a class='button_register' href='register.php'>Registrovat sa</a>
-	<!-- v tvojom pôvodnom kóde si zabudol uzavrieť formulár, uzavrela ho až koncová značka div#forum, teda celý div#content bol vo forumulári
-	<!-- to by mohlo spôsobovať nečakané chovanie vyhľadávačov pri indexovaní, opravil som. ~Kubo2 -->
-</form>
-LOGINFORM;
-} else {
-// naviac opravený zastaralý HTML tag font 
-	echo("Prihlásený používateľ: <font color='#106CB5'>$_SESSION[username]</font> &rsaquo; <a class='button' href='#'>Môj profil</a> <a class='button_register' href='#'>Žiadosti o priateľstvo (0)</a> <a class='button_logout' href='logout.php'>Odhlásiť sa</a>");
-}
-?>
-</div>
-</center>
+
 	<div id="forum">
 <div id="content">
 <?php
