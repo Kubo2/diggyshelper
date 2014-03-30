@@ -76,16 +76,16 @@ if(empty($_POST['username'])) {
 	<table border='0'>
 		<caption>Registrovať sa</caption>
 		<tr>
-			<td><input name='username' type=text placeholder='Nickname' class='input' required><td>
+			<td><input name='username' type='text' placeholder='Nickname' class='input' _required><td>
 		</tr>
 		<tr>
-			<td><input name='password' type=password placeholder='Heslo' class='input' autocomplete='off' id='status' required>&nbsp;<span class='first'></span></td>
+			<td><input name='password' type='password' placeholder='Heslo' class='input' autocomplete='off' id='status' _required>&nbsp;<span class='first'></span></td>
 		</tr>
 		<tr>
-			<td><input name='password2' type=password placeholder='Heslo znovu' class='input' autocomplete='off' required></td>
+			<td><input name='password2' type='password' placeholder='Heslo znovu' class='input' autocomplete='off' _required></td>
 		</tr>
 		<tr>
-			<td><input name='email' type=email placeholder='E-mail' class='input' ></td>
+			<td><input name='email' type='_email' placeholder='E-mail' class='input' ></td>
 		</tr>
 		<tr>
 			<td><input class='button_register' type='submit' value='Registrovať sa'></td>
@@ -112,26 +112,37 @@ goto closing;
 	//
 	// spam kontrola
 	if(!empty($_POST['url'])) goto spam;
-	// teraz sme presvedčení, že ani jedno heslo nie je prázdné
+	// teraz sme presvedčení, že ani jedno heslo nie je prázdne
 	if( empty($_POST['password']) || empty($_POST['password2']) ) goto empty_passwd;
 	// hashe hesiel sa musia zhodovať
 	if( ($userdata['password'] = md5($_POST['password'])) != md5($_POST['password2']) ) goto psw_not_eq;
 	// validácia emailovej adresy
-	if(!empty($_POST['email']) && !($atPos = mb_strpos($_POST['email'], '@')) || $atPos == mb_strlen($_POST['email']) - 1) goto invalid_email;
+	if(!empty($_POST['email']) && !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) goto invalid_email;
 	// sme pripojení k databázi?
 	if(FALSE === (require 'connect.php')) goto connect_err;
 	// ošetríme username a email proti sql injection
 	$userdata['username'] = mysql_real_escape_string($_POST['username']);
-	$userdata['email'] = isset($_POST['email']) ? mysql_real_escape_string($_POST['email']) : false;
-	// pokúsime sa vložiť užívateľa do databáze
-	if(!mysql_query(
-		"INSERT INTO `users`(`registerdate`,`username`,`password`" . ((bool) $userdata['email'] ? ',`email`' : '') . ") 
-		VALUES(NOW(),'$userdata[username]','$userdata[password]'" . ((bool) $userdata['email'] ? ',\'' . $userdata['email'] . '\'' : '') . ")") 
-	// 1062 - duplicate entry
-	&& mysql_errno() == 1062) goto unsuccesful_registration;
+	$userdata['email'] = !empty($_POST['email']) ? mysql_real_escape_string($_POST['email']) : false;
+	// primary structure
+	$newusr = "INSERT INTO `users`(`registerdate`, `username`, `password`" . ((bool) $userdata['email'] ? ', `email`' : '') . ")\n";
+	// data
+	$newusr .= "VALUES(NOW(), '$userdata[username]', '$userdata[password]'" . ((bool) $userdata['email'] ? ", '$userdata[email]' " : '') . ") "; // there was error with .= (merge) operator
+	// query - pokúsime sa vložiť užívateľa do databáze
+	$success = mysql_query($newusr);
+	// was registration successful?
+	if(!$success) {
+		// 1062 - duplicate entry
+		if(mysql_errno() == 1062) {
+			goto usr_already_exists;
+		}
+		// any else error
+		goto unsuccesful_registration;
+	}
 ?>
-<p class=succes>
+<h1>Registrácia úspešná</h1>
+<p class="succes">
 	Bravó! Vitajte na našom fóre ;-) V pravom hornom rohu sa môžete prihlásiť.
+	<a href="./">Prejsť na hlavnú stránku</a>
 </p>
 <?php 
 goto closing;
@@ -145,7 +156,7 @@ goto closing;
 </p>
 <p>
 	Registrácia neprebehla úspešne, ale to nevadí. Ak si človek, 
-	vráť sa a políčko <code>&quot;url&quot;</code> nechaj prázdne.
+	vráť sa a políčko <code>&apos;url&apos;</code> nechaj prázdne.
 </p>
 <?php goto closing; connect_err: ?>
 <p class="warning">
@@ -167,11 +178,19 @@ goto closing;
 	Ak neviete emailovú adresu správne zadať, nechajte prosím 
 	políčko prázdne. <a href="javascript:history.go(-1)">Upraviť</a>
 </p>
-<?php goto closing; unsuccesful_registration: ?>
+<p class="info">
+	Nevyžadujeme od vás tento údaj, avšak keď ho už zadáte, dbajte prosím na jeho správny formát.
+</p>
+<?php goto closing; usr_already_exists: ?>
 <p class="warning">
 	Bohužiaľ, registrácia sa nevydarila. Na našom fóre už užívateľ 
 	s rovnakou prezývkou existuje. <a href="javascript:history.go(-1)">
 	Upravte ju prosím</a> alebo si zvoľte inú.
+	<?php // TODO: návrhy existujúcich prezývok ?>
+</p>
+<?php goto closing; unsuccesful_registration: ?>
+<p class="warning">
+	Pri registrácii nastala chyba. Zopakujte svoj pokus prosím o niekoľko minút.
 </p>
 
 <?php closing: ?>
