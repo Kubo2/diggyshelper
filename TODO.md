@@ -15,3 +15,13 @@ Thanks for understanding.
 Stuff
 -----
 
+ - odstrániť repo diggyshelper-2.0
+ - premenovať repo diggyshelper-old -> diggyshelper na GitHube __+/__
+ - vytvoriť dlhodobú vetvu diggyshelper/dev
+ - opraviť bezpečnostné chyby (najmä diggyshelper/SQLInj-prevent) - @Kubo2
+ - začleniť diggyshelper/SQLInj-prevent do diggyshelper/master a zmazať ju - @Kubo2
+ - Testovaciu verziu nahrať na server diggyshelper.php5.sk
+ - po dôkladnom otestovaní (alebo hneď) nahrať poslednú revíziu fóra aj so stávajúcou DB na nový server diggyshelper.net
+ - Na server diggyshelper.php5.sk umiestniť presmerovací skript na novú doménu a ostatný obsah premiestniť do adresára diggyshelper.php5.sk/beta/, kde bude odvtedy prebiehať testovanie nových verzií softwaru
+ - na Google Webmasters Tools oznámiť Googlebotovi, že sa web presunul na novú doménu
+ -- Novú revíziu, ktorá bude ako prvá nahraná na server diggyshelper.net označiť značkou a do prísliušného commitu/revízie zaradiť súbor, ktorý sa postará o parsovanie a presmerovanie starých adries na nové (ale až keď nové budú :D!)
