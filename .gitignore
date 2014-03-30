@@ -1,3 +1,5 @@
 /google*.html
 *.log
 *.cache
+*-OLD
+*.OLD
