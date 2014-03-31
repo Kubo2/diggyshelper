@@ -2,17 +2,12 @@
 
 session_start();
 header("Content-Type: text/html; charset=utf-8", true, 200);
-mb_internal_encoding('UTF-8');
+mb_internal_encoding('UTF-8'); // not needed, none of mbstring functions used here
 ?>
-<!DOCTYPE HTML>
+<!doctype html>
 <html>
 <head>
 	<?php require 'includes/head.php'; ?>
-	
-	<!-- jQuery nie je vôbec portrebné. @see selector.js ~Kubo2 -->
-	<!--script type="text/javascript" src="jquery.js"></script-->
-	<!-- selector.js bol nahradený globálnym javascriptom diggyshelper.js @since 1.1 -->
-	<!--script type="text/javascript" src="./selector.js"></script-->
 	<style type="text/css">
 		.red{
 		color:white;
@@ -43,21 +38,17 @@ mb_internal_encoding('UTF-8');
 			color: red;
 		}
 	</style>
-
 </head>
 <body>
 	<?php
-		//require 'connect.php';
-		//require 'includes/functions.php';
 		require 'includes/header.php';
 		require 'includes/menu.php';
 		require 'includes/submenu.php'; 
 	?>
-	
 <div id="forum">
 	<a class='button' href='index.php'>Návrat do fóra</a>
-<hr >
-<div id="content">
+	<hr>
+	<div id="content">
 <?php
 // Tu vychádzam z faktu, že ak užívateľ neodoslal aspoň username,
 // buď
@@ -68,37 +59,45 @@ mb_internal_encoding('UTF-8');
 
 if(empty($_POST['username'])) {
 ?>
-	<h1>Registrácia</h1>
-	<p>Staňte sa členmi diskusného fóra Diggy's Helper.</p>
-	<style scoped>.ochrana-pred-robotmi{display:none}</style>
-
-	<form method='post' action='?'>
-	<table border='0'>
-		<caption>Registrovať sa</caption>
-		<tr>
-			<td><input name='username' type='text' placeholder='Nickname' class='input' _required><td>
-		</tr>
-		<tr>
-			<td><input name='password' type='password' placeholder='Heslo' class='input' autocomplete='off' id='status' _required>&nbsp;<span class='first'></span></td>
-		</tr>
-		<tr>
-			<td><input name='password2' type='password' placeholder='Heslo znovu' class='input' autocomplete='off' _required></td>
-		</tr>
-		<tr>
-			<td><input name='email' type='_email' placeholder='E-mail' class='input' ></td>
-		</tr>
-		<tr>
-			<td><input class='button_register' type='submit' value='Registrovať sa'></td>
-		</tr>
-		<tr class="ochrana-pred-robotmi">
-			<td>
-				Prosím, <strong>nevypĺňajte</strong>. 
-				Políčko si iba overuje, či nie ste <b>automatický spamovací robot.</b>
-			</td>
-			<td><input type="url" name='url'></td>
-		</tr>
-	</table>
-	</form>
+		<h1>Registrácia</h1>
+		<p>Staňte sa členmi diskusného fóra Diggy's Helper.</p>
+		<style scoped>.ochrana-pred-robotmi{display:none}</style>
+		<form method='post' action='?'>
+			<table border='0'>
+				<caption>Registrovať sa</caption>
+				<tr>
+					<td>
+						<input name='username' type='text' placeholder='Nickname' class='input' required>
+					<td>
+				</tr><tr>
+					<td>
+						<input name='password' type='password' placeholder='Heslo' class='input' autocomplete='off' id='status' required>
+					</td>
+					<td style="min-width: 160px">
+						<span class="first"></span>
+					</td>
+				</tr><tr>
+					<td>
+						<input name='password2' type='password' placeholder='Heslo znovu' class='input' autocomplete='off' required>
+					</td>
+				</tr><tr class="ochrana-pred-robotmi">
+					<td>
+						Prosím, <strong>nevypĺňajte</strong>. 
+						Políčko si iba overuje, či nie ste <b>automatický spamovací robot.</b>
+					</td><td>
+						<input type="url" name='url'>
+					</td>
+				</tr><tr>
+					<td>
+						<input name='email' type='email' placeholder='E-mail' class='input'>
+					</td>
+				</tr><tr>
+					<td>
+						<input class='button_register' type='submit' value='Registrovať sa'>
+					</td>
+				</tr>
+			</table>
+		</form>
 <?php 
 goto closing;
 } else {
@@ -194,9 +193,9 @@ goto closing;
 </p>
 
 <?php closing: ?>
+	</div>
 </div>
-</div>
-</center>
+<!-- no opening <center> tag seen -->
 	<?php require 'includes/footer.php'; ?>
 </body>
 </html>
