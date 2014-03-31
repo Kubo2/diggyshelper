@@ -1,4 +1,8 @@
-<?php header("Content-Type: text/html; charset=utf-8", true, 200) ?>
+<?php
+
+header("Content-Type: text/html; charset=utf-8", true, 200);
+session_start();
+?>
 <!DOCTYPE HTML>
 <html>
 <head>
