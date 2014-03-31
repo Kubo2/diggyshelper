@@ -248,7 +248,7 @@ body {
 #header {
 	height:150px;
 	width:auto;
-	background:#106cb5 url(http://diggyshelper.php5.sk/images/bg/logo.png) no-repeat;
+	background:#106cb5 url(../images/bg/logo.png) no-repeat;
 }
 
 #header h1 {
@@ -291,11 +291,11 @@ body {
 	overflow:hidden;
 	color:#fff;
 	font-family:"Comic Sans MS";
-	background:#106cb5 url(http://diggyshelper.php5.sk/images/bg/upload.png) no-repeat;
+	background:#106cb5 url(../images/bg/upload.png) no-repeat;
 }
 
 #footer {
-	background:#fff url(http://diggyshelper.php5.sk/images/bg/footer.png) no-repeat;
+	background:#fff url(../images/bg/footer.png) no-repeat;
 	background-position:bottom;
 	height:150px;
 	width:auto;
@@ -306,7 +306,7 @@ body {
 	width:126px;
 	padding-right:10px;
 	height:150px;
-	background:url(http://diggyshelper.php5.sk/images/bg/linda.png) no-repeat;
+	background:url(../images/bg/linda.png) no-repeat;
 }
 
 #statistiky {
