@@ -1,5 +1,7 @@
 <?php
 
+if(defined('DB_CONNECTED')) return true;
+
 $dbData = array(
 	"host" => 'localhost',
 	"user" => 'skdiggyshelper',
@@ -19,6 +21,7 @@ unset($dbData);
 
 if((bool)$connection && $selectedDb) {
 	mysql_query("SET NAMES utf8");
+	define('DB_CONNECTED', true);
 	return true;
 }
 return false;
