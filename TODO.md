@@ -17,9 +17,10 @@ Stuff
 
  - odstrániť repo diggyshelper-2.0
  - premenovať repo diggyshelper-old -> diggyshelper na GitHube __+/__
- - vytvoriť dlhodobú vetvu diggyshelper/dev
+ - vytvoriť dlhodobú vetvu diggyshelper/dev __+/__
  - opraviť bezpečnostné chyby (najmä diggyshelper/SQLInj-prevent) - @Kubo2
- - začleniť diggyshelper/SQLInj-prevent do diggyshelper/master a zmazať ju - @Kubo2
+ - začleniť diggyshelper/SQLInj-prevent do diggyshelper/master a zmazať ju - @Kubo2 || __del__
+ -- začleniť diggyshelper/SQLInj-prevent do diggyshelper/dev a zmazať - @Kubo2
  - Testovaciu verziu nahrať na server diggyshelper.php5.sk
  - po dôkladnom otestovaní (alebo hneď) nahrať poslednú revíziu fóra aj so stávajúcou DB na nový server diggyshelper.net
  - Na server diggyshelper.php5.sk umiestniť presmerovací skript na novú doménu a ostatný obsah premiestniť do adresára diggyshelper.php5.sk/beta/, kde bude odvtedy prebiehať testovanie nových verzií softwaru
