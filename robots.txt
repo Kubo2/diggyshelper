@@ -1,9 +1,10 @@
-User-Agent: *
-Allow: /
-Disallow: /test*
-Disallow: /includes/*
-# Google totiž začal sniffovať aj to čo nemal
-Disallow: /*.js$
-
-User-Agent: archive.org_bot
-Allow: /
+User-Agent: *
+Allow: /
+Disallow: /test*
+Disallow: /includes/*
+# Google totiž začal sniffovať aj to čo nemal
+Disallow: /*.js$
+
+User-Agent: archive.org_bot
+Allow: /
+
