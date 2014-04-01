@@ -55,6 +55,8 @@ session_start();
 	
 	<?php include 'includes/menu.php'; ?>
 	
+	<?php include 'includes/submenu.php'; ?>
+	
 <div id="forum">
 	<a class='button' href='index.php'>Návrat do fóra</a>
 <hr />

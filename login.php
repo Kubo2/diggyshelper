@@ -9,6 +9,10 @@ session_start();
 </head>
 <body>
 	<?php include 'includes/header.php'; ?>
+	
+	<?php include 'includes/menu.php'; ?>
+	
+	<?php include 'includes/submenu.php'; ?>
 <center>
 <div id="pages">
 	<?php
