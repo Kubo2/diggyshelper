@@ -1,6 +1,7 @@
 <div id="menu">
 	<a href="index.php">Domov</a>&nbsp;&nbsp;&nbsp;
 	<a href="forum.php">Fórum</a>&nbsp;&nbsp;&nbsp;
+	<a href="whatandhow.php">Čo a ako?</a>&nbsp;&nbsp;&nbsp;
 	<a href="attractions.php">Zaujímavosti</a>&nbsp;&nbsp;&nbsp;
 	<a href="contest.php">Sútaže</a>&nbsp;&nbsp;&nbsp;
 	<a href="statistics.php">Štatistiky</a>&nbsp;&nbsp;&nbsp;
