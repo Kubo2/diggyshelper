@@ -1,31 +1,32 @@
 ﻿<?php
-//error_reporting(E_ALL|E_STRICT);
-/* Session sa musí inicializovať ešte *pred* odoslaním akéhokoľvek výstupu */
-// @see http://php.net/session-start
+
+
 session_start();
 
-// zapnutie output bufferingu (nemám iný spôsob posielania hlavičiek po výstupe) 
-// @see http://php.net/ob-start
-@ob_start();
 
-// pridaná HTTP hlavička určujúca kódovanie (neviem, čo máš v head.php, ale pre istotu, keďže 
-// si mi písal, že ti nejde utf8) -- diakritika by už mala fachať 
 @header("Content-Type: text/html; charset=utf-8", true, 200);
 
-// pre odkomentovanie doctypu jednoducho odstráň sekvenciu -- zo začiatku aj z konca
+
+
 ?>
-<!--DOCTYPE HTML-->
+
+<!DOCTYPE HTML>
 <html>
-<head>
-	<?php include 'includes/head.php'; ?>
-	<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.1,user-scalable=no">
-<meta 
-    name="description" 
-    content="Mohlo by Vás zaujímať, kto stojí za vznikom diskusného fóra Diggy's Helper. Prečítajte si to na tejto stránke.">
-<style>
+    <head>
+        <?php include 'includes/head.php'; ?>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.1,user-scalable=no">
+        <meta 
+            name="description" 
+            content="Mohlo by Vás zaujímať, kto stojí za vznikom diskusného fóra Diggy's Helper. Prečítajte si to na tejto stránke."
+        >
+        <style>
     a[href^='#']:not([href$='#']) {
         font-style: italic;
+    }
+    div:target, body:target,
+    div:not(:target), body:not(:target) {
+        transition: none;
     }
     [id]:target {
         outline: 1.8px solid #ff9e49;
@@ -70,19 +71,16 @@ session_start();
         font-weight: normal;
         margin-top: 8px;
     }
-</style>
-</head>
-<body>
-	<?php include 'includes/header.php'; ?>
-	
-	<?php include 'includes/menu.php'; ?>
-	
-	<?php session_start(); ?>
-
-	<?php include 'includes/submenu.php'; ?>
-	
-<div id="pages">
-<article>
+        </style>
+    </head>
+    <body>
+	<?php
+        include 'includes/header.php';
+        include 'includes/menu.php';
+        include 'includes/submenu.php';
+    ?>
+        <div id="pages">
+            <article>
     <h1>Autori diskusného fóra Diggy's Helper</h1>
     <p>Kto stojí za vznikom diskusného fóra <b>Diggy's Helper</b>? Či už na našom fóre pôsobíte dlhšie, alebo ste nováčik a chcete sa dozvedieť viac o jeho vzniku, histórii a autoroch, ste tu správne. Čítajte prosím ďalej.</p>
     <p>
@@ -104,7 +102,7 @@ session_start();
     
     <h2 id="autori">Autori fóra</h2>
     <dl>
-        <dt id="WladinQ"><a class="memberusers" href="https://www.facebook.com/WladinQ" target="blank">Vladimír Jacko</a></dt>
+        <dt id="WladinQ"><a class="memberusers" href="https://www.facebook.com/WladinQ" target="_blank">Vladimír Jacko</a></dt>
         <dd>
 			<p>Vášnivý programátor v najlepších rokoch a zakladateľ projektu
 			Diggy's Helper. Pri programovaní najradšej počúva skupinu KABÁT.
@@ -112,7 +110,7 @@ session_start();
 			Každý deň premýšla ako najlepšie spríjemniť Váš pobyt na našich stránkach.<p>
 			Zaoberá sa prevažne dizajnom projektu. </p>
 		</dd>
-        <dt id="Kubo2"><a class="memberusers" href="http://kubo2.wz.sk/" target="blank">Jakub Kubíček</a></dt>
+        <dt id="Kubo2"><a class="memberusers" href="http://kubo2.wz.sk/" target="_blank">Jakub Kubíček</a></dt>
         <dd>
             <p>Mladý programátor zameraný na <b>webové 
             technológie</b>. Zbožňuje exotické ovocie zvané 
@@ -129,7 +127,6 @@ session_start();
     </dl>
 </article>
 	</div>
-
 	<?php include 'includes/footer.php'; ?>
 </body>
 </html>
