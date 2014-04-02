@@ -94,7 +94,11 @@ header("Content-Type: text/html; charset=utf-8", true, 401);
 		<?php $titleConst = "Login Error &bull; Chyba prihlásenia"; include "includes/head.php" ?>
 	</head>
 <body>
-	<?php include "includes/header.php" ?>
+	<?php 
+		include "includes/header.php";
+		include "includes/menu.php";
+		include "includes/submenu.php";
+	?>
 	<div class="pages" style="width: auto; margin: 0 auto">
 		<h1>Prihlásenie zlyhalo</h1>
 		<p class="error message"><?php echo !empty($errorMessage) ? $errorMessage : "Pri operácii nastala chyba."; ?></p>

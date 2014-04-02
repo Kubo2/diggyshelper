@@ -15,10 +15,10 @@ session_start();
 		include 'includes/submenu.php'; 
 	?>
 	<div id="pages">
-		<center>
+		<div style="width: auto; margin: 0 auto;">
 			<h3>Vítam ťa na stránke Diggy's Helper</h3>
 			<img src="images/bg/logo-DA.png">
-		</center><br>
+		</div><br>
 		Kto povedal, že všetky mýtické poklady už boli objavené? Prekop sa s Diggym k tajomstvám ukrytým pod zemou. Si pripravený na dobrodružstvo? Zbožňuješ staroveké civilizácie a ich záhady? Chcel by si objavovať dávno stratené chrámy a zabudnuté kobky? Tak potom si ten pravý. Tajomstvá ukryté tisícky rokov pod zemou legendárnych území po celom svete čakajú len na tvoje šikovné ruky a myseľ objaviteľa. Pridaj sa k Profesorovi, Linde a robotovi Rustymu, postav kemp a vydaj sa na dobrodružstvo tvojho života.<br><br>
 		<center>
 			<a href="http://portal.pixelfederation.com/diggysadventure/?lang=SK" target="blank" class="playgamepp">Hraj na Pixel Portáli</a>
