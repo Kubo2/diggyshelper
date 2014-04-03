@@ -70,7 +70,7 @@ var uzivatelDialog = location.hash.match(/#member=(\d+)$/);
 if((document.getElementsByClassName("cat_links") || document.querySelector(".cat_links")) && uzivatelDialog != null) {
 	var req = getHttpRequest();
 	if(req) {
-		req.open('GET', "members-new.php");
+		req.open('GET', "members.php");
 		req.setRequestHeader('X-Requested-With', "XMLHttpRequest");
 		try {
 		req.setRequestHeader('X-User-Id', uzivatelDialog[1]);
