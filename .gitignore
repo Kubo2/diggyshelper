@@ -3,3 +3,6 @@
 *.cache
 *-OLD
 *.OLD
+
+# ignore concretely #
+images/upload
