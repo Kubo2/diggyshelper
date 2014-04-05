@@ -15,7 +15,7 @@ session_start();
 		include 'includes/submenu.php'; 
 	?>
 	<div id="pages">
-		<div style="width: auto; margin: 0 auto;">
+		<div style="width: 100%; text-align: center;">
 			<h3>Vítam ťa na stránke Diggy's Helper</h3>
 			<img src="images/bg/logo-DA.png">
 		</div><br>
