@@ -33,4 +33,4 @@ Stuff
   * post_reply.php & post_reply_parse.php
   * upload.php
   * view.php & view_topic.php
-  * forum.php
+  * forum.php __+/__
