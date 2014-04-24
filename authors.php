@@ -108,7 +108,18 @@ session_start();
             <p>Mladý programátor zameraný na <b>webové 
             technológie</b>. Zbožňuje exotické ovocie zvané 
             <b>pomelo</b>, rád jazdí na <b>bicykli</b>, v zime 
-            <b>lyžuje</b> a medzi jeho záľuby patrí najmä 
+            <b>lyžuje</b> a miluje <b>kanoistiku</b>.<!--, ktorú 
+            zo srdca neznáša.--> Jeho vzťah k tomuto športu 
+            by sa dal vyjadriť nasledujúcim obrázkom:<br>   
+
+            <img 
+                src="images/icon/kanoistika-voda.jpg" 
+                alt="Kubo2 a jeho vzťah ku kanoistike: Mal som zlý deň. No potom som išiel na vodu." 
+                width="340" 
+                height="340"
+                >
+
+            <p>Medzi jeho ďaľšie záľuby patrí najmä 
             <b>programovanie</b> a tvorba webových stránok.<br>
             Na webe je ho možné nájsť pod prezývkou 
             <strong>Kubo2</strong>.
