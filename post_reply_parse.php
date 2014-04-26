@@ -10,7 +10,7 @@
 <?php
 	session_start();
 	if ($_SESSION['uid']) {
-		if (isset($_POST['reply_submit'])) {
+		if (isset($_POST['prispevok'])) {
 			include_once("connect.php");
 			$creator = $_SESSION['uid'];
 			$cid = $_POST['cid'];

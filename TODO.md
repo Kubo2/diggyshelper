@@ -15,6 +15,9 @@ Thanks for understanding.
 Stuff
 -----
 
+ - vkladanie BB tagov do príspevku (diggyshelper.js+zmeniť HTML) __+/__
+  * Fix bug - IE 7 doesn't understand it [fixed]
+  * Keyboard shortcuts for BB codes
  - odstrániť repo diggyshelper-2.0
  - premenovať repo diggyshelper-old -> diggyshelper na GitHube __+/__
  - vytvoriť dlhodobú vetvu diggyshelper/dev __+/__

@@ -5,7 +5,7 @@ if ($_SESSION['uid'] == "") {
 	exit();
 }
 if (isset($_POST['topic_submit'])) {
-	if (($_POST['topic_title'] == "") && ($_POST['topic_content'] == "")) {
+	if (($_POST['topic_title'] == "") && ($_POST['prispevok'] == "")) {
 		echo "Nevyplnili ste vsetky polia. Prosim, vratte sa na predchadzajucu stranku.";
 		exit();
 	} else {

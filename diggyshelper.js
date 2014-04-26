@@ -1,20 +1,18 @@
-/**
- **********************************************************
- *                                                        |
- * Tento skript bol vytvorený pre Diggy's Helper fórum,   |
- * a jeho autor sa úzko podieľal na vzniku tohoto fóra.   |
- * Skript je voľne šíriteľný a upravovateľný. Nesmie sa   |
- * však vydávať za svoj výtvor. Ak ho niekde použijete,   |
- * vždy uveďte, odkiaľ ste ho získali.                    |
- * Za uvedenie zdroja sa považuje obdoba nasledovného:    |
- * Zdroj: Diggy's Helper Project                          |
- *                                                        |
- * @author Kubo2                                          |
- * @author WladinQ                                        |
- * Copyright (c) Diggy's Helper Project                   |
- *                                                        |
- **********************************************************
- */
+﻿/********************************************************\
+ * Tento skript bol vytvorený pre Diggy's Helper fórum,	|
+ * a jeho autor sa úzko podieľal na vzniku tohoto fóra.	|
+ * Skript je voľne šíriteľný a upravovateľný. Nesmie sa	|
+ * však vydávať za svoj výtvor. Ak ho niekde použijete,	|
+ * vždy uveďte, odkiaľ ste ho získali.			|
+ * Za uvedenie zdroja sa považuje obdoba nasledovného:	|
+ * Zdroj: Diggy's Helper Project			|
+ * 							|
+ * @todo namiesto týchto pičovín asi vlastný FW		|
+ * @author Kubo2					|
+ * @author WladinQ 					|
+ * Copyright (c) Diggy's Helper Project 		|
+ * 							|
+\********************************************************/
 
 // http://djpw.cz/templates/djpw.js
 function getHttpRequest()
@@ -67,7 +65,7 @@ updateBoard('<p>Ospravedlňujeme sa za neočakávanú funkčnosť niektorých pr
 
 // zobrazenie userprofile dialógu, ak sme na hlavnej stránke a existuje hash #member
 var uzivatelDialog = location.hash.match(/#member=(\d+)$/);
-if((document.getElementsByClassName("cat_links") || document.querySelector(".cat_links")) && uzivatelDialog != null) {
+if((document.getElementsByClassName || document.querySelector) && (document.getElementsByClassName("cat_links") || document.querySelector(".cat_links")) && uzivatelDialog != null) {
 	var req = getHttpRequest();
 	if(req) {
 		req.open('GET', "members.php");
@@ -126,3 +124,87 @@ if((document.getElementsByClassName("cat_links") || document.querySelector(".cat
 		req.send();
 	}
 }
+
+
+
+/**********************************
+ *******     BB Kódy - UI    *******
+ **********************************/
+
+function vlozitBBTag(tag, text /*, oblast */ ) {
+ 	if(window.operamini) return;
+ 	try { // môže to hádzať chybu (viď djpw.js:299)
+ 		if(typeof(oblast) != "object") {
+ 			var oblast = (document.forms["vytvor-temu"] || document.forms["zasli-prispevok"] || document.forms[0]).elements["prispevok"];
+ 			if(!oblast) return;
+ 		}
+ 		var bb = {
+ 			b: {
+ 				parovy: true
+ 			},
+ 			i: {
+ 				parovy: true
+ 			},
+ 			u: {
+ 				parovy: true
+ 			},
+ 			del: {
+ 				parovy: true,
+ 				atributy: []
+ 			},
+ 			img: {
+ 				parovy: false
+ 			}
+ 		};
+ 		if(!bb[tag]) return;
+ 		var startTag = "", endTag = "";
+ 		startTag = "[" + tag + "]";
+ 		if(bb[tag].parovy) endTag = "[/" + tag + "]";
+ 		
+ 		oblast.focus();
+
+ 		if(!text) {
+ 			// rýchly trik na overenie, či vlastnosti nie sú undefined a zároveň je označený nejaký text
+ 			if(oblast.selectionStart != oblast.selectionEnd) {
+ 				text = oblast.value.substr(oblast.selectionStart, oblast.selectionEnd - oblast.selectionStart);
+ 				if(oblast.setRangeText) {
+ 					oblast.setRangeText(startTag + text + endTag);
+ 				}
+
+ 				oblast.value = oblast.value.substr(0, oblast.selectionStart) + startTag + text + endTag + oblast.value.substr(oblast.selectionEnd); // bolo by dobré napísať si k tomu nejaký ten polyfill
+ 				// nastavenie pozície kurzoru
+ 				oblast.selectionStart = oblast.selectionEnd;
+ 			} else if(document.selection && document.selection.createRange) {
+ 				var range = document.selection.createRange();
+ 				range.text = startTag + range.text + endTag;
+ 				range.move('character', range.text.length);
+ 				range.select();
+ 				oblast.focus();
+ 				return;
+ 			} else {
+ 				oblast.value += startTag + endTag;
+ 			}
+ 		}
+
+ 	} catch(ex) {  }
+} 
+
+// inicializačná anonymná funkcia, ktorá naviaže na buttony s príslušným {@code id} akciu
+(function(formular){
+	if(!formular) return;
+	var buttony = [];
+	for(var el = 0, len = formular.elements.length; el < len; el++) { // iteration has compatibility reason - IE 7
+		if(formular.elements[el].className == "button") {
+			buttony.push(formular.elements[el]);
+		}
+	}
+	if(!buttony) return;
+
+	for(var btn in buttony) {
+		buttony[btn].onclick = function() {
+			vlozitBBTag(this.id);
+			return false;
+		};
+	}
+
+})(document.forms["vytvor-temu"] || document.forms["zasli-prispevok"]);
