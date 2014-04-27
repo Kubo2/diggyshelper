@@ -30,7 +30,7 @@ Stuff
  - na Google Webmasters Tools oznámiť Googlebotovi, že sa web presunul na novú doménu
  -- Novú revíziu, ktorá bude ako prvá nahraná na server diggyshelper.net označiť značkou a do prísliušného commitu/revízie zaradiť súbor, ktorý sa postará o parsovanie a presmerovanie starých adries na nové (ale až keď nové budú :D!)
  - Prevent these files from SQL Injection:
-  ** create.php & create_topic.php
-  ** post_reply.php & post_reply_parse.php
+  ** create.php & create_topic.php [prevent]
+  ** post_reply.php & post_reply_parse.php [prevent]
   * view.php & view_topic.php
   * upload.php
