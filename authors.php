@@ -105,28 +105,19 @@ session_start();
 		</dd>
         <dt id="Kubo2"><a class="memberusers" href="http://kubo2.wz.sk/" target="_blank">Jakub Kubíček</a></dt>
         <dd>
-            <p>Mladý programátor zameraný na <b>webové 
-            technológie</b>. Zbožňuje exotické ovocie zvané 
-            <b>pomelo</b>, rád jazdí na <b>bicykli</b>, v zime 
-            <b>lyžuje</b> a miluje <b>kanoistiku</b>.<!--, ktorú 
-            zo srdca neznáša.--> Jeho vzťah k tomuto športu 
-            by sa dal vyjadriť nasledujúcim obrázkom:<br>   
+                              <p>Mladý programátor zameraný na webové technológie. Ako rýchlostný kanoista 
+                              jazdí na pretekárskej kanojke, v lete si často na tréning zájde bicyklom a v zime sa neunúva zostávať 
+                              doma, keď sa s rodinou a známimi ide na lyžovačku. Za najlepšie ovocie považuje 
+                              exotický kúsok nazývaný pomelo.
+                              <!--br-->Medzi jeho ďaľšie záľuby patrí najmä <b>programovanie</b> a tvorba webových 
+                              stránok.
+                              <br>Na webe je ho možné nájsť pod prezývkou <strong>Kubo2</strong>.
 
-            <img 
-                src="images/icon/kanoistika-voda.jpg" 
-                alt="Kubo2 a jeho vzťah ku kanoistike: Mal som zlý deň. No potom som išiel na vodu." 
-                width="340" 
-                height="340"
-                >
+                              <p>Na projekte Diggy's Helper má zásluhy hlavne ako <b>manažér</b> projektu, 
+                              <b>programátor</b> serverovej aplikácie v&nbsp;skriptovacom jazyku PHP a klientského 
+                              aplikačného rozhrania v jazyku JavaScript.
 
-            <p>Medzi jeho ďaľšie záľuby patrí najmä 
-            <b>programovanie</b> a tvorba webových stránok.<br>
-            Na webe je ho možné nájsť pod prezývkou 
-            <strong>Kubo2</strong>.
-            <p>Na projekte Diggy's Helper má zásluhy hlavne ako
-            <b>manažér</b> projektu, <b>programátor</b> serverovej 
-            aplikácie v&nbsp;skriptovacom jazyku PHP a klientského 
-            aplikačného rozhrania v jazyku JavaScript.
+                              <!-- tento obrázok si musím niekde poznačiť ;-) images/icon/kanoistika-voda.jpg -->
         </dd>
     </dl>
 </article>
