@@ -506,3 +506,24 @@ div.dialog.profile img {
 	width:130px;
 	height:150px;
 }
+
+/* for general use */
+.notice, .success, .error {
+	font-weight: bold;
+}
+
+.success {
+	color: rgb(25, 192, 18);
+}
+
+.notice {
+	color: grey;
+}
+
+.warning {
+	color: rgb(230, 45, 20);
+}
+
+.error {
+	color: red;
+}
