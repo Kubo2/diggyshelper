@@ -15,6 +15,9 @@ Thanks for understanding.
 Stuff
 -----
 
+ - vkladanie BB tagov do príspevku (diggyshelper.js+zmeniť HTML) __+/__
+  * Fix bug - IE 7 doesn't understand it [fixed]
+  * Keyboard shortcuts for BB codes
  - odstrániť repo diggyshelper-2.0
  - premenovať repo diggyshelper-old -> diggyshelper na GitHube __+/__
  - vytvoriť dlhodobú vetvu diggyshelper/dev __+/__
@@ -26,3 +29,8 @@ Stuff
  - Na server diggyshelper.php5.sk umiestniť presmerovací skript na novú doménu a ostatný obsah premiestniť do adresára diggyshelper.php5.sk/beta/, kde bude odvtedy prebiehať testovanie nových verzií softwaru
  - na Google Webmasters Tools oznámiť Googlebotovi, že sa web presunul na novú doménu
  -- Novú revíziu, ktorá bude ako prvá nahraná na server diggyshelper.net označiť značkou a do prísliušného commitu/revízie zaradiť súbor, ktorý sa postará o parsovanie a presmerovanie starých adries na nové (ale až keď nové budú :D!)
+ - Prevent these files from SQL Injection:
+  ** create.php & create_topic.php [prevent]
+  ** post_reply.php & post_reply_parse.php [prevent]
+  * view.php & view_topic.php
+  * upload.php
