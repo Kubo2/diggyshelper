@@ -1,0 +1,5 @@
+# this file may point to an exisiting ini file where database configuration is stored
+# sample:
+#	ref: .dh-sample.db-config.ini
+# it is parsed by connect.php
+ref: .kubo2-local-db.ini
