@@ -11,10 +11,12 @@ $dbData = array(
 
 // load configuration
 $conf = ".dh.db-config.ini";
-foreach(file("./.dbconfig") as $line) {
-	if(substr($line, 0, 4) == "ref:") {
-		$conf = substr($line, 5);
-		break;
+if(!file_exists($conf)) {
+	foreach(file("./.dbconfig") as $line) {
+		if(substr($line, 0, 4) == "ref:") {
+			$conf = substr($line, 5);
+			break;
+		}
 	}
 }
 
