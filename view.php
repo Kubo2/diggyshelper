@@ -24,6 +24,7 @@ session_start();
 	
 	<?php include 'includes/menu.php'; ?>
 	
+	<?php include 'includes/submenu.php'; ?>
 
 	<div id="forum">
 <div id="content">

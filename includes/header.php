@@ -1,3 +1,4 @@
+<?php // TODO: poupraviť spôsob zobrazovania infoboxu ?>
 <div id="header">
 	<div id="loginprovizor">
 		<?php 

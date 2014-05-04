@@ -3,3 +3,9 @@
 *.cache
 *-OLD
 *.OLD
+
+# ignore concretely #
+images/upload
+.ftp
+.kubo2-local-db.ini
+.dh.db-config.ini

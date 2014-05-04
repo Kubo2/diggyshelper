@@ -1,114 +1,58 @@
 <?php
-//error_reporting(E_ALL|E_STRICT);
-/* Session sa musí inicializovať ešte *pred* odoslaním akéhokoľvek výstupu */
-// @see http://php.net/session-start
+
 session_start();
 
-// zapnutie output bufferingu (nemám iný spôsob posielania hlavičiek po výstupe) 
-// @see http://php.net/ob-start
-@ob_start();
+if(!isset($_SESSION["uid"]) || !intval(!empty($_GET["cid"]) ? $_GET["cid"] : 0)) {
+	header("Location: http://$_SERVER[SERVER_NAME]" . dirname($_SERVER["PHP_SELF"]) . "/index.php", true, 302);
+	exit;
+}
 
-// pridaná HTTP hlavička určujúca kódovanie (neviem, čo máš v head.php, ale pre istotu, keďže 
-// si mi písal, že ti nejde utf8) -- diakritika by už mala fachať 
-@header("Content-Type: text/html; charset=utf-8", true, 200);
+header("Content-Type: text/html; charset=utf-8", true, 200);
 
 // pre odkomentovanie doctypu jednoducho odstráň sekvenciu -- zo začiatku aj z konca
 ?>
 <!--DOCTYPE HTML-->
 <html>
-<head>
-	<?php include 'includes/head.php'; ?>
-	
-	<script>
-		function addtag(g, o)
-		{
-		   var t = document.getElementsByTagName('textarea')[0];
-		   if (typeof t.selectionStart == 'number')
-		   {
-			  var v = t.value,
-				 s = t.selectionStart,
-				 e = t.selectionEnd;
-			  if (!o)
-			  {
-				 t.value = v.substring(0, s) + String.fromCharCode(60)+g+'>' + v.substring(s, e) + String.fromCharCode(60)+'/'+g+'>' + v.substring(e);
-			  }
-			  else if (g == 'img')
-			  {
-				 t.value = v.substring(0, s) + String.fromCharCode(60)+'img src="' + v.substring(s, e) + '">' + v.substring(e);
-			  }
-			  else if (g == 'cite')
-			  {
-				 t.value = v.substring(0, s) + '&bdquo;' + v.substring(s, e) + '&ldquo;' + v.substring(e);
-			  }
-			  else
-			  {
-				 return;
-			  }
-		   }
-		   else if (document.selection)
-		   {
-			  t.focus();
-			  s = document.selection.createRange();
-			  if (s.parentElement() == t)
-			  {
-				 if (!o)
-				 {
-					s.text = String.fromCharCode(60)+g+'>' + s.text + String.fromCharCode(60)+'/'+g+'>';
-				 }
-				 else if (g == 'img')
-				 {
-					s.text = String.fromCharCode(60)+'img src="' + s.text + '">';
-				 }
-				 else if (g == 'cite')
-				 {
-					s.text = '&bdquo;' + s.text + '&ldquo;';
-				 }
-				 else
-				 {
-					return;
-				 }
-			  }
-		   }
-		   else
-		   {
-			  return;
-		   }
-		}
-	</script>
-	
-</head>
-<body>
-	<?php include 'includes/header.php'; ?>
-	
-	<?php include 'includes/menu.php'; ?>
-	
-	<?php session_start(); ?>
-	<?php
-		if ((!isset($_SESSION['uid'])) || ($_GET['cid'] == "")) {
-			header("Location: index.php");
-			exit();
-		}
-		$cid = $_GET['cid'];
-	?>
-	
-<div id="forum">
-<a class='button' href='javascript:history.back(1)'>Späť</a> <a class='button_register' onclick="window.open('upload.php', 'okno1', 'width=500,height=400')">Nahrať obrázok</a>
-<hr/>
-<div id="content">
-	<form action="create_topic.php" method="post">
-		<p>Názov témy:</p>
-		<input type="text" name="topic_title" size="98" maxlength="150" />
-		<p>Obsah témy:</p>
-		<textarea name="topic_content" rows="5" cols="75"></textarea><br>
-		<button class='button' type=button onclick="addtag('b')"><b>tučné</b></button> <button class='button' type=button onclick="addtag('i')"><i>kurzíva</i></button> <button class='button' type=button onclick="addtag('u')"><u>podčiarknuté</u></button> <button class='button' type=button onclick="addtag('s')"><s>prečiarknuté</s></button> <button class='button' type=button onclick="addtag('center')">center</button> <button class='button_register' type=button onclick="addtag('docastne nefunkcne')">images/nefunkčné</button><br>
-		Tag na vloženie obrázku: &lt;img src=&quot;link obrázku&quot; width=&quot;350&quot; height=&quot;250&quot;&gt;
-		<br /><br />
-		<input type="hidden" name="cid" value="<?php echo $cid; ?>" />
-		<input type="submit" name="topic_submit" class='input_button' value="Vytvoriť novú tému" />
-	</form>
-</div>
-</div>
-</center>
-	<?php include 'includes/footer.php'; ?>
-</body>
+	<head>
+		<?php include 'includes/head.php'; ?>
+	</head><body>
+		<?php
+		// < start including other content >
+			include 'includes/header.php';
+			include 'includes/menu.php';
+			include 'includes/submenu.php';
+		// < / end including other content >
+		?>
+		<div id="forum">
+			<a class='button' href='javascript:history.back(1)'>Späť</a>
+			<a class='button_register' onclick="window.open('upload.php', 'okno1', 'width=500,height=400')">Nahrať obrázok</a>
+			<hr/>
+			<div id="content">
+				<form action="create_topic.php" method="post" name="vytvor-temu">
+					<p>Názov témy:</p>
+					<input type="text" name="topic_title" size="98" maxlength="150" tabindex=1 />
+					<p>Obsah témy:</p>
+					<textarea name="prispevok" rows="12" cols="75" tabindex=2></textarea>
+					<br>
+					<!-- WladinQ! Povedz mi krista, načo je dobré dávať tagu <button>
+					atribút type="button" (ktorý na tomto elemente minimálne nie je dovolený)
+					plus dávať mu triedu .button? ~ Kubo2 -->
+					<!-- Trieda .button ponechaná zámerne. Slúži pre tunajšie vkladanie BB tagov. ~Kubo2 -->
+					<button class='button' id="b" tabindex=0><b>tučné</b></button>
+					<button class='button' id="i" tabindex=0><i>kurzíva</i></button>
+					<button class='button' id="u" tabindex=0><u>podčiarknuté</u></button>
+					<button class='button' id="del" tabindex=0><s>prečiarknuté</s></button>
+					<!--button class='button' >center</button-->
+					<!--button class='button_register' type=button onclick="addtag('docastne nefunkcne')">images/nefunkčné</button>
+					<br>
+					Tag na vloženie obrázku: &lt;img src=&quot;link obrázku&quot; width=&quot;350&quot; height=&quot;250&quot;&gt;-->
+					<br />
+					<br />
+					<input type="hidden" name="cid" value="<?php echo intval($_GET["cid"]) ?>" />
+					<input type="submit" name="topic_submit" class='input_button' value="Vytvoriť novú tému" tabindex=3 />
+				</form>
+			</div>
+		</div>
+		<?php include 'includes/footer.php'; ?>
+	</body>
 </html>
