@@ -2,25 +2,22 @@
 
 if(defined('DB_CONNECTED')) return true;
 
-$dbData = array(
-	"host" => 'localhost',
-	"user" => '',
-	"password" => NULL,
-	"name" => 'dh',
-);
-
-// load configuration
-$conf = ".dh.db-config.ini";
-if(!file_exists($conf)) {
-	foreach(file("./.dbconfig") as $line) {
-		if(substr($line, 0, 4) == "ref:") {
-			$conf = substr($line, 5);
-			break;
-		}
-	}
-}
-
-$dbData = parse_ini_file($conf) + $dbData;
+/**
+ * Implementation is not strictly specified. There is only one convention.
+ * The <code>require("./.db.cfg")</code> statement or its equivalents *must* return
+ * an associative array with structure of these four items:
+ *
+ * <pre>
+ * array(4) {
+ * 	[host] => 'database hostname e.g. localhost'
+ * 	[user] => 'user login to the database server e.g. root'
+ * 	[password] => 'password of specified user'
+ * 	[name] => 'concrete name of database to be used'
+ * }
+ * </pre>
+ *
+ */
+$dbData = require("./.db.cfg");
 
 $connection = mysql_connect(
 	$dbData["host"], 
