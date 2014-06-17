@@ -3,3 +3,7 @@
 *.cache
 *-OLD
 *.OLD
+
+images/upload
+.ftp
+.db.cfg

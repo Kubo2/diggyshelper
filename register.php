@@ -167,7 +167,7 @@ goto closing;
 	Vyplňte prosím heslo. <a href="javascript:history.go(-1)">Upraviť</a>
 </p>
 <?php goto closing; psw_not_eq: ?>
-<P class="warning">
+<p class="warning">
 	Zadané heslá sa musia zhodovať. <a href="javascript:history.go(-1)">Upraviť</a>
 </p>
 <?php goto closing; invalid_email: ?>

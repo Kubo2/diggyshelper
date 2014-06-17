@@ -1,15 +1,8 @@
 <?php
 
-
 session_start();
-
-
 @header("Content-Type: text/html; charset=utf-8", true, 200);
-
-
-
 ?>
-
 <!DOCTYPE HTML>
 <html>
     <head>
@@ -112,17 +105,19 @@ session_start();
 		</dd>
         <dt id="Kubo2"><a class="memberusers" href="http://kubo2.wz.sk/" target="_blank">Jakub Kubíček</a></dt>
         <dd>
-            <p>Mladý programátor zameraný na <b>webové 
-            technológie</b>. Zbožňuje exotické ovocie zvané 
-            <b>pomelo</b>, rád jazdí na <b>bicykli</b>, v zime 
-            <b>lyžuje</b> a medzi jeho záľuby patrí najmä 
-            <b>programovanie</b> a tvorba webových stránok.<br>
-            Na webe je ho možné nájsť pod prezývkou 
-            <strong>Kubo2</strong>.
-            <p>Na projekte Diggy's Helper má zásluhy hlavne ako
-            <b>manažér</b> projektu, <b>programátor</b> serverovej 
-            aplikácie v&nbsp;skriptovacom jazyku PHP a klientského 
-            aplikačného rozhrania v jazyku JavaScript.
+                              <p>Mladý programátor zameraný na webové technológie. Ako rýchlostný kanoista 
+                              jazdí na pretekárskej kanojke, v lete si často na tréning zájde bicyklom a v zime sa neunúva zostávať 
+                              doma, keď sa s rodinou a známimi ide na lyžovačku. Za najlepšie ovocie považuje 
+                              exotický kúsok nazývaný pomelo.
+                              <!--br-->Medzi jeho ďaľšie záľuby patrí najmä <b>programovanie</b> a tvorba webových 
+                              stránok.
+                              <br>Na webe je ho možné nájsť pod prezývkou <strong>Kubo2</strong>.
+
+                              <p>Na projekte Diggy's Helper má zásluhy hlavne ako <b>manažér</b> projektu, 
+                              <b>programátor</b> serverovej aplikácie v&nbsp;skriptovacom jazyku PHP a klientského 
+                              aplikačného rozhrania v jazyku JavaScript.
+
+                              <!-- tento obrázok si musím niekde poznačiť ;-) images/icon/kanoistika-voda.jpg -->
         </dd>
     </dl>
 </article>
