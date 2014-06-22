@@ -87,7 +87,7 @@ switch($_SERVER["QUERY_STRING"])
 			array_unshift($notes, $challenge);
 			break;
 		}
-		if(is_file(CHAT_LOGFILE)) unlink(CHAT_LOGFILE);
+		if(is_file(CHAT_LOGFILE)) unlink(CHAT_LOGFILE) && array_unshift($notes, '<span class="success">Konverzácia vymazaná. <a href="index.php">Skryť</a></span>');
 	break;
 
 	default:
