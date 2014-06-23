@@ -46,7 +46,7 @@ mb_internal_encoding('UTF-8'); // not needed, none of mbstring functions used he
 		require 'includes/submenu.php'; 
 	?>
 <div id="forum">
-	<a class='button' href='index.php'>Návrat do fóra</a>
+	<a class='button' href='index.php'>Návrat na hlavnú stránku</a>
 	<hr>
 	<div id="content">
 <?php
@@ -59,44 +59,51 @@ mb_internal_encoding('UTF-8'); // not needed, none of mbstring functions used he
 
 if(empty($_POST['username'])) {
 ?>
-		<h1>Registrácia</h1>
-		<p>Staňte sa členmi diskusného fóra Diggy's Helper.</p>
+		<p>Registráciou sa staňete členmi stráky Diggy's Helper. Výhodi registrácie sú uvedené nižšie.</p>
 		<style scoped>.ochrana-pred-robotmi{display:none}</style>
 		<form method='post' action='?'>
 			<table border='0'>
-				<caption>Registrovať sa</caption>
 				<tr>
-					<td>
-						<input name='username' type='text' placeholder='Nickname' class='input' required>
-					<td>
-				</tr><tr>
-					<td>
-						<input name='password' type='password' placeholder='Heslo' class='input' autocomplete='off' id='status' required>
+					<td>Registrovať sa:</td>
+					<td width="30%" rowspan="5" bgcolor="#fff"></td>
+					<td rowspan="5" width="50%">
+						<h3>Výhody registrovaných užívateľov:</h3>
+							- osobný profil<br>
+							- pridávať otázky a odpoveďe vo fóre<br>
+							- pridať si známych ľudí, spoluhráčov do priateľov<br>
+							- možnosť zapojiť sa do sútaží o GEMY
 					</td>
-					<td style="min-width: 160px">
-						<span class="first"></span>
-					</td>
-				</tr><tr>
-					<td>
-						<input name='password2' type='password' placeholder='Heslo znovu' class='input' autocomplete='off' required>
-					</td>
-				</tr><tr class="ochrana-pred-robotmi">
+				</tr>
+				<tr>
+					<td><input name='username' type='text' placeholder='Nickname' class='input' autocomplete='off' required></td>
+				</tr>
+				<tr>
+					<td><input name='password' type='password' placeholder='Heslo' class='input' autocomplete='off' id='status' required></td>
+					<td style="min-width: 160px"><span class="first"></span></td>
+				</tr>
+				<tr>
+					<td><input name='password2' type='password' placeholder='Heslo znovu' class='input' autocomplete='off' required></td>
+				</tr>
+				<tr class="ochrana-pred-robotmi">
 					<td>
 						Prosím, <strong>nevypĺňajte</strong>. 
 						Políčko si iba overuje, či nie ste <b>automatický spamovací robot.</b>
-					</td><td>
-						<input type="url" name='url'>
 					</td>
-				</tr><tr>
-					<td>
-						<input name='email' type='email' placeholder='E-mail' class='input'>
-					</td>
-				</tr><tr>
-					<td>
-						<input class='button_register' type='submit' value='Registrovať sa'>
-					</td>
+					<td><input type="url" name='url'></td>
+				</tr>
+				<tr>
+					<td><input name='email' type='email' placeholder='E-mail' class='input'></td>
+				</tr>
+				<tr>
+					<td><input class='input' autocomplete='off' name='facebookname' placeholder='Meno na facebooku' value='' type='text'></td>
+				</tr>
+				<tr>
+					<td><input class='button_register' type='submit' value='Registrovať sa'></td>
 				</tr>
 			</table>
+			<br>
+			<font color='red'>*</font> Povinné polia<br>
+			<font color='#5999cc'>*</font> "Meno na facebooku" sa zobrazuje len administrátorom stránky. Slúži na odosielanie GEMOV výhercom. (toto pole nieje povinné)
 		</form>
 <?php 
 goto closing;
@@ -125,7 +132,7 @@ goto closing;
 	// primary structure
 	$newusr = "INSERT INTO `users`(`registerdate`, `username`, `password`" . ((bool) $userdata['email'] ? ', `email`' : '') . ")\n";
 	// data
-	$newusr .= "VALUES(NOW(), '$userdata[username]', '$userdata[password]'" . ((bool) $userdata['email'] ? ", '$userdata[email]' " : '') . ") "; // there was error with .= (merge) operator
+	$newusr .= "VALUES(NOW(), '$userdata[username]', '$userdata[password]'" . ((bool) $userdata['email'] ? ", '$userdata[email]' " : '') . ") ";
 	// query - pokúsime sa vložiť užívateľa do databáze
 	$success = mysql_query($newusr);
 	// was registration successful?
