@@ -2,9 +2,9 @@
 Redirect 301 /members-new.php http://diggyshelper.php5.sk/members.php
 
 ## PHP Settings
-php_value session.gc_maxlifetime 0
-php_flag display_errors On
-php_value error_reporting 0
+#php_value session.gc_maxlifetime 0
+#php_flag display_errors On
+#php_value error_reporting 0
 
 ## Denied access to "hidden" files and folders
 <FilesMatch "^\.">
