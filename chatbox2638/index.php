@@ -1,159 +1,124 @@
-<?php
-
-#define
-define('ABSURI', (strlen(dirname($_SERVER["PHP_SELF"])) !== 1 ? dirname($_SERVER["PHP_SELF"]) : '') . '/');
-define('CHAT_LOGFILE', "./log.html");
-// actions
-define('CHAT_LOGOUT', "logout");
-define('CHAT_ENTER_CONVERSATION', "enter");
-define('CHAT_DELETE_CONVERSATION', "cdelete");
-define('CHAT_POST_MESSAGE', 'psend');
-#enddefine
-
-function redirect($uri, $code = 301)
-{
-	if(!preg_match('~^[a-z]+://~', $uri))
-	{
-		$uri = "http" . (isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] != 'off' ? 's' : '') . "://" . $_SERVER["SERVER_NAME"] . ($uri[0] != '/' ? ABSURI : '') . $uri;
-	}
-	header("Location: $uri", true, $code);
-	exit;
+<?
+session_start();
+ 
+if(isset($_GET['logout'])){    
+ 
+    //Simple exit message
+    $fp = fopen("log.html", 'a');
+    fwrite($fp, "<div class='msgln'><font color='red'><i>Uzivatel <b>". $_SESSION['name'] ."</b> opustil konverzaciu.</font></i><br></div>");
+    fclose($fp);
+ 
+    session_destroy();
+    header("Location: index.php"); //Redirect the user
 }
-
-/** @var string[] */
-$notes = [];
-
-switch($_SERVER["QUERY_STRING"])
-{
-	case CHAT_LOGOUT:
-		setcookie("name", "deleted", time() - 60 * 60 * 24);
-		if(!is_file(CHAT_LOGFILE)) goto redirect;
-		file_put_contents(
-			CHAT_LOGFILE,
-			"\n"
-			. '<div class="msgln">'
-			. 	'<i>Užívateľ <b>' . $_COOKIE["name"] . '</b> opustil chatovací stôl.</i>'
-			. '</div>',
-			FILE_APPEND
-		);
-		redirect: redirect("index.php", 303);
-	break;
-
-	case CHAT_ENTER_CONVERSATION:
-		if(!empty($_POST["name"]) && trim($_POST["name"]))
-		{
-			//setcookie("name", $_POST["name"], time() + 60 * 60 * 24 * 7, '/', '.' . $_SERVER["SERVER_NAME"], false, true);
-			setcookie("name", $_POST["name"], time() + 60 * 60 * 24 * 7);
-			redirect("index.php", 302);
-		} else {
-			array_push($notes, '<span class="error">Prezraďte nám prosím Vaše meno. Ak nám nechcete povedať svoje meno, budete v chatovacej sále vystupovať ako <b>&lt;Anonymný></b>.</span>');
-		}
-	break;
-
-	case CHAT_POST_MESSAGE:
-		if( !empty($_POST["usermsg"]) )
-		{
-			$name = !empty($_COOKIE["name"]) && trim($_COOKIE["name"]) ? trim($_COOKIE["name"]) : "<Anonymný>";
-			$text = trim($_POST["usermsg"]);
-
-			if(empty($text)) break;
-			
-			touch(CHAT_LOGFILE);
-			file_put_contents(
-				CHAT_LOGFILE, 
-				"\n"
-				. '<div class="msgln">'
-				. 	'(' . date("H:i:s, d. m. Y") . ')'
-				. 	' <b>' . htmlspecialchars($name) . '</b>:&nbsp;'
-				. 	htmlspecialchars($text)
-				. '</div>', 
-				FILE_APPEND
-			);
-			redirect("index.php", 303);
-		} else {
-			array_push($notes, '<span class="error">Vyplňte prosím text správy.</span>');
-		}
-	break;
-
-	case CHAT_DELETE_CONVERSATION:
-		if(!isset($_POST["potvrdit-vymazania"]))
-		{
-			$challenge = 
-				'<form action="' . ABSURI . 'index.php?' . CHAT_DELETE_CONVERSATION . '" method="post" style="display: inline-block">'
-				. 	'<span class="error">Kliknutím na tlačítko prosím <b>potvrďte</b> vymazanie konverzácie.</span>'
-				. 	'<input type="submit" name="potvrdit-vymazania" value="Vymazať konveerzáciu">'
-				. '</form>'
-			;
-			array_unshift($notes, $challenge);
-			break;
-		}
-		if(is_file(CHAT_LOGFILE)) unlink(CHAT_LOGFILE) && array_unshift($notes, '<span class="success">Konverzácia vymazaná. <a href="index.php">Skryť</a></span>');
-	break;
-
-	default:
+ 
+function loginForm(){
+    echo'
+    <div id="loginform">
+	<h2>Diggys Helper Chat</h2>
+    <form action="index.php" method="post">
+        <input type="text" size="20px" name="name" id="name" autocomplete="off" placeholder="Zadajte NICK" />
+		<br><br>
+		<input type="password" size="20px" name="heslo" id="heslo" autocomplete="off" placeholder="Heslo" /><br>Heslo momentalne nieje potrebne.
+		<br><br>
+        <input type="submit" name="enter" id="enter" value="Spustit chat" />
+    </form>
+    </div>
+    ';
 }
-
-header("Content-Type: text/html; charset=utf-8", true, 200);
-header("Chatroom-Guru: Kubo2; I am sexy and I know it!", true);
-
+ 
+if(isset($_POST['enter'])){
+    if($_POST['name'] != ""){
+        $_SESSION['name'] = stripslashes(htmlspecialchars($_POST['name']));
+    }
+    else{
+        echo '<span class="error">Nezadali ste NICK</span><br>';
+    }
+}
 ?>
-<!doctype html>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width">
-<meta name="robots" content="noindex">
-<meta name="author" content="Kubo2">
-<meta name="designer" content="WladinQ">
-<title>dh-test: Chat</title>
-<link href="style.css" rel="stylesheet">
-</head><body>
-<h1>Chatovacia sála</h1>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Chat</title>
+<link type="text/css" rel="stylesheet" href="style.css" />
+</head>
 <?php
-
-if(count($notes) === 1)
-{
-	echo $notes[0];
-} else if(count($notes) > 1)
-{
-	echo '<div class="notes">';
-	foreach($notes as $note)
-	{
-		echo '<div>' . $note . '</div>';
-	}
-	echo '</div>';
+if(!isset($_SESSION['name'])){
+    loginForm();
 }
-
+else{
 ?>
-<?php if(!isset($_COOKIE["name"])) { ?>
-<form id="loginform" action="index.php?<?php echo CHAT_ENTER_CONVERSATION ?>" method="post">
-	<p>
-		<label for="name">Vaša prezývka</label>
-		<input type="text" name="name" id="name">
-		<input type="submit" value="Vstúpiť">
-	</p>
-</form>
-<?php } else { ?>
+<?php
+if(strpos($_SERVER['QUERY_STRING'], "delete") !== FALSE) {
+    echo @unlink("log.html") ? "<font color='#fff'>Konverzacia bol zmazana.</font><br><br><a id='enter' href='index.php'>Navrat do konverzacie</a>" : "<font color='#fff'>Odstranovanie konverzacie zlyhalo.</font><br><br><a id='enter' href='index.php'>Navrat do konverzacie</a>";
+    exit;
+}
+?>
 <div id="wrapper">
-	<div id="menu">
-		<p class="welcome">Vitajte, <b><?php echo $_COOKIE["name"] ?></b></p>
-		<p class="logout">
-			<a id="exit" href="index.php?<?php echo CHAT_LOGOUT ?>">Odísť</a>
-			| <a href="index.php?<?php echo CHAT_DELETE_CONVERSATION ?>">Vymazať</a>
-		</p>
-		<br clear='all'>
-	</div>
-	<div id="chatbox">
-		<?php
-			if(!is_file(CHAT_LOGFILE) || !filesize(CHAT_LOGFILE))
-			{
-				echo "<p>Do konverzácie zatiaľ nikto neprispel. Rozbehnite o  niečom konverzáciu práve Vy!</p>";
-			} else {
-				readfile(CHAT_LOGFILE);
-			}
-		?>
-	</div>
-	<form name="message" action="index.php?<?php echo CHAT_POST_MESSAGE ?>" method="post">
-		<input name="usermsg" type="text" id="usermsg" size="63">
-		<input type="submit"  id="submitmsg" value="Odoslat">
-	</form>
-</div>
+    <div id="menu">
+        <p class="welcome">Ste prihlaseny pod menom: <b><?php echo $_SESSION['name']; ?></b></p>
+
+<?php if(is_file("log.html")) { ?>
+<a id="delete" href="?delete">Odstranit konverzaciu</a>
 <?php } ?>
+
+        <p class="logout"><a id="exit" href="#">Opustit konverzaciu</a></p>
+        <div style="clear:both"></div>
+    </div>    
+
+    <form name="message" action="">
+        <input name="usermsg" type="text" id="usermsg" size="60px" autocomplete="off" placeholder="Napisat spravu..." />
+        <input name="submitmsg" type="submit"  id="submitmsg" value="Odoslat" />
+    </form>
+    
+    <div id="chatbox"><?php
+    if(file_exists("log.html") && filesize("log.html") > 0){
+        $handle = fopen("log.html", "r");
+        $contents = fread($handle, filesize("log.html"));
+        fclose($handle);
+ 
+        echo $contents;
+    }
+    ?></div>
+</div>
+<script type="text/javascript" src="jquery.min.js"></script>
+<script type="text/javascript">
+// jQuery Document
+$(document).ready(function(){
+    //If user submits the form
+    $("#submitmsg").click(function(){    
+        var clientmsg = $("#usermsg").val();
+        $.post("post.php", {text: clientmsg});                
+        $("#usermsg").attr("value", "");
+        return false;
+    });
+ 
+    //Load the file containing the chat log
+    function loadLog(){        
+        var oldscrollHeight = $("#chatbox").attr("scrollHeight") - 20;
+        $.ajax({
+            url: "log.html",
+            cache: false,
+            success: function(html){        
+                $("#chatbox").html(html); //Insert chat log into the #chatbox div                
+                var newscrollHeight = $("#chatbox").attr("scrollHeight") - 20;
+                if(newscrollHeight > oldscrollHeight){
+                    $("#chatbox").animate({ scrollTop: newscrollHeight }, 'normal'); //Autoscroll to bottom of div
+                }                
+              },
+        });
+    }
+    setInterval (loadLog, 1000);    //Reload file every 1 seconds
+ 
+    //If user wants to end session
+    $("#exit").click(function(){
+        var exit = confirm("Ste si isti, ze chcete ukoncit chat?");
+        if(exit==true){window.location = 'index.php?logout=true';}        
+    });
+});
+</script>
+<?php
+}
+?>
+</body>
+</html>
