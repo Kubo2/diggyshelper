@@ -154,6 +154,45 @@ if(count($notes) === 1)
 	<form name="message" action="index.php?<?php echo CHAT_POST_MESSAGE ?>" method="post">
 		<input name="usermsg" type="text" id="usermsg" size="63">
 		<input type="submit"  id="submitmsg" value="Odoslat">
-	</form>
+           </form>
+           <script type="text/javascript" src="jquery.min.js"></script>
+           <script type="text/javascript">
+           // jQuery Document
+           // toto je dosť sprasené, čo najskôr prepísať
+           $(document).ready(function(){
+           //If user submits the form
+           $("#submitmsg").click(function(){
+           	var clientmsg = $("#usermsg").val();
+           	$.post("index.php?psend", {usermsg: clientmsg});
+           	var h = $("#chatbox");
+           	h.html(h.html()+ "<div class='msgln'>" + clientmsg + "</div>");
+           	$("#usermsg").attr("value", "");
+           	return false;
+           });
+           //Load the file containing the chat log
+
+           function loadLog(){
+           	var oldscrollHeight = $("#chatbox").attr("scrollHeight") - 20;
+           	$.ajax({
+           		url: "log.html",
+           		cache: false,
+           		success: function(html){
+           		$("#chatbox").html(html); //Insert chat log into the #chatbox div
+           		var newscrollHeight = $("#chatbox").attr("scrollHeight") - 20;
+           		if(newscrollHeight > oldscrollHeight){
+           		$("#chatbox").animate({ scrollTop: newscrollHeight }, 'normal'); //Autoscroll to bottom of div
+           	}
+           },
+        });
+    }
+    setInterval (loadLog, 20000);    //Reload file every 20 seconds
+ 
+    //If user wants to end session
+    $("#exit").click(function(){
+        var exit = confirm("Opustiť sálu?");
+        if(exit==true){window.location = 'index.php?logout';}        
+    });
+});
+</script>
 </div>
 <?php } ?>
