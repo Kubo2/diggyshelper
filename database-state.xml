@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog 
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.2.xsd http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+	 <changeSet author="Kubo2" id="1405159077448-1">
+		  <createTable tableName="categories">
+				<column autoIncrement="true" name="id" type="INT(10) UNSIGNED">
+					 <constraints primaryKey="true"/>
+				</column>
+				<column name="category_title" type="VARCHAR(150)">
+					 <constraints nullable="false"/>
+				</column>
+				<column name="category_description" type="VARCHAR(255)">
+					 <constraints nullable="false"/>
+				</column>
+				<column name="last_post_date" type="datetime"/>
+				<column name="last_user_posted" type="INT(10) UNSIGNED"/>
+		  </createTable>
+	 </changeSet>
+	 <changeSet author="Kubo2" id="1405159077448-2">
+		  <createTable tableName="images">
+				<column autoIncrement="true" name="id" type="INT(10) UNSIGNED">
+					 <constraints primaryKey="true"/>
+				</column>
+				<column name="id_user" type="INT(10) UNSIGNED">
+					 <constraints nullable="false"/>
+				</column>
+				<column name="name" type="TINYTEXT">
+					 <constraints nullable="false"/>
+				</column>
+				<column name="type" type="TINYTEXT">
+					 <constraints nullable="false"/>
+				</column>
+		  </createTable>
+	 </changeSet>
+	 <changeSet author="Kubo2" id="1405159077448-3">
+		  <createTable tableName="posts">
+				<column autoIncrement="true" name="id" type="INT(10) UNSIGNED">
+					 <constraints primaryKey="true"/>
+				</column>
+				<column name="category_id" type="INT(10) UNSIGNED">
+					 <constraints nullable="false"/>
+				</column>
+				<column name="topic_id" type="INT(10) UNSIGNED">
+					 <constraints nullable="false"/>
+				</column>
+				<column name="post_creator" type="INT(10) UNSIGNED">
+					 <constraints nullable="false"/>
+				</column>
+				<column name="post_content" type="TEXT">
+					 <constraints nullable="false"/>
+				</column>
+				<column name="post_date" type="datetime">
+					 <constraints nullable="false"/>
+				</column>
+		  </createTable>
+	 </changeSet>
+	 <changeSet author="Kubo2" id="1405159077448-4">
+		  <createTable tableName="topics">
+				<column autoIncrement="true" name="id" type="INT(10) UNSIGNED">
+					 <constraints primaryKey="true"/>
+				</column>
+				<column name="category_id" type="INT(10) UNSIGNED">
+					 <constraints nullable="false"/>
+				</column>
+				<column name="topic_title" type="VARCHAR(150)">
+					 <constraints nullable="false"/>
+				</column>
+				<column name="topic_creator" type="INT(10) UNSIGNED">
+					 <constraints nullable="false"/>
+				</column>
+				<column name="topic_last_user" type="INT(10) UNSIGNED">
+					 <constraints nullable="false"/>
+				</column>
+				<column name="topic_date" type="datetime">
+					 <constraints nullable="false"/>
+				</column>
+				<column name="topic_reply_date" type="datetime">
+					 <constraints nullable="false"/>
+				</column>
+				<column defaultValueNumeric="0" name="topic_views" type="INT(10) UNSIGNED">
+					 <constraints nullable="false"/>
+				</column>
+		  </createTable>
+	 </changeSet>
+	 <changeSet author="Kubo2" id="1405159077448-5">
+		  <createTable tableName="users">
+				<column autoIncrement="true" name="id" type="INT(10) UNSIGNED">
+					 <constraints primaryKey="true"/>
+				</column>
+				<column name="registerdate" type="datetime">
+					 <constraints nullable="false"/>
+				</column>
+				<column name="username" type="VARCHAR(38)">
+					 <constraints nullable="false"/>
+				</column>
+				<column name="password" type="VARCHAR(40)">
+					 <constraints nullable="false"/>
+				</column>
+				<column defaultValue="member" name="access" type="ENUM('admin', 'moderator', 'member')">
+					 <constraints nullable="false"/>
+				</column>
+				<column name="email" type="VARCHAR(255)"/>
+				<column defaultValueNumeric="0" name="forum_notification" type="BIT">
+					 <constraints nullable="false"/>
+				</column>
+		  </createTable>
+	 </changeSet>
+	 <changeSet author="Kubo2" id="1405159077448-6">
+		  <addUniqueConstraint columnNames="username" constraintName="username" deferrable="false" disabled="false" initiallyDeferred="false" tableName="users"/>
+	 </changeSet>
+	 <changeSet author="Kubo2" id="1405159077448-7">
+		  <addForeignKeyConstraint baseColumnNames="category_id" baseTableName="posts" constraintName="posts_ibfk_1" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="categories"/>
+	 </changeSet>
+	 <changeSet author="Kubo2" id="1405159077448-8">
+		  <addForeignKeyConstraint baseColumnNames="topic_id" baseTableName="posts" constraintName="posts_ibfk_2" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="topics"/>
+	 </changeSet>
+	 <changeSet author="Kubo2" id="1405159077448-9">
+		  <addForeignKeyConstraint baseColumnNames="post_creator" baseTableName="posts" constraintName="posts_ibfk_3" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="users"/>
+	 </changeSet>
+	 <changeSet author="Kubo2" id="1405159077448-10">
+		  <addForeignKeyConstraint baseColumnNames="category_id" baseTableName="topics" constraintName="topics_ibfk_1" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="categories"/>
+	 </changeSet>
+	 <changeSet author="Kubo2" id="1405159077448-11">
+		  <addForeignKeyConstraint baseColumnNames="topic_creator" baseTableName="topics" constraintName="topics_ibfk_2" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="users"/>
+	 </changeSet>
+	 <changeSet author="Kubo2" id="1405159077448-12">
+		  <createIndex indexName="id_user" tableName="images" unique="false">
+				<column name="id_user"/>
+		  </createIndex>
+	 </changeSet>
+	 <changeSet author="Kubo2" id="1405159077448-13">
+		  <createIndex indexName="topic_user" tableName="topics" unique="false">
+				<column name="topic_creator"/>
+				<column name="topic_last_user"/>
+		  </createIndex>
+	 </changeSet>
+</databaseChangeLog>
