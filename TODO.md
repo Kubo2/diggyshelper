@@ -15,19 +15,20 @@ Thanks for understanding.
 Stuff
 -----
 
- - vkladanie BB tagov do príspevku (diggyshelper.js+zmeniť HTML) __+/__
-   * Keyboard shortcuts for BB codes
- - odstrániť repo diggyshelper-2.0
- - opraviť bezpečnostné chyby (najmä diggyshelper/SQLInj-prevent) - @Kubo2
- - začleniť diggyshelper/SQLInj-prevent do diggyshelper/master a zmazať ju - @Kubo2 || __del__
- -- začleniť diggyshelper/SQLInj-prevent do diggyshelper/dev a zmazať - @Kubo2
- - Testovaciu verziu nahrať na server diggyshelper.php5.sk
- - po dôkladnom otestovaní (alebo hneď) nahrať poslednú revíziu fóra aj so stávajúcou DB na nový server diggyshelper.net [partially]
- - Na server diggyshelper.php5.sk umiestniť presmerovací skript na novú doménu a ostatný obsah premiestniť do adresára diggyshelper.php5.sk/beta/, kde bude odvtedy prebiehať testovanie nových verzií softwaru
- - na Google Webmasters Tools oznámiť Googlebotovi, že sa web presunul na novú doménu
- -- Novú revíziu, ktorá bude ako prvá nahraná na server diggyshelper.net označiť značkou a do prísliušného commitu/revízie zaradiť súbor, ktorý sa postará o parsovanie a presmerovanie starých adries na nové (ale až keď nové budú :D!) [tagged v1.3.1]
- - Prevent these files from SQL Injection:
-  ** create.php & create_topic.php [prevent]
-  ** post_reply.php & post_reply_parse.php [done]
-  * view.php & view_topic.php
-  * upload.php
+ * Check vulnerability against SQL Injection attack
+
+Files to check
+--------------
+
+ * create.php
+ * forum.php
+ * members.php
+ * create_topic.php
+ * post_reply_parse.php
+ * view.php
+ * view_topic.php
+ * !index.php
+ * login.php
+ * register.php
+ * !upload.php
+
