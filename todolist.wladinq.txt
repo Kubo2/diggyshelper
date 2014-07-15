@@ -1,23 +1,20 @@
 TODO LIST
 
 HEADER:
-	- spojazdnit buttonik "Zapamatat heslo"
+	- spojazdnit buttonik "Zapamätať heslo"
 	- doplnit button "Zabudli ste heslo?"
-	- (po prihlaseni) medzi "Prihlaseny pouzivatel" a buttony vlozit pocet pridanych tem plus vlozit aj do profilov
-	- naprogramovat profili (po prihlaseny button "Moj profil")
 	
 FORUM:
 	- naprogramovat pocet 20tich blokov s nadpismy na  jednu stranku
 	- spravit s mena Pridal/a: <MENO> odkaz s presmerovanim na profil
-	- sfunkcnit BB kody
-	- odkazy v prispevkoch musia byt bez dekoracii modrou farbou akou su teraz odkazy v index.php
-	- minimalny height na prispevky nastavit na 2 riadky
+	- sfunkcnit BB kody (!)
+	- odkazy v prispevkoch musia byt bez dekoracii modrou farbou akou su teraz odkazy v {index.php}
+	- minimalny height na prispevky nastavit na 2 riadky (line-height)
 	- pridat napravo kazdeho prispevku buttoniky Upravit a Vymazat
-	- lepsie nakodovat button "Spat"
+	- lepsie nakodovat button "Späť"
 	- po nahrati obrazku automaticky zmensit obrazok na width="350px" a height="250px"
 	- po nahrati obrazku automaticky pridat link medzi BB kody [img]LINK[/img]
 	- nad kategorie na pravu stranu nad "Odpovedi" a "Zobrazene" pridat vyhladavac
-	- prispevky zobrazovat od najnovsieho
 	
 UZIVATELIA:
 	- dorobit moderatorov fora
