@@ -37,7 +37,7 @@ if(FALSE === require('connect.php')) {
 			sa sem vrátiť o chvíľočku.
 		</p>
 	<?php	} else {
-		$crs = mysql_query(' SELECT `id`, `category_title` as `title`, `category_description` as `description` FROM `categories` ORDER BY `category_title` ASC ');
+		$crs = mysql_query(' SELECT `id`, `category_title`, `category_description` FROM `categories` ORDER BY `category_title` ASC ');
 
 		if($crs && mysql_num_rows($crs) > 0) {
 			while(list($cId, $cTitle, $cDescription) = mysql_fetch_row($crs)) { ?>

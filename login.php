@@ -2,10 +2,14 @@
 
 // ak skript nie je volaný metódou POST, pošleme 405 a krátku správu
 if($_SERVER["REQUEST_METHOD"] != 'POST') {
-	header("Allow: POST", true, 405);
-	header("Content-Type: text/plain; charset=utf-8");
-	echo "You can not call this file with HTTP $_SERVER[REQUEST_METHOD] method.\n\n";
-	echo "Zdroj je dostupný iba pri prihlasovaní pomocou metódy POST.";
+	if(isset($_SERVER["HTTP_USER_AGENT"]) && stripos($_SERVER["HTTP_USER_AGENT"], 'bot') !== false) {
+		header("Allow: POST", true, 405);
+		header("Content-Type: text/plain; charset=utf-8");
+		echo "You can not call this file with HTTP $_SERVER[REQUEST_METHOD] method.\n\n";
+		echo "This resource is available only via HTTP POST method.";
+	} else {
+		goto presmerovanie;
+	}
 	exit;
 }
 
@@ -74,8 +78,14 @@ presmerovanie:
 // kam presmerovať
 $redirectTo = "http://$_SERVER[SERVER_NAME]" . dirname($_SERVER["SCRIPT_NAME"]) . "/index.php";
 
+// presmerovať na referer?
+$ref = !isset($_POST["redirect-noreferer"]);
+
 // ak existuje referrer a je z nášho servera, presmeruj na referrer
-if(isset($_SERVER["HTTP_REFERER"]) && preg_match('~^https?://' . $_SERVER["SERVER_NAME"] . '/~', $_SERVER["HTTP_REFERER"])) {
+if(
+	isset($_SERVER["HTTP_REFERER"])
+	&& preg_match('~^https?://' . preg_quote($_SERVER["SERVER_NAME"]) . '/~', $_SERVER["HTTP_REFERER"])
+	&& $ref) {
 	$redirectTo = $_SERVER["HTTP_REFERER"];
 }
 

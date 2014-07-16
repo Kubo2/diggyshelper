@@ -30,9 +30,9 @@ session_start();
 <div id="content">
 <?php
 include_once("connect.php");
-// inak bude generovať E_NOTICE 
-// ale je treba ošetriť situáciu, že cid nebude existovať alebo nebude mať hodnotu 
-$cid = !empty($_GET['cid']) ? intVal($_GET['cid']) : false;
+// skrakta zbavujúca nevyhnutnosti kontrolovať existenciu
+// TODO: zaviesť nejakú funckiu, ktorá sa o to automaticky postará
+$_GET['cid'] = & $_GET['cid'] && $cid = max(0, $_GET['cid']);
 
 if(!$cid) {
 	// tu treba ošetriť situáciu, keď nebolo zadané id
@@ -47,7 +47,7 @@ if(!$cid) {
 	else
 		$logged = " | Na vytvorenie témy je potrebné sa <span style='color:#106CB5'><b>Prihlásiť</b></span>, alebo sa <font color='#33CC00'><b>Registrovať</b></span>!";
 	
-	$sql = " SELECT `id` FROM `categories` WHERE `id` = $cid; ";
+	$sql = " SELECT `id` FROM `categories` WHERE `id` = $cid ";
 	$res = mysql_query($sql);
 	
 	// táto podmienka je tu namiesto or die(...), zabezpečuje zobrazenie jednoduchej chybovky 
@@ -59,12 +59,12 @@ if(!$cid) {
 		// @see http://php.vrana.cz/predcasna-optimalizace.php
 		$sql2 = <<<SQLQUERY
 select 
-t.id as topic_id, 
-t.topic_title, 
-t.topic_views, 
-t.topic_date, 
-count(p.id) as topic_post_count, 
-u.username as topic_creator_name 
+	t.id as topic_id, 
+	t.topic_title, 
+	t.topic_views, 
+	t.topic_date, 
+	count(p.id) as topic_post_count, 
+	u.username as topic_creator_name 
 from posts p 
 join (users u, topics t) on t.id = p.topic_id and t.topic_creator = u.id
 where t.category_id = $cid 
@@ -72,10 +72,7 @@ group by p.topic_id
 order by t.topic_reply_date desc
 SQLQUERY;
 
-		// odmazané ďaľšie or die(...)
-		// nezvykaj si, že dáta z databáze dostaneš vždy, a používateľovi pri chybe zobrazíš iba chybovú hlášku z MySQL!
-		// navyše vznikne nevalidný HTML kód
-		$res2 = mysql_query($sql2);
+		$res2 = mysql_query($sql2); // odmazané ďaľšie or die(...)
 		
 		if($res2) {
 			if(mysql_num_rows($res2)) {
@@ -89,14 +86,13 @@ SQLQUERY;
 	</tr><tr style='background-color:#106CB5'>
 		<td width='50' align='center'></td>
 		<td><span style='color:#FFF'>Názov témy</span></td>
-		<td width='100' align='center'><font color='#FFF'>Odpovedí</font></td>
+		<td width='200' align='center'><font color='#FFF'>Počet odpovedí</font></td>
 		<td width='100' align='center'><font color='#FFF'>Zobrazené</font></td>
 	</tr><tr>
 		<td colspan='3'><hr></td>
 	</tr>
 TOPICSTABLE;
-				// list() je jazyková konštrukcia, ktorá ti prvky poľa priradí do jednotlivých premenných
-				// @see http://php.net/list
+
 				while(list($topicId, $topicTitle, $topicViews, $topicDate, $topicPostCount, $topicCreatorName) = mysql_fetch_row($res2)) {
 					$topicDate = date("d.m.Y / H:i:s", strtotime($topicDate));
 					$topics .= <<<TOPICSTABLE

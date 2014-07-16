@@ -18,35 +18,29 @@ if(empty($_SESSION['uid'])) {
 
 if(isset($_POST['topic_submit'])) {
 	if(empty($_POST['topic_title']) && empty($_POST['prispevok'])) {
-		echo "Nevyplnili ste vsetky polia. Prosim, vratte sa na predchadzajucu stranku.";
-		exit();
+		echo "Nevyplnili ste všetky polia. Prosím, vráťte sa na predchádzajúcu stránku.";
+		exit;
 	} else {
-		// okej tentoraz
-		// ja tu nie som od toho prepisovať celý skript, pretože je 27. 4. 2014 okolo 1:50 v noci
-		// nemám ešte spravený projekt o Masarykovi na dejepis, ktorý som mal odovzdať pred dvoma dňami
-		// iba dopíšem obranu proti SQL Injection
-		// vďaka za pochopenie.
 		include_once("connect.php");
-		// okrem potenciálnej náchylnosti ku SQL Injection
-		// je tu ešte jedna zásadná chyba:
-		// !! nie je zaistená atomicity operácií 
-		// toto je riešiteľné transakciami, ale na to je potrebné pozmeniť štruktúru databáze
-		// a tabuľkám zmeniť engine na InnoDB
-		// :-(
+
+		/**
+		 * @internal {2} a {3} by mohli byť riešené trigermi vyvolanými pri {1}
+		 * @todo zaistiť atomicitu operácií
+		 */
 		$cid = intval($_POST['cid']);
 		$title = mysql_real_escape_string($_POST['topic_title']);
 		$content = mysql_real_escape_string($_POST['prispevok']);
 		$creator = intval($_SESSION['uid']);
-		$sql = "INSERT INTO topics (category_id, topic_title, topic_creator, topic_date, topic_reply_date) VALUES ('".$cid."', '".$title."', '".$creator."', now(), now())";
-		$res = mysql_query($sql);// or die(mysql_error());
+		$sql = "INSERT INTO topics (category_id, topic_title, topic_creator, topic_date, topic_reply_date) VALUES ($cid, '$title', $creator, now(), now())"; // 1
+		$res = mysql_query($sql);
 		$new_topic_id = mysql_insert_id();
-		$sql2 = "INSERT INTO posts (category_id, topic_id, post_creator, post_content, post_date) VALUES ('".$cid."', '".$new_topic_id."', '".$creator."', '".$content."', now())";
-		$res2 = mysql_query($sql2);// or die(mysql_error());
-		$sql3 = "UPDATE categories SET last_post_date=now(), last_user_posted='".$creator."' WHERE id='".$cid."' LIMIT 1";
-		$res3 = mysql_query($sql3);// or die(mysql_error());
+		$sql2 = "INSERT INTO posts (category_id, topic_id, post_creator, post_content, post_date) VALUES ($cid, $new_topic_id, '$creator', '$content', now())"; // 2
+		$res2 = mysql_query($sql2);
+		$sql3 = "UPDATE categories SET last_post_date = now(), last_user_posted = $creator WHERE id = $cid LIMIT 1"; // 3
+		$res3 = mysql_query($sql3);
 
 		if(($res) && ($res2) && ($res3)) {
-			header("Location: " . ABSURL . "view.php?cid=".$cid."&tid=".$new_topic_id);
+			header(sprintf("Location: %s", sprintf(ABSURL . "view_topic.php?cid=%d&tid=%d", $cid, $new_topic_id)));
 		} else {
 			echo "Nastal problém pri vytváraní vasej témy. Skúste to prosím znova.";
 		}

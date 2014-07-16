@@ -1,4 +1,5 @@
 <?php
+
 require "./connect.php"; // database connection
 header("Vary: X-Requested-With", true);
 if(
@@ -10,7 +11,7 @@ if(
 	header("Content-Type: text/json; charset=utf-8");
 	$id = intval($_SERVER['HTTP_X_USER_ID']);
 	if($id > 0) {
-		$dotaz = "SELECT username, access, DATE_FORMAT(registerdate, '%e. %c. %Y') as registrovany FROM users WHERE id = $id";
+		$dotaz = "SELECT `username`, `access`, DATE_FORMAT(`registerdate`, '%e. %c. %Y') as `registrovany` FROM `users` WHERE `id` = $id";
 		$userinfo = mysql_query($dotaz);
 		if($userinfo && mysql_num_rows($userinfo)) {
 			$userinfo = mysql_fetch_assoc($userinfo);
@@ -79,7 +80,7 @@ Vzhľadom k vyššie uvedeným dôvodom sa prikláňam skôr ku pridaniu všeobe
 na túto stránku.
 
 ~Programátor Kubo2: Poznámka. Tento text je určený iba ku orientácii v pláne akcií a pre zaistenie informovanosti prvého autora 
-a zakľadateľa fóra Diggy's Helper Vladimíra WladinQa Jacka. Tento text môže zostať v zdrojovom kóde, ačkoli sa nikdy nezobrazí.
+a zakľadateľa fóra Diggy's Helper Vladimíra WladinQa Jacka. Tento text môže zostať v zdrojovom kóde, i keď sa nikdy nezobrazí.
 <?php } ?>
 	
 </div>
