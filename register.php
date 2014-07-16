@@ -94,16 +94,16 @@ if(empty($_POST['username'])) {
 				<tr>
 					<td><input name='email' type='email' placeholder='E-mail' class='input'></td>
 				</tr>
-				<tr>
+				<!--tr>
 					<td><input class='input' autocomplete='off' name='facebookname' placeholder='Meno na facebooku' value='' type='text'></td>
-				</tr>
+				</tr-->
 				<tr>
 					<td><input class='button_register' type='submit' value='Registrovať sa'></td>
 				</tr>
 			</table>
 			<br>
 			<font color='red'>*</font> Povinné polia<br>
-			<font color='#5999cc'>*</font> "Meno na facebooku" sa zobrazuje len administrátorom stránky. Slúži na odosielanie GEMOV výhercom. (toto pole nieje povinné)
+			<!--font color='#5999cc'>*</font> "Meno na facebooku" sa zobrazuje len administrátorom stránky. Slúži na odosielanie GEMOV výhercom. (toto pole nieje povinné)-->
 		</form>
 <?php 
 goto closing;

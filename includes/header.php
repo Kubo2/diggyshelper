@@ -5,6 +5,9 @@
 		if(!isset($_SESSION['uid'])) { // TODO: restructure session array
 		?>
 		<form action='login.php' method='post'>
+			<?php if(in_array(basename($_SERVER["REQUEST_URI"]), [ 'register.php', ])): ?>
+			<input type="hidden" name="redirect-noreferer" value="1">
+			<?php endif ?>
 			<input class='input' type='text' name='username' placeholder='Nickname'><br>
 			<input class='input' type='password' name='password' placeholder='Heslo'>&nbsp;
 			<label><input class='input' type='checkbox' name='remember'>&nbsp;Neodhlasovať ma</label><br>
