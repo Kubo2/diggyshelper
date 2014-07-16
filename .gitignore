@@ -14,3 +14,7 @@ images/upload
 liquibase.properties
 !liquibase/
 
+## githelp.txt is WladinQ's help file with useful git commands
+# we won't include that one
+githelp.txt
+
