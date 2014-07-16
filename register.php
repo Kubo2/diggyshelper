@@ -62,11 +62,11 @@ if(empty($_POST['username'])) {
 		<p>Registráciou sa staňete členmi stráky Diggy's Helper. Výhodi registrácie sú uvedené nižšie.</p>
 		<style scoped>.ochrana-pred-robotmi{display:none}</style>
 		<form method='post' action='?'>
-			<table border='0'>
+			<table border='0px'>
 				<tr>
 					<td>Registrovať sa:</td>
-					<td width="30%" rowspan="5" bgcolor="#fff"></td>
-					<td rowspan="5" width="50%">
+					<td></td>
+					<td ROWSPAN="6">
 						<h3>Výhody registrovaných užívateľov:</h3>
 							- osobný profil<br>
 							- pridávať otázky a odpoveďe vo fóre<br>
@@ -79,7 +79,7 @@ if(empty($_POST['username'])) {
 				</tr>
 				<tr>
 					<td><input name='password' type='password' placeholder='Heslo' class='input' autocomplete='off' id='status' required></td>
-					<td style="min-width: 160px"><span class="first"></span></td>
+					<td style="min-width: 180px"><span class="first"></span></td>
 				</tr>
 				<tr>
 					<td><input name='password2' type='password' placeholder='Heslo znovu' class='input' autocomplete='off' required></td>
