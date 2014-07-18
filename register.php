@@ -1,8 +1,17 @@
 <?php
 
 session_start();
+
+// ak užívateľ nie je prihlásený, neexistuje ani 'uid'
+// v {@see logout.php} je totižto volaná funkcia session_destroy()
+if(isset($_SESSION['uid'])) {
+	header("Location: http://$_SERVER[SERVER_NAME]" .dirname($_SERVER["PHP_SELF"]). "index.php", true, 302);
+	exit;
+}
+
+// @see https://cs.wikipedia.org/wiki/Stavov%C3%A9_k%C3%B3dy_HTTP
+
 header("Content-Type: text/html; charset=utf-8", true, 200);
-mb_internal_encoding('UTF-8'); // not needed, none of mbstring functions used here
 ?>
 <!doctype html>
 <html>
@@ -62,11 +71,12 @@ if(empty($_POST['username'])) {
 		<p>Registráciou sa staňete členmi stráky Diggy's Helper. Výhodi registrácie sú uvedené nižšie.</p>
 		<style scoped>.ochrana-pred-robotmi{display:none}</style>
 		<form method='post' action='?'>
-			<table border='0'>
+			<table border='0px'>
 				<tr>
+					<td></td>
 					<td>Registrovať sa:</td>
-					<td width="30%" rowspan="5" bgcolor="#fff"></td>
-					<td rowspan="5" width="50%">
+					<td></td>
+					<td ROWSPAN="5">
 						<h3>Výhody registrovaných užívateľov:</h3>
 							- osobný profil<br>
 							- pridávať otázky a odpoveďe vo fóre<br>
@@ -75,13 +85,16 @@ if(empty($_POST['username'])) {
 					</td>
 				</tr>
 				<tr>
+					<td><font color='red'>*</font></td>
 					<td><input name='username' type='text' placeholder='Nickname' class='input' autocomplete='off' required></td>
 				</tr>
 				<tr>
+					<td><font color='red'>*</font></td>
 					<td><input name='password' type='password' placeholder='Heslo' class='input' autocomplete='off' id='status' required></td>
-					<td style="min-width: 160px"><span class="first"></span></td>
+					<td style="min-width: 180px"><span class="first"></span></td>
 				</tr>
 				<tr>
+					<td><font color='red'>*</font></td>
 					<td><input name='password2' type='password' placeholder='Heslo znovu' class='input' autocomplete='off' required></td>
 				</tr>
 				<tr class="ochrana-pred-robotmi">
@@ -92,18 +105,25 @@ if(empty($_POST['username'])) {
 					<td><input type="url" name='url'></td>
 				</tr>
 				<tr>
+					<td><font color='red'>*</font></td>
 					<td><input name='email' type='email' placeholder='E-mail' class='input'></td>
 				</tr>
+				<!--
+				V novšej verzii bude funkcia onclick nahradena java oknom.
 				<tr>
-					<td><input class='input' autocomplete='off' name='facebookname' placeholder='Meno na facebooku' value='' type='text'></td>
+					<td><font color='#5999cc'>*</font></td>
+					<td><input class='input' autocomplete='off' name='facebookname' placeholder='Link profilu na Facebooku' value='' type='text'></td>
+					<td><a onclick="window.open('profilelinkfb.php', 'okno1', 'width=500,height=400')" title="Ako pridať Link profilu na Facebooku?"><font color="red">?</font></a></td>
 				</tr>
+				-->
 				<tr>
+					<td></td>
 					<td><input class='button_register' type='submit' value='Registrovať sa'></td>
 				</tr>
 			</table>
 			<br>
 			<font color='red'>*</font> Povinné polia<br>
-			<font color='#5999cc'>*</font> "Meno na facebooku" sa zobrazuje len administrátorom stránky. Slúži na odosielanie GEMOV výhercom. (toto pole nieje povinné)
+			<!--font color='#5999cc'>*</font> "Link profilu na Facebooku" sa zobrazuje len administrátorom stránky. Slúži na odosielanie GEMOV výhercom. (toto pole nieje povinné)-->
 		</form>
 <?php 
 goto closing;
@@ -148,7 +168,6 @@ goto closing;
 <h1>Registrácia úspešná</h1>
 <p class="succes">
 	Bravó! Vitajte na našom fóre ;-) V pravom hornom rohu sa môžete prihlásiť.
-	<a href="./">Prejsť na hlavnú stránku</a>
 </p>
 <?php 
 goto closing;
