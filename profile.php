@@ -1,6 +1,7 @@
 <?php
 
-require "./functions.php";
+require "./functions.php"; // some useful miscellanous functionality
+require "./connect.php"; // database connection
 
 $id = !empty($_GET['user']) ? mysql_real_escape_string($_GET['user']) : false;
 $httpStatus = 200;
@@ -21,25 +22,6 @@ if(!$id) {
 	goto page_template;
 }
 
-require "./connect.php"; // database connection
-
-// bit slower
-// $info= <<<SQL
-// 	select
-// 		u.username,
-// 		u.email,
-// 		u.access,
-// 		u.registerdate,
-// 		count(p.id)
-// 	from
-// 		users u
-// 	left join
-// 		posts p
-// 			on(u.id = p.post_creator)
-// 	where u.username = '$id'
-// SQL;
-
-// actual query
 $rawinfo= <<<SQL
 	select
 		u.username as `user-name`,
@@ -72,7 +54,6 @@ session_start();
 header("Content-Type: text/html; charset=utf-8", true, $httpStatus);
 
 // template settings
-//ini_set('short_open_tag', true);
 set_include_path("./includes/");
 
 ?>
