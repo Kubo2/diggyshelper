@@ -1,8 +1,17 @@
 <?php
 
 session_start();
+
+// ak užívateľ nie je prihlásený, neexistuje ani 'uid'
+// v {@see logout.php} je totižto volaná funkcia session_destroy()
+if(isset($_SESSION['uid'])) {
+	header("Location: http://$_SERVER[SERVER_NAME]" .dirname($_SERVER["PHP_SELF"]). "index.php", true, 302);
+	exit;
+}
+
+// @see https://cs.wikipedia.org/wiki/Stavov%C3%A9_k%C3%B3dy_HTTP
+
 header("Content-Type: text/html; charset=utf-8", true, 200);
-mb_internal_encoding('UTF-8'); // not needed, none of mbstring functions used here
 ?>
 <!doctype html>
 <html>

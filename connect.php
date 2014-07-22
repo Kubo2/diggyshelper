@@ -19,18 +19,24 @@ if(defined('DB_CONNECTED')) return true;
  */
 $dbData = require("./.db.cfg");
 
+// turn off generating errors because of mysql_* use
+$errors = error_reporting( 0 );
+
 $connection = mysql_connect(
 	$dbData["host"], 
 	$dbData["user"], 
 	$dbData["password"]
 );
 
-$selectedDb = mysql_select_db($dbData["name"]);
+$selectedDb = mysql_select_db($dbData["name"], $connection);
 
 unset($dbData);
 
+// turn back errors
+error_reporting($errors);
+
 if((bool)$connection && $selectedDb) {
-	mysql_query("SET NAMES utf8");
+	mysql_query("SET NAMES utf8", $connection);
 	define('DB_CONNECTED', true);
 	return true;
 }
