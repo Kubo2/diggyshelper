@@ -149,6 +149,10 @@ body {
 	border-radius: 5px;
 }
 
+#provizorne:empty {
+	display: none !important;
+}
+
 #provizorne p:first-child {
 	margin-top: 0;
 }
@@ -350,10 +354,16 @@ body {
 	min-height:20px;
 }
 
+/** profiles */
 #profilinfo {
 	background:#fff;
 	border:0px;
 }
+
+.user-profil .user-info {
+	
+}
+/** /profiles */
 
 /** Koniec ID */
 /** CLASS */

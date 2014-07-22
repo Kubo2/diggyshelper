@@ -1,42 +1,9 @@
 <?php
 
 require "./connect.php"; // database connection
-header("Vary: X-Requested-With", true);
-if(
-	isset($_SERVER['HTTP_X_REQUESTED_WITH'])
-    && $_SERVER['HTTP_X_REQUESTED_WITH'] == "XMLHttpRequest"
-    && !empty($_SERVER['HTTP_X_USER_ID'])
-  ) {
-	header("Vary: X-Requested-With, X-User-Id", true, 200);
-	header("Content-Type: text/json; charset=utf-8");
-	$id = intval($_SERVER['HTTP_X_USER_ID']);
-	if($id > 0) {
-		$dotaz = "SELECT `username`, `access`, DATE_FORMAT(`registerdate`, '%e. %c. %Y') as `registrovany` FROM `users` WHERE `id` = $id";
-		$userinfo = mysql_query($dotaz);
-		if($userinfo && mysql_num_rows($userinfo)) {
-			$userinfo = mysql_fetch_assoc($userinfo);
-			$outputJson = '{ "prezyvka" : "'
-				.$userinfo['username']
-				.'", "prava" : "'
-				.($userinfo['access'] != "member" ? "Moderátor" : "Člen")
-				.'", "registrovany" : "'
-				.$userinfo['registrovany']
-				.'" }';
-			echo $outputJson;
-		} else {
-			header("X-Man: First Class", true, 404);
-			echo '{ "chyba" : "Neexistujúci používateľ." }';
-		}
-	} else {
-		header("X-Man: First Class", true, 400);
-		echo '{ "chyba" : "Nesprávny formát zadaného identifikátoru používateľa." }';
-	}
-	exit;
-}
-ob_start();
 session_start();
 header("Content-Type: text/html; charset=utf-8", true, 200);
-//require "./includes/functions.php";
+
 ?>
 <!--DOCTYPE HTML-->
 <html>
@@ -54,14 +21,14 @@ header("Content-Type: text/html; charset=utf-8", true, 200);
 <div id="pages">
 	<h3>O používateľoch fóra Diggy's Helper</h3>
 	<?php $cfg = parse_ini_file("./.config.ini", true); ?>
-	<p>Administrátorom fóra je <a class="memberusers" style="font-weight:bold;" href="<?php echo $absUrl . "/#member=" . $cfg["administrator"]["user.id"]; ?>"><?php echo $cfg["administrator"]["user.name"]; ?></a></p>
+	<p>Administrátorom fóra je <a class="memberusers" style="font-weight:bold;" href="<?php echo $absUrl . "/profile.php?user=" . $cfg["administrator"]["user.name"]; ?>"><?php echo $cfg["administrator"]["user.name"]; ?></a></p>
 	<?php
-	$admins =  mysql_query("SELECT `id`, `username` FROM `users` WHERE `access` IN ('admin', 'moderator') AND NOT `id` = {$cfg['administrator']['user.id']}");
+	$admins =  mysql_query("SELECT `username` FROM `users` WHERE `access` IN ('admin', 'moderator') AND NOT `id` = {$cfg['administrator']['user.id']}");
 	if($admins) {
 		echo "<h4>Moderátori fóra</h4>\n<ul>\n";
 		while(($admin = mysql_fetch_assoc($admins)) !== false) {
 			echo "\t<li>\n\t";
-			echo "\t<a class='memberusers' href='$absUrl/#member=$admin[id]'>$admin[username]</a>\n";
+			echo "\t<a class='memberusers' href='$absUrl/profile.php?user=" .urlencode($admin['username']). "'>$admin[username]</a>\n";
 			echo "\t</li>";
 		}
 		echo "</ul>\n";
