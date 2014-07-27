@@ -1,13 +1,15 @@
+@import "http://fonts.googleapis.com/css?family=Andika&subset=latin,latin-ext";
+
 body {
 	margin:0px;
-	font-family: "Comic Sans MS", "Consolas", "Arial";
+	font-family: "Andika", "Times New Roman";
 }
 
 /** Universal. */
 [class*='button'] {
 	color: #fff;
 	text-decoration:none;
-	font-family:"Comic Sans MS";
+	font-family: "Andika", "Times New Roman";
 	border-radius:5px;
 	cursor:pointer;
 }
@@ -15,8 +17,9 @@ body {
 [class*='button']:hover {
 	color: #fff;
 	text-decoration:none;
-	font-family:"Comic Sans MS";
+	font-family: "Andika", "Times New Roman";
 	border-radius:5px;
+	font-size:14px;
 	cursor:pointer;
 }
 
@@ -24,6 +27,7 @@ body {
 	background:#5999cc;
 	border:2px #5999cc solid;
 	cursor:pointer;
+	font-size:14px;
 }
 
 .input_button:hover {
@@ -85,7 +89,7 @@ body {
 	margin-left: 0px;
 	background: rgba(255, 0, 0, 0.5);
 	color: #fff;
-	display: none;
+	_display: none;
 	padding: 0.5em 0.5em 0.5em 0.5em;
 	box-shadow: 0 1px 3px black;
 }
@@ -103,7 +107,7 @@ body {
 	border:2px #106cb5 solid;
 	border-radius:5px;
 	padding:5px;
-	font-family:"Comic Sans MS";
+	font-family: "Andika", "Times New Roman";
 }
 
 #zaujimavosti table {
@@ -121,7 +125,7 @@ body {
 #loginprovizor {
 	background: #8CB8DC;
 	height: 130px;
-	width: 353px;
+	width: 350px;
 	float: right;
 	border-radius: 5px;
 	margin-right: 5px;
@@ -130,10 +134,8 @@ body {
 	color:#fff;
 }
 
-#loginprovizor img {
-	width:80px;
-	height:76px;
-	border-radius:5px;
+#loginprovizor label input[type=checkbox] {
+	background-color: #FFF;
 	border:2px #106cb5 solid;
 }
 
@@ -146,19 +148,16 @@ body {
 	margin: 0 auto 23px;
 	text-align: left;
 	padding: 5px;
+	display: none;
 	border-radius: 5px;
 }
 
-#provizorne:empty {
-	display: none !important;
-}
-
 #provizorne p:first-child {
-	margin-top: 0;
+	margin-top: 0px;
 }
 
 #provizorne p:last-child {
-	margin-bottom: 0;
+	margin-bottom: 0px;
 }
 
 #provizorne.warning {
@@ -178,7 +177,7 @@ body {
 	border:2px #106cb5 solid;
 	border-radius:5px;
 	padding:5px;
-	font-family:"Comic Sans MS";
+	font-family: "Andika", "Times New Roman";
 }
 
 #coako {
@@ -190,15 +189,15 @@ body {
 	border:2px #106cb5 solid;
 	border-radius:5px;
 	padding:5px;
-	font-family:"Comic Sans MS";
+	font-family: "Andika", "Times New Roman";
 }
 
 #coako h3 {
-    margin-bottom: 7px;
-    background: #106cb5;
+   margin-bottom: 7px;
+   background: #106cb5;
 	color:#fff;
-    border-bottom: 1px solid #ddd;
-    padding: 0 10px;
+   border-bottom: 1px solid #ddd;
+   padding: 0 10px;
 }
 
 #pages table tr td {
@@ -214,18 +213,6 @@ body {
 	border-radius:5px;
 }
 
-#pages .playgamepp a {
-	text-decoration:none;
-	color:#fff;
-}
-
-#pages .playgamepp a:hover {
-	background:#e64704;
-	border-radius:5px;
-	border:1px solid #d64000;
-	color:#fff;
-}
-
 #pages .playgamefb {
 	background:#eaeaea;
 	color:#000;
@@ -235,24 +222,13 @@ body {
 	border-radius:5px;
 }
 
-#pages .playgamefb a {
-	text-decoration:none;
-	color:#000;
-}
-
-#pages .playgamefb a:hover {
-	background:#4c66a4;
-	border-radius:5px;
-	border:1px solid #445c93;
-	color:#fff;
-}
-
 #menu {
 	background:#33cc00;
 	color:#fff;
-	font-family:"Comic Sans MS";
+	font-family: "Andika", "Times New Roman";
 	padding:5px;
-	height:23px;
+	height:26px;
+	text-align: center;
 	width: auto;
 }
 
@@ -268,6 +244,16 @@ body {
 	color:#fff;
 }
 
+#menuleft {
+	float: left;
+	margin-left: 5px;
+}
+
+#menuright {
+	float: right;
+	margin-right: 5px;
+}
+
 #header {
 	height:150px;
 	width:auto;
@@ -280,7 +266,7 @@ body {
 	padding-top:20px;
 	padding-bottom:5px;
 	color:#87b5da;
-	font-family:"Comic Sans MS";
+	font-family: "Andika", "Times New Roman";
 	cursor:default;
 }
 
@@ -288,7 +274,7 @@ body {
 	font-size:15px;
 	padding-left:450px;
 	color:#87b5da;
-	font-family:"Comic Sans MS";
+	font-family: "Andika", "Times New Roman";
 	cursor:default;
 }
 
@@ -301,11 +287,30 @@ body {
 	border:2px #106cb5 solid;
 	border-radius:5px;
 	padding:5px;
-	font-family:"Comic Sans MS";
+	font-family: "Andika", "Times New Roman";
 }
 
 #content {
 	
+}
+
+#content table tr td a {
+	text-decoration: none;
+	cursor: pointer;
+}
+
+#content table tr td a:title {
+	color: #FFF;
+}
+
+#profilelinkfb {
+	height: auto;
+	text-align: center;
+	padding: 5px;
+}
+
+#profilelinkfb a img {
+	margin: 5px;
 }
 
 #upload {
@@ -313,7 +318,7 @@ body {
 	width:auto;
 	overflow:hidden;
 	color:#fff;
-	font-family:"Comic Sans MS";
+	font-family: "Andika", "Times New Roman";
 	background:#106cb5 url(../images/bg/upload.png) no-repeat;
 }
 
@@ -342,28 +347,31 @@ body {
 	border-radius:5px;
 	padding:5px;
 	color:#000;
-	font-family:"Comic Sans MS";
+	font-family: "Andika", "Times New Roman";
 }
 
 #news {
 	border-radius:5px;
 	border:2px #106cb5 solid;
 	margin:10px;
-	font-family:"Comic Sans MS";
+	font-family: "Andika", "Times New Roman";
 	padding:5px;
 	min-height:20px;
 }
 
-/** profiles */
 #profilinfo {
 	background:#fff;
 	border:0px;
 }
 
-.user-profil .user-info {
-	
+#left {
+	float: left;
 }
-/** /profiles */
+
+#right {
+	float: right;
+	margin-right: 5px;
+}
 
 /** Koniec ID */
 /** CLASS */
@@ -480,6 +488,10 @@ body {
 	text-align:left;
 }
 
+.clear {
+	clear:both;
+}
+
 /** Koniec CLASS */
 
 div#header > p.in-development {
@@ -497,7 +509,7 @@ div.dialog.profile {
   min-width:400px;
   min-height:250px;
   border:2px solid #000000;
-  font-family:"Comic Sans MS";
+  font-family: "Andika", "Times New Roman";
   background-color:#fff;
   float:center;
   left:calc(50% - 200px);
@@ -505,7 +517,7 @@ div.dialog.profile {
 
 div.dialog.profile h3 {
   text-align:center;
-  font-family:"Comic Sans MS";
+  font-family: "Andika", "Times New Roman";
 }
 
 div.dialog.profile img {
