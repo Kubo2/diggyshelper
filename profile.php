@@ -35,6 +35,7 @@ $rawinfo= <<<SQL
 		posts p
 	where
 		u.username = '$id' AND p.post_creator = u.id
+	GROUP BY u.id HAVING u.id IS NOT NULL
 SQL;
 
 if(defined('DB_CONNECTED')) {
