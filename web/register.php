@@ -16,7 +16,7 @@ header("Content-Type: text/html; charset=utf-8", true, 200);
 <!doctype html>
 <html>
 <head>
-	<?php require 'includes/head.php'; ?>
+	<?php ($titleConst = "dh: Registrácia") &&require 'includes/head.php' ?>
 	<style type="text/css">
 		.red{
 		color:white;
@@ -38,13 +38,17 @@ header("Content-Type: text/html; charset=utf-8", true, 200);
 		border-radius:5px;
 		padding:0px 10px;
 		}
-		input:required::after {
+		/*input:required::after {
 			content: " *";
 			color: red;
 		}
 		input[required]:after {
 			content: " *";
 			color: red;
+		}*/
+		td.required::after {
+			color: #f00;
+			content: ' *';
 		}
 	</style>
 </head>
@@ -82,32 +86,37 @@ if(empty($_POST['username'])) {
 							- pridať si známych ľudí, spoluhráčov do priateľov<br>
 							- možnosť zapojiť sa do sútaží o GEMY
 					</td>
-				</tr>
-				<tr>
-					<td><input name='username' type='text' placeholder='Nickname' class='input' autocomplete='off' required></td>
-				</tr>
-				<tr>
-					<td><input name='password' type='password' placeholder='Heslo' class='input' autocomplete='off' id='status' required></td>
-					<td style="min-width: 180px"><span class="first"></span></td>
-				</tr>
-				<tr>
-					<td><input name='password2' type='password' placeholder='Heslo znovu' class='input' autocomplete='off' required></td>
-				</tr>
-				<tr class="ochrana-pred-robotmi">
-					<td>
-						Prosím, <strong>nevypĺňajte</strong>. 
-						Políčko si iba overuje, či nie ste <b>automatický spamovací robot.</b>
+				</tr><tr>
+					<td class="required">
+						<input name='username' type='text' placeholder='Nickname' class='input' autocomplete='off' required>
 					</td>
-					<td><input type="url" name='url'></td>
-				</tr>
-				<tr>
-					<td><input name='email' type='email' placeholder='E-mail' class='input'></td>
-				</tr>
-				<!--tr>
+				</tr><tr>
+					<td class="required">
+						<input name='password' type='password' placeholder='Heslo' class='input' autocomplete='off' id='status' required>
+					</td><td style="min-width: 180px">
+						<span class="first"></span>
+					</td>
+				</tr><tr>
+					<td class="required">
+						<input name='password2' type='password' placeholder='Heslo znovu' class='input' autocomplete='off' required>
+					</td>
+				</tr><tr class="ochrana-pred-robotmi">
+					<td>
+						Prosím, <strong>nevypĺňajte</strong>.
+						Políčko si iba overuje, či nie ste <b>automatický spamovací robot.</b>
+					</td><td>
+						<input type="url" name='url'>
+					</td>
+				</tr><tr>
+					<td>
+						<input name='email' type='email' placeholder='E-mail' class='input'>
+					</td>
+				</tr><!--tr>
 					<td><input class='input' autocomplete='off' name='facebookname' placeholder='Meno na facebooku' value='' type='text'></td>
-				</tr-->
-				<tr>
-					<td><input class='button_register' type='submit' value='Registrovať sa'></td>
+				</tr--><tr>
+					<td>
+						<input class='button_register' type='submit' value='Registrovať sa'>
+					</td>
 				</tr>
 			</table>
 			<br>
