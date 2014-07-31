@@ -16,7 +16,7 @@ session_start();
 	?>
 	<div id="pages">
 		<div style="width: 100%; text-align: center;">
-			<h3>Vítam ťa na stránke Diggy's Helper</h3>
+			<h2>O hre Diggy's Adventure</h2>
 			<img src="images/bg/logo-DA.png">
 		</div>
 		<P>
@@ -28,13 +28,13 @@ session_start();
 			rokov pod zemou legendárnych území po celom svete čakajú len na tvoje 
 			šikovné ruky a myseľ objaviteľa. Pridaj sa k Profesorovi, Linde a robotovi 
 			Rustymu, postav kemp a vydaj sa na dobrodružstvo tvojho života.
-			<!--br><br> ~ dve a viac <br> za sebou už o niečom bohužiaľ svedčí :-( ~ Kubo2 -->
 		</P>
 		<div style="width: 100%; text-align: center;">
 			<a href="http://portal.pixelfederation.com/diggysadventure/?lang=SK" target="blank" class="playgamepp">Hraj na Pixel Portáli</a>
 			<a href="https://apps.facebook.com/diggysadventure/" target="blank" class="playgamefb">Hraj na Facebooku</a>
 		</div>
-		<b>O firme PIXEL FEDERATION:</b><br>
+
+		<h3 style="text-align: center">O firme PIXEL FEDERATION:</h3><p>
 		Firma <a class="memberusers" href="http://www.pixelfederation.com/?lang=sk" target="blank">PIXEL FEDERATION</a> 
 		bola založená v roku 2007 štyrmi nadšencami z herného priemyslu a venuje sa 
 		výhradne tvorbe online webových a mobilných hier, jednou z nich je aj 
