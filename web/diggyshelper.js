@@ -7,7 +7,6 @@
  * Za uvedenie zdroja sa považuje obdoba nasledovného:
  * Zdroj: Diggy's Helper Project
  *
- * @todo namiesto týchto pičovín asi vlastný FW
  * @author Kubo2
  * @author WladinQ
  * Copyright (c) Diggy's Helper Project

@@ -1,11 +1,51 @@
+@charset "UTF-8";
 @import "http://fonts.googleapis.com/css?family=Andika&subset=latin,latin-ext";
 
+/**
+ * This stylesheet is originally made for dh-forum website.
+ * Nobody may reuse or redistribute it.
+ *
+ * @author   WladinQ <vladimir.jacko.ml@gmail.com>
+ * @copyright 2013-2014 dh-forum workgroup
+ *
+ * Little but important edits to this file also made Kubo2.
+ *
+ * For more information on dh-forum workgroup, please read
+ * the article at {@link http://diggyshelper.net/authors.php}.
+ *
+ * Please note that this stylesheet does not carry about backwards
+ * compatibility in most old browsers including old versions
+ * of Opera Browser, Microsoft Internet Explorer or Netscape
+ * Navigator, because our target group is not supposed to use
+ * some of these browser. If it will show they does, backwards
+ * compatibility will quickly be made.
+ *
+ */
+
 body {
-	margin:0px;
-	font-family: "Andika", "Times New Roman";
+	margin: 0;
+	font-family: Andika, "Times New Roman";
 }
 
-/** Universal. */
+/**
+ * General.
+ */
+ /* headings */
+ h1:not(.no-center) {
+ 	width: 100%;
+ 	text-align: center;
+ }
+
+  /* backwards compatibility */
+ h1.no-center {
+ 	width: inherit;
+ 	text-align: initial;
+ }
+
+/**
+ * Universal.
+ */
+ /* buttons */
 [class*='button'] {
 	color: #fff;
 	text-decoration:none;
@@ -387,8 +427,15 @@ body {
 	width:auto;
     margin-bottom: 10px;
     background: #f3fbff;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
+
+    /* radius vendors (backward) */
+    -webkit-border-radius:	10px;
+    -moz-border-radius:	10px;
+    -ms-border-radius:	10px;
+    -o-border-radius:		10px;
+
+    /* radius forward */
+    border-radius:			10px;
 }
 
 .memberusers {
@@ -454,18 +501,16 @@ body {
 	
 }
 
-.input_login placeholder {
-	color:#fff;
+.right, .left {
+	padding: 5px;
 }
 
 .right {
-	float:right;
-	padding:5px;
+	float: right;
 }
 
 .left {
-	float:left;
-	padding:5px;
+	float: left;
 }
 
 .cat_links {
@@ -489,7 +534,7 @@ body {
 }
 
 .clear {
-	clear:both;
+	clear: both;
 }
 
 /** Koniec CLASS */
@@ -501,7 +546,7 @@ div#header > p.in-development {
 }
 
 hr {
-	border:0px solid #ccc;
+	border: 0 solid #ccc;
 }
 
 div.dialog.profile {
