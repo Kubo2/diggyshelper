@@ -25,6 +25,12 @@ function change_profile_image($user_id, $file_temp, $file_extn)
 	changeProfileImage($user_id, $file_temp, $file_extn);
 }
 
+/**
+ * Change user's profile image.
+ *
+ * @deprecated
+ * @too-specific
+ */
 function changeProfileImage($userId, $fileTemp, $fileExt)
 {
 	$filepath = 'images/avatars/' . substr(md5(time()), 0, 10) . '.' . $fileExt;
@@ -32,9 +38,15 @@ function changeProfileImage($userId, $fileTemp, $fileExt)
 	mysql_query("UPDATE `users` SET `imagelocation` = '" . mysql_real_escape_string($filepath) . "' WHERE `user_id` = " . (int)$userId);
 }
 
+/**
+ * Is current user signed in?
+ *
+ * @since 1.3.3
+ * @return bool
+ */
 function loggedIn()
 {
-	return isset($_SESSION['user_id']) && !empty($_SESSION['user_id']);
+	return !empty($_SESSION['uid']);
 	
 }
 
