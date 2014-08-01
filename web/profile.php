@@ -49,15 +49,16 @@ if(defined('DB_CONNECTED')) {
 
 $userinfo = $rawinfo + $userinfo;
 
+// ====== template start ======
 page_template:
-// template begin
+
 session_start();
 header("Content-Type: text/html; charset=utf-8", true, $httpStatus);
 
 // template settings
 set_include_path("./includes/");
 
-?>
+// ====== template HTML ====== ?>
 <!doctype html>
 <?php $titleConst = $httpStatus == 200 ? "Profil používateľa „{$userinfo['user-name']}“" : 'Neexistuje záznam'; include('head.php') ?>
 </head><body class="page profil">
@@ -119,4 +120,4 @@ set_include_path("./includes/");
 	</div>
 	<?php endif ?>
 </div>
-<?php include('footer.php'); FLUSH (   ) ?>
+<?php include('footer.php') ?>
