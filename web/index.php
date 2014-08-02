@@ -28,9 +28,9 @@ INNER JOIN (
         ) p
       )
         ON(t.id = p.topic_id AND t.topic_creator = u.id)
-ORDER BY p.count ASC,
-	t.topic_date DESC,
-	t.topic_reply_date DESC
+ORDER BY t.topic_reply_date DESC,
+	p.count ASC,
+	t.topic_date DESC
 LIMIT 0, 11
 SQL;
 
