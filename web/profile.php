@@ -94,7 +94,7 @@ set_include_path("./includes/");
 						<td>Registrovaný dňa:</td>
 						<td><?= $userinfo['user-register-date'] ?></td>
 					</tr>
-					<?php if(isset($_SESSION['uid']) && $_SESSION['username'] === $userinfo['username']): // je užívateľ prihlásený a je to jeho profil?>
+					<?php if(isset($_SESSION['uid']) && $_SESSION['username'] === $userinfo['user-name']): // je užívateľ prihlásený a je to jeho profil?>
 					<tfoot>
 						<tr>
 							<td colspan=2>
