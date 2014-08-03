@@ -58,6 +58,11 @@ SQL;
 // posielame dotaz
 $rs = mysql_query($usr);
 
+// prázdne heslo alebo podobný problém
+if(!$rs) {
+	goto login_errorpage;
+}
+
 // fetchneme si jeden riadok result-setu
 $det = mysql_fetch_assoc($rs);
 
