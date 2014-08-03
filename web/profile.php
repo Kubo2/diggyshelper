@@ -71,7 +71,7 @@ set_include_path("./includes/");
 	<?php if($httpStatus == 200): ?>
 	<div class="user-profil">
 			<div class="user-info">
-				<h1>Profil používateľa <big><?= $userinfo['user-name'] ?></big></h1>
+				<h1>Profil používateľa <big><?= SanitizeLib\escape($userinfo['user-name'], 'html') ?></big></h1>
 				<table style="table-layout: fixed; width: 800px">
 					<style scoped>table td {text-align: left !important}</style>
 					<tr>
@@ -80,7 +80,7 @@ set_include_path("./includes/");
 					</tr>
 					<tr>
 						<td>E-mail:</td>
-						<td><?= sk_sanitizeEmail($userinfo['user-email']) ?></td>
+						<td><?= SanitizeLib\escape(sk_sanitizeEmail($userinfo['user-email']), 'html') ?></td>
 					</tr>
 					<tr>
 						<td>Celkový počet príspevkov:</td>
@@ -94,7 +94,7 @@ set_include_path("./includes/");
 						<td>Registrovaný dňa:</td>
 						<td><?= $userinfo['user-register-date'] ?></td>
 					</tr>
-					<?php if(isset($_SESSION['uid'])): // je užívateľ prihlásený?>
+					<?php if(isset($_SESSION['uid']) && $_SESSION['username'] === $userinfo['username']): // je užívateľ prihlásený a je to jeho profil?>
 					<tfoot>
 						<tr>
 							<td colspan=2>
