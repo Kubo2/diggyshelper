@@ -76,7 +76,7 @@ if(empty($_POST['username'])) {
 					<td><font color='red'>*</font></td>
 					<td><input name='username' type='text' placeholder='Nickname' class='input' autocomplete='off' required></td>
 					<td></td>
-					<td ROWSPAN="5">
+					<td ROWSPAN="5" VALIGN="TOP">
 						<h3>Výhody registrovaných užívateľov:</h3>
 							- osobný profil<br>
 							- pridávať otázky a odpoveďe vo fóre<br>
