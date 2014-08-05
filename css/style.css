@@ -134,6 +134,11 @@ body {
 	color:#fff;
 }
 
+#loginprovizor label input[type=checkbox] {
+	background-color: #FFF;
+	border:2px #106cb5 solid;
+}
+
 #provizorne {
 	color: #fff;
 	background: grey;
