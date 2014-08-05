@@ -16,6 +16,7 @@ images/upload
 ## Liquibase is a database schema migration tool
 # see http://www.sitepoint.com/versioning-your-database-with-liquibase/
 liquibase.properties
+liquibase.update-sql
 !liquibase/
 
 ## githelp.txt is WladinQ's help file with useful git commands

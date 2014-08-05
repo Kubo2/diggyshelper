@@ -1,4 +1,5 @@
 TODO LIST
+=========
 
 HEADER:
 	- spojazdnit buttonik "Zapamatat heslo"
@@ -17,8 +18,7 @@ ADMIN HALL:
 MODERATOR HALL:
 	- moznost poslat upozornenie o spame
 	- kontrola hlasovych prispevkov
-	- 
-	
+
 FORUM:
 	- naprogramovat pocet 20tich blokov s nadpismy na  jednu stranku
 	- spravit s mena Pridal/a: <MENO> odkaz s presmerovanim na profil
@@ -34,8 +34,3 @@ FORUM:
 	
 UZIVATELIA:
 	- dorobit moderatorov fora
-	
-PROFIL:
-	- upravit link na nieco/MENOUZIVATELA
-	- co zobrazovat v profile: meno, datum registracie, email, pocet prispevkou vo fore
-	- pridat buttony: zmena emailu, zmena hesla, pridat priatela,
