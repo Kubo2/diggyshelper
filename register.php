@@ -73,10 +73,16 @@ if(empty($_POST['username'])) {
 		<form method='post' action='?'>
 			<table border='0px'>
 				<tr>
+<<<<<<< HEAD
 					<td><font color='red'>*</font></td>
 					<td><input name='username' type='text' placeholder='Nickname' class='input' autocomplete='off' required></td>
 					<td></td>
 					<td ROWSPAN="5" VALIGN="TOP">
+=======
+					<td>Registrovať sa:</td>
+					<td></td>
+					<td ROWSPAN="6">
+>>>>>>> b5de832801f284a83eed1a337b8aa8581ab07a87
 						<h3>Výhody registrovaných užívateľov:</h3>
 							- osobný profil<br>
 							- pridávať otázky a odpoveďe vo fóre<br>
