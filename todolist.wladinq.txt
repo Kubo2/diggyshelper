@@ -1,0 +1,41 @@
+TODO LIST
+
+HEADER:
+	- spojazdnit buttonik "Zapamatat heslo"
+	- doplnit button "Zabudli ste heslo?"
+	- (po prihlaseni) medzi "Prihlaseny pouzivatel" a buttony vlozit pocet pridanych tem plus vlozit aj do profilov
+	- naprogramovat profili (po prihlaseny button "Moj profil")
+	
+	//Po prihlaseni
+	- na pravu stranu pridat button Admin Hall zobrazovane len administratorom stranky
+	- na pravu stranu pridat button Moderator Hall zobrazene len moderatorom stranky
+	
+ADMIN HALL:
+	- odosielanie hromadneho emailu
+	- oznamenia o vyhre sutaze jednemu uzivatelovy, ostatnym posle upozornenie ze neuspeli
+	
+MODERATOR HALL:
+	- moznost poslat upozornenie o spame
+	- kontrola hlasovych prispevkov
+	- 
+	
+FORUM:
+	- naprogramovat pocet 20tich blokov s nadpismy na  jednu stranku
+	- spravit s mena Pridal/a: <MENO> odkaz s presmerovanim na profil
+	- sfunkcnit BB kody
+	- odkazy v prispevkoch musia byt bez dekoracii modrou farbou akou su teraz odkazy v index.php
+	- minimalny height na prispevky nastavit na 2 riadky
+	- pridat napravo kazdeho prispevku buttoniky Upravit a Vymazat
+	- lepsie nakodovat button "Spat"
+	- po nahrati obrazku automaticky zmensit obrazok na width="350px" a height="250px"
+	- po nahrati obrazku automaticky pridat link medzi BB kody [img]LINK[/img]
+	- nad kategorie na pravu stranu nad "Odpovedi" a "Zobrazene" pridat vyhladavac
+	- prispevky zobrazovat od najnovsieho
+	
+UZIVATELIA:
+	- dorobit moderatorov fora
+	
+PROFIL:
+	- upravit link na nieco/MENOUZIVATELA
+	- co zobrazovat v profile: meno, datum registracie, email, pocet prispevkou vo fore
+	- pridat buttony: zmena emailu, zmena hesla, pridat priatela,
