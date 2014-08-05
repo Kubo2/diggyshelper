@@ -76,7 +76,7 @@ if(empty($_POST['username'])) {
 					<td></td>
 					<td>Registrovať sa:</td>
 					<td></td>
-					<td ROWSPAN="5">
+					<td ROWSPAN="6">
 						<h3>Výhody registrovaných užívateľov:</h3>
 							- osobný profil<br>
 							- pridávať otázky a odpoveďe vo fóre<br>
@@ -108,14 +108,9 @@ if(empty($_POST['username'])) {
 					<td><font color='red'>*</font></td>
 					<td><input name='email' type='email' placeholder='E-mail' class='input'></td>
 				</tr>
-				<!--
-				V novšej verzii bude funkcia onclick nahradena java oknom.
-				<tr>
-					<td><font color='#5999cc'>*</font></td>
-					<td><input class='input' autocomplete='off' name='facebookname' placeholder='Link profilu na Facebooku' value='' type='text'></td>
-					<td><a onclick="window.open('profilelinkfb.php', 'okno1', 'width=500,height=400')" title="Ako pridať Link profilu na Facebooku?"><font color="red">?</font></a></td>
-				</tr>
-				-->
+				<!--tr>
+					<td><input class='input' autocomplete='off' name='facebookname' placeholder='Meno na facebooku' value='' type='text'></td>
+				</tr-->
 				<tr>
 					<td></td>
 					<td><input class='button_register' type='submit' value='Registrovať sa'></td>
@@ -123,7 +118,7 @@ if(empty($_POST['username'])) {
 			</table>
 			<br>
 			<font color='red'>*</font> Povinné polia<br>
-			<!--font color='#5999cc'>*</font> "Link profilu na Facebooku" sa zobrazuje len administrátorom stránky. Slúži na odosielanie GEMOV výhercom. (toto pole nieje povinné)-->
+			<!--font color='#5999cc'>*</font> "Meno na facebooku" sa zobrazuje len administrátorom stránky. Slúži na odosielanie GEMOV výhercom. (toto pole nieje povinné)-->
 		</form>
 <?php 
 goto closing;
@@ -168,6 +163,7 @@ goto closing;
 <h1>Registrácia úspešná</h1>
 <p class="succes">
 	Bravó! Vitajte na našom fóre ;-) V pravom hornom rohu sa môžete prihlásiť.
+	<a href="./">Prejsť na hlavnú stránku</a>
 </p>
 <?php 
 goto closing;
