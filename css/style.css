@@ -451,7 +451,7 @@ body {
 	padding:2px;
 	padding-left:5px;
 	border:2px #106cb5 solid;
-	
+	border-radius: 5px;
 }
 
 .input_login placeholder {
