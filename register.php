@@ -73,20 +73,16 @@ if(empty($_POST['username'])) {
 		<form method='post' action='?'>
 			<table border='0px'>
 				<tr>
+					<td><font color='red'>*</font></td>
+					<td><input name='username' type='text' placeholder='Nickname' class='input' autocomplete='off' required></td>
 					<td></td>
-					<td>Registrovať sa:</td>
-					<td></td>
-					<td ROWSPAN="6">
+					<td ROWSPAN="5">
 						<h3>Výhody registrovaných užívateľov:</h3>
 							- osobný profil<br>
 							- pridávať otázky a odpoveďe vo fóre<br>
 							- pridať si známych ľudí, spoluhráčov do priateľov<br>
 							- možnosť zapojiť sa do sútaží o GEMY
 					</td>
-				</tr>
-				<tr>
-					<td><font color='red'>*</font></td>
-					<td><input name='username' type='text' placeholder='Nickname' class='input' autocomplete='off' required></td>
 				</tr>
 				<tr>
 					<td><font color='red'>*</font></td>
