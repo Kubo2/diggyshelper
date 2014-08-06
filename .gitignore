@@ -5,6 +5,10 @@ log.*
 *-OLD
 *.OLD
 
+# ignore archives
+*.zip
+*.rar
+
 images/upload
 .ftp
 .db.cfg
