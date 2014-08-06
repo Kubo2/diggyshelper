@@ -43,6 +43,12 @@ body {
  	text-align: initial;
  }
 
+ /* paragraphs */
+ p {
+ 	max-width: 92%;
+ 	margin: auto;
+ }
+
 /**
  * Universal.
  */

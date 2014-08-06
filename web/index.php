@@ -89,6 +89,10 @@ date_default_timezone_set("Europe/Bratislava");
 	}
 	</style>
 	<h1>Vítame ťa na stránke Diggy's Helper</h1>
+	<p><strong>Diggy's Helper je diskusné fórum</strong>, kde sa môžeš  s komunitou ľudí s rovnakou
+	záľubou podeliť o svoje postrehy a skúsenosti s hrou <a href="./about-game.php">Diggy's Adventure</a>.
+	<br>Taktiež v prípade, že niečomu nerozumieš alebo sa chceš o niečom dozvedieť viac, sú tu vítané tvoje
+	otázky a problémy. Stačí vybrať správnu kategóriu a vytvoriť v nej tému.
 	<table class="newest-topics">
 		<caption>Najnovšia diskusia</caption>
 		<thead>
