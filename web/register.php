@@ -166,7 +166,7 @@ goto closing;
 <h1>Registrácia úspešná</h1>
 <p class="succes">
 	Bravó! Vitajte na našom fóre ;-) V pravom hornom rohu sa môžete prihlásiť.
-	<a href="./">Prejsť na hlavnú stránku</a>
+	<a class='button' href="./">Prejsť na hlavnú stránku</a>
 </p>
 <?php 
 goto closing;
