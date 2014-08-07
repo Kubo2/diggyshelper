@@ -9,8 +9,6 @@ if(isset($_SESSION['uid'])) {
 	exit;
 }
 
-// @see https://cs.wikipedia.org/wiki/Stavov%C3%A9_k%C3%B3dy_HTTP
-
 header("Content-Type: text/html; charset=utf-8", true, 200);
 ?>
 <!doctype html>
@@ -38,14 +36,7 @@ header("Content-Type: text/html; charset=utf-8", true, 200);
 		border-radius:5px;
 		padding:0px 10px;
 		}
-		/*input:required::after {
-			content: " *";
-			color: red;
-		}
-		input[required]:after {
-			content: " *";
-			color: red;
-		}*/
+
 		td.required::after {
 			color: #f00;
 			content: ' *';
@@ -108,8 +99,8 @@ if(empty($_POST['username'])) {
 						<input type="url" name='url'>
 					</td>
 				</tr><tr>
-					<td>
-						<input name='email' type='email' placeholder='E-mail' class='input'>
+					<td class="required">
+						<input name='email' type='email' placeholder='E-mail' class='input' required>
 					</td>
 				</tr><!--tr>
 					<td><input class='input' autocomplete='off' name='facebookname' placeholder='Meno na facebooku' value='' type='text'></td>
@@ -139,18 +130,20 @@ goto closing;
 	// teraz sme presvedčení, že ani jedno heslo nie je prázdne
 	if( empty($_POST['password']) || empty($_POST['password2']) ) goto empty_passwd;
 	// hashe hesiel sa musia zhodovať
-	if( ($userdata['password'] = md5($_POST['password'])) != md5($_POST['password2']) ) goto psw_not_eq;
+	if( (($userdata['password'] = md5($_POST['password']))) != md5($_POST['password2']) ) goto psw_not_eq;
+	// email nesmie byť prázdny
+	if(empty($_POST['email'])) goto empty_email;
 	// validácia emailovej adresy
-	if(!empty($_POST['email']) && !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) goto invalid_email;
+	if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) goto invalid_email;
 	// sme pripojení k databázi?
 	if(FALSE === (require 'connect.php')) goto connect_err;
 	// ošetríme username a email proti sql injection
 	$userdata['username'] = mysql_real_escape_string($_POST['username']);
 	$userdata['email'] = !empty($_POST['email']) ? mysql_real_escape_string($_POST['email']) : false;
 	// primary structure
-	$newusr = "INSERT INTO `users`(`registerdate`, `username`, `password`" . ((bool) $userdata['email'] ? ', `email`' : '') . ")\n";
+	$newusr = "INSERT INTO `users`(`registerdate`, `username`, `password`, `email`)\n";
 	// data
-	$newusr .= "VALUES(NOW(), '$userdata[username]', '$userdata[password]'" . ((bool) $userdata['email'] ? ", '$userdata[email]' " : '') . ") ";
+	$newusr .= "VALUES(NOW(), '$userdata[username]', '$userdata[password]', '$userdata[email]') ";
 	// query - pokúsime sa vložiť užívateľa do databáze
 	$success = mysql_query($newusr);
 	// was registration successful?
@@ -191,6 +184,8 @@ goto closing;
 <p class='warning'>
 	Vyplňte prosím heslo. <a href="javascript:history.go(-1)">Upraviť</a>
 </p>
+<?php goto closing; empty_email: ?>
+<p class="warning">Vyplňte emailovú adresu.</p>
 <?php goto closing; psw_not_eq: ?>
 <p class="warning">
 	Zadané heslá sa musia zhodovať. <a href="javascript:history.go(-1)">Upraviť</a>
