@@ -106,12 +106,6 @@ set_include_path("./includes/");
 					</tr>
 				</table>
 			</div>
-		<!--img 
-			src="<?= $userinfo['avatar-path'] ?>"
-			alt="Profilový obrázok používateľa <?= $userinfo['user-name'] ?>"
-			width="280"
-			height="350"
-			class="user-avatar"-->
 	</div>
 	<?php else: ?>
 	<div class="page error error-<?= $httpStatus ?>">
