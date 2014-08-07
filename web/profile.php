@@ -99,7 +99,7 @@ set_include_path("./includes/");
 						<tr>
 							<td colspan=2>
 								<form action="profile-edit.php?" method="POST" accept-charset="utf-8">
-									<button type="submit">Upraviť informácie</button>
+									<button class='button_register' type="submit">Upraviť informácie</button>
 								</form>
 							</td>
 						</tr>
