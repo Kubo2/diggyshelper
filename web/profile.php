@@ -35,7 +35,6 @@ $rawinfo= <<<SQL
 		posts p
 	where
 		u.username = '$id' AND p.post_creator = u.id
-	GROUP BY u.id HAVING u.id IS NOT NULL
 SQL;
 
 if(defined('DB_CONNECTED')) {
@@ -49,16 +48,15 @@ if(defined('DB_CONNECTED')) {
 
 $userinfo = $rawinfo + $userinfo;
 
-// ====== template start ======
 page_template:
-
+// template begin
 session_start();
 header("Content-Type: text/html; charset=utf-8", true, $httpStatus);
 
 // template settings
 set_include_path("./includes/");
 
-// ====== template HTML ====== ?>
+?>
 <!doctype html>
 <?php $titleConst = $httpStatus == 200 ? "Profil používateľa „{$userinfo['user-name']}“" : 'Neexistuje záznam'; include('head.php') ?>
 </head><body class="page profil">
@@ -71,20 +69,23 @@ set_include_path("./includes/");
 	<?php if($httpStatus == 200): ?>
 	<div class="user-profil">
 			<div class="user-info">
-				<h1>Profil používateľa <big><?= SanitizeLib\escape($userinfo['user-name'], 'html') ?></big></h1>
-				<table style="table-layout: fixed; width: 800px">
-					<style scoped>table td {text-align: left !important}</style>
+				<table border="0px" width="auto">
+				<style scoped>table td {text-align: left !important}</style>
 					<tr>
-						<td>Používateľské právomoci:</td>
-						<td><?= id(['admin' => 'Administrátor', 'moderator' => 'Moderátor', 'member' => 'Člen'])[$userinfo['user-group']] ?></td>
+						<td ROWSPAN="6">
+							<img src="<?= $userinfo['avatar-path'] ?>" alt="Profilový obrázok používateľa <?= $userinfo['user-name'] ?>" width="240" height="300" class="user-avatar">
+						</td>
+						<td ROWSPAN="6" width="20px"></td>
+						<td COLSPAN="3"><strong>Profil používateľa "<?= $userinfo['user-name'] ?>"<br><i><?= id(['admin' => 'Administrátor', 'moderator' => 'Moderátor', 'member' => 'Člen'])[$userinfo['user-group']] ?> stránky</i></strong></td>
 					</tr>
 					<tr>
-						<td>E-mail:</td>
-						<td><?= SanitizeLib\escape(sk_sanitizeEmail($userinfo['user-email']), 'html') ?></td>
+						<td>Email:</td>
+						<td ROWSPAN="4" width="50px"></td>
+						<td><?= sk_sanitizeEmail($userinfo['user-email']) ?></td>
 					</tr>
 					<tr>
 						<td>Celkový počet príspevkov:</td>
-						<td><?= $userinfo['stats-post-count'] ?></td>
+						<td style="text-align:center;"><?= $userinfo['stats-post-count'] ?></td>
 					</tr>
 					<tr>
 						<td>Posledná návšteva:</td>
@@ -94,17 +95,15 @@ set_include_path("./includes/");
 						<td>Registrovaný dňa:</td>
 						<td><?= $userinfo['user-register-date'] ?></td>
 					</tr>
-					<?php if(isset($_SESSION['uid']) && $_SESSION['username'] === $userinfo['username']): // je užívateľ prihlásený a je to jeho profil?>
-					<tfoot>
-						<tr>
-							<td colspan=2>
-								<form action="profile-edit.php?" method="POST" accept-charset="utf-8">
+					<tr>
+						<td COLSPAN="3">
+							<?php if(isset($_SESSION['uid'])): // je užívateľ prihlásený?>
+							<form action="profile-edit.php?" method="POST" accept-charset="utf-8">
 									<button class='button_register' type="submit">Upraviť informácie</button>
-								</form>
-							</td>
-						</tr>
-					</tfoot>
-					<?php endif ?>
+							</form>
+							<?php endif ?>
+						</td>
+					</tr>
 				</table>
 			</div>
 		<!--img 
@@ -120,4 +119,4 @@ set_include_path("./includes/");
 	</div>
 	<?php endif ?>
 </div>
-<?php include('footer.php') ?>
+<?php include('footer.php'); FLUSH (   ) ?>
