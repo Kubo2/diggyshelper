@@ -85,7 +85,7 @@ set_include_path("./includes/");
 					</tr>
 					<tr>
 						<td>Celkový počet príspevkov:</td>
-						<td style="text-align:center;"><?= $userinfo['stats-post-count'] ?></td>
+						<td><?= $userinfo['stats-post-count'] ?></td>
 					</tr>
 					<tr>
 						<td>Posledná návšteva:</td>
