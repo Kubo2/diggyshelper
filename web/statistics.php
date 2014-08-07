@@ -92,7 +92,7 @@ LIMIT 1");
 				else { ?>
 				<b><a class="memberusers" href="./profile.php?user=<?php echo urlencode($mostActiveMember['username']) ?>" rel="nofollow">
 					<?php echo $mostActiveMember['username']; ?>
-				</a></b> so svojimi <span style="color:red"><?php echo $mostActiveMember['posts_count']; ?></span> príspevkami .
+				</a></b> so svojimi <b><span style="color:red"><?php echo $mostActiveMember['posts_count']; ?></span></b> príspevkami .
 				<?php } ?><br><br>
 		Najnovšia téma: <?php
 				if(!$newestTopic)
@@ -109,7 +109,7 @@ LIMIT 1");
 				<b><a class="naj" href="./view_topic.php?tid=<?php echo $mostViewedTopic['id']; ?>&amp;cid=<?php echo $mostViewedTopic['category_id']; ?>">
 					<?php echo $mostViewedTopic['topic_title']; ?>
 				</a></b> 
-				zobrazená <span style="color:red"><?php echo $mostViewedTopic['views']; ?></span> krát .
+				zobrazená <b><span style="color:red"><?php echo $mostViewedTopic['views']; ?></span></b> krát .
 				<?php } ?>
 	</p>
 	</div>
