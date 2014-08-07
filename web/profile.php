@@ -76,7 +76,7 @@ set_include_path("./includes/");
 							<img src="<?= $userinfo['avatar-path'] ?>" alt="Profilový obrázok používateľa <?= $userinfo['user-name'] ?>" width="240" height="300" class="user-avatar">
 						</td>
 						<td ROWSPAN="6" width="20px"></td>
-						<td COLSPAN="3"><strong>Profil používateľa "<?= $userinfo['user-name'] ?>"<br><i><?= id(['admin' => 'Administrátor', 'moderator' => 'Moderátor', 'member' => 'Člen'])[$userinfo['user-group']] ?> stránky</i></strong></td>
+						<td COLSPAN="3"><strong>Profil používateľa "<?= $userinfo['user-name'] ?>"</strong><br><?= id(['admin' => 'Administrátor', 'moderator' => 'Moderátor', 'member' => 'Člen'])[$userinfo['user-group']] ?> stránky</td>
 					</tr>
 					<tr>
 						<td>Email:</td>
