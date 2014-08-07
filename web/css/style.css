@@ -417,6 +417,11 @@ body {
 /** Koniec ID */
 /** CLASS */
 
+.user-info table tr td img {
+	border: 2px solid #8CB8DC;
+	border-radius: 5px;
+}
+
 .hbox {
     padding-bottom: 15px;
     margin-bottom: 25px;
