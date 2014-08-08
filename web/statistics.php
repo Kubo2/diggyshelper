@@ -71,7 +71,7 @@ LIMIT 1");
 	?>
 	
 	<p>
-		<h3>Počet zaregistrovaných užívateľov: ... <?php echo $membersCount[0]; ?> ...</h3>
+		<h3>Počet zaregistrovaných užívateľov: ... <?php echo $membersCount[0] ?> ...</h3>
 		
 		Najnovší člen: <?php
 				if(!$newestMember)
