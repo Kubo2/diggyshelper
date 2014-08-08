@@ -1,40 +1,38 @@
-﻿<html>
-<head>
-	<?php include 'includes/head.php'; ?>
-</head>
-<body>
-	<?php include 'includes/header.php'; ?>
-	
-	<?php include 'includes/menu.php'; ?>
-	
-	<?php include 'includes/submenu.php'; ?>
-	
+﻿<?php
+
+header("Content-Type: text/html; charset=utf-8", true, 200);
+session_start();
+?>
+<!DOCTYPE HTML>
+<html>
+<head>
+	<?php include 'includes/head.php' ?>
+</head>
+<body>
+	<?php 
+		include 'includes/header.php';
+		include 'includes/menu.php';
+		include 'includes/submenu.php'; 
+	?>
 	<div id="coako">
-		Čo a ako?<br>
-		
 <!-- help-SK/0010/ -->
 <div class='hbox' id='h_2'>
 <h3>1. Nemôžem sa dostať do hry, načítavanie sa zastavilo. Čo mám spraviť?</h3>
-
-<p>
-    Ako prvé skontroluj, ci máš <a class="memberusers" href="http://flashbuilder.eu/flash-player-version.html">najnovšiu verziu</a> Adobe Flash Player. 
-    Ak nie, tak si ju nainštaluj.
-</p>
-
-<p>
-    Druhá vec, ktorú môžeš spravit je vycistenie vyrovnávacej pamäte, cookies a následné obnovenie okna (návod nájdeš <a class="memberusers" href="http://www.wikihow.com/Clear-Your-Browser%27s-Cache">tu</a>).
-    Načítavanie hry taktiež závisí od rýchlosti internetového pripojenia.
-</p>
-<p>
-    Ak sa hra stále nenačítava, máš problém s niecím iným alebo nám chceš poslať nejaký návrh, neváhaj sa nám ozvať cez <a class="memberusers" href="http://support.diggysadventure.com/user_support/?sig=mhuzhl">support</a>.
-</p>
-</div>
-
-
-<!-- help-SK/0020/ -->
-<div class='hbox' id='h_3'>
+<p>
+    Ako prvé skontroluj, ci máš <a class="memberusers" href="http://flashbuilder.eu/flash-player-version.html">najnovšiu verziu</a> Adobe Flash Player.
+    Ak nie, tak si ju nainštaluj.
+</p>
+<p>
+    Druhá vec, ktorú môžeš spravit je vycistenie vyrovnávacej pamäte, cookies a následné obnovenie okna (návod nájdeš <a class="memberusers" href="http://www.wikihow.com/Clear-Your-Browser%27s-Cache">tu</a>).
+    Načítavanie hry taktiež závisí od rýchlosti internetového pripojenia.
+</p>
+<p>
+    Ak sa hra stále nenačítava, máš problém s niecím iným alebo nám chceš poslať nejaký návrh, neváhaj sa nám ozvať cez <a class="memberusers" href="http://support.diggysadventure.com/user_support/?sig=mhuzhl">support</a>.
+</p>
+</div>
+<!-- help-SK/0020/ -->
+<div class='hbox' id='h_3'>
 <h3>2. Čo je Diggy's Adventure?</h3>
-
 <p>Diggy's Adventure je zábavná sociálna hra na Facebooku plná dobrodružstiev. Nasleduj Diggyho príbeh, plň úlohy, zvyšuj svoju úroveň a prekop sa cez množstvo lokácií. Nezabudni sa starať ani o svoj kemp, pomáhať priateľom a hľadať poklady!</p>
 </div>
 
@@ -488,7 +486,7 @@ V poslednom prípade otvor svoj inventár (ikonka zeleného batohu) a klikni na 
 </div>
 </div>
 
-	Zdroj: <a class="memberusers" href="http://support.diggysadventure.com/da_help/?lang=SK" target="blank">www.support.diggysadventure.com</a>
+	<div style="text-align:right;">Zdroj: <a class="memberusers" href="http://support.diggysadventure.com/da_help/?lang=SK" target="blank">www.support.diggysadventure.com</a></div>
 	</div>
 
 	<?php include 'includes/footer.php'; ?>

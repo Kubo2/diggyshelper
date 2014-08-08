@@ -157,6 +157,7 @@ goto closing;
 	}
 ?>
 <h1>Registrácia úspešná</h1>
+<<<<<<< HEAD
 <p class="succes">
 	Bravó! Vitajte na našom fóre ;-) V pravom hornom rohu sa môžete prihlásiť
 	alebo <a href="./index.php">prejsť na hlavnú stránku</a>.
