@@ -20,8 +20,7 @@ header("Content-Type: text/html; charset=utf-8", true, 200);
 
 <div id="pages">
 	<h3>O používateľoch fóra Diggy's Helper</h3>
-	<?php $cfg = parse_ini_file("./.config.ini", true); ?>
-	<p>Administrátorom fóra je: <a class="memberusers" style="font-weight:bold;" href="http://diggyshelper.net/profile.php?user=WladinQ">WladinQ</a> & <a class="memberusers" style="font-weight:bold;" href="http://diggyshelper.net/profile.php?user=Kubo2">Kubo2</a></p>
+	<p>Administrátorom fóra je: <a class="memberusers" style="font-weight:bold;" href="http://diggyshelper.net/profile.php?user=WladinQ">WladinQ</a> &amp; <a class="memberusers" style="font-weight:bold;" href="http://diggyshelper.net/profile.php?user=Kubo2">Kubo2</a></p>
 	<?php
 	$admins =  mysql_query("SELECT `username` FROM `users` WHERE `access` IN ('admin', 'moderator') AND NOT `id` = {$cfg['administrator']['user.id']}");
 	if($admins) {
