@@ -6,9 +6,9 @@
 			<?php if(in_array(basename($_SERVER["REQUEST_URI"]), [ 'register.php', ])): ?>
 			<input type="hidden" name="redirect-noreferer" value="1">
 			<?php endif ?>
-			<input class='input' type='text' name='username' placeholder='Nickname'>
+			<input class='input' type='text' name='username' placeholder='Nickname'><br>
 			<input class='input' type='password' name='password' placeholder='Heslo'>
-			<!--label><input class='input' type='checkbox' name='remember'>&nbsp;Neodhlasovať ma</label--><br>
+			<!--label><input class='input' type='checkbox' name='remember'>&nbsp;Neodhlasovať ma</label--><br><br>
 			<input type='submit' name='submit' class='input_button' value='Prihlásiť sa'>&nbsp;
 			<!--a class='button_logout' href='#' >Zabudli ste heslo?</a>&nbsp;-->
 			<a class='button_register' href='register.php'>Registrovať sa</a>
