@@ -22,7 +22,7 @@ if(!$id) {
 	goto page_template;
 }
 
-$rawinfo= <<<SQL
+$rawinfo= <<< SQL
 	select
 		u.username as `user-name`,
 		u.email as`user-email`,
@@ -55,6 +55,9 @@ page_template:
 session_start();
 header("Content-Type: text/html; charset=utf-8", true, $httpStatus);
 
+// template components
+require_once("sanitize.lib.php");
+
 // template settings
 set_include_path("./includes/");
 
@@ -71,9 +74,20 @@ set_include_path("./includes/");
 	<?php if($httpStatus == 200): ?>
 	<div class="user-profil">
 			<div class="user-info">
-				<h1>Profil používateľa <big><?= SanitizeLib\escape($userinfo['user-name'], 'html') ?></big></h1>
+				<h1 class="no-center">Profil používateľa <big><?= SanitizeLib\escape($userinfo['user-name'], 'html') ?></big></h1>
 				<table style="table-layout: fixed; width: 800px">
 					<style scoped>table td {text-align: left !important}</style>
+					<tr>
+						<td rowspan="6">
+							<img src="<?= $userinfo['avatar-path'] ?>"
+								alt="Profilový obrázok používateľa <?= SanitizeLib\escape($userinfo['user-name'], 'html') ?>"
+								style="
+									width: 240px;
+									height: 100%;
+								"
+								class="user-avatar">
+						</td>
+					</tr>
 					<tr>
 						<td>Používateľské právomoci:</td>
 						<td><?= id(['admin' => 'Administrátor', 'moderator' => 'Moderátor', 'member' => 'Člen'])[$userinfo['user-group']] ?></td>
@@ -107,12 +121,6 @@ set_include_path("./includes/");
 					<?php endif ?>
 				</table>
 			</div>
-		<!--img 
-			src="<?= $userinfo['avatar-path'] ?>"
-			alt="Profilový obrázok používateľa <?= $userinfo['user-name'] ?>"
-			width="280"
-			height="350"
-			class="user-avatar"-->
 	</div>
 	<?php else: ?>
 	<div class="page error error-<?= $httpStatus ?>">
