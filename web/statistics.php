@@ -1,11 +1,6 @@
 <?php
-// zapnutie output bufferingu (nemám iný spôsob posielania hlavičiek po výstupe) 
-// @see http://php.net/ob-start
-@ob_start();
-// pridaná HTTP hlavička určujúca kódovanie (neviem, čo máš v head.php, ale pre istotu, keďže 
-// si mi písal, že ti nejde utf8) -- diakritika by už mala fachať 
-@header("Content-Type: text/html; charset=utf-8", true, 200);
-// nikde to tu neni
+
+header("Content-Type: text/html; charset=utf-8", true, 200);
 session_start();
 ?>
 <!DOCTYPE HTML>
@@ -76,23 +71,23 @@ LIMIT 1");
 	?>
 	
 	<p>
-		<h3>Počet zaregistrovaných užívateľov: ... <?php echo $membersCount[0]; ?> ...</h3>
+		<h3>Počet zaregistrovaných užívateľov: ... <?php echo $membersCount[0] ?> ...</h3>
 		
 		Najnovší člen: <?php
 				if(!$newestMember)
 					echo "Nedostupný.";
 				else { ?>
-				<b><a class="memberusers" href="./profile.php?user=<?php echo urlencode($newestMember['username']) ?>" rel="nofollow">
-					<?php echo $newestMember['username']; ?>
-				</a></b>.
+				<b><a class="memberusers" href="./profile.php?user=<?php echo urlencode($newestMember['username']) ?>">
+					<?php echo $newestMember['username']; ?><!--
+				--></a></b>.
 				<?php } ?><br><br>
 		Najaktívnejší člen: <?php
 				if(!$mostActiveMember)
 					echo "Nedostupný.";
 				else { ?>
-				<b><a class="memberusers" href="./profile.php?user=<?php echo urlencode($mostActiveMember['username']) ?>" rel="nofollow">
+				<b><a class="memberusers" href="./profile.php?user=<?php echo urlencode($mostActiveMember['username']) ?>">
 					<?php echo $mostActiveMember['username']; ?>
-				</a></b> so svojimi <b><span style="color:red"><?php echo $mostActiveMember['posts_count']; ?></span></b> príspevkami .
+				</a></b> so svojimi <b style="color: red"><?php echo $mostActiveMember['posts_count']; ?></b> príspevkami.
 				<?php } ?><br><br>
 		Najnovšia téma: <?php
 				if(!$newestTopic)
@@ -109,7 +104,7 @@ LIMIT 1");
 				<b><a class="naj" href="./view_topic.php?tid=<?php echo $mostViewedTopic['id']; ?>&amp;cid=<?php echo $mostViewedTopic['category_id']; ?>">
 					<?php echo $mostViewedTopic['topic_title']; ?>
 				</a></b> 
-				zobrazená <b><span style="color:red"><?php echo $mostViewedTopic['views']; ?></span></b> krát .
+				zobrazená <b style="color: red"><?php echo $mostViewedTopic['views']; ?></b> krát.
 				<?php } ?>
 	</p>
 	</div>
