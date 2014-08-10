@@ -37,10 +37,16 @@ body {
  	text-align: center;
  }
 
-  /* backwards compatibility */
+ /* backwards compatibility */
  h1.no-center {
  	width: inherit;
  	text-align: initial;
+ }
+
+ /* paragraphs */
+ p {
+ 	max-width: 92%;
+ 	margin: auto;
  }
 
 /**
