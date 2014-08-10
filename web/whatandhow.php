@@ -15,7 +15,33 @@ session_start();
 		include 'includes/submenu.php'; 
 	?>
 	<div id="coako">
-<!-- help-SK/0010/ -->
+		<div style="width: 100%; text-align: center;">
+			<h2>O hre Diggy's Adventure</h2>
+			<img src="images/bg/logo-DA.png">
+		</div>
+		<P>
+			Kto povedal, že&nbsp;všetky mýtické poklady už boli objavené? 
+			Prekop&nbsp;sa&nbsp;s&nbsp;Diggym k&nbsp;tajomstvám ukrytým 
+			pod zemou. Si pripravený na dobrodružstvo? Zbožňuješ staroveké 
+			civilizácie a ich záhady? Chcel by si objavovať dávno stratené chrámy 
+			a zabudnuté kobky? Tak potom si ten pravý. Tajomstvá ukryté tisícky 
+			rokov pod zemou legendárnych území po celom svete čakajú len na tvoje 
+			šikovné ruky a myseľ objaviteľa. Pridaj sa k Profesorovi, Linde a robotovi 
+			Rustymu, postav kemp a vydaj sa na dobrodružstvo tvojho života.
+		</P>
+		<div style="width: 100%; text-align: center;">
+			<a href="http://portal.pixelfederation.com/diggysadventure/?lang=SK" target="blank" class="playgamepp">Hraj na Pixel Portáli</a>
+			<a href="https://apps.facebook.com/diggysadventure/" target="blank" class="playgamefb">Hraj na Facebooku</a>
+		</div>
+
+		<strong style="text-align: left">O firme PIXEL FEDERATION:</strong><p>
+		Firma <a class="memberusers" href="http://www.pixelfederation.com/?lang=sk" target="blank">PIXEL FEDERATION</a> 
+		bola založená v roku 2007 štyrmi nadšencami z herného priemyslu a venuje sa 
+		výhradne tvorbe online webových a mobilných hier, jednou z nich je aj 
+		spomínaný Diggy's Adventure. Inovatívne myslenie či entuziazmus v tíme dopĺňajú 
+		skúsenosti z vlastných herných projektov. Tá správna kombinácia ľudí s rôznym 
+		backgroundom nám umožňuje zdolávať výzvy, ktoré dnešný game development 
+		ponúka. Nájdete nás v hlavnom meste Slovenska, v Bratislave.
 <div class='hbox' id='h_2'>
 <h3>1. Nemôžem sa dostať do hry, načítavanie sa zastavilo. Čo mám spraviť?</h3>
 <p>
