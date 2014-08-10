@@ -43,12 +43,6 @@ body {
  	text-align: initial;
  }
 
- /* paragraphs */
- p {
- 	max-width: 92%;
- 	margin: auto;
- }
-
 /**
  * Universal.
  */
@@ -251,7 +245,7 @@ body {
 	text-align:center;
 }
 
-#pages .playgamepp {
+#coako .playgamepp {
 	background:#f54e07;
 	color:#fff;
 	text-decoration:none;
@@ -260,7 +254,7 @@ body {
 	border-radius:5px;
 }
 
-#pages .playgamefb {
+#coako .playgamefb {
 	background:#eaeaea;
 	color:#000;
 	text-decoration:none;
