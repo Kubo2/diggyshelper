@@ -14,7 +14,7 @@
 			<a class='button_register' href='register.php'>Registrovať sa</a>
 		</form>
 		<?php else: ?>
-		Prihlásený používateľ: <strong><?php echo($_SESSION['username']) ?></strong><br><br>
+		Prihlásený používateľ <strong>"<?php echo($_SESSION['username']) ?>"</strong><br><br>
 		<a class='button' href='./profile.php?user=<?php echo urlencode($_SESSION['username']) ?>'>Môj profil</a>
 		<!--a class='button_register' href='#'>Žiadosti o priateľstvo (0)</a-->
 		<a class='button_logout' href='logout.php'>Odhlásiť sa</a>
