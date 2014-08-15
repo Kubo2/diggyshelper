@@ -106,7 +106,7 @@ TOPICSTABLE;
 			</a>
 		<br>
 			<span class='post_info'>Pridal/a: 
-				<font color='#106CB5'>$topicCreatorName</font> 
+				<a class="memberusers" href="http://diggyshelper.net/profile.php?user=$topicCreatorName">$topicCreatorName</a>
 			dňa 
 				<font color='#33CC00'>$topicDate</font>
 			</span>
