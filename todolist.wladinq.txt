@@ -1,6 +1,5 @@
 TODO LIST
 
-
 # Abstract
 
 DEVELOPERS
@@ -9,34 +8,30 @@ DEVELOPERS
 # Physical
 
 HEADER:
-	- spojazdnit buttonik "Zapamätať heslo"
-	- doplnit button "Zabudli ste heslo?"
-	
-	:Po prihlásení
-	- na pravu stranu pridat button "Admin Hall" zobrazovane len administratorom stranky
-	- na pravu stranu pridat button "Moderator Hall" zobrazene len moderatorom stranky
-	
-ADMIN HALL:
-	- odosielanie hromadneho emailu
-	- oznamenia o vyhre sutaze jednemu uzivatelovy, ostatnym posle upozornenie ze neuspeli
-	
-MODERATOR HALL:
-	- moznost poslat upozornenie o spame
-	- kontrola hlasovych prispevkov
+	- spojazdnit button "Zapamätať heslo"
+	- doplniť button "Zabudli ste heslo?"
 
+	:Po prihlásení
+	- medzi "Prihlaseny pouzivatel" a buttony vlozit pocet pridanych tem plus vlozit aj do profilov
+	
 FORUM:
 	- naprogramovat pocet 20tich blokov s nadpismy na  jednu stranku
 	- spravit s mena Pridal/a: <MENO> odkaz s presmerovanim na profil
 	- sfunkcnit BB kody (!)
-	- odkazy v prispevkoch musia byt bez dekoracii modrou farbou akou su teraz odkazy v {index.php}
+- odkazy v prispevkoch by mali byť bez dekoracii modrou farbou akou su teraz odkazy vo {web/index.php}
 	- minimalny height na prispevky nastavit na 2 riadky (line-height)
 	- pridat napravo kazdeho prispevku buttoniky Upravit a Vymazat
 	- lepsie nakodovat button "Späť"
 	- po nahrati obrazku automaticky zmensit obrazok na width="350px" a height="250px"
 	- po nahrati obrazku automaticky pridat link medzi BB kody [img]LINK[/img]
-	- nad kategorie na pravu stranu nad "Odpovedi" a "Zobrazene" pridat vyhladavac
+	- príspevky zobrazovat od najnovsieho
 	
 UZIVATELIA:
 	- dorobit moderatorov fora
-	- rozlíšiť práva moderátorov a administrátorov
-	- vyriešiť organizovanie interných záležitostí
+		- rozlíšiť práva moderátorov a administrátorov
+		- vyriešiť organizovanie interných záležitostí
+	
+PROFIL:
+	- upravit link na nieco/MENOUZIVATELA
+	- co zobrazovat v profile: meno, datum registracie, email, pocet prispevkou vo fore
+	- pridat buttony: zmena osobných informácií, pridat priatela, 
