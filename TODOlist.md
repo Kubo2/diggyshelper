@@ -1,68 +1,65 @@
-# TODO list
+# Zoznam úloh
 
- United structured and well-formed list of pending todos.
+ Zjednotený štruktúrovaný a formátovaný zoznam čakajúcich úloh.
 
-## Abstract
+## Preambula
 
- After finishing your work on some todo, please check out it here and mark it with `[x]`. It will be later removed from list by repository admin after merging your code review/pull request.
+ Po dokončení vašej práce na jednej z úloh, prosím nájdite ju v tomto zozname a označte ju sekvenciou `[x]`. Následne bude riešenie úlohy prezreté niektorým z administrátorov repozitára projektu a po začlenení bude úloha zo zoznamu odstránená.
 
- All todos are clearly cathegorized.
+ Všetky úlohy by mali byť jednoznačne kategorizované. (V prípade neexistencie príslušnej kategórie je samozrejmosťou jej zavedenie.)
 
-## Structure
+## Štruktúra
 
- Conventionall structure of this file can be known from our [GitHub wiki](/Kubo2/diggyshelper/wiki/TODO-list-structure); anyway, this file is rendered by Flavored Markdown on GitHub, and may be rendered by Markdown parser anywhere used.
+ Dohodnútá štruktúra tohoto súboru je popísaná našej [GitHub wiki](https://github.com/Kubo2/diggyshelper/wiki/Zoznam-úloh); predovšetkým je však potrebné vedieť, že tento súbor je písaný v tzv. _Flavored Markdown_, ale mal by byť spracovateľný akýmkoľvek Markdownovým parserom.
 
-## TODOS
-### Todos for developers and repository admin(s)
+## ÚLOHY
+### Úlohy špecifické administrátorom repozitára
 
   - [ ] vytvoriť **GitHub wiki** repozitára s informáciami pre developerov
 
-### Todos about application internalls
+### Úlohy pre vývojárov serverovej aplikácie
 
   - [ ] lepsie nakodovat button "Späť"
 
-#### BBCode implementation
+#### Príspevky
 
-  - [ ] BBCode parsing in posts
-  - [x] Inserting BBCode into textarea ({web/diggyshelper.js})
-
-#### Posts
-
-  - [ ] Posts editing/deleting(?; or hiding) functionality
+  - [ ] **(!)** parsovanie BB kódov v príspevkoch
+  - [ ] Upravovanie príspevkov
   - [x] príspevky zobrazovat od najnovsieho
   - [ ] Po nahratí obrázku _na pozadí_ automaticky vložiť do príspevku za kurzor značku `[img][/img]` s URL adresou nahraného obrázku (#ref/JS)
 
-#### Users implementation
+#### implementácia užívateľov
 ##### Login form
 
   - [ ] functionality of "Zapamätať heslo" button
   - [ ] functionality of "Zapamätať si ma" button
   - [ ] functionality of "Zabudli ste heslo?" button
 
-##### User profile
+##### používateľský profil
 
-  - [ ] Functionality of "Zmena osobných informácii" & "Pridať priateľa buttons"
+  - [ ] Functionality of "Zmena osobných informácii" button
+  - [ ] Functionality of "Pridať priateľa" button
 
-##### USers sections
+##### skupiny používateľov (plus rozdeľovanie na špecifické skupiny: admin, moderator, member)
 
   - [ ] dorobit moderatorov fora
     - [ ] rozlíšiť práva moderátorov a administrátorov
     - [ ] vyriešiť organizovanie interných záležitostí
 
-#### Image upload
+#### upload obrázkov
 
   - [ ] after upload resize image to 350x250px or simply 3:1
 
-### Todos about application form/design
-#### Page header
+### úlohy týkajúce sa designu a textov (obsah/forma)
+#### Hlavička stráky
 
-  - [ ] buttons "Zapamätať heslo" and "Zabudli ste heslo?" in header_user-box
+  - [ ] buttons "Zapamätať heslo" and "Zabudli ste heslo?" v user-boxe
 
-##### :After login
+##### :Po prihlásení
 
   - [ ] medzi "Prihlaseny pouzivatel" a buttony vlozit pocet pridanych tem
 
-#### Forum (topics/threads, cathegories etc.)
+#### Fórum (príspevky, kategórie, vlákna atď.)
 
   - [ ] Každý príspevok musí mať na výšku minimálne dva riadky (asi nastavením height na 2*`line-height` v {css/style.css})
   - [ ] odkazy v príspevkoch by mali byť bez dekorácií modrou farbou akou sú teraz odkazy vo {web/index.php}
