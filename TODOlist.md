@@ -15,6 +15,7 @@
 ## ÚLOHY
 ### Úlohy špecifické administrátorom repozitára
 
+  - [ ] zaregistrovať/objednať hosting pre skladovanie dát na serveroch Amazon SSS (S3) — http://djpw.cz/158727
   - [ ] vytvoriť **GitHub wiki** repozitára s informáciami pre developerov
 
 ### Úlohy pre vývojárov serverovej aplikácie
@@ -48,6 +49,7 @@
 
 #### upload obrázkov
 
+  - [ ] prepojenie so servermi Amazon S3 za pomoci REST API
   - [ ] after upload resize image to 350x250px or simply 3:1
 
 ### úlohy týkajúce sa designu a textov (obsah/forma)
@@ -74,7 +76,3 @@
     - [x] email
     - [ ] pocet prispevkou vo fore
   - [ ] pridať buttony: zmena osobných informácií, pridat priatela, 
-
-### URL addresses
-
-  - [ ] upravit link na nieco/MENOUZIVATELA
