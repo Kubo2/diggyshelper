@@ -8,3 +8,4 @@ Disallow: /*.js$
 User-Agent: archive.org_bot
 Allow: /
 
+Sitemap: http://diggyshelper.net/sitemaps/
