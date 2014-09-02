@@ -187,6 +187,7 @@ body {
 #loginprovizor {
 	background: #8CB8DC;
 	height: 126px;
+	min-width: 332px;
 	width: auto;
 	float: right;
 	font-size: 14px;
