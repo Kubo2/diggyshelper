@@ -1,10 +1,27 @@
-User-Agent: *
-Allow: /
+#
+# Note that these restrictions are not only formal. If you won't
+# respect them, you may be blocked from accessing this site.
+#
+
+User-agent: ia_archiver
+Disallow:
+
+User-agent: Googlebot
+Disallow: /register.php
+Disallow: /login.php
+#
 Disallow: /test*
-Disallow: /includes/*
-# Google totiž začal sniffovať aj to čo nemal
-Disallow: /*.js$
+#
+Disallow: /*.js
+Disallow: /*.css
 
-User-Agent: archive.org_bot
-Allow: /
+User-agent: *
+Disallow: /test/
+Disallow: /samples/
+#
+Disallow: /statistics.php
+#
+Disallow: /githelp.txt
+Disallow: /robots.txt
 
+Sitemap: http://diggyshelper.net/sitemaps/
