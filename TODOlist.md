@@ -57,13 +57,8 @@
 
   - [ ] buttons "Zapamätať heslo" and "Zabudli ste heslo?" v user-boxe
 
-##### :Po prihlásení
-
-  - [ ] medzi "Prihlaseny pouzivatel" a buttony vlozit pocet pridanych tem
-
 #### Fórum (príspevky, kategórie, vlákna atď.)
 
-  - [ ] Každý príspevok musí mať na výšku minimálne dva riadky (asi nastavením height na 2*`line-height` v {css/style.css})
   - [ ] odkazy v príspevkoch by mali byť bez dekorácií modrou farbou akou sú teraz odkazy vo {web/index.php}
   - [ ] naprogramovat pocet 20tich blokov s nadpismy na  jednu stranku
   - [x] spravit s mena Pridal/a: <MENO> odkaz s presmerovanim na profil
