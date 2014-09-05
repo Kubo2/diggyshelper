@@ -22,7 +22,7 @@ header("Content-Type: text/html; charset=utf-8", true, 200);
 	<h3>O používateľoch fóra Diggy's Helper</h3>
 	<p>Administrátorom fóra je: <a class="memberusers" style="font-weight: bold" href="profile.php?user=WladinQ">WladinQ</a> &amp; <a class="memberusers" style="font-weight: bold" href="profile.php?user=Kubo2">Kubo2</a></p>
 	<?php
-	$admins =  mysql_query("SELECT `username` FROM `users` WHERE `access` IN ('admin', 'moderator') AND NOT `id` = {$cfg['administrator']['user.id']}");
+	$admins =  mysql_query("SELECT `username` FROM `users` WHERE `access` IN ('admin', 'moderator') AND NOT `username` IN ('Kubo2', 'WladinQ')"); # intentionally hardcoded
 	if($admins) {
 		echo "<h4>Moderátori fóra</h4>\n<ul>\n";
 		while(($admin = mysql_fetch_assoc($admins)) !== false) {

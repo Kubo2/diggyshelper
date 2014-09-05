@@ -42,13 +42,13 @@ session_start();
 		$sql = "SELECT topic_title, topic_views FROM `topics` WHERE `category_id` = $cid AND `id` = $tid LIMIT 1";
 		$res = mysql_query($sql);
 		if ($res && mysql_num_rows($res) == 1) {
-			echo "<table width='100%'>";
+			echo "<table border='0px' width='100%'>";
 			if (!empty($_SESSION['uid'])) { echo "<tr><td colspan='2'><a class='button' href='javascript:history.back(1)'>Späť</a> | <input type='submit' class='input_button' value='Pridať otázku/odpoveď' onClick=\"window.location = 'post_reply.php?cid=".$cid."&tid=".$tid."'\" /><hr />"; } else { echo "<tr><td colspan='2'><a class='button' href='javascript:history.back(1)'>Späť</a> | Na pridanie odpovedí je potrebné sa <font color='#106CB5'><b>Prihlásiť</b></font>, alebo sa <font color='#33CC00'><b>Registrovať</b></font>!<hr /></td></tr>"; }
 			while ($row = mysql_fetch_assoc($res)) {
 				$sql2 = "SELECT p.post_date, p.post_content, u.username as `post_creator` FROM posts p JOIN users u ON p.post_creator = u.id WHERE `category_id` = $cid AND `topic_id` = $tid ORDER BY p.post_date ASC ";
 				$res2 = mysql_query($sql2);
 				while ($res2 && $row2 = mysql_fetch_assoc($res2)) {
-					echo "<tr><td valign='top' style='border: 2px solid #33CC00;'><div style='min-height: 90px;'><strong>&nbsp;".$row['topic_title']."</strong>&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;Pridal/a: <a class='memberusers' href='http://diggyshelper.net/profile.php?user=".$row2['post_creator']."'>".$row2['post_creator']."</a> dňa <font color='#33CC00'>".date("d.m.Y / H:i:s", strtotime($row2['post_date']))."</font><hr />".$row2['post_content']."</div></td></tr><tr><td colspan='2'><hr /></td></tr>";
+					echo "<tr><td valign='top' style='border: 2px solid #33CC00;'><div style='padding: 5px;'><strong>".$row['topic_title']."</strong>&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;Pridal/a: <a class='memberusers' href='http://diggyshelper.net/profile.php?user=".$row2['post_creator']."'><strong>".$row2['post_creator']."</strong></a> dňa <font color='#33CC00'>".date("d.m.Y / H:i:s", strtotime($row2['post_date']))."</font><hr />".$row2['post_content']."</div></td></tr>";
 				}
 
 				/** @todo odstrániť nasledujúce štyri riadky (vyžaduje úpravu štruktúry databáze) */

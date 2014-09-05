@@ -37,16 +37,16 @@ body {
  	text-align: center;
  }
 
- /* backwards compatibility */
- h1.no-center {
- 	width: inherit;
- 	text-align: initial;
- }
-
  /* paragraphs */
  p {
  	max-width: 92%;
  	margin: auto;
+ }
+
+  /* backwards compatibility */
+ h1.no-center {
+ 	width: inherit;
+ 	text-align: initial;
  }
 
 /**
@@ -121,6 +121,27 @@ body {
 	border:2px #c00000 solid;
 }
 
+.setting {
+	background: #FF954D; /* 70% opacity */
+	border: 2px #FF954D solid;
+	font-size: 14px;
+	padding-left: 4px;
+	padding-right: 4px;
+	color: #fff;
+	text-decoration: none;
+	border-radius: 5px;
+}
+
+.setting:hover {
+	background-color: #FF6600;
+	border: 2px #FF6600 solid;
+	font-size: 14px;
+	padding-left: 4px;
+	padding-right: 4px;
+	color: #fff;
+	text-decoration: none;
+}
+
 /** Koniec universal. */
 /** ID */
 
@@ -171,19 +192,52 @@ body {
 
 #loginprovizor {
 	background: #8CB8DC;
-	height: 130px;
-	width: 350px;
+	height: 126px;
+	min-width: 332px;
+	width: auto;
 	float: right;
+	font-size: 14px;
 	border-radius: 5px;
 	margin-right: 5px;
 	margin-top: 5px;
-	padding:5px;
+	padding:7px;
 	color:#fff;
 }
 
 #loginprovizor label input[type=checkbox] {
 	background-color: #FFF;
 	border:2px #106cb5 solid;
+}
+
+#loginprovizor img[type=userimages] {
+	margin-top: 0px;
+	margin-bottom: 0px;
+	margin-right: 7px;
+	height: 85px;
+	width: 85px;
+	border-radius: 5px;
+	border: 2px #5999cc solid;
+}
+
+#loginprovizor img[type=userbuttons] {
+	width: 15px;
+	height: 15px;
+	border:0px solid #fff;
+	position: relative;
+	top: 2px;
+}
+
+#loginprovizor img[type=adminmoderatorbuttons] {
+	width: 30px;
+	height: 15px;
+	border:0px solid #fff;
+	position: relative;
+	top: 2px;
+}
+
+#loginprovizor hr {
+	border: 1px #5999cc solid;
+	border-radius: 2px;
 }
 
 #provizorne {
