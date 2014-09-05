@@ -14,7 +14,7 @@
 			<a class='button_register' href='register.php'>Registrovať sa</a>
 		</form>
 		<?php else: ?>
-		<img type="userimages" src="http://www.bassboathq.com/wp-content/themes/simply-responsive-cp/images/no-thumb-250.jpg" align="left" alt="Profilová fotografia">
+		<img type="userimages" src="images/thumb/no-avatar.jpg" align="left" alt="Profilová fotografia">
 		Prihlásený používateľ &raquo; <strong><?php echo($_SESSION['username']) ?></strong><br><br>
 		Počet príspevkov: -1<br>
 		Posledná návšteva: 00/00/0000<br>
