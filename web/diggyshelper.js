@@ -141,3 +141,32 @@ function vlozitBBTag(tag, text /*, oblast */ ) {
 	}
 
 })(document.forms["vytvor-temu"] || document.forms["zasli-prispevok"]);
+
+// inicializačná anonymná funkcia, ktorá vráti email v profile späť do pôovodného tvaru
+(function() {
+	var email, emailOrig;
+	var patt2symbols=
+	{
+		" (bodka) " : '.',
+		" (zavináč) " : '@'
+	};
+
+	try {
+		emailOrig = document
+						.getElementsByClassName('user-info')[0]
+						.getElementsByTagName('table')[0]
+						.rows[2]
+						.cells[1]
+					//.innerHTML
+		email = emailOrig.innerHTML;
+	} catch(e) {  }
+
+	if(!emailOrig) return;
+
+	for(patt in patt2symbols) (function() {
+		while(email.indexOf(patt) > -1) 
+			email = email.replace(patt, patt2symbols[patt]);
+	})()
+
+	emailOrig.innerHTML = email;
+})();
