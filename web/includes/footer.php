@@ -3,5 +3,5 @@
 		<!--Sample-->
 		<!-- TODO: Nejaké informácie o autoroch, použiteľnosti atd. -->
 	</div>
-	<script type="text/javascript" src="<?php echo !empty($absUrl) ? $absUrl : '.'; ?>/diggyshelper.js?version=1.3.3"></script>
+	<script type="text/javascript" src="<?php echo !empty($absUrl) ? $absUrl : '.'; ?>/diggyshelper.js?1.5.0.0-alpha1"></script>
 </div>

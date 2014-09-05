@@ -26,19 +26,6 @@ function change_profile_image($user_id, $file_temp, $file_extn)
 }
 
 /**
- * Change user's profile image.
- *
- * @deprecated
- * @too-specific
- */
-function changeProfileImage($userId, $fileTemp, $fileExt)
-{
-	$filepath = 'images/avatars/' . substr(md5(time()), 0, 10) . '.' . $fileExt;
-	move_uploaded_file($fileTemp, $filepath);
-	mysql_query("UPDATE `users` SET `imagelocation` = '" . mysql_real_escape_string($filepath) . "' WHERE `user_id` = " . (int)$userId);
-}
-
-/**
  * Is current user signed in?
  *
  * @since 1.3.3
@@ -52,6 +39,7 @@ function loggedIn()
 
 /**
  * Retrieves an information about user specified by unique identifier.
+ * <b>DO NOT CALL THIS FUNCTION FREQUENTLY (E. G. IN LOOP)!</b>
  *
  * @param int user identifier
  * @param string the name of the column in database table
