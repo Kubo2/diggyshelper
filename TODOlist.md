@@ -21,6 +21,7 @@
 ### Úlohy pre vývojárov serverovej aplikácie
 
   - [ ] lepsie nakodovat button "Späť"
+  - [ ] Upload obrázkov do `images/profilefoto` namiesto Amazon S3 (dočasne)
 
 #### Príspevky
 
