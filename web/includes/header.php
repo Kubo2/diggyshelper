@@ -1,4 +1,3 @@
-<?php // TODO: poupraviť spôsob zobrazovania infoboxu ?>
 <div id="header">
 	<div id="loginprovizor">
 		<?php 	if(!isset($_SESSION['uid'])): // TODO: restructure session array	?>
@@ -20,7 +19,6 @@
 		Posledná návšteva: 00/00/0000<br>
 		<hr/>
 		<a class='button' title='Môj profil' href='./profile.php?user=<?php echo urlencode($_SESSION['username']) ?>'><img type='userbuttons' src='./images/icon/profile1.png'></a> 
-		<!--a class="button_register" title="Žiadosti o priateľstvo" href="#"><img type="userbuttons" src="icon/friends.png"> (0)</a--> 
 		<!--a class="button_register" title="Upozornenia" href="#"><img type="userbuttons" src="icon/info2.png"> (0)</a-->
 		<!--a class="setting" title="Nastavenia (Administrátor)" href="#"><img type="adminmoderatorbuttons" src="icon/as.png"></a-->
 		<!--a class="setting" title="Nastavenia (Moderátor)" href="#"><img type="adminmoderatorbuttons" src="icon/ms.png"></a-->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

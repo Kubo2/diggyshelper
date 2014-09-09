@@ -40,7 +40,6 @@
 ##### používateľský profil
 
   - [ ] Functionality of "Zmena osobných informácii" button
-  - [ ] Functionality of "Pridať priateľa" button
 
 ##### skupiny používateľov (plus rozdeľovanie na špecifické skupiny: admin, moderator, member)
 
