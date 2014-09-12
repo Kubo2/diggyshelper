@@ -15,17 +15,6 @@ function id($o)
 }
 
 /**
- * An alias of changeProfileImage() function.
- *
- * @uses changeProfileImage()
- * @deprecated since 1.3.1
- */
-function change_profile_image($user_id, $file_temp, $file_extn)
-{
-	changeProfileImage($user_id, $file_temp, $file_extn);
-}
-
-/**
  * Is current user signed in?
  *
  * @since 1.3.3
