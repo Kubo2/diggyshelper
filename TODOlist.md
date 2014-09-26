@@ -39,7 +39,7 @@
 
 ##### používateľský profil
 
-  - [ ] Functionality of "Zmena osobných informácii" button
+  - [x] Functionality of "Zmena osobných informácii" button
 
 ##### skupiny používateľov (plus rozdeľovanie na špecifické skupiny: admin, moderator, member)
 
@@ -70,4 +70,3 @@
     - [x] datum registracie
     - [x] email
     - [ ] pocet prispevkou vo fore
-  - [ ] pridať buttony: zmena osobných informácií, pridat priatela, 
