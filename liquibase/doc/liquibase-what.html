@@ -1,0 +1,1244 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html dir='ltr' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+<head>
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+<base href="http://tom2ee-cs.blogspot.sk/" />
+<script type="text/javascript">(function() { var b=window,f="chrome",g="tick",k="jstiming";(function(){function d(a){this.t={};this.tick=function(a,d,c){var e=void 0!=c?c:(new Date).getTime();this.t[a]=[e,d];if(void 0==c)try{b.console.timeStamp("CSI/"+a)}catch(h){}};this[g]("start",null,a)}var a;b.performance&&(a=b.performance.timing);var n=a?new d(a.responseStart):new d;b.jstiming={Timer:d,load:n};if(a){var c=a.navigationStart,h=a.responseStart;0<c&&h>=c&&(b[k].srt=h-c)}if(a){var e=b[k].load;0<c&&h>=c&&(e[g]("_wtsrt",void 0,c),e[g]("wtsrt_","_wtsrt",h),e[g]("tbsd_","wtsrt_"))}try{a=null,
+b[f]&&b[f].csi&&(a=Math.floor(b[f].csi().pageT),e&&0<c&&(e[g]("_tbnd",void 0,b[f].csi().startE),e[g]("tbnd_","_tbnd",c))),null==a&&b.gtbExternal&&(a=b.gtbExternal.pageT()),null==a&&b.external&&(a=b.external.pageT,e&&0<c&&(e[g]("_tbnd",void 0,b.external.startE),e[g]("tbnd_","_tbnd",c))),a&&(b[k].pt=a)}catch(p){}})();b.tickAboveFold=function(d){var a=0;if(d.offsetParent){do a+=d.offsetTop;while(d=d.offsetParent)}d=a;750>=d&&b[k].load[g]("aft")};var l=!1;function m(){l||(l=!0,b[k].load[g]("firstScrollTime"))}b.addEventListener?b.addEventListener("scroll",m,!1):b.attachEvent("onscroll",m);
+ })();</script>
+<meta content='blogger' name='generator'/>
+<link href='http://tom2ee-cs.blogspot.sk/favicon.ico' rel='icon' type='image/x-icon'/>
+<link href='http://tom2ee-cs.blogspot.com/2010/01/verzovani-datoveho-modelu-liquibase.html' rel='canonical'/>
+<link rel="alternate" type="application/atom+xml" title="O programování - Atom" href="http://tom2ee-cs.blogspot.com/feeds/posts/default" />
+<link rel="alternate" type="application/rss+xml" title="O programování - RSS" href="http://tom2ee-cs.blogspot.com/feeds/posts/default?alt=rss" />
+<link rel="service.post" type="application/atom+xml" title="O programování - Atom" href="http://www.blogger.com/feeds/8395640426039288836/posts/default" />
+
+<link rel="alternate" type="application/atom+xml" title="O programování - Atom" href="http://tom2ee-cs.blogspot.com/feeds/1702527354990211752/comments/default" />
+<!--[if IE]> <script> (function() { var html5 = ("abbr,article,aside,audio,canvas,datalist,details," + "figure,footer,header,hgroup,mark,menu,meter,nav,output," + "progress,section,time,video").split(','); for (var i = 0; i < html5.length; i++) { document.createElement(html5[i]); } try { document.execCommand('BackgroundImageCache', false, true); } catch(e) {} })(); </script> <![endif]-->
+<title>O programování: Verzování datového modelu a LiquiBase</title>
+<link type='text/css' rel='stylesheet' href='https://www.blogger.com/static/v1/widgets/3841957138-widget_css_bundle.css' />
+<link type='text/css' rel='stylesheet' href='https://www.blogger.com/dyn-css/authorization.css?targetBlogID=8395640426039288836&zx=f9adb618-67ae-40d3-9596-cd0093d6a441' />
+<style id='page-skin-1' type='text/css'><!--
+/*
+-----------------------------------------------
+Blogger Template Style
+Name:     Minima
+Designer: Douglas Bowman
+URL:      www.stopdesign.com
+Date:     26 Feb 2004
+Updated by: Blogger Team
+----------------------------------------------- */
+/* Variable definitions
+====================
+<Variable name="bgcolor" description="Page Background Color"
+type="color" default="#fff">
+<Variable name="textcolor" description="Text Color"
+type="color" default="#333">
+<Variable name="linkcolor" description="Link Color"
+type="color" default="#58a">
+<Variable name="pagetitlecolor" description="Blog Title Color"
+type="color" default="#666">
+<Variable name="descriptioncolor" description="Blog Description Color"
+type="color" default="#999">
+<Variable name="titlecolor" description="Post Title Color"
+type="color" default="#c60">
+<Variable name="bordercolor" description="Border Color"
+type="color" default="#ccc">
+<Variable name="sidebarcolor" description="Sidebar Title Color"
+type="color" default="#999">
+<Variable name="sidebartextcolor" description="Sidebar Text Color"
+type="color" default="#666">
+<Variable name="visitedlinkcolor" description="Visited Link Color"
+type="color" default="#999">
+<Variable name="bodyfont" description="Text Font"
+type="font" default="normal normal 100% Georgia, Serif">
+<Variable name="headerfont" description="Sidebar Title Font"
+type="font"
+default="normal normal 78% 'Trebuchet MS',Trebuchet,Arial,Verdana,Sans-serif">
+<Variable name="pagetitlefont" description="Blog Title Font"
+type="font"
+default="normal normal 200% Georgia, Serif">
+<Variable name="descriptionfont" description="Blog Description Font"
+type="font"
+default="normal normal 78% 'Trebuchet MS', Trebuchet, Arial, Verdana, Sans-serif">
+<Variable name="postfooterfont" description="Post Footer Font"
+type="font"
+default="normal normal 78% 'Trebuchet MS', Trebuchet, Arial, Verdana, Sans-serif">
+<Variable name="startSide" description="Side where text starts in blog language"
+type="automatic" default="left">
+<Variable name="endSide" description="Side where text ends in blog language"
+type="automatic" default="right">
+*/
+/* Use this with templates/template-twocol.html */
+body {
+background:#ffffff;
+margin:0;
+color:#333333;
+font:x-small Georgia Serif;
+font-size/* */:/**/small;
+font-size: /**/small;
+text-align: center;
+}
+a:link {
+color:#5588aa;
+text-decoration:none;
+}
+a:visited {
+color:#999999;
+text-decoration:none;
+}
+a:hover {
+color:#cc6600;
+text-decoration:underline;
+}
+a img {
+border-width:0;
+}
+/* Header
+-----------------------------------------------
+*/
+#header-wrapper {
+width:100%;
+margin:0 auto 10px;
+border:1px solid #cccccc;
+}
+#header-inner {
+background-position: center;
+margin-left: auto;
+margin-right: auto;
+}
+#header {
+margin: 5px;
+border: 1px solid #cccccc;
+text-align: center;
+color:#666666;
+}
+#header h1 {
+margin:5px 5px 0;
+padding:15px 20px .25em;
+line-height:1.2em;
+text-transform:uppercase;
+letter-spacing:.2em;
+font: normal normal 200% Georgia, Serif;
+}
+#header a {
+color:#666666;
+text-decoration:none;
+}
+#header a:hover {
+color:#666666;
+}
+#header .description {
+margin:0 5px 5px;
+padding:0 20px 15px;
+max-width:700px;
+text-transform:uppercase;
+letter-spacing:.2em;
+line-height: 1.4em;
+font: normal normal 78% 'Trebuchet MS', Trebuchet, Arial, Verdana, Sans-serif;
+color: #999999;
+}
+#header img {
+margin-left: auto;
+margin-right: auto;
+}
+/* Outer-Wrapper
+----------------------------------------------- */
+#outer-wrapper {
+width: 80%;
+margin:0 auto;
+padding:10px;
+text-align:left;
+font: normal normal 81% Georgia, Serif;
+}
+#main-wrapper {
+width: 70%;
+float: left;
+word-wrap: break-word; /* fix for long text breaking sidebar float in IE */
+overflow: hidden;     /* fix for long non-text content breaking IE sidebar float */
+}
+#sidebar-wrapper {
+width: 25%;
+float: right;
+word-wrap: break-word; /* fix for long text breaking sidebar float in IE */
+overflow: hidden;      /* fix for long non-text content breaking IE sidebar float */
+}
+/* Headings
+----------------------------------------------- */
+h2 {
+margin:1.5em 0 .75em;
+font:normal normal 78% 'Trebuchet MS',Trebuchet,Arial,Verdana,Sans-serif;
+line-height: 1.4em;
+text-transform:uppercase;
+letter-spacing:.2em;
+color:#999999;
+}
+/* Posts
+-----------------------------------------------
+*/
+h2.date-header {
+margin:1.5em 0 .5em;
+}
+.post {
+margin:.5em 0 1.5em;
+border-bottom:1px dotted #cccccc;
+padding-bottom:1.5em;
+}
+.post h3 {
+margin:.25em 0 0;
+padding:0 0 4px;
+font-size:140%;
+font-weight:normal;
+line-height:1.4em;
+color:#cc6600;
+}
+.post h3 a, .post h3 a:visited, .post h3 strong {
+display:block;
+text-decoration:none;
+color:#cc6600;
+font-weight:normal;
+}
+.post h3 strong, .post h3 a:hover {
+color:#333333;
+}
+.post-body {
+margin:0 0 .75em;
+line-height:1.6em;
+}
+.post-body blockquote {
+line-height:1.3em;
+}
+.post-footer {
+margin: .75em 0;
+color:#999999;
+text-transform:uppercase;
+letter-spacing:.1em;
+font: normal normal 78% 'Trebuchet MS', Trebuchet, Arial, Verdana, Sans-serif;
+line-height: 1.4em;
+}
+.comment-link {
+margin-left:.6em;
+}
+.post img {
+padding:4px;
+border:1px solid #cccccc;
+}
+.post blockquote {
+margin:1em 20px;
+}
+.post blockquote p {
+margin:.75em 0;
+}
+/* Comments
+----------------------------------------------- */
+#comments h4 {
+margin:1em 0;
+font-weight: bold;
+line-height: 1.4em;
+text-transform:uppercase;
+letter-spacing:.2em;
+color: #999999;
+}
+#comments-block {
+margin:1em 0 1.5em;
+line-height:1.6em;
+}
+#comments-block .comment-author {
+margin:.5em 0;
+}
+#comments-block .comment-body {
+margin:.25em 0 0;
+}
+#comments-block .comment-footer {
+margin:-.25em 0 2em;
+line-height: 1.4em;
+text-transform:uppercase;
+letter-spacing:.1em;
+}
+#comments-block .comment-body p {
+margin:0 0 .75em;
+}
+.deleted-comment {
+font-style:italic;
+color:gray;
+}
+#blog-pager-newer-link {
+float: left;
+}
+#blog-pager-older-link {
+float: right;
+}
+#blog-pager {
+text-align: center;
+}
+.feed-links {
+clear: both;
+line-height: 2.5em;
+}
+/* Sidebar Content
+----------------------------------------------- */
+.sidebar {
+color: #666666;
+line-height: 1.5em;
+}
+.sidebar ul {
+list-style:none;
+margin:0 0 0;
+padding:0 0 0;
+}
+.sidebar li {
+margin:0;
+padding-top:0;
+padding-right:0;
+padding-bottom:.25em;
+padding-left:15px;
+text-indent:-15px;
+line-height:1.5em;
+}
+.sidebar .widget, .main .widget {
+border-bottom:1px dotted #cccccc;
+margin:0 0 1.5em;
+padding:0 0 1.5em;
+}
+.main .Blog {
+border-bottom-width: 0;
+}
+/* Profile
+----------------------------------------------- */
+.profile-img {
+float: left;
+margin-top: 0;
+margin-right: 5px;
+margin-bottom: 5px;
+margin-left: 0;
+padding: 4px;
+border: 1px solid #cccccc;
+}
+.profile-data {
+margin:0;
+text-transform:uppercase;
+letter-spacing:.1em;
+font: normal normal 78% 'Trebuchet MS', Trebuchet, Arial, Verdana, Sans-serif;
+color: #999999;
+font-weight: bold;
+line-height: 1.6em;
+}
+.profile-datablock {
+margin:.5em 0 .5em;
+}
+.profile-textblock {
+margin: 0.5em 0;
+line-height: 1.6em;
+}
+.profile-link {
+font: normal normal 78% 'Trebuchet MS', Trebuchet, Arial, Verdana, Sans-serif;
+text-transform: uppercase;
+letter-spacing: .1em;
+}
+/* Footer
+----------------------------------------------- */
+#footer {
+width:660px;
+clear:both;
+margin:0 auto;
+padding-top:15px;
+line-height: 1.6em;
+text-transform:uppercase;
+letter-spacing:.1em;
+text-align: center;
+}
+
+--></style>
+<script type="text/javascript">var a="indexOf",b="&m=1",e="(^|&)m=",f="?",g="?m=1";function h(){var c=window.location.href,d=c.split(f);switch(d.length){case 1:return c+g;case 2:return 0<=d[1].search(e)?null:c+b;default:return null}}var k=navigator.userAgent;if(-1!=k[a]("Mobile")&&-1!=k[a]("WebKit")&&-1==k[a]("iPad")||-1!=k[a]("Opera Mini")||-1!=k[a]("IEMobile")){var l=h();l&&window.location.replace(l)};
+</script><script type="text/javascript">
+if (window.jstiming) window.jstiming.load.tick('headEnd');
+</script></head>
+<body>
+<div class='navbar section' id='navbar'><div class='widget Navbar' id='Navbar1'><script type="text/javascript">
+    function setAttributeOnload(object, attribute, val) {
+      if(window.addEventListener) {
+        window.addEventListener('load',
+          function(){ object[attribute] = val; }, false);
+      } else {
+        window.attachEvent('onload', function(){ object[attribute] = val; });
+      }
+    }
+  </script>
+<div id="navbar-iframe-container"></div>
+<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+<script type="text/javascript">
+        gapi.load("gapi.iframes:gapi.iframes.style.bubble", function() {
+          if (gapi.iframes && gapi.iframes.getContext) {
+            gapi.iframes.getContext().openChild({
+                url: 'https://www.blogger.com/navbar.g?targetBlogID\758395640426039288836\46blogName\75O+programov%C3%A1n%C3%AD\46publishMode\75PUBLISH_MODE_BLOGSPOT\46navbarType\75BLUE\46layoutType\75LAYOUTS\46searchRoot\75http://tom2ee-cs.blogspot.com/search\46blogLocale\75cs\46v\0752\46homepageUrl\75http://tom2ee-cs.blogspot.com/\46targetPostID\0751702527354990211752\46blogPostOrPageUrl\75http://tom2ee-cs.blogspot.com/2010/01/verzovani-datoveho-modelu-liquibase.html\46vt\75-5534536766049036073',
+                where: document.getElementById("navbar-iframe-container"),
+                id: "navbar-iframe"
+            });
+          }
+        });
+      </script><script type="text/javascript">
+(function() {
+var script = document.createElement('script');
+script.type = 'text/javascript';
+script.src = '//pagead2.googlesyndication.com/pagead/js/google_top_exp.js';
+var head = document.getElementsByTagName('head')[0];
+if (head) {
+head.appendChild(script);
+}})();
+</script>
+</div></div>
+<div id='outer-wrapper'><div id='wrap2'>
+<!-- skip links for text browsers -->
+<span id='skiplinks' style='display:none;'>
+<a href='#main'>skip to main </a> |
+      <a href='#sidebar'>skip to sidebar</a>
+</span>
+<div id='header-wrapper'>
+<div class='header section' id='header'><div class='widget Header' id='Header1'>
+<div id='header-inner'>
+<div class='titlewrapper'>
+<h1 class='title'>
+<a href='http://tom2ee-cs.blogspot.sk/'>O programování</a>
+</h1>
+</div>
+<div class='descriptionwrapper'>
+<p class='description'><span>
+</span></p>
+</div>
+</div>
+</div></div>
+</div>
+<div id='content-wrapper'>
+<div id='crosscol-wrapper' style='text-align:center'>
+<div class='crosscol section' id='crosscol'></div>
+</div>
+<div id='main-wrapper'>
+<div class='main section' id='main'><div class='widget Blog' id='Blog1'>
+<div class='blog-posts hfeed'>
+<!-- google_ad_section_start(name=default) -->
+
+          <div class="date-outer">
+        
+<h2 class='date-header'><span>neděle 31. ledna 2010</span></h2>
+
+          <div class="date-posts">
+        
+<div class='post-outer'>
+<div class='post hentry' itemprop='blogPost' itemscope='itemscope' itemtype='http://schema.org/BlogPosting'>
+<meta content='8395640426039288836' itemprop='blogId'/>
+<meta content='1702527354990211752' itemprop='postId'/>
+<a name='1702527354990211752'></a>
+<h3 class='post-title entry-title' itemprop='name'>
+Verzování datového modelu a LiquiBase
+</h3>
+<div class='post-header'>
+<div class='post-header-line-1'></div>
+</div>
+<div class='post-body entry-content' id='post-body-1702527354990211752' itemprop='description articleBody'>
+<div>Přidávání tabulek, sloupců, integritních omezení, přejmenovávání a štěpení tabulek, konfigurace vývojového, testovacího a produkčního prostředí... Je mnoho požadavků, které mají vliv na podobu datového modelu. V tomto blogu zkusím popsat běžné činnosti týkající se správy&nbsp;<i>relačního</i> datového modelu a stručně představit nástroj <a href="http://www.liquibase.org/" id="rzek" title="LiquiBase">LiquiBase</a>. Článek je volným pokračováním předchozího příspěvku&nbsp;<a href="http://tom2ee-cs.blogspot.com/2009/11/inicializace-databazovych-dat.html" id="htlz" title="Inicializace databázových dat prostředky Javy">Inicializace databázových dat prostředky Javy</a>.</div><div><br />
+</div><div>Různá prostředí kladou na správu datového modelu různé nároky - přizpůsobitelnost, nezávislost na konkrétní databázi, použitelnost pro testy nebo verzování. Krátce jsem je popsal v <a href="http://tom2ee-cs.blogspot.com/2009/11/inicializace-databazovych-dat.html" id="y2l:" title="předchozím příspěvku">předchozím příspěvku</a>. Jaké jsou běžné činnosti, které se správou datového modelu souvisí? Samozřejmě potřebujeme evidovat jakékoliv změny formou nějakého changelogu. V jistou chvíli je nutné změny z changelogu aplikovat na nějaký existující model - provést jeho aktualizaci. Někdy může být nutné naopak změny odstranit - provést jejich rollback. Při kvapném rozvoji datového modelu přijde vhod možnost porovnat dva modely. Při zavádění verzování je užitečná možnost reverzního vytvoření changelogu z existující databáze. A v neposlední řadě je dobré mít změny dobře zdokumentované.</div><div><br />
+</div><div>Právě na tyto činnosti se zaměřili tvůrci nástroje&nbsp;<a href="http://www.liquibase.org/" id="tzw_" style="color: #551a8b;" title="LiquiBase">LiquiBase</a>. Než se k němu ale dostanu, popíšu napřed alternativní možnosti. Změny datového modelu se tradičně dají organizovat pomocí sql skriptů verzovaných nějakým scm nástrojem (jako je třeba Subversion). Pro každou změnu datového modelu se připraví samostatný sql skript, který se prostě vloží do scm systému. Jeho revize potom dovolí vybrat správnou množinu skriptů, které někdo ručně spustí. Některé firmy nedají dopustit na nástroje, které si vyvinuly svépomocí a které dovolí správu modelu alespoň částečně automatizovat. I správa datového modelu je doménou, na které se dá vydělávat a kterou řeší komerční nástroje.</div><div><br />
+</div><div><b><span class="Apple-style-span" style="font-size: x-large;">LiquiBase</span></b></div><div><br />
+</div><div>Na nových projektech se snažím používat&nbsp;<a href="http://www.liquibase.org/" id="akwc" title="LiquiBase">LiquiBase</a>. Je to nástroj, který mě zaujal svým úzkým zaměřením (neřeší nic, co by se správou datového modelu nesouviselo), snadnou přístupností (začlenění do vývojového procesu je jednoduché a přímočaré) a perfektní dokumentací. Nebudu suplovat <a href="http://www.liquibase.org/manual/home" id="lvty" title="dokumentaci">dokumentaci</a> LiquiBase a <a href="http://www.liquibase.org/quickstart" id="tjao" title="tutoriály">tutoriály</a> přístupné z jeho webu, chci nástroj jenom stručně představit.</div><div><br />
+</div><div><b>Changelog</b></div><div><br />
+</div><div>Klíčový konceptem je changelog - xml soubor obsahující změny, zvané changesety. Změnou je třeba založení tabulky, přidání sloupce nebo vytvoření indexu. Každá změna je identifikovaná dvojicí (id,author). Changelog představuje historii změn datového modelu, ale neříká nic o tom, jak vypadají konkrétní instance modelu. Proto LiquiBase potřebuje, aby každý spravovaný mode obsahoval tabulku DatabaseChangeLog(id,author,filename,dateexecuted,...), která eviduje changesety aplikované na model.</div><div><br />
+</div><div>Příklad changelogu:</div><div><br />
+<div><div>&lt;databaseChangeLog</div><div>&nbsp;&nbsp;xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.6"</div><div>&nbsp;&nbsp;xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"</div><div>&nbsp;&nbsp;xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.6</div><div>&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.6.xsd"&gt;</div><div></div><div>&nbsp;&nbsp; &nbsp;&lt;changeSet id="1" author="bob"&gt;</div><div>&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&lt;createTable tableName="department"&gt;</div><div>&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;column name="id" type="int"&gt;</div><div>&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;constraints primaryKey="true" nullable="false"/&gt;</div><div>&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;/column&gt;</div><div>&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;column name="name" type="varchar(50)"&gt;</div><div>&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;constraints nullable="false"/&gt;</div><div>&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;/column&gt;</div><div>&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;column name="active" type="boolean" defaultValue="1"/&gt;</div><div>&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&lt;/createTable&gt;</div><div>&nbsp;&nbsp; &nbsp;&lt;/changeSet&gt;</div><div></div><div>&lt;/databaseChangeLog&gt;</div><div><br />
+</div>Changelog neobsahuje identifikaci databáze nebo chcete-li dialektu. Ten se zadává až při spouštění update a rollback příkazů. Pokud nemáme příliš specifické požadavky, můžeme tedy jeden changelog použít např. pro testovací MySQL nebo produkční Oracle. Vedle předdefinovaných příkazů mohou changesety obsahovat i sql skripty nebo odkazy na ně.&nbsp;</div><div><div><br />
+</div><div>Podporované jsou tyto databáze:</div><div><ul><li>MySQL, PostgreSQL, Oracle, MS-SQL, Sybase Enterprise, Sybase Anywhere, DB2, Apache Derby, HSQL, H2, InterSystems Caché, Firebird, MaxDB / SAPDB, SQLite.</li>
+</ul></div><div>A tyto předdefinované operace (refactorings):</div><div><ul><li>Structural Refactorings - Add Column, Rename Column, Modify Column, Drop Column, Alter Sequence, Create Table, Rename Table, Drop Table, Create View, Rename View, Drop View, Merge Columns, Create Stored Procedure</li>
+<li>Data Quality Refactorings - Add Lookup Table, Add Not-Null Constraint, Remove Not-Null Constraint, Add Unique Constraint, Drop Unique Constraint, Create Sequence, Drop Sequence, Add Auto-Increment, Add Default Value, Drop Default Value</li>
+<li>Referential Integrity Refactorings - Add Foreign Key Constraint, Drop Foreign Key Constraint, Add Primary Key Constraint, Drop Primary Key Constraint</li>
+<li>Architectural Refactorings - Create Index, Drop Index</li>
+<li>a další</li>
+</ul></div><div>LiquiBase je možné používat i na nepodporované databázi. Pokud pro ni nefungují některé z předdefinovaných operací, může changeset jednoduše obsahovat specifický sql kód.</div><div><br />
+</div><div>Changelog můžeme udržovat ručně, vytvořit reverzně z existujícího modelu nebo použít podporu v IDE. Dobře funguje plugin pro IntelliJ IDEA a deklarovaná je i podpora pro Eclipse. Plugin pro Eclipse se mi ale nepodařilo zprovoznit.</div><div><br />
+</div></div><div><b>Update a rollback</b></div><div><br />
+</div><div>Základní příkazy pro aplikaci, resp. mazání změn, jsou update a rollback. Spouští se z příkazové řádky, z mavenu, z antu nebo třeba z IDE. Příkaz update aplikuje všechny nové changesety na existující model. To, jestli je daný changeset nový nebo již aplikovaný, pozná podle záznamů v tabulce DatabaseChangeLog. Příkaz rollback bere jako vstupní parametr identifikaci changesetu a všechny novější změny z modelu odstraní (pokud je to možné).</div><div><br />
+</div><div>Dalšími užitečnými funkcemi jsou například</div><div><ul><li>Diff - porovnání dvou databází a vytvoření changelogu.</li>
+<li>DBDoc - vytvoří html manuál s popisem všech změn datového modelu.</li>
+<li>nebo SQL výstup, který changlog převede na SQL skript.</li>
+</ul></div><div><b>Alternativy</b></div><div><br />
+</div><div><a href="http://migrate4j.sourceforge.net/" id="wrg3" title="migrate4j">migrate4j</a>&nbsp;nebo <a href="http://code.google.com/p/dbmigrate/" id="iu_6" title="dbmigrate">dbmigrate</a> jsou nástroje s podobným zaměřením jako LiquiBase. Vývojáři Ruby asi budou znát&nbsp;<a href="http://guides.rubyonrails.org/migrations.html" id="s.10" title="Ruby Migrations">Ruby Migrations</a>.&nbsp;</div><br />
+<b>Shrnutí</b><br />
+<br />
+Článek chtěl popsat požadavky na evidenci změn datového modelu a ukázat, že s LiquiBase lze s malým úsilím změny organizovat lépe než jako "skripty v svn". Jak změny datového modelu organizujete vy? Máte bližší zkušenosti s nástrojem LiquiBase nebo jiným podobným? Podělte se o své názory v diskuzi pod článkem a zapojte se do hlasování.<br />
+<br />
+</div>
+<div style='clear: both;'></div>
+</div>
+<div class='post-footer'>
+<div class='post-footer-line post-footer-line-1'><span class='post-author vcard'>
+Vystavil
+<span class='fn' itemprop='author' itemscope='itemscope' itemtype='http://schema.org/Person'>
+<meta content='http://www.blogger.com/profile/07543015673837913396' itemprop='url'/>
+<a class='g-profile' href='http://www.blogger.com/profile/07543015673837913396' rel='author' title='author profile'>
+<span itemprop='name'>Tomáš Piňos</span>
+</a>
+</span>
+</span>
+<span class='post-timestamp'>
+v
+<meta content='http://tom2ee-cs.blogspot.com/2010/01/verzovani-datoveho-modelu-liquibase.html' itemprop='url'/>
+<a class='timestamp-link' href='http://tom2ee-cs.blogspot.sk/2010/01/verzovani-datoveho-modelu-liquibase.html' rel='bookmark' title='permanent link'><abbr class='published' itemprop='datePublished' title='2010-01-31T22:37:00+01:00'>22:37</abbr></a>
+</span>
+<span class='post-comment-link'>
+</span>
+<span class='post-icons'>
+<span class='item-control blog-admin pid-2067991976'>
+<a href='http://www.blogger.com/post-edit.g?blogID=8395640426039288836&postID=1702527354990211752&from=pencil' title='Upravit příspěvek'>
+<img alt='' class='icon-action' height='18' src='http://img2.blogblog.com/img/icon18_edit_allbkg.gif' width='18'/>
+</a>
+</span>
+</span>
+<div class='post-share-buttons goog-inline-block'>
+<a class='goog-inline-block share-button sb-email' href='http://www.blogger.com/share-post.g?blogID=8395640426039288836&postID=1702527354990211752&target=email' target='_blank' title='Odeslat e-mailem'><span class='share-button-link-text'>Odeslat e-mailem</span></a><a class='goog-inline-block share-button sb-blog' href='http://www.blogger.com/share-post.g?blogID=8395640426039288836&postID=1702527354990211752&target=blog' onclick='window.open(this.href, "_blank", "height=270,width=475"); return false;' target='_blank' title='BlogThis!'><span class='share-button-link-text'>BlogThis!</span></a><a class='goog-inline-block share-button sb-twitter' href='http://www.blogger.com/share-post.g?blogID=8395640426039288836&postID=1702527354990211752&target=twitter' target='_blank' title='Sdílet ve službě Twitter'><span class='share-button-link-text'>Sdílet ve službě Twitter</span></a><a class='goog-inline-block share-button sb-facebook' href='http://www.blogger.com/share-post.g?blogID=8395640426039288836&postID=1702527354990211752&target=facebook' onclick='window.open(this.href, "_blank", "height=430,width=640"); return false;' target='_blank' title='Sdílet ve službě Facebook'><span class='share-button-link-text'>Sdílet ve službě Facebook</span></a><a class='goog-inline-block share-button sb-pinterest' href='http://www.blogger.com/share-post.g?blogID=8395640426039288836&postID=1702527354990211752&target=pinterest' target='_blank' title='Sdílet na Pinterestu'><span class='share-button-link-text'>Sdílet na Pinterestu</span></a><div class='goog-inline-block dummy-container'><g:plusone source='blogger:blog:plusone' href='http://tom2ee-cs.blogspot.com/2010/01/verzovani-datoveho-modelu-liquibase.html' size='medium' width='300' annotation='inline'/></div>
+</div>
+</div>
+<div class='post-footer-line post-footer-line-2'><span class='post-labels'>
+Štítky:
+<a href='http://tom2ee-cs.blogspot.sk/search/label/datab%C3%A1ze' rel='tag'>databáze</a>,
+<a href='http://tom2ee-cs.blogspot.sk/search/label/java' rel='tag'>java</a>
+</span>
+</div>
+<div class='post-footer-line post-footer-line-3'></div>
+</div>
+</div>
+<div class='comments' id='comments'>
+<a name='comments'></a>
+<h4>3 komentáře:</h4>
+<div class='comments-content'>
+<script async='async' src='//www.blogblog.com/dynamicviews/4224c15c4e7c9321/js/comments.js' type='text/javascript'></script>
+<script type='text/javascript'>
+    (function() {
+      var items = [{'id': '8213545255432310383', 'body': 'Má nástroj nějakou podporu pro autodetekci modelu v DB na které právě aplikaci spouštíme + možnost automaticky aplikovat chybějící patche? Tohle totiž máme v našem interním nástroji a je to fakt šikovná vlastnost. Přestože náš interní nástroj není přenositelný přes DB a nemá rollback, zrovna tahle vlastnost je tak užitečná, že je to (minimálně pro mě) showstopper.', 'timestamp': '1265089188319', 'permalink': 'http://tom2ee-cs.blogspot.com/2010/01/verzovani-datoveho-modelu-liquibase.html?showComment\0751265089188319#c8213545255432310383', 'author': {'name': 'Honza Novotný', 'avatarUrl': 'http://img1.blogblog.com/img/blank.gif', 'profileUrl': 'http://blog.novoj.net'}, 'displayTime': '2. února 2010 6:39', 'deleteclass': 'item-control blog-admin pid-1156132775'}, {'id': '7635556774435570065', 'body': '@Honza Novotný - ano, funguje to tak. LiquiBase si v každé verzované instanci ukládá, které změny již byly aplikované (v tabulce DatabaseChangeLog - invazivní změna, která mi ale nevadí). Když se provádí update, prochází se sekvenčně všechny changesety v xml changelogu a podle záznamů v tabulce DatabaseChangeLog se vyhodnocuje, jestli daný changeset byl nebo nebyl spuštěný. Vedle identifikace changesetu se vyhodnocuje i hash obsahu changesetu. Viz. podrobněji \74a href\75\42http://www.liquibase.org/manual/update\42 rel\75\42nofollow\42\76http://www.liquibase.org/manual/update\74/a\76. \74br /\76\74br /\76Někdy užitečná související vlastnost - pokud je to nutné, může changeset obsahovat element \46quot;precondition\46quot; - tzn. podmínku, která musí být splněná, aby se daný changeset mohl spustit (např. dropovaná tabulka nesmí obsahovat žádný záznam).', 'timestamp': '1265099031765', 'permalink': 'http://tom2ee-cs.blogspot.com/2010/01/verzovani-datoveho-modelu-liquibase.html?showComment\0751265099031765#c7635556774435570065', 'author': {'name': 'Tomáš Piňos', 'avatarUrl': 'http://3.bp.blogspot.com/_Oz-v9zB63r4/SlHtWTOePUI/AAAAAAAAAIM/F6ChIpe49ks/S45/fr_avatar.JPG', 'profileUrl': 'http://www.blogger.com/profile/07543015673837913396'}, 'displayTime': '2. února 2010 9:23', 'deleteclass': 'item-control blog-admin pid-2067991976'}, {'id': '4468324890886288813', 'body': 'Perfektní, díky za informace. Musím si to prostudovat detailněji, zatím jsem to jenom tak v rychlosti přelétl. Tyhle články s úvodem do technologie jsou super.', 'timestamp': '1265112258974', 'permalink': 'http://tom2ee-cs.blogspot.com/2010/01/verzovani-datoveho-modelu-liquibase.html?showComment\0751265112258974#c4468324890886288813', 'author': {'name': 'Honza Novotný', 'avatarUrl': 'http://img1.blogblog.com/img/blank.gif', 'profileUrl': 'http://blog.novoj.net'}, 'displayTime': '2. února 2010 13:04', 'deleteclass': 'item-control blog-admin pid-811379879'}];
+      var msgs = {'loadMore': 'Načíst další...', 'loading': 'Načítání', 'loaded': 'To je vše!', 'addComment': 'Okomentovat', 'reply': 'Odpovědět', 'delete': 'Vymazat'};
+      var config = {'blogId': '8395640426039288836', 'postId': '1702527354990211752', 'feed': 'http://tom2ee-cs.blogspot.com/feeds/1702527354990211752/comments/default', 'authorName': 'Tomáš Piňos', 'authorUrl': 'http://www.blogger.com/profile/07543015673837913396', 'baseUri': 'http://www.blogger.com', 'maxThreadDepth': 2};
+
+// <![CDATA[
+      var cursor = null;
+      if (items && items.length > 0) {
+        cursor = parseInt(items[items.length - 1].timestamp) + 1;
+      }
+
+      var bodyFromEntry = function(entry) {
+        if (entry.gd$extendedProperty) {
+          for (var k in entry.gd$extendedProperty) {
+            if (entry.gd$extendedProperty[k].name == 'blogger.contentRemoved') {
+              return '<span class="deleted-comment">' + entry.content.$t + '</span>';
+            }
+          }
+        }
+        return entry.content.$t;
+      }
+
+      var parse = function(data) {
+        cursor = null;
+        var comments = [];
+        if (data && data.feed && data.feed.entry) {
+          for (var i = 0, entry; entry = data.feed.entry[i]; i++) {
+            var comment = {};
+            // comment ID, parsed out of the original id format
+            var id = /blog-(\d+).post-(\d+)/.exec(entry.id.$t);
+            comment.id = id ? id[2] : null;
+            comment.body = bodyFromEntry(entry);
+            comment.timestamp = Date.parse(entry.published.$t) + '';
+            if (entry.author && entry.author.constructor === Array) {
+              var auth = entry.author[0];
+              if (auth) {
+                comment.author = {
+                  name: (auth.name ? auth.name.$t : undefined),
+                  profileUrl: (auth.uri ? auth.uri.$t : undefined),
+                  avatarUrl: (auth.gd$image ? auth.gd$image.src : undefined)
+                };
+              }
+            }
+            if (entry.link) {
+              if (entry.link[2]) {
+                comment.link = comment.permalink = entry.link[2].href;
+              }
+              if (entry.link[3]) {
+                var pid = /.*comments\/default\/(\d+)\?.*/.exec(entry.link[3].href);
+                if (pid && pid[1]) {
+                  comment.parentId = pid[1];
+                }
+              }
+            }
+            comment.deleteclass = 'item-control blog-admin';
+            if (entry.gd$extendedProperty) {
+              for (var k in entry.gd$extendedProperty) {
+                if (entry.gd$extendedProperty[k].name == 'blogger.itemClass') {
+                  comment.deleteclass += ' ' + entry.gd$extendedProperty[k].value;
+                } else if (entry.gd$extendedProperty[k].name == 'blogger.displayTime') {
+                  comment.displayTime = entry.gd$extendedProperty[k].value;
+                }
+              }
+            }
+            comments.push(comment);
+          }
+        }
+        return comments;
+      };
+
+      var paginator = function(callback) {
+        if (hasMore()) {
+          var url = config.feed + '?alt=json&v=2&orderby=published&reverse=false&max-results=50';
+          if (cursor) {
+            url += '&published-min=' + new Date(cursor).toISOString();
+          }
+          window.bloggercomments = function(data) {
+            var parsed = parse(data);
+            cursor = parsed.length < 50 ? null
+                : parseInt(parsed[parsed.length - 1].timestamp) + 1
+            callback(parsed);
+            window.bloggercomments = null;
+          }
+          url += '&callback=bloggercomments';
+          var script = document.createElement('script');
+          script.type = 'text/javascript';
+          script.src = url;
+          document.getElementsByTagName('head')[0].appendChild(script);
+        }
+      };
+      var hasMore = function() {
+        return !!cursor;
+      };
+      var getMeta = function(key, comment) {
+        if ('iswriter' == key) {
+          var matches = !!comment.author
+              && comment.author.name == config.authorName
+              && comment.author.profileUrl == config.authorUrl;
+          return matches ? 'true' : '';
+        } else if ('deletelink' == key) {
+          return config.baseUri + '/delete-comment.g?blogID='
+               + config.blogId + '&postID=' + comment.id;
+        } else if ('deleteclass' == key) {
+          return comment.deleteclass;
+        }
+        return '';
+      };
+
+      var replybox = null;
+      var replyUrlParts = null;
+      var replyParent = undefined;
+
+      var onReply = function(commentId, domId) {
+        if (replybox == null) {
+          // lazily cache replybox, and adjust to suit this style:
+          replybox = document.getElementById('comment-editor');
+          if (replybox != null) {
+            replybox.height = '250px';
+            replybox.style.display = 'block';
+            replyUrlParts = replybox.src.split('#');
+          }
+        }
+        if (replybox && (commentId !== replyParent)) {
+          document.getElementById(domId).insertBefore(replybox, null);
+          replybox.src = replyUrlParts[0]
+              + (commentId ? '&parentID=' + commentId : '')
+              + '#' + replyUrlParts[1];
+          replyParent = commentId;
+        }
+      };
+
+      var hash = (window.location.hash || '#').substring(1);
+      var startThread, targetComment;
+      if (/^comment-form_/.test(hash)) {
+        startThread = hash.substring('comment-form_'.length);
+      } else if (/^c[0-9]+$/.test(hash)) {
+        targetComment = hash.substring(1);
+      }
+
+      // Configure commenting API:
+      var configJso = {
+        'maxDepth': config.maxThreadDepth
+      };
+      var provider = {
+        'id': config.postId,
+        'data': items,
+        'loadNext': paginator,
+        'hasMore': hasMore,
+        'getMeta': getMeta,
+        'onReply': onReply,
+        'rendered': true,
+        'initComment': targetComment,
+        'initReplyThread': startThread,
+        'config': configJso,
+        'messages': msgs
+      };
+
+      var render = function() {
+        if (window.goog && window.goog.comments) {
+          var holder = document.getElementById('comment-holder');
+          window.goog.comments.render(holder, provider);
+        }
+      };
+
+      // render now, or queue to render when library loads:
+      if (window.goog && window.goog.comments) {
+        render();
+      } else {
+        window.goog = window.goog || {};
+        window.goog.comments = window.goog.comments || {};
+        window.goog.comments.loadQueue = window.goog.comments.loadQueue || [];
+        window.goog.comments.loadQueue.push(render);
+      }
+    })();
+// ]]>
+</script>
+<div id='comment-holder'>
+<div id='bc_0_4C' kind='c'><div id='bc_0_4CT'><div id='bc_0_3T' class='comment-thread' kind='r'  t='0' u='0'><ol id='bc_0_3TB'><li id='bc_0_0B' class='comment' kind='b'><div class='avatar-image-container'><img src='http://img1.blogblog.com/img/anon36.png'></img></div><div id='c8213545255432310383' class='comment-block'><div id='bc_0_0M' class='comment-header' kind='m'><cite class='user'><a rel='nofollow' href='http://blog.novoj.net'>Honza Novotný</a></cite><span class='icon user'></span><span class='datetime secondary-text'><a rel='nofollow' href='http://tom2ee-cs.blogspot.com/2010/01/verzovani-datoveho-modelu-liquibase.html?showComment=1265089188319#c8213545255432310383'>2. února 2010 6:39</a></span></div><p id='bc_0_0MC' class='comment-content'>Má nástroj nějakou podporu pro autodetekci modelu v DB na které právě aplikaci spouštíme + možnost automaticky aplikovat chybějící patche? Tohle totiž máme v našem interním nástroji a je to fakt šikovná vlastnost. Přestože náš interní nástroj není přenositelný přes DB a nemá rollback, zrovna tahle vlastnost je tak užitečná, že je to (minimálně pro mě) showstopper.</p><span id='bc_0_0MN' class='comment-actions secondary-text' kind='m'><a kind='i' href='javascript:;' target='_self' o='r'>Odpovědět</a><span class='item-control blog-admin pid-1156132775'><a o='d' target='_self' href='http://www.blogger.com/delete-comment.g?blogID=8395640426039288836&amp;postID=8213545255432310383'>Vymazat</a></span></span></div><div id='bc_0_0BR' class='comment-replies'></div><div id='bc_0_0B_box' class='comment-replybox-single'></div></li><li id='bc_0_1B' class='comment' kind='b'><div class='avatar-image-container'><img src='http://3.bp.blogspot.com/_Oz-v9zB63r4/SlHtWTOePUI/AAAAAAAAAIM/F6ChIpe49ks/S45/fr_avatar.JPG'></img></div><div id='c7635556774435570065' class='comment-block'><div id='bc_0_1M' class='comment-header' kind='m'><cite class='user blog-author'><a rel='nofollow' href='http://www.blogger.com/profile/07543015673837913396'>Tomáš Piňos</a></cite><span class='icon user blog-author'></span><span class='datetime secondary-text'><a rel='nofollow' href='http://tom2ee-cs.blogspot.com/2010/01/verzovani-datoveho-modelu-liquibase.html?showComment=1265099031765#c7635556774435570065'>2. února 2010 9:23</a></span></div><p id='bc_0_1MC' class='comment-content'>@Honza Novotný - ano, funguje to tak. LiquiBase si v každé verzované instanci ukládá, které změny již byly aplikované (v tabulce DatabaseChangeLog - invazivní změna, která mi ale nevadí). Když se provádí update, prochází se sekvenčně všechny changesety v xml changelogu a podle záznamů v tabulce DatabaseChangeLog se vyhodnocuje, jestli daný changeset byl nebo nebyl spuštěný. Vedle identifikace changesetu se vyhodnocuje i hash obsahu changesetu. Viz. podrobněji <a href="http://www.liquibase.org/manual/update" rel="nofollow">http://www.liquibase.org/manual/update</a>. <br /><br />Někdy užitečná související vlastnost - pokud je to nutné, může changeset obsahovat element &quot;precondition&quot; - tzn. podmínku, která musí být splněná, aby se daný changeset mohl spustit (např. dropovaná tabulka nesmí obsahovat žádný záznam).</p><span id='bc_0_1MN' class='comment-actions secondary-text' kind='m'><a kind='i' href='javascript:;' target='_self' o='r'>Odpovědět</a><span class='item-control blog-admin pid-2067991976'><a o='d' target='_self' href='http://www.blogger.com/delete-comment.g?blogID=8395640426039288836&amp;postID=7635556774435570065'>Vymazat</a></span></span></div><div id='bc_0_1BR' class='comment-replies'></div><div id='bc_0_1B_box' class='comment-replybox-single'></div></li><li id='bc_0_2B' class='comment' kind='b'><div class='avatar-image-container'><img src='http://img1.blogblog.com/img/anon36.png'></img></div><div id='c4468324890886288813' class='comment-block'><div id='bc_0_2M' class='comment-header' kind='m'><cite class='user'><a rel='nofollow' href='http://blog.novoj.net'>Honza Novotný</a></cite><span class='icon user'></span><span class='datetime secondary-text'><a rel='nofollow' href='http://tom2ee-cs.blogspot.com/2010/01/verzovani-datoveho-modelu-liquibase.html?showComment=1265112258974#c4468324890886288813'>2. února 2010 13:04</a></span></div><p id='bc_0_2MC' class='comment-content'>Perfektní, díky za informace. Musím si to prostudovat detailněji, zatím jsem to jenom tak v rychlosti přelétl. Tyhle články s úvodem do technologie jsou super.</p><span id='bc_0_2MN' class='comment-actions secondary-text' kind='m'><a kind='i' href='javascript:;' target='_self' o='r'>Odpovědět</a><span class='item-control blog-admin pid-811379879'><a o='d' target='_self' href='http://www.blogger.com/delete-comment.g?blogID=8395640426039288836&amp;postID=4468324890886288813'>Vymazat</a></span></span></div><div id='bc_0_2BR' class='comment-replies'></div><div id='bc_0_2B_box' class='comment-replybox-single'></div></li></ol><div id='bc_0_3I' class='continue' kind='ci'><a href='javascript:;' target='_self'>Okomentovat</a></div><div id='bc_0_3T_box' class='comment-replybox-thread'></div><div id='bc_0_3L' class='loadmore loaded' kind='rb'><a href='javascript:;' target='_self'>Načíst další...</a></div></div></div></div>
+</div>
+</div>
+<p class='comment-footer'>
+<div class='comment-form'>
+<a name='comment-form'></a>
+<p>
+</p>
+<a href='https://www.blogger.com/comment-iframe.g?blogID=8395640426039288836&postID=1702527354990211752' id='comment-editor-src'></a>
+<iframe allowtransparency='true' class='blogger-iframe-colorize blogger-comment-from-post' frameborder='0' height='410' id='comment-editor' name='comment-editor' src='' width='100%'></iframe>
+<script type="text/javascript" src="https://www.blogger.com/static/v1/jsbin/3995214906-comment_from_post_iframe.js"></script>
+<script type='text/javascript'>
+      BLOG_CMT_createIframe('https://www.blogger.com/rpc_relay.html');
+    </script>
+</div>
+</p>
+<div id='backlinks-container'>
+<div id='Blog1_backlinks-container'>
+</div>
+</div>
+</div>
+</div>
+
+        </div></div>
+      
+<!-- google_ad_section_end -->
+</div>
+<div class='blog-pager' id='blog-pager'>
+<span id='blog-pager-newer-link'>
+<a class='blog-pager-newer-link' href='http://tom2ee-cs.blogspot.sk/2010/02/unit-testy-nad-in-memory-databazi.html' id='Blog1_blog-pager-newer-link' title='Novější příspěvek'>Novější příspěvek</a>
+</span>
+<span id='blog-pager-older-link'>
+<a class='blog-pager-older-link' href='http://tom2ee-cs.blogspot.sk/2009/11/inicializace-databazovych-dat.html' id='Blog1_blog-pager-older-link' title='Starší příspěvek'>Starší příspěvek</a>
+</span>
+<a class='home-link' href='http://tom2ee-cs.blogspot.sk/'>Domovská stránka</a>
+</div>
+<div class='clear'></div>
+<div class='post-feeds'>
+<div class='feed-links'>
+Přihlásit se k odběru:
+<a class='feed-link' href='http://tom2ee-cs.blogspot.com/feeds/1702527354990211752/comments/default' target='_blank' type='application/atom+xml'>Komentáře k příspěvku (Atom)</a>
+</div>
+</div>
+<script type="text/javascript">window.___gcfg = {'lang': 'cs'};</script>
+</div></div>
+</div>
+<div id='sidebar-wrapper'>
+<div class='sidebar section' id='sidebar'><div class='widget Profile' id='Profile1'>
+<h2>O mně</h2>
+<div class='widget-content'>
+<a href='http://www.blogger.com/profile/07543015673837913396'><img alt='Moje fotka' class='profile-img' height='80' src='http://2.bp.blogspot.com/_Oz-v9zB63r4/SlHtBhusfvI/AAAAAAAAAH0/pm4rkYGHGAc/S220/fr_avatar.JPG' width='72'/></a>
+<dl class='profile-datablock'>
+<dt class='profile-data'>
+<a class='profile-name-link g-profile' href='http://www.blogger.com/profile/07543015673837913396' rel='author' style='background-image: url(//www.blogger.com/img/logo-16.png);'>
+Tomáš Piňos
+</a>
+</dt>
+<dd class='profile-data'>Prague, Czech Republic</dd>
+<dd class='profile-textblock'><a href="http://www.linkedin.com/in/tomaspinos">www.linkedin.com/in/tomaspinos</a></dd>
+</dl>
+<a class='profile-link' href='http://www.blogger.com/profile/07543015673837913396' rel='author'>Zobrazit celý můj profil</a>
+<div class='clear'></div>
+<span class='widget-item-control'>
+<span class='item-control blog-admin'>
+<a class='quickedit' href='//www.blogger.com/rearrange?blogID=8395640426039288836&widgetType=Profile&widgetId=Profile1&action=editWidget&sectionId=sidebar' onclick='return _WidgetManager._PopupConfig(document.getElementById("Profile1"));' target='configProfile1' title='Upravit'>
+<img alt='' height='18' src='http://img1.blogblog.com/img/icon18_wrench_allbkg.png' width='18'/>
+</a>
+</span>
+</span>
+<div class='clear'></div>
+</div>
+</div><div class='widget BlogArchive' id='BlogArchive1'>
+<h2>Archiv blogu</h2>
+<div class='widget-content'>
+<div id='ArchiveList'>
+<div id='BlogArchive1_ArchiveList'>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+          &#9658;&#160;
+        
+</span>
+</a>
+<a class='post-count-link' href='http://tom2ee-cs.blogspot.sk/search?updated-min=2011-01-01T00:00:00%2B01:00&amp;updated-max=2012-01-01T00:00:00%2B01:00&amp;max-results=2'>2011</a>
+<span class='post-count' dir='ltr'>(2)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+          &#9658;&#160;
+        
+</span>
+</a>
+<a class='post-count-link' href='http://tom2ee-cs.blogspot.sk/2011_03_01_archive.html'>březen</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+          &#9658;&#160;
+        
+</span>
+</a>
+<a class='post-count-link' href='http://tom2ee-cs.blogspot.sk/2011_02_01_archive.html'>únor</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate expanded'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy toggle-open'>&#9660;&#160;</span>
+</a>
+<a class='post-count-link' href='http://tom2ee-cs.blogspot.sk/search?updated-min=2010-01-01T00:00:00%2B01:00&amp;updated-max=2011-01-01T00:00:00%2B01:00&amp;max-results=7'>2010</a>
+<span class='post-count' dir='ltr'>(7)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+          &#9658;&#160;
+        
+</span>
+</a>
+<a class='post-count-link' href='http://tom2ee-cs.blogspot.sk/2010_11_01_archive.html'>listopad</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+          &#9658;&#160;
+        
+</span>
+</a>
+<a class='post-count-link' href='http://tom2ee-cs.blogspot.sk/2010_09_01_archive.html'>září</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+          &#9658;&#160;
+        
+</span>
+</a>
+<a class='post-count-link' href='http://tom2ee-cs.blogspot.sk/2010_03_01_archive.html'>březen</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+          &#9658;&#160;
+        
+</span>
+</a>
+<a class='post-count-link' href='http://tom2ee-cs.blogspot.sk/2010_02_01_archive.html'>únor</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate expanded'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy toggle-open'>&#9660;&#160;</span>
+</a>
+<a class='post-count-link' href='http://tom2ee-cs.blogspot.sk/2010_01_01_archive.html'>leden</a>
+<span class='post-count' dir='ltr'>(1)</span>
+<ul class='posts'>
+<li><a href='http://tom2ee-cs.blogspot.sk/2010/01/verzovani-datoveho-modelu-liquibase.html'>Verzování datového modelu a LiquiBase</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+          &#9658;&#160;
+        
+</span>
+</a>
+<a class='post-count-link' href='http://tom2ee-cs.blogspot.sk/search?updated-min=2009-01-01T00:00:00%2B01:00&amp;updated-max=2010-01-01T00:00:00%2B01:00&amp;max-results=5'>2009</a>
+<span class='post-count' dir='ltr'>(5)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+          &#9658;&#160;
+        
+</span>
+</a>
+<a class='post-count-link' href='http://tom2ee-cs.blogspot.sk/2009_11_01_archive.html'>listopad</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+          &#9658;&#160;
+        
+</span>
+</a>
+<a class='post-count-link' href='http://tom2ee-cs.blogspot.sk/2009_10_01_archive.html'>říjen</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+          &#9658;&#160;
+        
+</span>
+</a>
+<a class='post-count-link' href='http://tom2ee-cs.blogspot.sk/2009_09_01_archive.html'>září</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+          &#9658;&#160;
+        
+</span>
+</a>
+<a class='post-count-link' href='http://tom2ee-cs.blogspot.sk/2009_07_01_archive.html'>červenec</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class='clear'></div>
+<span class='widget-item-control'>
+<span class='item-control blog-admin'>
+<a class='quickedit' href='//www.blogger.com/rearrange?blogID=8395640426039288836&widgetType=BlogArchive&widgetId=BlogArchive1&action=editWidget&sectionId=sidebar' onclick='return _WidgetManager._PopupConfig(document.getElementById("BlogArchive1"));' target='configBlogArchive1' title='Upravit'>
+<img alt='' height='18' src='http://img1.blogblog.com/img/icon18_wrench_allbkg.png' width='18'/>
+</a>
+</span>
+</span>
+<div class='clear'></div>
+</div>
+</div><div class='widget Followers' id='Followers1'>
+<h2 class='title'>Pravidelní čtenáři</h2>
+<div class='widget-content'>
+<div id='Followers1-wrapper'>
+<div style='margin-right:2px;'>
+<script type="text/javascript">
+        if (!window.google || !google.friendconnect) {
+          document.write('<script type="text/javascript"' +
+              'src="//www.google.com/friendconnect/script/friendconnect.js">' +
+              '</scr' + 'ipt>');
+        }
+      </script>
+<script type="text/javascript">
+      if (!window.registeredBloggerCallbacks) {
+        window.registeredBloggerCallbacks = true;
+
+        
+
+        
+        gadgets.rpc.register('requestReload', function() {
+          document.location.reload();
+        });
+
+        
+        gadgets.rpc.register('requestSignOut', function(siteId) {
+          
+          google.friendconnect.container.openSocialSiteId = siteId;
+          google.friendconnect.requestSignOut();
+        });
+      }
+    </script>
+<script type="text/javascript">
+    
+    function registerGetBlogUrls() {
+      gadgets.rpc.register('getBlogUrls', function() {
+        var holder = {};
+        
+          
+            
+            
+              holder.currentPost = "http://www.blogger.com/feeds/8395640426039288836/posts/default/1702527354990211752";
+            
+            
+            
+              holder.currentComments = "http://www.blogger.com/feeds/8395640426039288836/1702527354990211752/comments/default";
+            
+            holder.currentPostUrl = "";
+            holder.currentPostId = 1702527354990211752
+          
+          
+          
+            holder.postFeed = "http://www.blogger.com/feeds/8395640426039288836/posts/default";
+          
+          
+          
+            holder.commentFeed = "http://www.blogger.com/feeds/8395640426039288836/comments/default";
+          
+          holder.currentBlogUrl = "http://tom2ee-cs.blogspot.com/";
+          holder.currentBlogId = "8395640426039288836";
+        
+        return holder;
+      });
+    }
+  </script>
+<script type="text/javascript">
+  if (!window.registeredCommonBloggerCallbacks) {
+    window.registeredCommonBloggerCallbacks = true;
+
+    gadgets.rpc.register('resize_iframe', function(height) {
+      var el = document.getElementById(this['f']);
+      if (el) {
+        el.style.height = height + 'px';
+      }
+    });
+
+    
+    gadgets.rpc.register('set_pref', function() {});
+
+    registerGetBlogUrls();
+  }
+  </script>
+<div id="div-1m7am5w5g53y8" style="width: 100%; "></div>
+<script type="text/javascript">
+    var skin = {};
+    skin['FACE_SIZE'] = '32';
+    skin['HEIGHT'] = "260";
+    skin['TITLE'] = "Pravideln\xed \u010dten\xe1\u0159i";
+    skin['BORDER_COLOR'] = "transparent";
+    skin['ENDCAP_BG_COLOR'] = "transparent";
+    skin['ENDCAP_TEXT_COLOR'] = "#666666";
+    skin['ENDCAP_LINK_COLOR'] = "#5588aa";
+    skin['ALTERNATE_BG_COLOR'] = "transparent";
+    
+    skin['CONTENT_BG_COLOR'] = "transparent";
+    skin['CONTENT_LINK_COLOR'] = "#5588aa";
+    skin['CONTENT_TEXT_COLOR'] = "#666666";
+    skin['CONTENT_SECONDARY_LINK_COLOR'] = "#5588aa";
+    skin['CONTENT_SECONDARY_TEXT_COLOR'] = "#999999";
+    skin['CONTENT_HEADLINE_COLOR'] = "#cc6600";
+    skin['FONT_FACE'] = "normal normal 81% Georgia, Serif";
+    google.friendconnect.container.setParentUrl("/");
+    google.friendconnect.container["renderMembersGadget"](
+    {id: "div-1m7am5w5g53y8",
+     height: 260,
+     
+     
+     
+     site: "15735869117099441887",
+     
+     locale: 'cs' },
+     skin);
+  </script>
+</div>
+</div>
+<div class='clear'></div>
+<span class='widget-item-control'>
+<span class='item-control blog-admin'>
+<a class='quickedit' href='//www.blogger.com/rearrange?blogID=8395640426039288836&widgetType=Followers&widgetId=Followers1&action=editWidget&sectionId=sidebar' onclick='return _WidgetManager._PopupConfig(document.getElementById("Followers1"));' target='configFollowers1' title='Upravit'>
+<img alt='' height='18' src='http://img1.blogblog.com/img/icon18_wrench_allbkg.png' width='18'/>
+</a>
+</span>
+</span>
+<div class='clear'></div>
+</div>
+</div><div class='widget Subscribe' id='Subscribe1'>
+<div style='white-space:nowrap'>
+<h2 class='title'>Přihlášení k odběru</h2>
+<div class='widget-content'>
+<div class='subscribe-wrapper subscribe-type-POST'>
+<div class='subscribe expanded subscribe-type-POST' id='SW_READER_LIST_Subscribe1POST' style='display:none;'>
+<div class='top'>
+<span class='inner' onclick='return(_SW_toggleReaderList(event, "Subscribe1POST"));'>
+<img class='subscribe-dropdown-arrow' src='http://img2.blogblog.com/img/widgets/arrow_dropdown.gif'/>
+<img align='absmiddle' alt='' border='0' class='feed-icon' src='http://img1.blogblog.com/img/icon_feed12.png'/>
+Příspěvky
+</span>
+<div class='feed-reader-links'>
+<a class='feed-reader-link' href='http://www.netvibes.com/subscribe.php?url=http%3A%2F%2Ftom2ee-cs.blogspot.com%2Ffeeds%2Fposts%2Fdefault' target='_blank'>
+<img src='http://img1.blogblog.com/img/widgets/subscribe-netvibes.png'/>
+</a>
+<a class='feed-reader-link' href='http://add.my.yahoo.com/content?url=http%3A%2F%2Ftom2ee-cs.blogspot.com%2Ffeeds%2Fposts%2Fdefault' target='_blank'>
+<img src='http://img1.blogblog.com/img/widgets/subscribe-yahoo.png'/>
+</a>
+<a class='feed-reader-link' href='http://tom2ee-cs.blogspot.com/feeds/posts/default' target='_blank'>
+<img align='absmiddle' class='feed-icon' src='http://img1.blogblog.com/img/icon_feed12.png'/>
+                Atom
+              </a>
+</div>
+</div>
+<div class='bottom'></div>
+</div>
+<div class='subscribe' id='SW_READER_LIST_CLOSED_Subscribe1POST' onclick='return(_SW_toggleReaderList(event, "Subscribe1POST"));'>
+<div class='top'>
+<span class='inner'>
+<img class='subscribe-dropdown-arrow' src='http://img2.blogblog.com/img/widgets/arrow_dropdown.gif'/>
+<span onclick='return(_SW_toggleReaderList(event, "Subscribe1POST"));'>
+<img align='absmiddle' alt='' border='0' class='feed-icon' src='http://img1.blogblog.com/img/icon_feed12.png'/>
+Příspěvky
+</span>
+</span>
+</div>
+<div class='bottom'></div>
+</div>
+</div>
+<div class='subscribe-wrapper subscribe-type-PER_POST'>
+<div class='subscribe expanded subscribe-type-PER_POST' id='SW_READER_LIST_Subscribe1PER_POST' style='display:none;'>
+<div class='top'>
+<span class='inner' onclick='return(_SW_toggleReaderList(event, "Subscribe1PER_POST"));'>
+<img class='subscribe-dropdown-arrow' src='http://img2.blogblog.com/img/widgets/arrow_dropdown.gif'/>
+<img align='absmiddle' alt='' border='0' class='feed-icon' src='http://img1.blogblog.com/img/icon_feed12.png'/>
+Komentáře
+</span>
+<div class='feed-reader-links'>
+<a class='feed-reader-link' href='http://www.netvibes.com/subscribe.php?url=http%3A%2F%2Ftom2ee-cs.blogspot.com%2Ffeeds%2F1702527354990211752%2Fcomments%2Fdefault' target='_blank'>
+<img src='http://img1.blogblog.com/img/widgets/subscribe-netvibes.png'/>
+</a>
+<a class='feed-reader-link' href='http://add.my.yahoo.com/content?url=http%3A%2F%2Ftom2ee-cs.blogspot.com%2Ffeeds%2F1702527354990211752%2Fcomments%2Fdefault' target='_blank'>
+<img src='http://img1.blogblog.com/img/widgets/subscribe-yahoo.png'/>
+</a>
+<a class='feed-reader-link' href='http://tom2ee-cs.blogspot.com/feeds/1702527354990211752/comments/default' target='_blank'>
+<img align='absmiddle' class='feed-icon' src='http://img1.blogblog.com/img/icon_feed12.png'/>
+                Atom
+              </a>
+</div>
+</div>
+<div class='bottom'></div>
+</div>
+<div class='subscribe' id='SW_READER_LIST_CLOSED_Subscribe1PER_POST' onclick='return(_SW_toggleReaderList(event, "Subscribe1PER_POST"));'>
+<div class='top'>
+<span class='inner'>
+<img class='subscribe-dropdown-arrow' src='http://img2.blogblog.com/img/widgets/arrow_dropdown.gif'/>
+<span onclick='return(_SW_toggleReaderList(event, "Subscribe1PER_POST"));'>
+<img align='absmiddle' alt='' border='0' class='feed-icon' src='http://img1.blogblog.com/img/icon_feed12.png'/>
+Komentáře
+</span>
+</span>
+</div>
+<div class='bottom'></div>
+</div>
+</div>
+<div style='clear:both'></div>
+</div>
+</div>
+<div class='clear'></div>
+<span class='widget-item-control'>
+<span class='item-control blog-admin'>
+<a class='quickedit' href='//www.blogger.com/rearrange?blogID=8395640426039288836&widgetType=Subscribe&widgetId=Subscribe1&action=editWidget&sectionId=sidebar' onclick='return _WidgetManager._PopupConfig(document.getElementById("Subscribe1"));' target='configSubscribe1' title='Upravit'>
+<img alt='' height='18' src='http://img1.blogblog.com/img/icon18_wrench_allbkg.png' width='18'/>
+</a>
+</span>
+</span>
+<div class='clear'></div>
+</div></div>
+</div>
+<!-- spacer for skins that want sidebar and main to be the same height-->
+<div class='clear'>&#160;</div>
+</div>
+<!-- end content-wrapper -->
+<div id='footer-wrapper'>
+<div class='footer section' id='footer'></div>
+</div>
+</div></div>
+<!-- end outer-wrapper -->
+<link href='http://sites.google.com/site/tomaspinos/js/syntaxhighlighter/SyntaxHighlighter.css' rel='stylesheet' type='text/css'/>
+<script src='http://sites.google.com/site/tomaspinos/js/syntaxhighlighter/shCore' type='text/javascript'></script>
+<script src='http://sites.google.com/site/tomaspinos/js/syntaxhighlighter/shBrushJava' type='text/javascript'></script>
+<script class='javascript'>
+//<![CDATA[
+  function FindTagsByName(container, name, Tag)
+  {
+      var elements = document.getElementsByTagName(Tag);
+      for (var i = 0; i < elements.length; i++)
+      {
+          if (elements[i].getAttribute("name") == name)
+          {
+              container.push(elements[i]);
+          }
+      }
+  }
+  var elements = [];
+  FindTagsByName(elements, "code", "pre");
+  FindTagsByName(elements, "code", "textarea");
+
+for(var i=0; i < elements.length; i++) {
+if(elements[i].nodeName.toUpperCase() == "TEXTAREA") {
+ var childNode = elements[i].childNodes[0];
+ var newNode = document.createTextNode(childNode.nodeValue.replace(/<br\s*\/?>/gi,'\n'));
+ elements[i].replaceChild(newNode, childNode);
+
+}
+else if(elements[i].nodeName.toUpperCase() == "PRE") {
+ brs = elements[i].getElementsByTagName("br");
+ for(var j = 0, brLength = brs.length; j < brLength; j++) {
+  var newNode = document.createTextNode("\n");
+  elements[i].replaceChild(newNode, brs[0]);
+ }
+}
+}
+//clipboard does not work well, no line breaks
+// dp.SyntaxHighlighter.ClipboardSwf =
+//"http://[YOUR HOST]/clipboard.swf";
+dp.SyntaxHighlighter.HighlightAll("code");
+//]]>
+</script>
+<script type='text/javascript'>
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type='text/javascript'>
+try {
+var pageTracker = _gat._getTracker("UA-10472891-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+<script type="text/javascript">
+if (window.jstiming) window.jstiming.load.tick('widgetJsBefore');
+</script><script type="text/javascript" src="https://www.blogger.com/static/v1/widgets/634884679-widgets.js"></script>
+<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+<script type='text/javascript'>
+if (typeof(BLOG_attachCsiOnload) != 'undefined' && BLOG_attachCsiOnload != null) { window['blogger_templates_experiment_id'] = "templatesV1";window['blogger_blog_id'] = '8395640426039288836';BLOG_attachCsiOnload('item_'); }_WidgetManager._Init('//www.blogger.com/rearrange?blogID\x3d8395640426039288836','//tom2ee-cs.blogspot.sk/2010/01/verzovani-datoveho-modelu-liquibase.html','8395640426039288836');
+_WidgetManager._SetDataContext([{'name': 'blog', 'data': {'blogId': '8395640426039288836', 'bloggerUrl': 'http://www.blogger.com', 'title': 'O programování', 'pageType': 'item', 'postId': '1702527354990211752', 'url': 'http://tom2ee-cs.blogspot.sk/2010/01/verzovani-datoveho-modelu-liquibase.html', 'canonicalUrl': 'http://tom2ee-cs.blogspot.com/2010/01/verzovani-datoveho-modelu-liquibase.html', 'canonicalHomepageUrl': 'http://tom2ee-cs.blogspot.com/', 'homepageUrl': 'http://tom2ee-cs.blogspot.sk/', 'blogspotFaviconUrl': 'http://tom2ee-cs.blogspot.sk/favicon.ico', 'enabledCommentProfileImages': true, 'adultContent': false, 'disableAdSenseWidget': false, 'analyticsAccountNumber': '', 'searchLabel': '', 'searchQuery': '', 'pageName': 'Verzování datového modelu a LiquiBase', 'pageTitle': 'O programování: Verzování datového modelu a LiquiBase', 'encoding': 'UTF-8', 'locale': 'cs', 'localeUnderscoreDelimited': 'cs', 'isPrivate': false, 'isMobile': false, 'isMobileRequest': false, 'mobileClass': '', 'isPrivateBlog': false, 'languageDirection': 'ltr', 'feedLinks': '\74link rel\75\42alternate\42 type\75\42application/atom+xml\42 title\75\42O programování - Atom\42 href\75\42http://tom2ee-cs.blogspot.com/feeds/posts/default\42 /\76\n\74link rel\75\42alternate\42 type\75\42application/rss+xml\42 title\75\42O programování - RSS\42 href\75\42http://tom2ee-cs.blogspot.com/feeds/posts/default?alt\75rss\42 /\76\n\74link rel\75\42service.post\42 type\75\42application/atom+xml\42 title\75\42O programování - Atom\42 href\75\42http://www.blogger.com/feeds/8395640426039288836/posts/default\42 /\76\n\n\74link rel\75\42alternate\42 type\75\42application/atom+xml\42 title\75\42O programování - Atom\42 href\75\42http://tom2ee-cs.blogspot.com/feeds/1702527354990211752/comments/default\42 /\76\n', 'meTag': '', 'openIdOpTag': '', 'latencyHeadScript': '\74script type\75\42text/javascript\42\76(function() { var b\75window,f\75\42chrome\42,g\75\42tick\42,k\75\42jstiming\42;(function(){function d(a){this.t\75{};this.tick\75function(a,d,c){var e\75void 0!\75c?c:(new Date).getTime();this.t[a]\75[e,d];if(void 0\75\75c)try{b.console.timeStamp(\42CSI/\42+a)}catch(h){}};this[g](\42start\42,null,a)}var a;b.performance\46\46(a\75b.performance.timing);var n\75a?new d(a.responseStart):new d;b.jstiming\75{Timer:d,load:n};if(a){var c\75a.navigationStart,h\75a.responseStart;0\74c\46\46h\76\75c\46\46(b[k].srt\75h-c)}if(a){var e\75b[k].load;0\74c\46\46h\76\75c\46\46(e[g](\42_wtsrt\42,void 0,c),e[g](\42wtsrt_\42,\42_wtsrt\42,h),e[g](\42tbsd_\42,\42wtsrt_\42))}try{a\75null,\nb[f]\46\46b[f].csi\46\46(a\75Math.floor(b[f].csi().pageT),e\46\0460\74c\46\46(e[g](\42_tbnd\42,void 0,b[f].csi().startE),e[g](\42tbnd_\42,\42_tbnd\42,c))),null\75\75a\46\46b.gtbExternal\46\46(a\75b.gtbExternal.pageT()),null\75\75a\46\46b.external\46\46(a\75b.external.pageT,e\46\0460\74c\46\46(e[g](\42_tbnd\42,void 0,b.external.startE),e[g](\42tbnd_\42,\42_tbnd\42,c))),a\46\46(b[k].pt\75a)}catch(p){}})();b.tickAboveFold\75function(d){var a\0750;if(d.offsetParent){do a+\75d.offsetTop;while(d\75d.offsetParent)}d\75a;750\76\75d\46\46b[k].load[g](\42aft\42)};var l\75!1;function m(){l||(l\75!0,b[k].load[g](\42firstScrollTime\42))}b.addEventListener?b.addEventListener(\42scroll\42,m,!1):b.attachEvent(\42onscroll\42,m);\n })();\74/script\076', 'mobileHeadScript': '', 'view': '', 'dynamicViewsCommentsSrc': '//www.blogblog.com/dynamicviews/4224c15c4e7c9321/js/comments.js', 'dynamicViewsScriptSrc': '//www.blogblog.com/dynamicviews/76f25a6f2e06af76', 'plusOneApiSrc': 'https://apis.google.com/js/plusone.js', 'sf': 'n', 'tf': ''}}, {'name': 'skin', 'data': {'vars': {'sidebartextcolor': '#666666', 'linkcolor': '#5588aa', 'visitedlinkcolor': '#999999', 'textcolor': '#333333', 'headerfont': 'normal normal 78% \47Trebuchet MS\47,Trebuchet,Arial,Verdana,Sans-serif', 'pagetitlefont': 'normal normal 200% Georgia, Serif', 'bgcolor': '#ffffff', 'descriptioncolor': '#999999', 'titlecolor': '#cc6600', 'bordercolor': '#cccccc', 'postfooterfont': 'normal normal 78% \47Trebuchet MS\47, Trebuchet, Arial, Verdana, Sans-serif', 'pagetitlecolor': '#666666', 'bodyfont': 'normal normal 81% Georgia, Serif', 'endSide': 'right', 'startSide': 'left', 'descriptionfont': 'normal normal 78% \47Trebuchet MS\47, Trebuchet, Arial, Verdana, Sans-serif', 'sidebarcolor': '#999999'}, 'override': ''}}, {'name': 'view', 'data': {'classic': {'name': 'classic', 'url': '?view\75classic'}, 'flipcard': {'name': 'flipcard', 'url': '?view\75flipcard'}, 'magazine': {'name': 'magazine', 'url': '?view\75magazine'}, 'mosaic': {'name': 'mosaic', 'url': '?view\75mosaic'}, 'sidebar': {'name': 'sidebar', 'url': '?view\75sidebar'}, 'snapshot': {'name': 'snapshot', 'url': '?view\75snapshot'}, 'timeslide': {'name': 'timeslide', 'url': '?view\75timeslide'}}}]);
+_WidgetManager._RegisterWidget('_ProfileView', new _WidgetInfo('Profile1', 'sidebar', null, document.getElementById('Profile1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_BlogArchiveView', new _WidgetInfo('BlogArchive1', 'sidebar', null, document.getElementById('BlogArchive1'), {'languageDirection': 'ltr'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_FollowersView', new _WidgetInfo('Followers1', 'sidebar', null, document.getElementById('Followers1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_SubscribeView', new _WidgetInfo('Subscribe1', 'sidebar', null, document.getElementById('Subscribe1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_HeaderView', new _WidgetInfo('Header1', 'header', null, document.getElementById('Header1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_NavbarView', new _WidgetInfo('Navbar1', 'navbar', null, document.getElementById('Navbar1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_BlogView', new _WidgetInfo('Blog1', 'main', null, document.getElementById('Blog1'), {'cmtInteractionsEnabled': false, 'lightboxEnabled': true, 'lightboxModuleUrl': 'https://www.blogger.com/static/v1/jsbin/2600510571-lbx__cs.js', 'lightboxCssUrl': 'https://www.blogger.com/static/v1/v-css/2392111094-lightbox_bundle.css'}, 'displayModeFull'));
+</script>
+</body>
+</html>
