@@ -134,5 +134,17 @@
 	<changeSet author="Kubo2" id="constraint-7">
 		<addForeignKeyConstraint baseColumnNames="id_user" baseTableName="images" constraintName="images_ref1_user_id" referencedColumnNames="id" referencedTableName="users" onDelete="NO ACTION" onUpdate="NO ACTION" />
 	</changeSet>
+	<changeSet author="Kubo2" id="charset-1">
+		<preConditions onFail="MARK_RAN">
+			<dbms type='mysql' />
+		</preConditions>
+		<sql>
+			ALTER TABLE `users` convert to character set utf8 collate utf8_unicode_ci;
+			ALTER TABLE `categories` convert to character set utf8 collate utf8_unicode_ci;
+			ALTER TABLE `topics` convert to character set utf8 collate utf8_unicode_ci;
+			ALTER TABLE `posts` convert to character set utf8 collate utf8_unicode_ci;
+			ALTER TABLE `images` convert to character set utf8 collate utf8_unicode_ci;
+		</sql>
+	</changeSet>
 	<include file="test-data.sql" relativeToChangelogFile="true" />
 </databaseChangeLog>
