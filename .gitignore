@@ -4,6 +4,7 @@ log.*
 *.cache
 *-OLD
 *.OLD
+.htaccess-wedos
 
 # ignore archives
 *.zip
