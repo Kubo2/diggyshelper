@@ -78,10 +78,10 @@ $_SESSION = [
 	"username" => $_POST['username'],
 ];
 
-//exit;
 presmerovanie:
+
 // kam presmerovať
-$redirectTo = "http://$_SERVER[SERVER_NAME]" . dirname($_SERVER["SCRIPT_NAME"]) . "/index.php";
+$redirectTo = "http://$_SERVER[SERVER_NAME]/" . trim(dirname($_SERVER["SCRIPT_NAME"]), '/') . "/index.php";
 
 // presmerovať na referer?
 $ref = !isset($_POST["redirect-noreferer"]);
@@ -95,6 +95,7 @@ if(
 }
 
 // presmeruj na správnu adresu
+//print($redirectTo); # the bug unpacker
 header("Location: $redirectTo", true, 302);
 
 exit;

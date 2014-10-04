@@ -3,7 +3,7 @@
 	<div id="loginprovizor">
 		<?php 	if(!isset($_SESSION['uid'])): // TODO: restructure session array	?>
 		<form action='login.php' method='post'>
-			<?php if(in_array(basename($_SERVER["REQUEST_URI"]), [ 'register.php', ])): ?>
+			<?php if(in_array(trim(basename($_SERVER["REQUEST_URI"]), '?'), [ 'register.php', ])): ?>
 			<input type="hidden" name="redirect-noreferer" value="1">
 			<?php endif ?>
 			<input class='input' type='text' name='username' placeholder='Nickname'><br>
