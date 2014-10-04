@@ -146,5 +146,10 @@
 			ALTER TABLE `images` convert to character set utf8 collate utf8_unicode_ci;
 		</sql>
 	</changeSet>
+	<changeSet id='drop-views' author='Kubo2'>
+		<sql>
+			ALTER TABLE `topics` DROP COLUMN `topic_views`
+		</sql>
+	</changeSet>
 	<include file="test-data.sql" relativeToChangelogFile="true" />
 </databaseChangeLog>
