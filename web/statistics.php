@@ -51,13 +51,6 @@ where topic_date = (
 	select max(topic_date) 
 	from topics
 )");
-	$mostViewedTopic = mysql_query("SELECT t.id, t.category_id, t.topic_title, v.views 
-FROM (
-	SELECT MAX( topic_views ) AS views 
-	FROM topics 
-) v 
-JOIN topics t ON t.topic_views = v.views 
-LIMIT 1");
 	
 	$membersCount = $membersCount ? mysql_fetch_row($membersCount) : array(-1);
 	if($newestMember)
@@ -66,8 +59,6 @@ LIMIT 1");
 		$mostActiveMember = mysql_fetch_assoc($mostActiveMember);
 	if($newestTopic)
 		$newestTopic = mysql_fetch_assoc($newestTopic);
-	if($mostViewedTopic)
-		$mostViewedTopic = mysql_fetch_assoc($mostViewedTopic);
 	?>
 	
 	<p>
@@ -96,15 +87,6 @@ LIMIT 1");
 				<b><a class="naj" href="./view_topic.php?tid=<?php echo $newestTopic['id']; ?>&amp;cid=<?php echo $newestTopic['category_id']; ?>">
 					<?php echo $newestTopic['topic_title']; ?>
 				</a></b>.
-				<?php } ?><br><br>
-		Najzobrazovanejšia téma: <?php
-				if(!$mostViewedTopic)
-					echo "Nie je.";
-				else { ?>
-				<b><a class="naj" href="./view_topic.php?tid=<?php echo $mostViewedTopic['id']; ?>&amp;cid=<?php echo $mostViewedTopic['category_id']; ?>">
-					<?php echo $mostViewedTopic['topic_title']; ?>
-				</a></b> 
-				zobrazená <b style="color: red"><?php echo $mostViewedTopic['views']; ?></b> krát.
 				<?php } ?>
 	</p>
 	</div>
