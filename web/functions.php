@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Functions library.
+ */
+
+require_once( dirname(__FILE__) . '/lib-core.php' ) ;	
 
 /**
  * Identity of object. Returns passed value unchanged.

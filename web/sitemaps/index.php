@@ -12,6 +12,7 @@ define('USECACHE', is_file('./index_usecache'));
 define('UCFILE', './index_usecache');
 define('CACHEFILE', './index.cache');
 
+require_once('./../lib-core.php');
 require_once('./sample.php');
 
 if(substr_compare($_SERVER["REQUEST_URI"], '/index.php', -10) === 0) {
@@ -84,8 +85,27 @@ sample
 }
 
 FLUSH: {
-	header("Content-Type: application/xml; charset=utf-8", true, USECACHE && isset($_SERVER["HTTP_IF_MODIFIED_SINCE"]) ? 304 : 200);
+	header("Content-Type: application/xml; charset=utf-8", true, USECACHE && (
+		strtotime(
+			whether(
+				$_SERVER["HTTP_IF_MODIFIED_SINCE"],
+				"+ 1 day" /// <summary>strtotime()'s argument</summary>
+			)
+		) < iftrue(@ filemtime(CACHEFILE), time())
+	) ? 304 : 200);
 	header("Cache-Control: max-age=9, must-revalidate");
-	header(sprintf("Last-Modified: %s", gmdate("D, j M Y H:i:s", filemtime(CACHEFILE))));
+	header(
+		sprintf(
+			"Last-Modified: %s",
+			gmdate(
+				"D, j M Y H:i:s",
+				iftrue(
+					@ filemtime(CACHEFILE),
+					time()
+				)
+			)
+		)
+	);
+
 	ob_end_flush() && flush();
 }
