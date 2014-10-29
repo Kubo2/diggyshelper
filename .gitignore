@@ -1,15 +1,24 @@
+# miscellanous
 /google*.html
 log.*
 *.log
+.htaccess-wedos
+
+# really? ignore temporary files
+cache/*
+temp/*
+tmp/*
 *.cache
+*.temp
+*.tmp
 *-OLD
 *.OLD
-.htaccess-wedos
 
 # ignore archives
 *.zip
 *.rar
 
+# internals
 images/upload
 .ftp
 .db.cfg
