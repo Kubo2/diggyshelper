@@ -15,6 +15,7 @@
    + Removed tracking of the "topic views" (~ Kubo2)
    + Removal of the 'most viewed topic' in statistics (~ Kubo2)
    + Fixed some general minor bugs (~ Kubo2&WladinQ)
+   + The 'Back' ('Späť') button above on topic page now always links to the topic's category (~ Kubo2)
 
 # More info
 

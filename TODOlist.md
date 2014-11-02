@@ -20,12 +20,11 @@
 
 ### Úlohy pre vývojárov serverovej aplikácie
 
-  - [ ] **(!)** lepsie nakodovat button "Späť"
-  - [ ] **(!)** Upload obrázkov do `images/profilefoto` namiesto Amazon S3 (dočasne)
+  - [ ]  (!) Upload obrázkov do `images/profilefoto` namiesto Amazon S3 (dočasne)
 
 #### Príspevky
 
-  - [ ] **(!)** parsovanie BB kódov v príspevkoch
+  - [ ]  (!) parsovanie BB kódov v príspevkoch
   - [ ] Upravovanie príspevkov
   - [ ] Po nahratí obrázku _na pozadí_ automaticky vložiť do príspevku za kurzor značku `[img][/img]` s URL adresou nahraného obrázku (#ref/JS)
 
