@@ -40,7 +40,7 @@
 
   - [ ] dorobit moderatorov fora
     - [ ] rozlíšiť práva moderátorov a administrátorov
-    - [ ] vyriešiť organizovanie interných záležitostí
+    - [x] vyriešiť organizovanie interných záležitostí
 
 #### upload obrázkov
 
@@ -56,12 +56,3 @@
 
   - [ ] odkazy v príspevkoch by mali byť bez dekorácií modrou farbou akou sú teraz odkazy vo {web/index.php}
   - [ ] naprogramovat pocet 20tich blokov s nadpismy na  jednu stranku
-
-#### Profilová stránka
-
-  - [x] informácie
-    - [x] meno
-    - [x] email
-    - [x] vlastný popis používateľa
-    - [x] datum registracie
-    - [x] pocet prispevkou vo fore

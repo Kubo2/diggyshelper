@@ -67,13 +67,17 @@ function getUser($id, $fieldList) {
 	// skips the execution if there is no user with specified id
 	{
 		$statement = sprintf( "SELECT COUNT(*) FROM users WHERE id = %d", $id );
-		$result = mysql_query($statement);
 
-		if(mysql_num_rows($result) < 1) {
-			return false;
+		if(empty($cache[$id])) {
+			$result = mysql_query($statement);
+
+			if(mysql_num_rows($result) < 1) {
+				return false; // ============>
+			}
+			
+			mysql_free_result($result);
 		}
 
-		mysql_free_result($result);
 		unset($statement, $result);
 	}
 
