@@ -6,33 +6,6 @@
 
 require_once( dirname(__FILE__) . '/lib-core.php' ) ;	
 
-/**
- * Identity of object. Returns passed value unchanged.
- *
- * @author   Jakub Vrána
- * @since v1.5-beta
- *
- * @param mixed
- * @return mixed
- */
-function id($o)
-{
-	return $o;
-}
-
-/**
- * Array slice function that works with associative arrays (keys).
- *
- * @author Taylor Barstow <taylorbarstow@gmail.com>
- * @link http://php.net/array-slice#64122
- *
- * @param array
- * @param array
- * @return array
- */
-function array_slice_assoc($array,$keys) {
-    return array_intersect_key($array,array_flip($keys));
-}
 
 /**
  * Is current user signed in?

@@ -25,6 +25,20 @@ if(DEFINED('DH_PHP_CORE')) return;
 DEFINE('DH_PHP_CORE', TRUE);
 
 /**
+ * Identity of object. Returns passed value unchanged.
+ *
+ * @author   Jakub Vrána
+ * @since v1.5-beta
+ *
+ * @param mixed
+ * @return mixed
+ */
+function id($o)
+{
+	return $o;
+}
+
+/**
  * Sometimes it is called ifsetor(), we use name whether() for it.
  * Its role is to determine *wheter* some variable was set; if it was,
  * then return its value; if not, return the default value, specified in 
@@ -61,4 +75,18 @@ function iftrue($val, $default) {
 	if((boolean) $val)
 		return $val;
 	return $default;
+}
+
+/**
+ * Array slice function that works with associative arrays (keys).
+ *
+ * @author Taylor Barstow <taylorbarstow@gmail.com>
+ * @link http://php.net/array-slice#64122
+ *
+ * @param array
+ * @param array
+ * @return array
+ */
+function array_slice_assoc($array,$keys) {
+    return array_intersect_key($array,array_flip($keys));
 }
