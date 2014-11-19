@@ -48,7 +48,6 @@ function loggedIn()
 
 /**
  * Retrieves an information about user specified by unique identifier.
- * <b>DO NOT CALL THIS FUNCTION FREQUENTLY (E. G. IN A LOOP)!</b>
  *
  * @since v1.5.0-alpha1
  *
@@ -132,48 +131,6 @@ function sk_sanitizeEmail($email)
 	return $email;
 }
 
-
-/**
- * Sequentially loops through an array and compares its values at specific keys/indexes with second
- * array's values on the same keys/indexes.
- *
- * Returns < 0 if the value in the second array is not equal with the first array or the second array is greater 
- * e.g. it has greater length.
- * Returns > 0 if the first array is greater than second array (the specific value in the second array doesn't
- * exist).
- * Return 0 (false) if both arrays are equal.
- *
- * @param array
- * @param array
- * @return integer
- *
- */
-function cmpArrayValuesSeq(array $_1_, array $_2_) {
-	
-	// less than second array
-	if(count($_2_) > count($_1_)) {
-		return   -1;
-	}
-
-	foreach($_1_ as $key => $value) {
-		
-		// lgreater than second array
-		if(!isset($_2_[$key])) {
-			return   +1;
-		}
-
-		// less than second array - theoretically the second array have got newer version of the value
-		//# (but only theoretically)
-		if($value !== $_2_[$key]) {
-			return   -1;
-		}
-	}
-
-	// neutral - both arrays are equal
-	//return   0;
-	return   (int) !true;
-}
-
 /**
  * Whether at least one field of array is empty.
  *
@@ -208,42 +165,3 @@ function emptyArrayFields(array $array)
 	}
 	return $result;
 }
-
-/**
- * Vloží všetky súbory v zadanom adresári do volajúceho skriptu
- * a pokúsi sa ich spracovať ako PHP kód (nezáleží na prípone).
- * 
- * @author Jakub Kubíček <kelerest123@gmail.com>
- * @todo refactor
- * 
- * @param string adresár z ktorého sa majú načítať súbory
- * @param array vložia sa iba vymenované súbory (voliteľný)
- * @return void
- * @throws DomainException ak adresár alebo niektorý/é zo zadaných súborov v druhom parametri neexistuje
- *
-*/
-// function includeRecursive($dir, $files = array())
-// {
-// 	if(!is_dir($dir) || !$dh = opendir($dir)) throw new DomainException();
-
-// 	$dir .= DIRECTORY_SEPARATOR;
-
-// 	array_walk($files, function($item) use($dir)
-// 		{
-// 			$path = $dir . $item;
-// 			if(!is_file($path)) throw new DomainException();
-// 		}
-// 	);
-
-// 	if(count($files))
-// 	{
-// 		foreach($files as $file) require($dir . $file);
-// 	} else {
-// 		while(($file = readdir($dh) !== false) && $path = $dir . $file)
-// 		{
-// 			if(is_file($path)) require($path);
-// 		}
-// 	}
-
-// 	closedir($dh);
-// } includeRecursive("includes");
