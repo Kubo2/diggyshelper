@@ -8,9 +8,10 @@ $httpStatus = 200;
 
 $userinfo = [
 	"user-name" => null,
-	"user-group" => null,
 	"user-email" => null,
 	//"user-email-sanitized" => null,
+	"description" => null,
+	"user-group" => null,
 	"user-register-date" => null,
 	"stats-post-count" => null,
 	"stats-last-visit" => null,
@@ -26,6 +27,7 @@ $rawinfo= <<< SQL
 	select
 		u.username as `user-name`,
 		u.email as`user-email`,
+		u.description,
 		u.access as `user-group`,
 		date_format(u.registerdate, '%e. %c. %Y') as `user-register-date`,
 		date_format('00-00-0000 00:00', '%e. %c. %Y') as `stats-last-visit`, -- TODO: fix last visit
@@ -33,13 +35,19 @@ $rawinfo= <<< SQL
 	from
 		users u,
 		posts p
-	where
+	where -- TODO: fix users with no (0 - zero) posts
 		u.username = '$id' AND p.post_creator = u.id
 	GROUP BY u.id HAVING u.id IS NOT NULL
 SQL;
 
 if(defined('DB_CONNECTED')) {
 	$rawinfo = mysql_query($rawinfo);
+
+	if(! $rawinfo) {
+		$httpStatus = 'databáze'; // very tricky hack
+		goto page_template;
+	}
+
 	if(!mysql_num_rows($rawinfo)) {
 		$httpStatus = 404;
 		goto page_template;
@@ -53,7 +61,7 @@ $userinfo = $rawinfo + $userinfo;
 page_template:
 
 session_start();
-header("Content-Type: text/html; charset=utf-8", true, $httpStatus);
+header("Content-Type: text/html; charset=utf-8", true, (int) $httpStatus);
 
 // template components
 require_once("sanitize.lib.php");
@@ -79,13 +87,7 @@ set_include_path("./includes/");
 					<style scoped>table td {text-align: left !important}</style>
 					<tr>
 						<td rowspan="6">
-							<img src="<?= $userinfo['avatar-path'] ?>"
-								alt="Profilový obrázok používateľa <?= SanitizeLib\escape($userinfo['user-name'], 'html') ?>"
-								style="
-									width: 240px;
-									height: 100%;
-								"
-								class="user-avatar">
+							<?=( SanitizeLib\escape((string) $userinfo['description'], 'HTML') )?>
 						</td>
 					</tr>
 					<tr>

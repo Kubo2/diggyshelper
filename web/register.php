@@ -5,7 +5,7 @@ session_start();
 // ak užívateľ nie je prihlásený, neexistuje ani 'uid'
 // v {@see logout.php} je totižto volaná funkcia session_destroy()
 if(isset($_SESSION['uid'])) {
-	header("Location: http://$_SERVER[SERVER_NAME]" .dirname($_SERVER["PHP_SELF"]). "index.php", true, 302);
+	header("Location: http://$_SERVER[SERVER_NAME]" .rtrim(dirname($_SERVER["PHP_SELF"]), '/'). "/index.php", true, 302);
 	exit;
 }
 

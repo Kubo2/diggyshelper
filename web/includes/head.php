@@ -8,7 +8,7 @@ require_once("sanitize.lib.php");
 
 ?>
 <meta charset="utf-8">
-<!--meta name="viewport" content="width=device-width,initial-scale=1.1,user-scalable=no"-->
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 <!-- Universal title. Only temporarily. -->
 <title><?=
 			! empty( $titleConst )

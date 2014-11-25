@@ -1,23 +1,19 @@
 <?php
-//error_reporting(E_ALL|E_STRICT);
-/* Session sa musí inicializovať ešte *pred* odoslaním akéhokoľvek výstupu */
-// @see http://php.net/session-start
+
+// initialize sessions
 session_start();
 
-// zapnutie output bufferingu (nemám iný spôsob posielania hlavičiek po výstupe) 
-// @see http://php.net/ob-start
-@ob_start();
+// initialize buffer (temporary; will be replaced by templates)
+ob_start(  );
 
-// pridaná HTTP hlavička určujúca kódovanie (neviem, čo máš v head.php, ale pre istotu, keďže 
-// si mi písal, že ti nejde utf8) -- diakritika by už mala fachať 
-@header("Content-Type: text/html; charset=utf-8", true, 200);
+header("Content-Type: text/html; charset=utf-8", true, 200);
 
-// pre odkomentovanie doctypu jednoducho odstráň sekvenciu -- zo začiatku aj z konca
 ?>
-<!--DOCTYPE HTML-->
+<!DOCTYPE HTML>
 <html>
 <?php // TODO: Prepísať celý skript ?>
 <head>
+	<!--link rel="canonical" href="http://<?=( $_SERVER['SERVER_NAME'] . rtrim(dirname($_SERVER['REQUEST_URI']), '/'))?>/view_topic.php"-->
 	<?php include 'includes/head.php'; ?>
 </head>
 <body>
@@ -28,44 +24,106 @@ session_start();
 	<?php include 'includes/submenu.php'; ?>
 	
 <div id="forum">
-<div id="content">
-	<?php
-		include_once("connect.php");
+<div id="content"><?php
+	
+	require("./connect.php");
+	require('./functions.php');
 
-		/** < intentionally @ > */
-		@$cid 	= intVal($_GET['cid']);
-		@$tid 		= intVal($_GET['tid']);
-		/** < / intentionally @ > */
+	/** @var callable */
+	$fuckable_404 = function($render = '<p>Táto téma neexistuje.</p>') {
+		header("HTTP/1.1 404 Topic does not exist");
+		echo($render);
+		//exit; # never, never exit
+	};
 
-		// TODO: obmedziť získavanie dát na jeden dotaz
-		// TODO: toto odstrániť
-		$sql = "SELECT topic_title, topic_views FROM `topics` WHERE `category_id` = $cid AND `id` = $tid LIMIT 1";
-		$res = mysql_query($sql);
-		if ($res && mysql_num_rows($res) == 1) {
-			echo "<table border='0px' width='100%'>";
-			if (!empty($_SESSION['uid'])) { echo "<tr><td colspan='2'><a class='button' href='javascript:history.back(1)'>Späť</a> | <input type='submit' class='input_button' value='Pridať otázku/odpoveď' onClick=\"window.location = 'post_reply.php?cid=".$cid."&tid=".$tid."'\" /><hr />"; } else { echo "<tr><td colspan='2'><a class='button' href='javascript:history.back(1)'>Späť</a> | Na pridanie odpovedí je potrebné sa <font color='#106CB5'><b>Prihlásiť</b></font>, alebo sa <font color='#33CC00'><b>Registrovať</b></font>!<hr /></td></tr>"; }
-			while ($row = mysql_fetch_assoc($res)) {
-				$sql2 = "SELECT p.post_date, p.post_content, u.username as `post_creator` FROM posts p JOIN users u ON p.post_creator = u.id WHERE `category_id` = $cid AND `topic_id` = $tid ORDER BY p.post_date ASC ";
-				$res2 = mysql_query($sql2);
-				while ($res2 && $row2 = mysql_fetch_assoc($res2)) {
-					echo "<tr><td valign='top' style='border: 2px solid #33CC00;'><div style='padding: 5px;'><strong>".$row['topic_title']."</strong>&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;Pridal/a: <a class='memberusers' href='http://diggyshelper.net/profile.php?user=".$row2['post_creator']."'><strong>".$row2['post_creator']."</strong></a> dňa <font color='#33CC00'>".date("d.m.Y / H:i:s", strtotime($row2['post_date']))."</font><hr />".$row2['post_content']."</div></td></tr>";
-				}
+	if(!isset($_GET['cid'], $_GET['tid'])) {
+		$fuckable_404("<h1>Chyba 404:</h1><p>Požadovaná stránka nebola nájdená.<p>Požadovanú stránku nemožno zobraziť, pretože táto stránka neexistuje.");
+	} else {
+		$qs = array_slice_assoc($_GET, [ 'cid', 'tid' ]);
+		array_walk($qs, function(& $id) {
+			$id = max(0, intval($id));
+		});
+		extract($qs);
 
-				/** @todo odstrániť nasledujúce štyri riadky (vyžaduje úpravu štruktúry databáze) */
-				$old_views = $row['topic_views'];
-				$new_views = $old_views + 1;
-				$sql3 = "UPDATE topics SET `topic_views` = $new_views WHERE `category_id` = $cid AND `id` = $tid ";
-				mysql_query($sql3);
+		if($cid && $tid) {
+			$topic = mysql_query(
+				sprintf( "SELECT `topic_title` as `title`, `topic_creator` as `creator`
+						FROM `topics`
+							WHERE `category_id` = %d AND `id` = %d
+						LIMIT 1",
+					$cid,
+					$tid
+				)
+			);
 
+			if($topic && mysql_num_rows($topic)) {
+				$posts = mysql_query(
+					sprintf( "SELECT p.post_date as `added`, p.post_content as `text`, u.username as `author`
+							FROM `posts` p
+								JOIN `users` u
+									ON p.post_creator = u.id
+								WHERE `category_id` = %d AND `topic_id` = %d
+							ORDER BY p.post_date ASC ",
+						$cid,
+						$tid
+					)
+				);
+
+				if(! $posts) goto suckableFail;
+
+				$topic = mysql_fetch_object($topic) ?>
+
+	<h1   class='no-center' ><?= htmlspecialchars($topic->title) ?></h1>
+	<table border=0 style='width: 100%'>
+		<tr>
+			<td colspan=2>
+				<a class='button' href='javascript:history.back(1)'>Späť</a> |
+				<?php if( ! loggedIn() ): ?>
+					Na pridanie odpovede je potrebné sa <b style="color: #106cb5">Prihlásiť</b>, alebo sa <b style="color: #33cc00">Registrovať</b>!
+					<hr><?php 
+						else: 
+					?><a class='input_button' rel='nofollow' href='<?= 
+						sprintf('./post_reply.php?cid=%d&amp;tid=%d', $cid, $tid) 
+					?>'>Pridať otázku/odpoveď</a>
+					<hr>
+				<?php endif ?>
+			</TD>
+		</tr>
+		<?php while(($post = mysql_fetch_object($posts)) !== false): ?>
+		<tr>
+			<td valign='top' style='border: 2px solid #33cc00; padding: 5px'>
+				<nobr class="line post-meta">Pridal/a: <a 
+					style="font-weight: bold" 
+					class='memberusers' 
+					href='./profile.php?user=<?=( urlencode($post->author /*, 'HTML'*/) )?>'><?=(
+						SanitizeLib\escape($post->author, 'HTML')
+					)?></a> dňa <time datetime=<?=(
+						id(new DateTime($post->added))->format("'c'")
+					)?> style='color: #33cc00'><?=( id(new DateTime($post->added))->format("d.m.Y / H:i:s") )?></time>
+				</nobr>
+				<hr><div   class='post post-text'><?=( SanitizeLib\sanitize($post->text,  SanitizeLib\HTML) )?></div>
+			</td>
+		</tr>
+		<?php endwhile ?>
+	</table>
+<?php suckableFail:
+	if(! $posts): ?>
+	<p>Sorry, but something wrong happened. Please retry.
+		<?php ; endif ?>
+			<?php } else {
+				$fuckable_404();
 			}
-			echo "</table>";
 		} else {
-			echo "<p>Táto téma neexistuje.</p>";
+			$fuckable_404();
 		}
+	}
+
+
 	?>
 </div>
 </div>
-</center>
 	<?php include 'includes/footer.php'; ?>
 </body>
 </html>
+
+<?php ob_end_flush(); flush() ?>

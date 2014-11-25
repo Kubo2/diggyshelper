@@ -1,7 +1,16 @@
+# miscellanous
 /google*.html
 log.*
 *.log
+.htaccess-wedos
+
+# really? ignore temporary files
+cache/*
+temp/*
+tmp/*
 *.cache
+*.temp
+*.tmp
 *-OLD
 *.OLD
 
@@ -9,6 +18,7 @@ log.*
 *.zip
 *.rar
 
+# internals
 images/upload
 .ftp
 .db.cfg
@@ -26,4 +36,3 @@ db-log
 ## githelp.txt is WladinQ's help file with useful git commands
 # we won't include that one
 githelp.txt
-

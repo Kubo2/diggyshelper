@@ -61,7 +61,6 @@ if(!$cid) {
 select 
 	t.id as topic_id, 
 	t.topic_title, 
-	t.topic_views, 
 	t.topic_date, 
 	count(p.id) as topic_post_count, 
 	u.username as topic_creator_name 
@@ -87,13 +86,12 @@ SQLQUERY;
 		<td width='50' align='center'></td>
 		<td><span style='color:#FFF'>Názov témy</span></td>
 		<td width='200' align='center'><font color='#FFF'>Počet odpovedí</font></td>
-		<td width='100' align='center'><font color='#FFF'>Zobrazené</font></td>
 	</tr><tr>
 		<td colspan='3'><hr></td>
 	</tr>
 TOPICSTABLE;
 
-				while(list($topicId, $topicTitle, $topicViews, $topicDate, $topicPostCount, $topicCreatorName) = mysql_fetch_row($res2)) {
+				while(list($topicId, $topicTitle, $topicDate, $topicPostCount, $topicCreatorName) = mysql_fetch_row($res2)) {
 					$topicDate = date("d.m.Y / H:i:s", strtotime($topicDate));
 					$topics .= <<<TOPICSTABLE
 	<tr>
@@ -111,7 +109,6 @@ TOPICSTABLE;
 				<font color='#33CC00'>$topicDate</font>
 			</span>
 		</td><td align='center'>$topicPostCount</td>
-		<td align='center'>$topicViews&nbsp;&times;</td>
 	</tr><tr>
 		<td colspan='3'><hr></td>
 	</tr>
@@ -149,11 +146,7 @@ OFFLINE_PAGE;
 ?>
 </div>
 </div>
-</center>
 	<?php include 'includes/footer.php'; ?>
 </body>
 </html>
-<?php
-// vypustenie obsahu z bufferu
-// @see http://php.net/ob-end-flush
-@ob_end_flush();
+<?php ob_end_flush() ?>

@@ -20,14 +20,13 @@
 
 ### Úlohy pre vývojárov serverovej aplikácie
 
-  - [ ] lepsie nakodovat button "Späť"
-  - [ ] Upload obrázkov do `images/profilefoto` namiesto Amazon S3 (dočasne)
+  - [ ] **(!)** lepsie nakodovat button "Späť"
+  - [ ] **(!)** Upload obrázkov do `images/profilefoto` namiesto Amazon S3 (dočasne)
 
 #### Príspevky
 
   - [ ] **(!)** parsovanie BB kódov v príspevkoch
   - [ ] Upravovanie príspevkov
-  - [x] príspevky zobrazovat od najnovsieho
   - [ ] Po nahratí obrázku _na pozadí_ automaticky vložiť do príspevku za kurzor značku `[img][/img]` s URL adresou nahraného obrázku (#ref/JS)
 
 #### implementácia užívateľov
@@ -36,10 +35,6 @@
   - [ ] functionality of "Zapamätať heslo" button
   - [ ] functionality of "Zapamätať si ma" button
   - [ ] functionality of "Zabudli ste heslo?" button
-
-##### používateľský profil
-
-  - [x] Functionality of "Zmena osobných informácii" button
 
 ##### skupiny používateľov (plus rozdeľovanie na špecifické skupiny: admin, moderator, member)
 
@@ -61,12 +56,12 @@
 
   - [ ] odkazy v príspevkoch by mali byť bez dekorácií modrou farbou akou sú teraz odkazy vo {web/index.php}
   - [ ] naprogramovat pocet 20tich blokov s nadpismy na  jednu stranku
-  - [x] spravit s mena Pridal/a: <MENO> odkaz s presmerovanim na profil
 
 #### Profilová stránka
 
-  - [ ] informácie
+  - [x] informácie
     - [x] meno
-    - [x] datum registracie
     - [x] email
-    - [ ] pocet prispevkou vo fore
+    - [x] vlastný popis používateľa
+    - [x] datum registracie
+    - [x] pocet prispevkou vo fore
