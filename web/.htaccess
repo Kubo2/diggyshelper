@@ -1,0 +1,20 @@
+## Http redirecting
+Redirect 301 /members-new.php http://diggyshelper.php5.sk/members.php
+
+## Rewrite rules
+RewriteEngine On
+
+# subdomain vyvoj.diggyshelper.net
+RewriteCond %{HTTP_HOST} ^vyvoj\. [NC]
+RewriteRule ^(.*)$ __sub-vyvoj__.php?uri=$1 [QSA,L]
+
+## PHP Settings
+#php_value session.gc_maxlifetime 0
+#php_flag display_errors On
+#php_value error_reporting 0
+
+## Denied access to "hidden" files and folders
+<FilesMatch "^\.">
+    Order deny,allow
+    Deny from all
+</FilesMatch>

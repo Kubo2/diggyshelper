@@ -1,0 +1,12 @@
+#Options +FollowSymLinks
+
+<FilesMatch "\.(cache|sample)$">
+    Order deny,allow
+    Deny from all
+</FilesMatch>
+
+<FilesMatch "\.xml\.php$">
+    Header set Content-Type "application/xml; charset=utf-8"
+</FilesMatch>
+
+Header set X-Validator "Narozdiel od HTML, u XML mi na validite záleží. ~Kubo2"

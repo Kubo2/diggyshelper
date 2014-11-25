@@ -1,0 +1,50 @@
+@charset "UTF-8";
+@import "http://fonts.googleapis.com/css?family=Andika&subset=latin,latin-ext";
+@namespace url('http://www.sitemaps.org/schemas/sitemap/0.9');
+@namespace html url('http://www.w3.org/TR/html4/strict.dtd');
+
+sitemapindex, urlset {
+	width: 70% !important;
+	min-width: 70% !important;
+	margin: 0 auto;
+	font-family: Andika, Tahoma, Arial;
+}
+
+html|title {
+	display: none;
+}
+
+html|h1 {
+	display: block;
+	font-size: 1.8em;
+	font-weight: bold;
+	margin: .6em auto;
+}
+
+html|p {
+	display: block;
+	margin: .4em auto;
+}
+
+html|hr {
+	display: block;
+	width: 100%;
+	border: 1px solid darkblue;
+	margin: 1em 0;
+}
+
+/** table elements */
+html|table, urlset {
+	display: table;
+	min-width: 100%;
+	border-bottom: 2px dashed silver;
+}
+
+html|tr, sitemap, url {
+	display: table-row;
+}
+
+html|td, html|th, loc, priority, lastmod, changefreq {
+	display: table-cell;
+	border-top: 2px solid gold;
+}
