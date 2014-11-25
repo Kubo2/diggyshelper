@@ -5,6 +5,10 @@ log.*
 *-OLD
 *.OLD
 
+# ignore archives
+*.zip
+*.rar
+
 images/upload
 .ftp
 .db.cfg
@@ -12,5 +16,14 @@ images/upload
 ## Liquibase is a database schema migration tool
 # see http://www.sitepoint.com/versioning-your-database-with-liquibase/
 liquibase.properties
+liquibase.update-sql
 !liquibase/
+
+# LQ logs
+db-log
+*-dump.sql
+
+## githelp.txt is WladinQ's help file with useful git commands
+# we won't include that one
+githelp.txt
 
