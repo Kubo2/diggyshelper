@@ -74,9 +74,13 @@ function parseSample($template, array $vars = array()) {
  */
 function checkTemplate($filename) {
 	if(!is_readable($filename)/* || !is_file($filename)*/) {
-		throw new \Exception(sprintf("Template %s not readable", $filename), 9);
+		throw new Exception(sprintf("Template %s not readable", $filename), 9);
 	}
 }
 
-// test passed
-//die(parseSample('./samples/sitemap-index.sample', [ "SOMETHING" => '<sitemap><loc>http://example.com/sitemap</loc></sitemap>' ]));
+/**
+ * Base exception for all {@code sample} functions
+ */
+class Exception extends \Exception {
+	
+}
