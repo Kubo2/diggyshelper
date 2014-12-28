@@ -1,9 +1,10 @@
 # CHANGELOG
 
-   **Note**: _This file from now to final release of v1.5 will contain some short descriptions of **done changes**
-   for better orientation. After release, it may (and also should) be included in final release notes._
-   
-   The structure is not known yet.
+This changelog contains all major and minor changes done in united versions.
+
+# More info
+
+For more information about _planned features_, please [see TODO list](htp://github.com/Kubo2/diggyshelper/blob/HEAD/TODOlist.md).
 
 # Features
 
@@ -14,7 +15,4 @@
    + Removed tracking of the "topic views"
    + Removal of the 'most viewed topic' in statistics
    + Fixed some general minor bugs
-
-# More info
-
-For more information about planned features, please [see TODO list](htp://github.com/Kubo2/diggyshelper/blob/HEAD/TODOlist.md).
+   + Add PHPT test-case
