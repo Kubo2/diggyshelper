@@ -4,7 +4,7 @@ This changelog contains all major and minor changes done in united versions.
 
 # Features
 
-For more information about _planned features_, please [see TODO list](../dh-1.5/TODOlist.md).
+For more information about _planned features_, please [see TODO list](TODOlist.md).
 
 ## Proposed to v1.5, release date: 2015-??-??
 
