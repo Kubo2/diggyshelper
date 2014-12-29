@@ -142,31 +142,40 @@ function vlozitBBTag(tag, text /*, oblast */ ) {
 
 })(document.forms["vytvor-temu"] || document.forms["zasli-prispevok"]);
 
-// inicializačná anonymná funkcia, ktorá vráti email v profile späť do pôovodného tvaru
+/**
+ * Inicializačná anonymná funkcia, ktorá vráti email v profile späť do pôvodného tvaru.
+ */
 (function() {
-	var email, emailOrig;
-	var patt2symbols=
-	{
-		" (bodka) " : '.',
-		" (zavináč) " : '@'
+	var email;
+	var sTable = {
+		" (bodka) ": '.',
+		" (zavináč) ": '@' // ,
 	};
 
 	try {
-		emailOrig = document
-						.getElementsByClassName('user-info')[0]
-						.getElementsByTagName('table')[0]
-						.rows[2]
-						.cells[1]
-					//.innerHTML
-		email = emailOrig.innerHTML;
-	} catch(e) {  }
+		email = document
+			.getElementsByClassName('user-info')[0]
+			.getElementsByTagName('table')[0]
+			.rows[2]
+			.cells[1]
+			.innerHTML;
+		if(!email) { // email may be empty, even if dom access succeeds
+			throw new Error();
+		}
+	} catch(e) {
+		return;
+	}
 
-	if(!emailOrig) return;
+	for(var s in sTable) {
+		while(email.indexOf(s) > -1) {
+			email = email.replace(s, sTable[s]);
+		}
+	}
 
-	for(patt in patt2symbols) (function() {
-		while(email.indexOf(patt) > -1) 
-			email = email.replace(patt, patt2symbols[patt]);
-	})()
-
-	emailOrig.innerHTML = email;
+	document // set raw email back to its field
+		.getElementsByClassName('user-info')[0]
+		.getElementsByTagName('table')[0]
+		.rows[2]
+		.cells[1]
+		.innerHTML = email;
 })();
