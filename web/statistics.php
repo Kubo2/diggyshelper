@@ -2,6 +2,9 @@
 
 header("Content-Type: text/html; charset=utf-8", true, 200);
 session_start();
+
+require __DIR__ . '/lib-core.php';
+
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -30,7 +33,8 @@ session_start();
 	<div id="statistiky">
 	
 	<?php
-	require_once("connect.php");
+	if(FALSE === (require __DIR__ . '/connect.php')) goto flush;
+
 	$membersCount = mysql_query("SELECT COUNT(*) FROM `users`");
 	$newestMember = mysql_query("SELECT `username` 
 FROM `users` 
@@ -60,10 +64,11 @@ where topic_date = (
 	if($newestTopic)
 		$newestTopic = mysql_fetch_assoc($newestTopic);
 	?>
-	
+
 	<p>
+		<?php flush: error_reporting(E_ALL & ~E_NOTICE) ?>
 		<h3>Počet zaregistrovaných užívateľov: ... <?php echo $membersCount[0] ?> ...</h3>
-		
+
 		Najnovší člen: <?php
 				if(!$newestMember)
 					echo "Nedostupný.";
