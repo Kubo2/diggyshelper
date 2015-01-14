@@ -12,21 +12,21 @@
 	</url>
 	<url>
 		<loc>http://diggyshelper.net/authors.php</loc>
-		<priority>0.9</priority>
+		<priority>0.7</priority>
 		<lastmod>2014-08-24</lastmod>
 	</url>
 	<url>
 		<loc>http://diggyshelper.net/whatandhow.php</loc>
-		<priority>0.8</priority>
+		<priority>0.7</priority>
 		<lastmod>2014-01-01</lastmod>
 	</url>
 	<url>
 		<loc>http://diggyshelper.net/contest.php</loc>
-		<priority>0.8</priority>
+		<priority>0.6</priority>
 	</url>
 	<url>
 		<loc>http://diggyshelper.net/attractions.php</loc>
-		<priority>0.7</priority>
+		<priority>0.6</priority>
 		<lastmod>2013-12-24</lastmod>
 	</url>
 	<url>

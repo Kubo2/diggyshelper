@@ -73,8 +73,11 @@ function parseSample($template, array $vars = array()) {
  * @throws Exception if the template doesn't exist or is not readable
  */
 function checkTemplate($filename) {
-	if(!is_readable($filename)/* || !is_file($filename)*/) {
-		throw new \Exception(sprintf("Template %s not readable", $filename), 9);
+	$f = realpath($filename);
+	clearstatcache(true, $f);
+
+	if(!is_readable($f)/* || !is_file($f)*/) {
+		throw new \Exception(sprintf("Template %s not readable", $f), 9);
 	}
 }
 

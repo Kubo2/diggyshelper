@@ -77,7 +77,9 @@ header("Content-Type: text/html; charset=utf-8", true, 200);
 	<table border=0 style='width: 100%'>
 		<tr>
 			<td colspan=2>
-				<a class='button' href='javascript:history.back(1)'>Späť</a> |
+				<?php if(!empty($_GET['cid'])): ?>
+					<a class='button' <?php printf("href='./view.php?cid=%d'", (int) $_GET['cid']) ?> >Späť do kategórie</a> |
+				<?php endif ?>
 				<?php if( ! loggedIn() ): ?>
 					Na pridanie odpovede je potrebné sa <b style="color: #106cb5">Prihlásiť</b>, alebo sa <b style="color: #33cc00">Registrovať</b>!
 					<hr><?php 
