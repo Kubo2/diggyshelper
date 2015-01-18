@@ -6,18 +6,18 @@ Bulletin Board decoder: basic test
 require __DIR__ . '/../web/lib/bbcode.php';
 
 $encoded = <<<BB
-Prv? odstavec, [b]tu?n? text[/b]
+Prvý odstavec, [b]tučný text[/b]
 
-[i]Druh? ods[/i]tavec, [i]kurz?va[/i]
-
-
+[i]Druhý ods[/i]tavec, [i]kurzíva[/i]
 
 
 
-Tret? odstav[u]ec, pod[/u]?iarknut?
-Nov? riadok[del], nov? odstavec[/del]
 
-Nov? odstavec a koniec textu
+
+Tretí odstav[u]ec, pod[/u]čiarknuté
+Nový riadok[del], nový odstavec[/del]
+
+Nový odstavec a koniec textu, hm?
 
 BB;
 
@@ -26,12 +26,12 @@ echo(dh_bb_decode($encoded));
 ?>
 --EXPECT--
 <p>
-Prv? odstavec, <b>tu?n? text</b>
+Prvý odstavec, <b>tučný text</b>
 </p><p>
-<i>Druh? ods</i>tavec, <i>kurz?va</i>
+<i>Druhý ods</i>tavec, <i>kurzíva</i>
 </p><p>
-Tret? odstav<u>ec, pod</u>?iarknut?<br>
-Nov? riadok<del>, nov? odstavec</del>
+Tretí odstav<u>ec, pod</u>čiarknuté<br>
+Nový riadok<del>, nový odstavec</del>
 </p><p>
-Nov? odstavec a koniec textu
+Nový odstavec a koniec textu, hm?
 </p>
