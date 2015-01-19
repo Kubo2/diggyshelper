@@ -3,7 +3,7 @@
 // load sessions
 {
 	session_start();
-	session_regenerate_id();
+	session_regenerate_id( $delete_old_session = true );
 }
 
 // user is not signed in

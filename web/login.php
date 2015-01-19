@@ -21,7 +21,7 @@ if(isset($_SESSION['uid'])) goto presmerovanie;
 
 // nie sme prihlásení: ak teda už existuje cookie so session identifikátorom, vygenerujeme nový
 if(isset($_COOKIE[ini_get('session.name')])) {
-	session_regenerate_id();
+	session_regenerate_id( $delete_old_session = true );
 }
 
 // ak užívateľ neposlal minimálne username, nemá záujem o prihlásenie
