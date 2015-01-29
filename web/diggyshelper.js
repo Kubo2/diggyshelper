@@ -19,6 +19,74 @@ function getHttpRequest()
   return !window.XMLHttpRequest ? !window.ActiveXObject ? null : new ActiveXObject("Microsoft.XMLHTTP") : new XMLHttpRequest();
 }
 
+// nadstavba nad document.cookie
+// neberie do úvahy prípadné neskoršie nastavenie cookie AJAXom, externými skriptami apod.
+document.cookies = (function(){
+	function encodeURIComponent(unescaped) {
+		// console.log('used euc')
+		return window.encodeURIComponent(unescaped).replace(/%20/g, '+');
+	}
+	function decodeURIComponent(escaped) {
+		// console.log('used duc')
+		return window.decodeURIComponent(escaped.replace(/\+/g, '%20'));
+	}
+
+	var cookies = document.cookie.split(';')
+	for(var cookie, len = cookies.length, r = 0; r < len; r++) {
+		cookie = cookies[r].trim().split('=');
+		cookies[cookie[0].toString()] = cookie[1];
+		delete cookies[r];
+	}
+
+	return {
+		/**
+		 * General constant value for cookies being deleted
+		 * 
+		 * @constant
+		 * @type {String}
+		 */
+		DELETED: 'deleted',
+		/**
+		 * Sets a new cookie.
+		 * 
+		 * @param  {string} name 	The name of cookie being set.
+		 * @param  {string} value 	The value of new cookie.
+		 * @param  {int} 	lifetime 	Number of seconds to store cookie for (not absolute date).
+		 */
+		create: function(name, value, lifetime /*, flags */) {
+			document.cookie =
+				encodeURIComponent(name)
+				+ '='
+				+ encodeURIComponent(value)
+				+ (lifetime ? '; expires=' + (n = new Date(), n.setTime(n.getTime() + lifetime * 1000), n.toGMTString()) : '')
+			;
+
+			if(typeof(lifetime) === 'undefined' || lifetime >= 0) { // not deleted, but session or higher
+				cookies[encodeURIComponent(name)] = encodeURIComponent(value);
+			} else { // lower than session
+				delete cookies[encodeURIComponent(name)];
+			}
+		},
+		// document.cookies.set() is an alias for .create()
+		set: function() {
+			this.create.apply(null, arguments);
+		},
+		/**
+		 * Returns value of a cookie specified by the name.
+		 * 
+		 * @param  {string} name 	Cookie name
+		 * @return {string|boolean} 	Actual value of the cookie or false if cookie does not exist
+		 */
+		get: function(name) {
+			name = encodeURIComponent(name);
+			if(!cookies[name]) { // cookie does not exist (yet/no longer)
+				return false;
+			}
+			return decodeURIComponent(cookies[name]);
+		}
+	};
+})();
+
 // oznámenie / hlavička
 function updateBoard(text, classification) {
 	if(!classification) classification = "notice";
@@ -142,31 +210,40 @@ function vlozitBBTag(tag, text /*, oblast */ ) {
 
 })(document.forms["vytvor-temu"] || document.forms["zasli-prispevok"]);
 
-// inicializačná anonymná funkcia, ktorá vráti email v profile späť do pôovodného tvaru
+/**
+ * Inicializačná anonymná funkcia, ktorá vráti email v profile späť do pôvodného tvaru.
+ */
 (function() {
-	var email, emailOrig;
-	var patt2symbols=
-	{
-		" (bodka) " : '.',
-		" (zavináč) " : '@'
+	var email;
+	var sTable = {
+		" (bodka) ": '.',
+		" (zavináč) ": '@' // ,
 	};
 
 	try {
-		emailOrig = document
-						.getElementsByClassName('user-info')[0]
-						.getElementsByTagName('table')[0]
-						.rows[2]
-						.cells[1]
-					//.innerHTML
-		email = emailOrig.innerHTML;
-	} catch(e) {  }
+		email = document
+			.getElementsByClassName('user-info')[0]
+			.getElementsByTagName('table')[0]
+			.rows[2]
+			.cells[1]
+			.innerHTML;
+		if(!email) { // email may be empty, even if dom access succeeds
+			throw new Error();
+		}
+	} catch(e) {
+		return;
+	}
 
-	if(!emailOrig) return;
+	for(var s in sTable) {
+		while(email.indexOf(s) > -1) {
+			email = email.replace(s, sTable[s]);
+		}
+	}
 
-	for(patt in patt2symbols) (function() {
-		while(email.indexOf(patt) > -1) 
-			email = email.replace(patt, patt2symbols[patt]);
-	})()
-
-	emailOrig.innerHTML = email;
+	document // set raw email back to its field
+		.getElementsByClassName('user-info')[0]
+		.getElementsByTagName('table')[0]
+		.rows[2]
+		.cells[1]
+		.innerHTML = email;
 })();

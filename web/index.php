@@ -1,11 +1,7 @@
 <?php
 
-define('DB_ERROR', !(require "./connect.php"));
-
-if(DB_ERROR) {
-	header("HTTP/1.1 304 Not Modified");
-	exit;
-}
+define('_DB_ERROR', FALSE === (require __DIR__ . '/connect.php'));
+if(_DB_ERROR) goto page_template;
 
 // performs a query to the database
 // it result-set will be stored in two-dimensional array internally
@@ -64,6 +60,8 @@ require "sanitize.lib.php";
 set_include_path("./includes/");
 date_default_timezone_set("Europe/Bratislava");
 
+if(_DB_ERROR) ob_start();
+
 // ====== template HTML ====== ?>
 <!doctype html>
 <?php include('head.php') ?>
@@ -88,6 +86,10 @@ date_default_timezone_set("Europe/Bratislava");
 		background: rgb(6, 90, 156);
 	}
 	</style>
+<?php if(_DB_ERROR):
+	require __DIR__ . '/includes/database-error.php';
+	ob_end_flush();
+else: // No _DB_ERROR ?>
 	<h1>Vítame ťa na stránke Diggy's Helper</h1>
 	<p><strong>Diggy's Helper je diskusné fórum</strong>, kde sa môžeš  s komunitou ľudí s rovnakou
 	záľubou podeliť o svoje postrehy a skúsenosti s hrou <a href="./about-game.php">Diggy's Adventure</a>.
@@ -114,7 +116,7 @@ date_default_timezone_set("Europe/Bratislava");
 					<?= SanitizeLib\escape($thread['author'], 'HTML') ?>
 				</td>
 				<td>
-					<time datetime=<?= $thread['created']->format("\"c\"") ?> pubdate>
+					<time datetime=<?= $thread['created']->format("\"c\"") ?>>
 						<?= $thread['created']->format("j. n. Y, H:i") ?>
 					</time>
 				</td>
@@ -122,5 +124,6 @@ date_default_timezone_set("Europe/Bratislava");
 			<?php endforeach ?>
 		</tbody>
 	</table>
+<?php ; endif // _DB_ERROR ?>
 </div>
 <?php include('footer.php') ?>
