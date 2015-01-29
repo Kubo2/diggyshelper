@@ -12,13 +12,13 @@
 
  Dohodnútá štruktúra tohoto súboru je popísaná našej [GitHub wiki](https://github.com/Kubo2/diggyshelper/wiki/Zoznam-úloh); predovšetkým je však potrebné vedieť, že tento súbor je písaný v tzv. _Flavored Markdown_, ale mal by byť spracovateľný akýmkoľvek Markdownovým parserom.
 
-## ÚLOHY
-### Úlohy špecifické administrátorom repozitára
+## Úlohy
+### špecifické administrátorom repozitára
 
-  - [ ] zaregistrovať/objednať hosting pre skladovanie dát na serveroch Amazon SSS (S3) — http://djpw.cz/158727
+  - [ ] zaregistrovať/objednať hosting pre skladovanie dát na serveroch Amazon SSS/S3 — http://djpw.cz/158727
   - [ ] vytvoriť **GitHub wiki** repozitára s informáciami pre developerov
 
-### Úlohy pre vývojárov serverovej aplikácie
+### špecifické vývojárom serverovej aplikácie
 
   - [ ]  (!) Upload obrázkov do `images/profilefoto` namiesto Amazon S3 (dočasne)
 
@@ -28,13 +28,7 @@
   - [ ] Upravovanie príspevkov
   - [ ] Po nahratí obrázku _na pozadí_ automaticky vložiť do príspevku za kurzor značku `[img][/img]` s URL adresou nahraného obrázku (#ref/JS)
 
-#### implementácia užívateľov
-##### Login form
-
-  - [ ] functionality of "Zapamätať heslo" button
-  - [ ] functionality of "Zapamätať si ma" button
-  - [ ] functionality of "Zabudli ste heslo?" button
-
+#### implementácia používateľov
 ##### skupiny používateľov (plus rozdeľovanie na špecifické skupiny: admin, moderator, member)
 
   - [ ] dorobit moderatorov fora
@@ -44,14 +38,14 @@
 #### upload obrázkov
 
   - [ ] prepojenie so servermi Amazon S3 za pomoci REST API
-  - [ ] after upload resize image to 350x250px or simply 3:1
+  - [ ] after upload resize image to 350x250px (or simply 3:1?)
 
-### úlohy týkajúce sa designu a textov (obsah/forma)
+### úlohy týkajúce sa designu a textov (obsah / forma)
 #### Hlavička stráky
 
-  - [ ] buttons "Zapamätať heslo" and "Zabudli ste heslo?" v user-boxe
+  - [ ] button "Zabudli ste heslo?" v user-boxe
 
 #### Fórum (príspevky, kategórie, vlákna atď.)
 
-  - [ ] odkazy v príspevkoch by mali byť bez dekorácií modrou farbou akou sú teraz odkazy vo {web/index.php}
-  - [ ] naprogramovat pocet 20tich blokov s nadpismy na  jednu stranku
+  - [ ] odkazy v _užívateľských príspevkoch_ by mali byť bez dekorácií modrou farbou, akou sú teraz odkazy vo {web/index.php}
+  - [ ] naprogramovat pocet 20-tich blokov s nadpismy na  jednu stranku
