@@ -9,9 +9,8 @@ if(!isset($_SESSION["uid"]) || !intval(!empty($_GET["cid"]) ? $_GET["cid"] : 0))
 
 header("Content-Type: text/html; charset=utf-8", true, 200);
 
-// pre odkomentovanie doctypu jednoducho odstráň sekvenciu -- zo začiatku aj z konca
 ?>
-<!--DOCTYPE HTML-->
+<!DOCTYPE HTML>
 <html>
 	<head>
 		<?php include 'includes/head.php'; ?>
@@ -30,7 +29,7 @@ header("Content-Type: text/html; charset=utf-8", true, 200);
 			<div id="content">
 				<form action="create_topic.php" method="post" name="vytvor-temu">
 					<p>Názov témy:</p>
-					<input type="text" name="topic_title" size="98" maxlength="150" tabindex=1 />
+					<input type="text" name="topic_title" size="98" maxlength="150" tabindex=1>
 					<p>Obsah témy:</p>
 					<textarea name="prispevok" rows="12" cols="75" tabindex=2></textarea>
 					<br>
@@ -46,10 +45,10 @@ header("Content-Type: text/html; charset=utf-8", true, 200);
 					<!--button class='button_register' type=button onclick="addtag('docastne nefunkcne')">images/nefunkčné</button>
 					<br>
 					Tag na vloženie obrázku: &lt;img src=&quot;link obrázku&quot; width=&quot;350&quot; height=&quot;250&quot;&gt;-->
-					<br />
-					<br />
-					<input type="hidden" name="cid" value="<?php echo intval($_GET["cid"]) ?>" />
-					<input type="submit" name="topic_submit" class='input_button' value="Vytvoriť novú tému" tabindex=3 />
+					<br>
+					<br>
+					<input type="hidden" name="cid" value="<?php echo intval($_GET["cid"]) ?>">
+					<input type="submit" name="topic_submit" class='input_button' value="Vytvoriť novú tému" tabindex=3>
 				</form>
 			</div>
 		</div>

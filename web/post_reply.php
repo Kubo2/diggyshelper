@@ -28,9 +28,8 @@ if(!empty($_GET["flash"])) {
 	}
 }
 
-// pre odkomentovanie doctypu jednoducho odstráň sekvenciu -- zo začiatku aj z konca
 ?>
-<!--DOCTYPE HTML-->
+<!DOCTYPE HTML>
 <html>
 	<head>
 		<?php include 'includes/head.php'; ?>
