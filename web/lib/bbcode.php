@@ -1,7 +1,7 @@
 <?php
 
 /**
- * DH BB Code decoder.
+ * DH BB code decoder.
  *
  * @author   Kubo2
  * @version  0.0.0
@@ -17,8 +17,6 @@ if(!extension_loaded('pcre')) {
 
 //mb_internal_encoding('UTF-8');
 
-// not doing any html escaping, application supposed to do it
-// ,,so, it can be used in many other cases if done like so
 function dh_bb_decode( $snippet ) // : string
 {
 	static $bb = array('b', 'i', 'del', 'u'); // paired bb codes
@@ -63,8 +61,7 @@ PATTERN;
 	// preprocessing
 	$snippet = trim($snippet);
 	$snippet = str_replace(["\r\n", "\r"], "\n", $snippet);
-	// ?
-	//$snippet = str_replace("\n\n", "\n" . '</p><p>' . "\n", $snippet); // should be probably \n{2, } (but this requires regexs)
+	$snippet = htmlspecialchars($snippet, ENT_QUOTES, 'utf-8');
 	$snippet  = preg_replace("~\n{2,}~", "\n</p><p>\n", $snippet);
 
 	// replacement
