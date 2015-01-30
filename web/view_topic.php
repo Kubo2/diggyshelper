@@ -110,7 +110,9 @@ header("Content-Type: text/html; charset=utf-8", true, 200);
 	</table>
 <?php suckableFail:
 	if(! $posts): ?>
-	<p>Sorry, but something wrong happened. Please retry.
+	<p>Niečo sa nepodarilo. Skúste <a href=<?= (unset)
+		printf("\"%s\"", SanitizeLib\escape($_SERVER['REQUEST_URI'], 'html'))
+	?>>obnoviť stránku.</a>
 		<?php ; endif ?>
 			<?php } else {
 				$fuckable_404();
