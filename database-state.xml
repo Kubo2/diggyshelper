@@ -17,7 +17,7 @@
 			<column name="password" type="VARCHAR(40)">
 				<constraints nullable="false" />
 			</column>
-			<column defaultValue="member" name="access" type="ENUM('admin', 'moderator', 'member')">
+			<column name="access" type="ENUM('admin', 'moderator', 'member')" defaultValue="member">
 				<constraints nullable="false" />
 			</column>
 			<column name="description" type="VARCHAR(169)" />
@@ -105,6 +105,13 @@
 				<constraints nullable="false" />
 			</column>
 		</createTable>
+	</changeSet>
+	<changeSet author="Kubo2" id="posts-column-syntax">
+		<addColumn tableName="posts">
+			<column name="post_markup" type="enum('html', 'bb')" defaultValue='bb' afterColumn='post_content'>
+				<constraints nullable='false' />
+			</column>
+		</addColumn>
 	</changeSet>
 	<changeSet author="Kubo2" id="constraint-2">
 		<addForeignKeyConstraint baseColumnNames="category_id" baseTableName="posts" constraintName="posts_ref1_category_id" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="categories" />

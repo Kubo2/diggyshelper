@@ -5,7 +5,7 @@ if($_SERVER["REQUEST_METHOD"] != 'POST') {
 	if(isset($_SERVER["HTTP_USER_AGENT"]) && stripos($_SERVER["HTTP_USER_AGENT"], 'bot') !== false) {
 		header("Allow: POST", true, 405);
 		header("Content-Type: text/plain; charset=utf-8");
-		echo "You can not call this file with HTTP $_SERVER[REQUEST_METHOD] method.\n\n";
+		echo "You can not call this file with HTTP {$_SERVER['REQUEST_METHOD']} method.\n\n";
 		echo "This resource is available only via HTTP POST method.";
 	} else {
 		goto presmerovanie;
@@ -21,7 +21,7 @@ if(isset($_SESSION['uid'])) goto presmerovanie;
 
 // nie sme prihlásení: ak teda už existuje cookie so session identifikátorom, vygenerujeme nový
 if(isset($_COOKIE[ini_get('session.name')])) {
-	session_regenerate_id();
+	session_regenerate_id( $delete_old_session = true );
 }
 
 // ak užívateľ neposlal minimálne username, nemá záujem o prihlásenie

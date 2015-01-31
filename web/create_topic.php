@@ -1,6 +1,5 @@
 <?php
 
-#define
 define(
 	'ABSURL',
 	"http://" . 
