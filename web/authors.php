@@ -39,29 +39,6 @@ header("Content-Type: text/html; charset=utf-8", true, 200);
 	p {
 		margin: .1em 0 1.2em;
 	}
-	/* miesta, ktoré treba ešte zmeniť/doplniť obsah */
-	.doplniť {
-		color: grey;
-		font-weight: bold;
-		max-width: 55%;
-	}
-	.doplniť::before {
-		display: block;
-		border: 3px solid red;
-		content: "Nasledujúci element treba ešte zmeniť/doplniť:";
-		color: red;
-		text-align: center;
-		padding: 3.2px;
-		margin-bottom: 8px;
-	}
-	.doplniť::after {
-		display: block;
-		content: "Po doplnení prosím odoberte triedu .doplniť z elementu.";
-		font-size: small;
-		color: blue;
-		font-weight: normal;
-		margin-top: 8px;
-	}
 		</style>
 	</head>
 	<body>
@@ -73,23 +50,30 @@ header("Content-Type: text/html; charset=utf-8", true, 200);
 		<div id="pages">
 			<article>
 	<h1>Autori diskusného fóra Diggy's Helper</h1>
-	<p>Kto stojí za vznikom diskusného fóra <b>Diggy's Helper</b>? Či už na našom fóre pôsobíte dlhšie, alebo ste nováčik a chcete sa dozvedieť viac o jeho vzniku, histórii a autoroch, ste tu správne. Čítajte prosím ďalej.</p>
+	<p>Kto stojí za vznikom diskusného fóra <b>Diggy's Helper</b>? Či už na našom fóre
+	pôsobíte dlhšie, alebo ste nováčik a chceli by ste sa dozvedieť viac o jeho vzniku,
+	histórii či autoroch, ste tu správne. Vyberte si záložku (odkaz) alebo čítajte ďalej.</p>
 	<p>
 		<a class="memberusers" href="#historia">História vzniku</a> &bull;
-		<a class="memberusers" href="#autori">Autori fóra</a> :
+		<a class="memberusers" href="#autori">Autori fóra</a><i>:</i>
 		<a class="memberusers" href="#WladinQ">Vladimír Jacko</a> - 
 		<a class="memberusers" href="#Kubo2">Jakub Kubíček</a>
 	</p>
 	
 	<h2 id="historia">História vzniku</h2>
-	<p>Ak ste našli cestu k našemu Česko-Slovenskému fóru predpokladám že ste oboznámený s online hrou Diggy's Adventure.
-	Táto online hra doposial nemala žiadne Česko-Slovenské fórum tak sme sa rozhodli jedno fórum pre vás naprogramovať.
-	Nápad na naprogramovanie toho fóra napadlo administrátora stránky Vladimíra Jacka dňa 8.12.2013. Kedže prácu na fóre nemôže spravovať
-	jeden človek požiadal o pomoc daľsích dvoch programarátorov. Fórum sa každým dňom vylepšuje. Na týchto stránkach možete nájsť
-	napríklad informácie o spoločnosti ktorá hru Diggy's Adventure naprogramovala, ďalej je možné tu nájsť informácie o resetovatelých
-	baňiach v sekcii <a class="memberusers" href="http://diggyshelper.php5.sk/attractions.php">Zaujímavosti</a>, alebo je k dispozícii poradňa v sekcii <a class="memberusers" href="http://diggyshelper.php5.sk/forum.php">Fórum</a>.
-	Po registrácii je možné pridať si svojich priateľou ktorý sú taktiež u nás zaregistrovaný, alebo si vylepšiť svoj profil napríklad pridaním svojej fotografie.
-	Za celý tím Diggy's Helper dúfam že nájdete na našich stránkach čo hľadáte.</p>
+	<p>Ak ste našli cestu k našemu Česko-Slovenskému fóru, predpokladám, že ste oboznámený s online hrou Diggy's Adventure.
+	Táto online hra doposiaľ nemala žiadne Česko-Slovenské fórum, tak sme sa rozhodli jedno fórum pre vás naprogramovať. :-<i>)</i>
+	<br>
+	Podnet prišiel od Vladimíra Jacka dňa <time datetime='2013-12-08'>8. 12. 2013</time>. Kedže však prácu na fóre nemôže spravovať
+	jeden človek, požiadal o pomoc dalších dvoch programarátorov. Fórum sa každým dňom vyvíja. Na jeho stránkach možete nájsť
+	napríklad informácie o spoločnosti, ktorá hru Diggy's Adventure vytvorila, ďalej je možné nájsť tu informácie o resetovateľných
+	baniach v sekcii <a class="memberusers" href="http://diggyshelper.php5.sk/attractions.php">Zaujímavosti</a>, alebo je k dispozícii
+	online česko-slovenská diskusná poradňa v sekcii <a class="memberusers" href="http://diggyshelper.php5.sk/forum.php">Fórum</a>.
+	<p>
+	Po <a href="./register.php" class='memberusers'>registrácii</a> vlastného používateľského profilu je možné okrem iného prispievať do fóra, podeliť sa 
+	o osobné skúsenosti s hrou Diggy's Adventure, položiť vlastnú otázku či  napríklad spestriť si profil pridaním svojej fotografie. :-<i>)</i>
+	<br>
+	Za celý tím Diggy's Helper dúfam, že nájdete na našich stránkach to, čo hľadáte.</p>
 	
 	<h2 id="autori">Autori fóra</h2>
 	<dl>
