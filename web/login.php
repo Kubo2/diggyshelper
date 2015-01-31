@@ -5,7 +5,7 @@ if($_SERVER["REQUEST_METHOD"] != 'POST') {
 	if(isset($_SERVER["HTTP_USER_AGENT"]) && stripos($_SERVER["HTTP_USER_AGENT"], 'bot') !== false) {
 		header("Allow: POST", true, 405);
 		header("Content-Type: text/plain; charset=utf-8");
-		echo "You can not call this file with HTTP $_SERVER[REQUEST_METHOD] method.\n\n";
+		echo "You can not call this file with HTTP {$_SERVER['REQUEST_METHOD']} method.\n\n";
 		echo "This resource is available only via HTTP POST method.";
 	} else {
 		goto presmerovanie;

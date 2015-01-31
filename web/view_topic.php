@@ -26,6 +26,7 @@ header("Content-Type: text/html; charset=utf-8", true, 200);
 	
 	require("./connect.php");
 	require('./functions.php');
+	require('./lib/bbcode.php');
 
 	function _render_reply_anch_tpl($categoryId, $topicId) { ?>
 <a rel='nofollow' class='input_button' href=<?php
@@ -69,12 +70,12 @@ document404
 
 			if($topic && mysql_num_rows($topic)) {
 				$posts = mysql_query(
-					sprintf( "SELECT p.post_date as `added`, p.post_content as `text`, u.username as `author`
+					sprintf("SELECT p.post_date as `added`, p.post_content as `text`, p.post_markup as 'markup', u.username as `author`
 							FROM `posts` p
 								JOIN `users` u
 									ON p.post_creator = u.id
 								WHERE `category_id` = %d AND `topic_id` = %d
-							ORDER BY p.post_date ASC ",
+							ORDER BY p.post_date ASC",
 						$cid,
 						$tid
 					)
@@ -110,7 +111,13 @@ document404
 						id(new DateTime($post->added))->format("'c'")
 					)?> style='color: #33cc00'><?=( id(new DateTime($post->added))->format("d.m.Y / H:i:s") )?></time>
 				</nobr>
-				<hr><div   class='post post-text'><?=( SanitizeLib\sanitize($post->text,  SanitizeLib\HTML) )?></div>
+				<hr><div class='post post-text'><?php
+				if($post->markup == 'html') {
+					echo $post->text;
+				} elseif($post->markup == 'bb') {
+					echo dh_bb_decode($post->text);
+				}
+				?></div>
 			</td>
 		</tr>
 		<?php endwhile ?>
