@@ -49,6 +49,10 @@ body {
  	margin: auto;
  }
 
+  table p, form p {
+  	max-width: 100%;
+  }
+
 /**
  * Universal.
  */

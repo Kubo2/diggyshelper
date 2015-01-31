@@ -4,10 +4,11 @@ This changelog contains all major and minor changes done in united versions.
 
 # Features
 
-For more information about _planned features_, please [see TODO list](../dh-1.5/TODOlist.md).
+For more information about _planned features_, please [see TODO list](TODOlist.md).
 
 ## Proposed to v1.5, release date: 2015-??-??
 
+   + Bulletin Board (BB) codes parsing in user-written posts. (~Kubo2)
    + Introduced the basic support for responsive design - created responsive mobile menu (~ Kubo2)
    + Added user profiles support (one page per user) with some additional functionalities such as the ability to alter user informations (~ Kubo2)
       * There was new user-property added for user record - `description`.

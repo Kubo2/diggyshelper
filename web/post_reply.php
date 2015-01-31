@@ -1,6 +1,13 @@
 <?php
 
+/**
+ * @internal requires PHP >= 5.4
+ */
+
 session_start();
+
+require __DIR__ . '/connect.php';
+require __DIR__ . '/functions.php';
 
 if( !isset($_SESSION["uid"]) || (!@intval($_GET["cid"]) || !@intval($_GET["tid"])) && !isset($_GET["flash"]) ) { // intentionally @
 	header("Location: http://$_SERVER[SERVER_NAME]" . dirname($_SERVER["PHP_SELF"]) . "/index.php", true, 302);
@@ -28,9 +35,8 @@ if(!empty($_GET["flash"])) {
 	}
 }
 
-// pre odkomentovanie doctypu jednoducho odstráň sekvenciu -- zo začiatku aj z konca
 ?>
-<!--DOCTYPE HTML-->
+<!DOCTYPE HTML>
 <html>
 	<head>
 		<?php include 'includes/head.php'; ?>
@@ -47,13 +53,22 @@ if(!empty($_GET["flash"])) {
 <div id="content">
 	<a class='button' href='./view_topic.php?<?php echo "tid=$_GET[tid]&cid=$_GET[cid]"; ?>'>Návrat do témy</a>
 	<script>document.write('<a class="button_register" onclick="window.open(&quot;upload.php&quot;, &quot;okno1&quot;, &quot;width=500,height=400&quot;)">Nahrať obrázok</a>')</script>
-	<hr />
+	<hr>
 
 	<?php if(!empty($flashMessage)) { ?>
 	<p class="warning"><?php echo $flashMessage ?></p>
 	<?php } else { ?>
 	<form action="post_reply_parse.php" method="post" name="zasli-prispevok">
+		<?php if(getUser($_SESSION['uid'], 'access') == 'admin') { ?>
+		<p><label for='post-markup'><b>Pridať odpoveď</b> vo formáte:</label> 
+			<select name="post-markup" id='post-markup'>
+				<option value="bb" selected="selected">BB kód</option>
+				<option value="html">HTML</option>
+			</select>
+		</p>
+		<?php } else { ?>
 		<p>Pridať odpoveď:</p>
+		<?php } ?>
 		<textarea name="prispevok" rows="5" cols="75"></textarea><br>
 			<button class='button' id="b" tabindex=0><b>tučné</b></button>
 			<button class='button' id="i" tabindex=0><i>kurzíva</i></button>
