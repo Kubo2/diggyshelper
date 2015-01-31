@@ -34,7 +34,7 @@ if(!defined('DB_CONNECTED')) {
 if(isset($_POST['basic-info-change'])) {
 	$user = & $_POST['user'];
 	$info = array_slice_assoc((!is_array($user) ? [ ] : $user), array_keys($data));
-	
+
 	unset($user);
 
 	if(
@@ -140,7 +140,7 @@ extract($data);
 				/* overflow: hidden; */
 				zoom: 1;
 			}
-			
+
 			fieldset {
 				float: left;
 				min-width: 40%;

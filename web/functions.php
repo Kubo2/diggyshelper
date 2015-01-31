@@ -4,8 +4,7 @@
  * Functions library.
  */
 
-require_once( dirname(__FILE__) . '/lib-core.php' ) ;	
-
+require dirname(__FILE__) . '/lib-core.php';
 
 /**
  * Is current user signed in?
@@ -46,7 +45,7 @@ function getUser($id, $fieldList) {
 			if(mysql_num_rows($result) < 1) {
 				return false; // ============>
 			}
-			
+
 			mysql_free_result($result);
 		}
 

@@ -2,7 +2,7 @@
 
 /**
  * This is the "core" library supposed to provide some low-level polyfill functionality
- * that is not natively included in PHP nor implemented yet, but is going to be 
+ * that is not natively included in PHP nor implemented yet, but is going to be
  * implemented in newer versions of PHP.
  *
  * @internal This file should not be include()d separately as it is already part of "functions" library, but there can be some exceptions.
@@ -41,7 +41,7 @@ function id($o)
 /**
  * Sometimes it is called ifsetor(), we use name whether() for it.
  * Its role is to determine *wheter* some variable was set; if it was,
- * then return its value; if not, return the default value, specified in 
+ * then return its value; if not, return the default value, specified in
  * second parameter.
  *
  * @internal An alternative to coalesce (T_COALESCE) operator available through PHP >= 5.6.1

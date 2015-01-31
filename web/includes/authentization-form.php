@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 /**
  * Before include()ing this one, there MUST be sent a "401 Authorization Required" status
