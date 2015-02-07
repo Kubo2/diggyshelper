@@ -26,7 +26,7 @@ header("Content-Type: text/html; charset=utf-8", true, 200);
 <div id="forum">
 <div id="content"><?php
 	
-	require("./connect.php");
+	require("./db-connector/connect.php");
 	require('./functions.php');
 
 	/** @var callable */

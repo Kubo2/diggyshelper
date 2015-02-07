@@ -12,7 +12,7 @@ if(! isset($_SESSION['uid'])) goto p403_template;
 $currentUser = $_SESSION['uid'];
 
 // misc
-require('./connect.php'); // MUST define() DB_CONNECTED constant in case of db connection success
+require('./db-connector/connect.php');
 require('./functions.php');
 
 // array of variables in disposition inside template

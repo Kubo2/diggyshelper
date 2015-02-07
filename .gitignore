@@ -18,11 +18,6 @@ tmp/*
 *.zip
 *.rar
 
-# internals
-images/upload
-.ftp
-.db.cfg
-
 ## Liquibase is a database schema migration tool
 # see http://www.sitepoint.com/versioning-your-database-with-liquibase/
 liquibase.properties

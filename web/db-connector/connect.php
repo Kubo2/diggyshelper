@@ -17,7 +17,7 @@ if(defined('DB_CONNECTED')) return true;
  * </pre>
  *
  */
-$dbData = require("./.db.cfg");
+$dbData = require(__DIR__ . '/.db.cfg');
 
 // turn off generating errors because of mysql_* use
 $errors = error_reporting( 0 );

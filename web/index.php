@@ -1,7 +1,9 @@
 <?php
 
-define('_DB_ERROR', FALSE === (require __DIR__ . '/connect.php'));
-if(_DB_ERROR) goto page_template;
+define('_DB_ERROR', FALSE === (require __DIR__ . '/db-connector/connect.php'));
+
+if(_DB_ERROR)
+	GOTO page_template; // ============>
 
 // performs a query to the database
 // it result-set will be stored in two-dimensional array internally

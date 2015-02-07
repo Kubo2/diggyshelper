@@ -29,7 +29,7 @@ session_start();
 	<div id="forum">
 <div id="content">
 <?php
-include_once("connect.php");
+include_once("db-connector/connect.php");
 // skrakta zbavujúca nevyhnutnosti kontrolovať existenciu
 // TODO: zaviesť nejakú funckiu, ktorá sa o to automaticky postará
 $_GET['cid'] = & $_GET['cid'] && $cid = max(0, $_GET['cid']);
