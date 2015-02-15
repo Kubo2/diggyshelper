@@ -30,7 +30,7 @@ if(empty($_POST["username"])) goto presmerovanie;
 // samotný proces prihlasovania
 $errorMessage = "";
 if(!empty($_POST["password"])) {
-	if(!defined('DB_CONNECTED') && FALSE === require("./db-connector/connect.php")) {
+	if(!defined('DB_CONNECTED') && FALSE === require("./connect.php")) {
 		$errorMessage = "Ospravedlňujeme sa Vám, no naša databáza je bohužiaľ na niekoľko minút nedostupná. Skúste sa prihlásiť opäť o niekoľko minút.";
 		goto login_errorpage;
 	}

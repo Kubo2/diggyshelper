@@ -33,9 +33,7 @@ require __DIR__ . '/lib-core.php';
 	<div id="statistiky">
 	
 	<?php
-
-	if(!(require __DIR__ . '/db-connector/connect.php'))
-		GOTO flush; // ============>
+	if(FALSE === (require __DIR__ . '/connect.php')) goto flush;
 
 	$membersCount = mysql_query("SELECT COUNT(*) FROM `users`");
 	$newestMember = mysql_query("SELECT `username` 

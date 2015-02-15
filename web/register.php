@@ -136,7 +136,7 @@ goto closing;
 	// validácia emailovej adresy
 	if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) goto invalid_email;
 	// sme pripojení k databázi?
-	if(FALSE === (require 'db-connector/connect.php')) goto connect_err;
+	if(FALSE === (require 'connect.php')) goto connect_err;
 	// ošetríme username a email proti sql injection
 	$userdata['username'] = mysql_real_escape_string($_POST['username']);
 	$userdata['email'] = !empty($_POST['email']) ? mysql_real_escape_string($_POST['email']) : false;

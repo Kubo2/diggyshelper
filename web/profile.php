@@ -1,7 +1,7 @@
 <?php
 
 require "./functions.php"; // some useful miscellanous functionality
-require "./db-connector/connect.php"; // database connection
+require "./connect.php"; // database connection
 
 $id = !empty($_GET['user']) ? mysql_real_escape_string($_GET['user']) : false;
 $httpStatus = 200;

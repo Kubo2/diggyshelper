@@ -10,8 +10,7 @@ if(!in_array($_SERVER['SERVER_ADDR'], array('127.0.0.1', '::1'))) {
 // 200 can be replaced, but Content-Type header is neccessary
 header("Content-Type: text/html; charset=utf-8", true, 200);
 
-// database connection success
-define('_DB_ERROR', FALSE === (require __DIR__ . '/db-connector/connect.php'));
+define('_DB_ERROR', FALSE === (require __DIR__ . '/connect.php'));
 
 // switch on output buffering 
 ob_start();

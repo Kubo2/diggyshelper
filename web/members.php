@@ -1,6 +1,6 @@
 <?php
 
-require "./db-connector/connect.php"; // database connection
+require "./connect.php"; // database connection
 session_start();
 header("Content-Type: text/html; charset=utf-8", true, 200);
 
