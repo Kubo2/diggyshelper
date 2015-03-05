@@ -33,11 +33,15 @@ $rawinfo= <<< SQL
 		date_format('00-00-0000 00:00', '%e. %c. %Y') as `stats-last-visit`, -- TODO: fix last visit
 		count(p.id) as `stats-post-count`
 	from
-		users u,
+		users u
+	join
 		posts p
-	where -- TODO: fix users with no (0 - zero) posts
-		u.username = '$id' AND p.post_creator = u.id
-	GROUP BY u.id HAVING u.id IS NOT NULL
+			on
+				p.post_creator = u.id
+	where
+		u.username = '$id'
+	having
+		username is not null
 SQL;
 
 if(defined('DB_CONNECTED')) {
