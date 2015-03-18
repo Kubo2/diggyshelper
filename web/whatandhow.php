@@ -19,7 +19,10 @@ header_remove('Expires');
 <!DOCTYPE HTML>
 <html>
 <head>
-	<?php include 'includes/head.php' ?>
+	<?php
+		$titleConst = 'dh: Časté otázky a problémy — Diggy\'s Adventure';
+		include 'includes/head.php';
+	?>
 </head>
 <body>
 	<?php 
