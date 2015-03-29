@@ -1,5 +1,5 @@
 --TEST--
-Bulletin Board decoder: basic test
+BB decoder: basic test
 --FILE--
 <?php
 
