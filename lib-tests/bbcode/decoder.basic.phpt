@@ -3,7 +3,7 @@ BB decoder: basic test
 --FILE--
 <?php
 
-require __DIR__ . '/../web/lib/bbcode.php';
+require __DIR__ . '/../../web/lib/bbcode.php';
 
 $encoded = <<<BB
 Prvý odstavec, [b]tučný text[/b]
