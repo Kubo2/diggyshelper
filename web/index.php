@@ -114,7 +114,7 @@ date_default_timezone_set("Europe/Bratislava");
 					<?= SanitizeLib\escape($thread['author'], 'HTML') ?>
 				</td>
 				<td>
-					<time datetime=<?= $thread['created']->format("\"c\"") ?> pubdate>
+					<time datetime=<?= $thread['created']->format("\"c\"") ?>>
 						<?= $thread['created']->format("j. n. Y, H:i") ?>
 					</time>
 				</td>
