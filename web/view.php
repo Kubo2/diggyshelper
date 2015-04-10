@@ -1,34 +1,25 @@
 <?php
-//error_reporting(E_ALL|E_STRICT);
-/* Session sa musí inicializovať ešte *pred* odoslaním akéhokoľvek výstupu */
-// @see http://php.net/session-start
+
 session_start();
+header("Content-Type: text/html; charset=utf-8", true, 200);
 
-// zapnutie output bufferingu (nemám iný spôsob posielania hlavičiek po výstupe) 
-// @see http://php.net/ob-start
-@ob_start();
-
-// pridaná HTTP hlavička určujúca kódovanie (neviem, čo máš v head.php, ale pre istotu, keďže 
-// si mi písal, že ti nejde utf8) -- diakritika by už mala fachať 
-@header("Content-Type: text/html; charset=utf-8", true, 200);
-
-// pre odkomentovanie doctypu jednoducho odstráň sekvenciu -- zo začiatku aj z konca
 ?>
-<!--DOCTYPE HTML-->
+<!DOCTYPE HTML>
 <html>
 <head>
-	<?php include 'includes/head.php'; ?>
+	<?php include 'includes/head.php' ?>
 </head>
 <body>
-	<?php include 'includes/header.php'; ?>
-	
-	<?php include 'includes/menu.php'; ?>
-	
-	<?php include 'includes/submenu.php'; ?>
+	<?php
+		include 'includes/header.php';
+		include 'includes/menu.php';
+		include 'includes/submenu.php'
+			?>
 
 	<div id="forum">
 <div id="content">
 <?php
+
 include_once("connect.php");
 // skrakta zbavujúca nevyhnutnosti kontrolovať existenciu
 // TODO: zaviesť nejakú funckiu, ktorá sa o to automaticky postará
@@ -36,11 +27,11 @@ $_GET['cid'] = & $_GET['cid'] && $cid = max(0, $_GET['cid']);
 
 if(!$cid) {
 	// tu treba ošetriť situáciu, keď nebolo zadané id
-	// presmeruje sa na výpis kategórií
-	header("Location: http://$_SERVER[SERVER_NAME]" . dirName($_SERVER["PHP_SELF"]) . "/forum.php", true, 301);
-	// @see http://php.net/ob-end-clean
+	// vyprázdnime buffer
 	@ob_end_clean();
-	exit;
+
+	// presmeruje sa na výpis kategórií
+	header("Location: http://$_SERVER[SERVER_NAME]" . dirName($_SERVER["PHP_SELF"]) . "/forum.php", true, 301); exit;
 } else {
 	if(isset($_SESSION['uid']))
 		$logged = " | <a href='create.php?cid=".$cid."' class='button'>Vytvoriť tému</a>";

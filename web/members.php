@@ -5,7 +5,7 @@ session_start();
 header("Content-Type: text/html; charset=utf-8", true, 200);
 
 ?>
-<!--DOCTYPE HTML-->
+<!DOCTYPE HTML>
 <html>
 <head>
 	<?php include './includes/head.php'; ?>
