@@ -63,7 +63,7 @@ header("Content-Type: text/html; charset=utf-8", true, 200);
 
 if(empty($_POST['username'])) {
 ?>
-		<p>Registráciou sa staňete členmi stráky Diggy's Helper. Výhodi registrácie sú uvedené nižšie.</p>
+		<p>Staňte sa členmi diskusného fóra Diggy's Helper.</p>
 		<style scoped>.ochrana-pred-robotmi{display:none}</style>
 		<form method='post' action='?'>
 			<table border='0px'>
@@ -71,9 +71,9 @@ if(empty($_POST['username'])) {
 					<td>Registrovať sa:</td>
 					<td></td>
 					<td ROWSPAN="6">
-						<h3>Výhody registrovaných užívateľov:</h3>
+						<h3>Výhody registrovaných používateľov:</h3>
 							- osobný profil<br>
-							- pridávať otázky a odpoveďe vo fóre<br>
+							- možnosť pridávať otázky a odpovede vo fóre<br>
 							- pridať si známych ľudí, spoluhráčov do priateľov<br>
 							- možnosť zapojiť sa do sútaží o GEMY
 					</td>

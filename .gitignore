@@ -1,20 +1,18 @@
 # miscellanous
-/google*.html
-log.*
 *.log
-.htaccess-wedos
+log.*
 
 # really? ignore temporary files
-cache/*
-temp/*
 tmp/*
+temp/*
+cache/*
 *.cache
 *.temp
 *.tmp
-*-OLD
 *.OLD
+*-OLD
 
-# ignore archives
+# ignore archives (especially used for receiving patches from others)
 *.zip
 *.rar
 
@@ -23,16 +21,20 @@ images/upload
 .ftp
 .db.cfg
 
+# [liquibase] #
+
 ## Liquibase is a database schema migration tool
 # see http://www.sitepoint.com/versioning-your-database-with-liquibase/
-liquibase.properties
-liquibase.update-sql
-!liquibase/
 
-# LQ logs
+liquibase.properties
+!liquibase/*
+
+# liquibase logs
 db-log
 *-dump.sql
 
+# [/liquibase] #
+
 ## githelp.txt is WladinQ's help file with useful git commands
-# we won't include that one
+# we won't include this one (even if he's supposed to exclude this one in his own repo)
 githelp.txt

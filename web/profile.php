@@ -33,11 +33,15 @@ $rawinfo= <<< SQL
 		date_format('00-00-0000 00:00', '%e. %c. %Y') as `stats-last-visit`, -- TODO: fix last visit
 		count(p.id) as `stats-post-count`
 	from
-		users u,
+		users u
+	join
 		posts p
-	where -- TODO: fix users with no (0 - zero) posts
-		u.username = '$id' AND p.post_creator = u.id
-	GROUP BY u.id HAVING u.id IS NOT NULL
+			on
+				p.post_creator = u.id
+	where
+		u.username = '$id'
+	having
+		username is not null
 SQL;
 
 if(defined('DB_CONNECTED')) {
@@ -91,24 +95,24 @@ set_include_path("./includes/");
 						</td>
 					</tr>
 					<tr>
-						<td>Používateľské právomoci:</td>
-						<td><?= id(['admin' => 'Administrátor', 'moderator' => 'Moderátor', 'member' => 'Člen'])[$userinfo['user-group']] ?></td>
+						<td class='even'>Používateľské právomoci:</td>
+						<td class='odd'><?= id(['admin' => 'Administrátor', 'moderator' => 'Moderátor', 'member' => 'Člen'])[$userinfo['user-group']] ?></td>
 					</tr>
 					<tr>
-						<td>E-mail:</td>
-						<td><?= SanitizeLib\escape(sk_sanitizeEmail($userinfo['user-email']), 'html') ?></td>
+						<td class='even'>E-mail:</td>
+						<td class='odd'><?= SanitizeLib\escape(sk_sanitizeEmail($userinfo['user-email']), 'html') ?></td>
 					</tr>
 					<tr>
-						<td>Celkový počet príspevkov:</td>
-						<td><?= $userinfo['stats-post-count'] ?></td>
+						<td class='even'>Celkový počet príspevkov:</td>
+						<td class='odd'><?= $userinfo['stats-post-count'] ?></td>
 					</tr>
 					<tr>
-						<td>Posledná návšteva:</td>
-						<td><?= $userinfo['stats-last-visit'] ?></td>
+						<td class='even'>Posledná návšteva:</td>
+						<td class='odd'><?= $userinfo['stats-last-visit'] ?></td>
 					</tr>
 					<tr>
-						<td>Registrovaný dňa:</td>
-						<td><?= $userinfo['user-register-date'] ?></td>
+						<td class='even'>Registrovaný dňa:</td>
+						<td class='odd'><?= $userinfo['user-register-date'] ?></td>
 					</tr>
 					<?php if(isset($_SESSION['uid']) && $_SESSION['username'] === $userinfo['user-name']): // je užívateľ prihlásený a je to jeho profil?>
 					<tfoot>

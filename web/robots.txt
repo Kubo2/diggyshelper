@@ -3,25 +3,12 @@
 # respect them, you may be blocked from accessing this site.
 #
 
-User-agent: ia_archiver
-Disallow:
-
-User-agent: Googlebot
-Disallow: /register.php
-Disallow: /login.php
-#
-Disallow: /test*
-#
-Disallow: /*.js
-Disallow: /*.css
-
 User-agent: *
-Disallow: /test/
-Disallow: /samples/
-#
+Disallow: /test
 Disallow: /statistics.php
-#
-Disallow: /githelp.txt
 Disallow: /robots.txt
+
+User-Agent: ia_archiver
+Disallow: /test
 
 Sitemap: http://diggyshelper.net/sitemaps/

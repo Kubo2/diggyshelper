@@ -3,9 +3,9 @@
 	<a href="forum.php">Fórum</a>
 	<a href="whatandhow.php">Diggy's Adventure</a>
 	<a href="attractions.php">Zaujímavosti</a>
-	<a href="contest.php">Sútaže</a>
+	<a href="contest.php">Súťaže</a>
 	<a href="statistics.php">Štatistiky</a>
-	<a href="members.php">Užívateľia</a>
+	<a href="members.php">Užívatelia</a>
 	<a href="authors.php">Autori</a><!--
 	font class="jazykon">Slovenský</font>&nbsp;&nbsp;&nbsp;<a href="">English</a
 --></div>

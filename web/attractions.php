@@ -25,7 +25,7 @@ session_start();
 	
 	<div id="zaujimavosti">
 		<b>Zaujímavosti:</b><br><br>
-		Obetoval som pre vás veľké množstvo energie (v Diggy's Adventure) aby som vám odhalil koľko čoho a kde miniete a získate. Dúfam že vám to aspoň trochu pomôže. <font color="#106cb5"><strong>WladinQ</strong></font>
+		Obetoval som pre vás veľké množstvo energie (v Diggy's Adventure) aby som vám odhalil koľko čoho a kde miniete a získate. Dúfam že vám to aspoň trochu pomôže. <font color="#106cb5"><a class="memberusers" href="profile.php?user=WladinQ">WladinQ</a></font>
 		<center><h2>Resetovateľné bane</h2></center>
 		<h4>Egypt:</h4>
 		<table border="1px" frame="void">

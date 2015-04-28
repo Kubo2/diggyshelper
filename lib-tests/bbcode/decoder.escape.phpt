@@ -3,7 +3,7 @@ BB decoder: html escape test
 --FILE--
 <?php
 
-require __DIR__ . '/../web/lib/bbcode.php';
+require __DIR__ . '/../../web/lib/bbcode.php';
 
 $encoded = <<<BB
 Prvý <p>odstavec</p>, [b]tučný text[/b]

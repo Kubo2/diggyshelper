@@ -90,31 +90,34 @@ date_default_timezone_set("Europe/Bratislava");
 	</style>
 	<h1>Vítame ťa na stránke Diggy's Helper</h1>
 	<p><strong>Diggy's Helper je diskusné fórum</strong>, kde sa môžeš  s komunitou ľudí s rovnakou
-	záľubou podeliť o svoje postrehy a skúsenosti s hrou <a href="./about-game.php">Diggy's Adventure</a>.
+	záľubou podeliť o svoje postrehy a skúsenosti s hrou <a class="memberusers" href="./about-game.php">Diggy's Adventure</a>.
 	<br>Taktiež v prípade, že niečomu nerozumieš alebo sa chceš o niečom dozvedieť viac, sú tu vítané tvoje
 	otázky a problémy. Stačí vybrať správnu kategóriu a vytvoriť v nej tému.
 	<table class="newest-topics">
 		<caption>Najnovšia diskusia</caption>
 		<thead>
 			<tr>
-				<th width="50%">Meno vlákna</th>
-				<th width="16%">Zakľadateľ vlákna</th>
-				<th width="12%">Dátum založenia</th>
+				<th width="50%"><font color="#fff">Meno vlákna</font></th>
+				<th width="16%"><font color="#fff">Zakľadateľ vlákna</font></th>
+				<th width="12%"><font color="#fff">Dátum založenia</font></th>
 			</tr>
 		</thead>
 		<tbody>
 			<?php foreach($topics as $thread): ?>
 			<tr>
 				<td>
-					<a href=<?= '"' . "./view_topic.php?cid={$thread['cid']}&amp;tid={$thread['tid']}" . '"' ?>>
+					<a class="memberusers" href=<?= '"' . "./view_topic.php?cid={$thread['cid']}&amp;tid={$thread['tid']}" . '"' ?>>
 						<?= SanitizeLib\escape($thread['title'], 'HTML') ?>
 					</a>
 				</td>
 				<td>
-					<?= SanitizeLib\escape($thread['author'], 'HTML') ?>
+					<!-- will add a counter per click and it will show, whether this link would be kept ~Kubo2 -->
+					<a class="memberusers" href="profile.php?user=<?= SanitizeLib\escape($thread['author'], 'HTML') ?>">
+						<?= SanitizeLib\escape($thread['author'], 'HTML') ?>
+					</a>
 				</td>
 				<td>
-					<time datetime=<?= $thread['created']->format("\"c\"") ?> pubdate>
+					<time datetime=<?= $thread['created']->format("\"c\"") ?>>
 						<?= $thread['created']->format("j. n. Y, H:i") ?>
 					</time>
 				</td>

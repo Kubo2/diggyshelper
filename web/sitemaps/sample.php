@@ -72,14 +72,20 @@ function parseSample($template, array $vars = array()) {
  * @param string template filename
  * @throws Exception if the template doesn't exist or is not readable
  */
-function checkTemplate($filename) {
-	$f = realpath($filename);
-	clearstatcache(true, $f);
+function checkTemplate($fileName) {
+	$fileName = realpath($fileName);
+	clearstatcache($fileName);
 
-	if(!is_readable($f)/* || !is_file($f)*/) {
-		throw new \Exception(sprintf("Template %s not readable", $f), 9);
-	}
+	if(!is_file($fileName))
+		throw new Exception("Template {$fileName} is not a regular file");
+
+	if(!is_readable($fileName))
+		throw new Exception("Template {$fileName} not readable");
 }
 
-// test passed
-//die(parseSample('./samples/sitemap-index.sample', [ "SOMETHING" => '<sitemap><loc>http://example.com/sitemap</loc></sitemap>' ]));
+/**
+ * Base exception for all {@code sample} functions
+ */
+class Exception extends \Exception {
+	
+}

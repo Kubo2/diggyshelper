@@ -48,12 +48,18 @@ const URL = 5;
  * @param string
  * @param mixed(int|array(int))
  * @return string sanitized data
- * @throws \InvalidArgumentException if given $data is not a string or object that may be converted to string
  */
 function sanitize($data, $context) {
-	if(!is_string($data) && !method_exists($data, '__toString')) throw new \InvalidArgumentException;
-	$data = (string) $data; // if it is object
-	if(!is_array($context)) $context = array($context);
+	if(!is_string($data)) {
+		// why even bother?
+		return NULL;
+	}
+
+	if(!is_array($context)) {
+		$context = array($context);
+	}
+
+	$data = (string) $data;
 	
 	foreach($context as $esc) {
 		switch($esc) {

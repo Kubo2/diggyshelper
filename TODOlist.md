@@ -24,7 +24,6 @@
 
 #### Príspevky
 
-  - [x]  parsovanie BB kódov v príspevkoch
   - [ ] Upravovanie príspevkov
   - [ ] Po nahratí obrázku _na pozadí_ automaticky vložiť do príspevku za kurzor značku `[img][/img]` s URL adresou nahraného obrázku (#ref/JS)
 
@@ -39,7 +38,7 @@
 
   - [ ] dorobit moderatorov fora
     - [ ] rozlíšiť práva moderátorov a administrátorov
-    - [x] vyriešiť organizovanie interných záležitostí
+      - [x] partially in forum posts
 
 #### upload obrázkov
 
@@ -54,4 +53,4 @@
 #### Fórum (príspevky, kategórie, vlákna atď.)
 
   - [ ] odkazy v príspevkoch by mali byť bez dekorácií modrou farbou akou sú teraz odkazy vo {web/index.php}
-  - [ ] naprogramovat pocet 20tich blokov s nadpismy na  jednu stranku
+  - [ ] naprogramovat pocet 20tich blokov s príspevkami na  jednu stranku
