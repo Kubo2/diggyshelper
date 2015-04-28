@@ -515,10 +515,56 @@ body {
 /** Koniec ID */
 /** CLASS */
 
-.user-info table tr td img {
+.user-profil .user-info table tr td img {
 	border: 2px solid #8CB8DC;
 	border-radius: 5px;
 }
+
+@media (max-width: 43.75em) {
+	.user-profil .user-info h1 {
+		text-align: center;
+		color: transparent;
+	}
+
+	.user-profil .user-info h1 > big {
+		color: #000;
+		float: left;
+	}
+
+	.user-profil .user-info table {
+		width: 100% !important;
+		table-layout: auto !important;
+	}
+
+	.user-profil .user-info table tr,
+	.user-profil .user-info table td {
+		display: block;
+	}
+
+	.user-profil .user-info table td {
+		width: 100%;
+		text-align: center !important;
+		display: inline-block;
+		=display: inline; /* IE 7 below */
+		=zoom: 1; /* switch hasLayout on in IE */
+	}
+
+	.user-profil .user-info table td.odd,
+	.user-profil .user-info table td.even {
+		color: white;
+		opacity: 0.8;
+	}
+
+	.user-profil .user-info table td.odd {
+		background: #106cb5;
+	}
+
+	.user-profil .user-info table td.even {
+		font-weight: bold;
+		background: #33cc00;
+	}
+}
+
 
 .hbox {
     padding-bottom: 15px;
