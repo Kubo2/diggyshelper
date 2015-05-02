@@ -10,7 +10,7 @@ if(!isset($_SESSION["uid"]) || !intval(!empty($_GET["cid"]) ? $_GET["cid"] : 0))
 header("Content-Type: text/html; charset=utf-8", true, 200);
 
 ?>
-<!DOCTYPE HTML>
+<!doctype html>
 <html>
 	<head>
 		<?php include 'includes/head.php'; ?>

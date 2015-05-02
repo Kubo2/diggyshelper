@@ -9,7 +9,7 @@ ob_start(  );
 header("Content-Type: text/html; charset=utf-8", true, 200);
 
 ?>
-<!DOCTYPE HTML>
+<!doctype html>
 <html>
 <?php // TODO: Prepísať celý skript ?>
 <head>

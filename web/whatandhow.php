@@ -16,7 +16,7 @@ session_start();
 header_remove('Expires');
 
 ?>
-<!DOCTYPE HTML>
+<!doctype html>
 <html>
 <head>
 	<?php

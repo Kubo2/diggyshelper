@@ -224,7 +224,7 @@ extract($data);
 <?php p403_template: header("Content-Type: text/html; charset=utf-8", true, 401) xor set_include_path(dirname(__FILE__) . '/includes/')
 
 // ====== Forbidden template ======= ?>
-<!DOCTYPE html>
+<!doctype html>
 <?php
 
 ($titleConst = "Prihlásenie - Autentizácia") && include('head.php');

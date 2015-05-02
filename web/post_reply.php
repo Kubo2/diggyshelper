@@ -36,7 +36,7 @@ if(!empty($_GET["flash"])) {
 }
 
 ?>
-<!DOCTYPE HTML>
+<!doctype html>
 <html>
 	<head>
 		<?php include 'includes/head.php'; ?>

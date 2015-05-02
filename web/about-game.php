@@ -3,7 +3,7 @@
 header("Content-Type: text/html; charset=utf-8", true, 200);
 session_start();
 ?>
-<!DOCTYPE HTML>
+<!doctype html>
 <html>
 <head>
 	<?php include 'includes/head.php' ?>

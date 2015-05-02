@@ -4,7 +4,7 @@ session_start();
 header("Content-Type: text/html; charset=utf-8", true, 200);
 
 ?>
-<!DOCTYPE HTML>
+<!doctype html>
 <html><head>
 	<?php ($titleConst = 'dh: Súťaže o gemy -- Diggy\'s Adventure') && include 'includes/head.php' ?>
 </head><body>

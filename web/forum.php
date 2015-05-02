@@ -14,9 +14,8 @@ if(FALSE === require('connect.php')) {
 	header("Retry-After: 600", true, 503);
 }
 
-// pre odkomentovanie doctypu jednoducho odstráň sekvenciu -- zo začiatku aj z konca
 ?>
-<!--DOCTYPE HTML-->
+<!doctype html>
 <html>
 <head>
 	<?php include 'includes/head.php'; ?>
