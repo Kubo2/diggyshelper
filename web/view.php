@@ -79,7 +79,7 @@ SQLQUERY;
 <table style="width:100%;border-collapse:collapse;">
 	<tr>
 		<td colspan='3'>
-			<a href='forum.php' class='button'>Návrat do fóra</a>$logged
+			<a href='forum.php' class='button'>Návrat do fóra</a>{$logged}
 			<hr>
 		</td>
 	</tr><tr style='background-color:#106CB5'>
@@ -120,14 +120,14 @@ TOPICSTABLE;
 				mysql_free_result($res2);
 			} else {
 			echo <<<NOTOPICSTEXT
-<a href='index.php' class='button'>Návrat do fóra</a><hr>
+<a href='forum.php' class='button'>Návrat do fóra</a><hr>
 <p>V tejto kategórii nie sú k dispozícii žiadne témy.$logged</p>
 NOTOPICSTEXT;
 			}
 		}
 	} else {
 			echo <<<NONEXISTING
-<a href='index.php' class='button'>Návrat do fóra</a><hr>
+<a href='forum.php' class='button'>Návrat do fóra</a><hr>
 <p>Pokúšate sa zobraziť kategóriu, ktorá neexistuje.
 NONEXISTING;
 		}
