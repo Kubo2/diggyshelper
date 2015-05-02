@@ -1,7 +1,8 @@
 <?php
-// absolute url off current document
+
+// absolute url off current document's directory
 // depends on requested resource's url
-$absUrl = rtrim(dirname($_SERVER["PHP_SELF"]), '/');
+$absUrl = rtrim(dirname($_SERVER["PHP_SELF"]), '/\\');
 
 // data sanitization library
 require_once("sanitize.lib.php");
@@ -16,6 +17,6 @@ require_once("sanitize.lib.php");
 			: "Diggy's Helper - Prvé česko-slovenksé fórum o hre Diggy's Adventure"
 ?></title>
 
-<link rel='stylesheet' href='<?php echo $absUrl; ?>/css/style.css'>
-<link href="<?php echo $absUrl; ?>/favicon.png" rel="icon" type="image/png">
-
+<link href='<?= $absUrl ?>/favicon.png' rel='shortcut icon' type="image/png">
+<link href='<?= $absUrl ?>/favicon.png' rel='icon' type="image/png">
+<link href='<?= $absUrl ?>/css/style.css' rel='stylesheet'>
