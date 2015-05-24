@@ -1,11 +1,12 @@
 <?php
 
+require __DIR__ . '/functions.php';
+
 session_start();
 
-// ak užívateľ nie je prihlásený, neexistuje ani 'uid'
-// v {@see logout.php} je totižto volaná funkcia session_destroy()
-if(isset($_SESSION['uid'])) {
-	header("Location: http://$_SERVER[SERVER_NAME]" .rtrim(dirname($_SERVER["PHP_SELF"]), '/'). "/index.php", true, 302);
+if(loggedIn()) {
+	recordLog("User #{$_SESSION['uid']} has requested registration page", 'page request', 'reg');
+	header("Location: http://$_SERVER[SERVER_NAME]" .rtrim(dirname($_SERVER["PHP_SELF"]), '/'). "/index.php", true, 303);
 	exit;
 }
 
@@ -62,6 +63,7 @@ header("Content-Type: text/html; charset=utf-8", true, 200);
 // pretože username slúži ako login a tým pádom je pre registráciu kľučové
 
 if(empty($_POST['username'])) {
+	recordLog("User with IP {$_SERVER['REMOTE_ADDR']} has loaded registration page", 'page view', 'reg');
 ?>
 		<p>Staňte sa členmi diskusného fóra Diggy's Helper.</p>
 		<style scoped>.ochrana-pred-robotmi{display:none}</style>
@@ -161,7 +163,8 @@ goto closing;
 	Bravó! Vitajte na našom fóre ;-) V pravom hornom rohu sa môžete prihlásiť
 	alebo <a href="./index.php">prejsť na hlavnú stránku</a>.
 </p>
-<?php 
+<?php
+recordLog("Successfuly registered user '{$_POST['username']}'", 'action', 'reg');
 goto closing;
 } ?>
 <?php spam: ?>
@@ -175,6 +178,7 @@ goto closing;
 	Registrácia neprebehla úspešne, ale to nevadí. Ak si človek, 
 	vráť sa a políčko <code>&apos;url&apos;</code> nechaj prázdne.
 </p>
+<?php recordLog("Attempt to register spam account prevented from IP {$_SERVER['REMOTE_ADDR']}", 'action', 'reg') ?>
 <?php goto closing; connect_err: ?>
 <p class="warning">
 	Ľutujeme, ale naša databáza je momentálne na pár minút nedostupná.
@@ -203,9 +207,11 @@ goto closing;
 <?php goto closing; usr_already_exists: ?>
 <p class="warning">
 	Bohužiaľ, registrácia sa nevydarila. Na našom fóre už užívateľ 
-	s rovnakou prezývkou existuje. <a href="javascript:history.go(-1)">
-	Upravte ju prosím</a> alebo si zvoľte inú.
+	s rovnakou prezývkou existuje. Ak si myslíte, že táto prezývka 
+	má patriť vám, <b>kontaktujte nás</b> na emailovú adresu
+	<a href='mailto:kubo2@diggyshelper.net'>kubo2@diggyshelper.net</a>
 	<?php // TODO: návrhy existujúcich prezývok ?>
+	<?php recordLog("Attempt to register already taken nickname '{$_POST['username']}'", 'action', 'reg') ?>
 </p>
 <?php goto closing; unsuccesful_registration: ?>
 <p class="warning">
