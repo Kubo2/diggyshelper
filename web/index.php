@@ -1,5 +1,24 @@
 <?php
 
+require __DIR__ . '/functions.php';
+
+if(!empty($_GET['counter'])) { // implies `!0`, `!""` and `isset(...)`
+	switch(intval($_GET['counter'])) {
+		case 1: {
+			if(!empty($_GET['user'])) {
+				recordLog(
+					sprintf('IP %s to profile \'%s\' from newtopic listing',
+						$_SERVER['REMOTE_ADDR'],
+						$_GET['user']
+					), 'clicked', 'count'
+				);
+				header('Location: ./profile.php?user=' . urlencode($_GET['user']), TRUE, 302);
+				exit;
+			}
+		} break;
+	}
+}
+
 define('DB_ERROR', !(require "./connect.php"));
 
 if(DB_ERROR) {
@@ -111,8 +130,7 @@ date_default_timezone_set("Europe/Bratislava");
 					</a>
 				</td>
 				<td>
-					<!-- will add a counter per click and it will show, whether this link would be kept ~Kubo2 -->
-					<a class="memberusers" href="profile.php?user=<?= SanitizeLib\escape($thread['author'], 'HTML') ?>">
+					<a class="memberusers" href="./index.php?counter=1&amp;user=<?= SanitizeLib\escape($thread['author'], 'HTML') ?>">
 						<?= SanitizeLib\escape($thread['author'], 'HTML') ?>
 					</a>
 				</td>
