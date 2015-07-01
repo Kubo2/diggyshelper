@@ -700,6 +700,10 @@ hr {
 	border: 0 solid #ccc;
 }
 
+img {
+	max-width: 100%;
+}
+
 div.dialog.profile {
   position:absolute;
   min-width:400px;
