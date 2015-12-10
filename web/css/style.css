@@ -462,18 +462,61 @@ body {
 }
 
 #footer {
-	background:#fff url(../images/bg/footer.png) no-repeat;
-	background-position:bottom;
-	height:150px;
-	width:auto;
+	background-color: #106CB5;
+	background-position: bottom;
+	height: 10em;
+	width: auto;
+	padding: 20px 0 0 3.5%;
+	color: #FFF;
 }
 
-#footer_right {
-	float:right;
-	width:126px;
-	padding-right:10px;
-	height:150px;
-	background:url(../images/bg/linda.png) no-repeat;
+#footer .fb, #footer .git {
+	float: left;
+	width: 90%;
+	height: 2.5em;
+}
+
+#footer .git {
+	margin: 5px 0 20px 0;
+}
+
+#footer .fb a, #footer .git a {
+	color: #FFF;
+	text-decoration: none;
+	font-size: 22px;
+	position: relative;
+	bottom: 12px;
+}
+
+#footer .fb a:hover, #footer .git a:hover {
+	text-decoration: underline;
+}
+
+#footer .fb img, #footer .git img {
+	width: 40px;
+	height: 40px;
+	margin: 0 10px 0 0;
+}
+
+#footer .copy {
+	float: left;
+	width: 90%;
+}
+
+@media (max-width: 700px) {
+	#footer .fb, #footer .git {
+		display: none;
+	}
+
+	#footer .copy {
+		float: none;
+		width: 100%;
+		font-size: x-small;
+	}
+
+	#footer {
+		height: auto;
+	}
 }
 
 #statistiky {
