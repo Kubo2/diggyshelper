@@ -20,8 +20,17 @@
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
+</script><script>
+// initialize the tracker
   ga('create', 'UA-37444056-2', 'auto');
+  ga(function(tracker) {
+  	// set correct title for topics page
+  	if(location.pathname.substr(-15) == '/view_topic.php') {
+  		tracker.set('title', document.getElementById('content').getElementsByTagName('h1')[0].textContent);
+  	}
+  });
+  
+// send hits
   ga('send', 'pageview');
 
 </script>
