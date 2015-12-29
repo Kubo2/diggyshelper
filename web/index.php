@@ -69,6 +69,11 @@ date_default_timezone_set("Europe/Bratislava");
 // ====== template HTML ====== ?>
 <!doctype html>
 <?php include('head.php') ?>
+
+<?php // ====== META DESCRIPTION ====== ?>
+<meta content="Diggy's Helper je úplne prvé česko-slovenské diskusné fórum, kde sa diskutuje najmä na tému online hry Diggy's Adventure." name='description'>
+<?php // === END META DESCRIPTION ====== ?>
+
 </head><body class="page front">
 <?php
 	include('header.php');

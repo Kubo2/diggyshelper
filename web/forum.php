@@ -19,7 +19,12 @@ if(FALSE === require('connect.php')) {
 <!--DOCTYPE HTML-->
 <html>
 <head>
-	<?php include 'includes/head.php'; ?>
+	<?php 
+
+	$GLOBALS['titleConst'] = 'Kategórie na fóre'; // intentionally $GLOBALS -- preseve "magic dependencies"
+	include 'includes/head.php';
+
+	?>
 </head>
 <body>
 	<?php

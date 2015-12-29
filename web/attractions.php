@@ -14,7 +14,12 @@ session_start();
 <!--DOCTYPE HTML-->
 <html>
 <head>
-	<?php include 'includes/head.php'; ?>
+	<?php
+
+	$GLOBALS['titleConst'] = "Postrehy, zaujímavosti z Diggy's Adventure"; // intentionally $GLOBALS -- preseve "magic dependencies"
+	include 'includes/head.php';
+
+	?>
 </head>
 <body>
 	<?php include 'includes/header.php'; ?>
@@ -24,11 +29,19 @@ session_start();
 	<?php include 'includes/submenu.php'; ?>
 	
 	<div id="zaujimavosti">
-		<b>Zaujímavosti:</b><br><br>
-		Obetoval som pre vás veľké množstvo energie (v Diggy's Adventure) aby som vám odhalil koľko čoho a kde miniete a získate. Dúfam že vám to aspoň trochu pomôže. <font color="#106cb5"><a class="memberusers" href="profile.php?user=WladinQ">WladinQ</a></font>
-		<center><h2>Resetovateľné bane</h2></center>
-		<h4>Egypt:</h4>
+		<h1>Zaujímavosti</h1>
+		<p><strong>Obetoval som pre vás veľké množstvo energie</strong> (v Diggy's Adventure), aby som vám
+		odhalil kde, koľko a čoho miniete a získate. Dúfam, že vám to pri ďalšom kopaní aspoň trochu pomôže.
+		<cite><a class="memberusers" href="profile.php?user=WladinQ">WladinQ</a></cite>
+		<p style='margin-top: .3em'><i>Ak sa <strong>chcete aj vy podeliť s Vašou snahou pomôcť ostatným</strong>, môžete si <a href='./'>prezrieť naše fórum</a>
+			a po <a href='./register.php'>registrácii účtu</a> sem <strong>posielať príspevky do tém</strong> iných ľudí.</i>
+
+		<!-- ================================== -->
+		<h2 style='text-align: center'>Resetovateľné bane</h2>
+
+		<!-- ================================== -->
 		<table border="1px" frame="void">
+		<caption><h3>Egypt</h3></caption>
 			<tr>
 				<td><b>BAŇA</b></td> <td><b>POLÍČOK</b></td> <td><b>MINUTEJ ENERGIE</b></td> <td><b>ZÍSKANÉ SKÚSENOSTI</b></td> <td><b>ZÍSKANÉ ZLATO</b></td> <td><b>ZÍSKANÝ METERIÁL</b></td> <td><b>RESETOVACIA DOBA</b></td>
 			</tr>
@@ -47,23 +60,20 @@ session_start();
 			<tr>
 				<td>Hubáreň</td> <td>44</td> <td>675</td> <td>cca 743</td> <td>cca 40</td> <td>35 Húb</td> <td>23 hodín</td>
 			</tr>
-			<tr>
-				<td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td>
-			</tr>
 		</table>
-		<h4>Škandinávia</h4>
+
+		<!-- ================================== -->
 		<table border="1px" frame="void">
+		<caption><h3>Škandinávia</h3></caption>
 			<tr>
 				<td><b>BAŇA</b></td> <td><b>POLÍČOK</b></td> <td><b>MINUTEJ ENERGIE</b></td> <td><b>ZÍSKANÉ SKÚSENOSTI</b></td> <td><b>ZÍSKANÉ ZLATO</b></td> <td><b>ZÍSKANÝ METERIÁL</b></td> <td><b>RESETOVACIA DOBA</b></td>
 			</tr>
 			<tr>
 				<td>Hrzdavé jaskyne</td> <td>50</td> <td>3220</td> <td>3610</td> <td>cca 139</td> <td>28 Železnej rudy</td> <td>8 hodín</td>
 			</tr>
-			<tr>
-				<td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td>
-			</tr>
 		</table>
 	</div>
+	<hr style='border: 1px solid #457EB7'>
 	<?php include 'includes/footer.php'; ?>
 </body>
 </html>

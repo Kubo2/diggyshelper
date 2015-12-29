@@ -17,7 +17,7 @@ require_once __DIR__ . '/../sanitize.lib.php';
 <title><?=
 			! empty( $titleConst )
 			? SanitizeLib\sanitize($titleConst, SanitizeLib\HTML)
-			: "Diggy's Helper &ndash; Prvé česko-slovenské fórum o hre Diggy's Adventure"
+			: "Diggy's Helper &ndash; Česko-slovenské Diggy's Adventure fórum"
 ?></title>
 
 <?php // {{{ Google Analytics tracking code ============ ?>

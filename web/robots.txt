@@ -5,7 +5,7 @@
 
 User-agent: *
 Disallow: /test
-Disallow: /statistics.php
+#Disallow: /statistics.php # I am not sure what todo with this
 Disallow: /robots.txt
 
 User-Agent: ia_archiver

@@ -7,10 +7,13 @@ header("Content-Type: text/html; charset=utf-8", true, 200);
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<?php include 'includes/head.php'; ?>
-		<meta 
-			name="description" 
-			content="Mohlo by Vás zaujímať, kto stojí za vznikom diskusného fóra Diggy's Helper. Prečítajte si to na tejto stránke.">
+		<?php
+
+		$GLOBALS['titleConst'] = 'Ľudia, ktorí sú spojení s Diggy\'s Helper'; // intentionally $GLOBALS -- preseve "magic dependencies"
+		include 'includes/head.php';
+
+		?>
+		<meta content="Mohlo by Vás zaujímať, kto stojí za vznikom diskusného fóra Diggy's Helper. Prečítajte si to na tejto stránke." name="description">
 		<style>
 	a[href^='#']:not([href$='#']) {
 		font-style: italic;

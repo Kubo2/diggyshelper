@@ -18,7 +18,13 @@ session_start();
 		margin: auto;
 	}
 	</style>
-	<?php include 'includes/head.php'; ?>
+	<?php 
+
+	$GLOBALS['titleConst'] = "Štatistiky Diggy's Helper"; // intentionally $GLOBALS -- preseve "magic dependencies"
+	include 'includes/head.php';
+
+	?>
+	<meta content="Jednoduchá štatistika aktivity na Diggy's Helper" name='description'>
 </head>
 <body>
 	<?php include 'includes/header.php'; ?>

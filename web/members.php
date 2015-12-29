@@ -8,7 +8,12 @@ header("Content-Type: text/html; charset=utf-8", true, 200);
 <!--DOCTYPE HTML-->
 <html>
 <head>
-	<?php include './includes/head.php'; ?>
+	<?php 
+
+	$GLOBALS['titleConst'] = 'Ľudia, ktorí sú na Diggy\'s Helper'; // intentionally $GLOBALS -- preseve "magic dependencies"
+	include 'includes/head.php';
+
+	?>
 </head>
 <body>
 
