@@ -4,7 +4,7 @@
 $absUrl = rtrim(dirname($_SERVER["PHP_SELF"]), '/');
 
 // data sanitization library
-require_once("sanitize.lib.php");
+require_once __DIR__ . '/../sanitize.lib.php';
 
 ?>
 <meta charset="utf-8">
