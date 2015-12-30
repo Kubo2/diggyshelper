@@ -63,11 +63,15 @@ header("Content-Type: text/html; charset=utf-8", true, 200);
 // pretože username slúži ako login a tým pádom je pre registráciu kľučové
 
 if(empty($_POST['username'])) {
-	recordLog("User with IP {$_SERVER['REMOTE_ADDR']} has loaded registration page", 'page view', 'reg');
 ?>
 		<p>Staňte sa členmi diskusného fóra Diggy's Helper.</p>
 		<style scoped>.ochrana-pred-robotmi{display:none}</style>
-		<form method='post' action='?'>
+		<form method='post' action='?' onsubmit="
+var regForm = this; this.onsubmit = null;
+var timeout = window.setTimeout(regForm.submit, 700);
+ga('send', 'event', 'registerUserAccount', 'formSubmit', { hitCallback: function() { window.clearTimeout(timeout); regForm.submit() } });
+return false;
+		">
 			<table border='0px'>
 				<tr>
 					<td>Registrovať sa:</td>
@@ -163,8 +167,8 @@ goto closing;
 	Bravó! Vitajte na našom fóre ;-) V pravom hornom rohu sa môžete prihlásiť
 	alebo <a href="./index.php">prejsť na hlavnú stránku</a>.
 </p>
+<script>ga('send', 'event', 'registerUserAccount', 'afterProcess', <?=json_encode($_POST['username'])?>, 0) /* zero means success */</script>
 <?php
-recordLog("Successfuly registered user '{$_POST['username']}'", 'action', 'reg');
 goto closing;
 } ?>
 <?php spam: ?>
@@ -178,22 +182,26 @@ goto closing;
 	Registrácia neprebehla úspešne, ale to nevadí. Ak si človek, 
 	vráť sa a políčko <code>&apos;url&apos;</code> nechaj prázdne.
 </p>
-<?php recordLog("Attempt to register spam account prevented from IP {$_SERVER['REMOTE_ADDR']}", 'action', 'reg') ?>
+<?php recordLog("SPAM PREVENTED from IP '{$_SERVER['REMOTE_ADDR']}'", 'action', 'reg') ?>
 <?php goto closing; connect_err: ?>
 <p class="warning">
 	Ľutujeme, ale naša databáza je momentálne na pár minút nedostupná.
 	Skúste to prosím o niekoľko minút neskôr. <a href="javascript:history.go(-1)">Späť</a>
 </p>
+<script>ga('send', 'event', 'registerUserAccount', 'afterProcess', null, 255) /* 255 means technical server problem */</script>
 <?php goto closing; empty_passwd: ?>
 <p class='warning'>
 	Vyplňte prosím heslo. <a href="javascript:history.go(-1)">Upraviť</a>
 </p>
+<script>ga('send', 'event', 'registerUserAccount', 'afterProcess', 'missingPassword', 1) /* one means 'missing' */</script>
 <?php goto closing; empty_email: ?>
 <p class="warning">Vyplňte emailovú adresu.</p>
+<script>ga('send', 'event', 'registerUserAccount', 'afterProcess', 'missingEmail', 1) /* one means 'missing' */</script>
 <?php goto closing; psw_not_eq: ?>
 <p class="warning">
 	Zadané heslá sa musia zhodovať. <a href="javascript:history.go(-1)">Upraviť</a>
 </p>
+<script>ga('send', 'event', 'registerUserAccount', 'afterProcess', 'passwordsNotMatch', 2) /* two means 'invalid' */</script>
 <?php goto closing; invalid_email: ?>
 <p class="warning">
 	Správne zadaná emailová adresa musí obsahovať znak zavináča, 
@@ -204,6 +212,7 @@ goto closing;
 <p class="info">
 	Nevyžadujeme od vás tento údaj, avšak keď ho už zadáte, dbajte prosím na jeho správny formát.
 </p>
+<script>ga('send', 'event', 'registerUserAccount', 'afterProcess', 'invalidEmail', 2) /* two means 'invalid' */</script>
 <?php goto closing; usr_already_exists: ?>
 <p class="warning">
 	Bohužiaľ, registrácia sa nevydarila. Na našom fóre už užívateľ 
@@ -213,10 +222,12 @@ goto closing;
 	<?php // TODO: návrhy existujúcich prezývok ?>
 	<?php recordLog("Attempt to register already taken nickname '{$_POST['username']}'", 'action', 'reg') ?>
 </p>
+<script>ga('send', 'event', 'registerUserAccount', 'afterProcess', 'userAlreadyExists', 127) /* 127 means 'failure' */</script>
 <?php goto closing; unsuccesful_registration: ?>
 <p class="warning">
 	Pri registrácii nastala chyba. Zopakujte svoj pokus prosím o niekoľko minút.
 </p>
+<script>ga('send', 'event', 'registerUserAccount', 'afterProcess', null, 255)</script>
 
 <?php closing: ?>
 	</div>
@@ -225,3 +236,9 @@ goto closing;
 	<?php require 'includes/footer.php'; ?>
 </body>
 </html>
+<?php
+/**
+ * @todo [GA] consider splitting 'afterProcess' to two actions, 'afterSuccess' and 'afterFailure'
+ * @todo [TPL] switch the template to Latte
+ */
+?>
