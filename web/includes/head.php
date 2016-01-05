@@ -6,6 +6,11 @@
  */
 $absUrl = rtrim(strtr(dirname($_SERVER['PHP_SELF']), '\\', '/'), '/');
 
+/**
+ * @var string
+ */
+$curUrl = $_SERVER['REQUEST_URI'];
+
 // data sanitization library
 require_once __DIR__ . '/../sanitize.lib.php';
 
@@ -69,6 +74,7 @@ window['GoogleAnalyticsObject'] = <?= json_encode(GA_GLOBAL) ?>;
 </script>
 <?php // }}} Google Analytics tracking code ============ ?>
 
+<link href='<?= "http://diggyshelper.net{$curUrl}" ?>' rel='canonical'>
 <link href='<?= $absUrl ?>/css/style.css' rel='stylesheet'>
 <link href='<?= $absUrl ?>/favicon.png'   rel='icon' type='image/png'>
 
