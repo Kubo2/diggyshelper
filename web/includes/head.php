@@ -1,11 +1,10 @@
 <?php
 
 /**
- * absolute url off current document
- * (depends on requested resource's url)
+ * Absolute web-path to current page's directory.
  * @var string
  */
-$absUrl = rtrim(dirname($_SERVER['PHP_SELF']), '/');
+$absUrl = rtrim(strtr(dirname($_SERVER['PHP_SELF']), '\\', '/'), '/');
 
 // data sanitization library
 require_once __DIR__ . '/../sanitize.lib.php';
