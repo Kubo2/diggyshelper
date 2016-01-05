@@ -14,4 +14,4 @@
 
 <script>ga('send', 'pageview')</script>
 <script src="<?= $absUrl ?>/diggyshelper.js?v=20150812@1.5-alpha2" async></script>
-<script src='http://www.google-analytics.com/analytics.js' async defer></script>
+<script src='https://www.google-analytics.com/analytics.js' async defer></script>
