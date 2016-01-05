@@ -15,7 +15,7 @@ header("Content-Type: text/html; charset=utf-8", true, 200);
 <!doctype html>
 <html>
 <head>
-	<?php ($titleConst = "dh: Registrácia") &&require 'includes/head.php' ?>
+	<?php ($titleConst = 'Registrácia') &&require 'includes/head.php' ?>
 	<style type="text/css">
 		.red{
 		color:white;
@@ -36,11 +36,6 @@ header("Content-Type: text/html; charset=utf-8", true, 200);
 		background:green;
 		border-radius:5px;
 		padding:0px 10px;
-		}
-
-		td.required::after {
-			color: #f00;
-			content: ' *';
 		}
 	</style>
 </head>
@@ -64,7 +59,6 @@ header("Content-Type: text/html; charset=utf-8", true, 200);
 
 if(empty($_POST['username'])) {
 ?>
-		<p>Staňte sa členmi diskusného fóra Diggy's Helper.</p>
 		<style scoped>.ochrana-pred-robotmi{display:none}</style>
 		<form method='post' action='?' onsubmit="
 var regForm = this; this.onsubmit = null;
@@ -72,9 +66,11 @@ var timeout = window.setTimeout(regForm.submit, 700);
 ga('send', 'event', 'registerUserAccount', 'formSubmit', { hitCallback: function() { window.clearTimeout(timeout); regForm.submit() } });
 return false;
 		">
-			<table border='0px'>
+			<table border='0' style='margin: auto'>
+				<caption><h1>Registrovať sa</h1>
+					<p>Staňte sa členom diskusného fóra Diggy's Helper.</p></caption><!-- display: table-caption -->
 				<tr>
-					<td>Registrovať sa:</td>
+					<td style='color: maroon'>Všetky tri údaje <b>sú povinné</b>.</td>
 					<td></td>
 					<td ROWSPAN="6">
 						<h3>Výhody registrovaných používateľov:</h3>
@@ -84,17 +80,17 @@ return false;
 							- možnosť zapojiť sa do sútaží o GEMY
 					</td>
 				</tr><tr>
-					<td class="required">
+					<td>
 						<input name='username' type='text' placeholder='Nickname' class='input' autocomplete='off' required>
 					</td>
 				</tr><tr>
-					<td class="required">
+					<td>
 						<input name='password' type='password' placeholder='Heslo' class='input' autocomplete='off' id='status' required>
 					</td><td style="min-width: 180px">
 						<span class="first"></span>
 					</td>
 				</tr><tr>
-					<td class="required">
+					<td>
 						<input name='password2' type='password' placeholder='Heslo znovu' class='input' autocomplete='off' required>
 					</td>
 				</tr><tr class="ochrana-pred-robotmi">
@@ -105,7 +101,7 @@ return false;
 						<input type="url" name='url'>
 					</td>
 				</tr><tr>
-					<td class="required">
+					<td>
 						<input name='email' type='email' placeholder='E-mail' class='input' required>
 					</td>
 				</tr><!--tr>
@@ -116,8 +112,6 @@ return false;
 					</td>
 				</tr>
 			</table>
-			<br>
-			<font color='red'>*</font> Povinné polia<br>
 			<!--font color='#5999cc'>*</font> "Meno na facebooku" sa zobrazuje len administrátorom stránky. Slúži na odosielanie GEMOV výhercom. (toto pole nieje povinné)-->
 		</form>
 <?php 
