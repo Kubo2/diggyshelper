@@ -37,6 +37,56 @@ header("Content-Type: text/html; charset=utf-8", true, 200);
 		border-radius:5px;
 		padding:0px 10px;
 		}
+	</style><style>
+@media (max-width: 620px) {
+	/* break the <table> into pieces (rows) */
+	td, th, tr,
+	thead, tbody, tfoot,
+	table, table caption {
+		display: block;
+		width: 100%;
+		text-align: center;
+	}
+
+	/* add bottom margin for the benefits list and center the block */
+	table td[rowspan='6'] {
+		margin: 0 auto 1em;
+		width: 80%;
+		text-align: left;
+	}
+
+	/* spread the <input>s */
+	table input {
+		width: 100%;
+		box-sizing: border-box;
+
+		/* box-sizing prefixes */
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+	}
+
+	/* remove the original statement & apply the fix */
+	table tr:first-child td:nth-child(1) {
+		display: none;
+	}
+
+	table td.required-patch {
+		display: block !important;
+	}
+
+	/* remove the unwanted space */
+	table tr:first-child td:nth-child(2) {
+		display: none;
+	}
+}
+
+@media (max-width: 400px) {
+	/* cancel the width of the block */
+	table td[rowspan='6'] {
+		/*width: 100%;*/
+		display: none;
+	}
+}
 	</style>
 </head>
 <body>
@@ -67,18 +117,23 @@ ga('send', 'event', 'registerUserAccount', 'formSubmit', { hitCallback: function
 return false;
 		">
 			<table border='0' style='margin: auto'>
+				<!-- display: table-caption -->
 				<caption><h1>Registrovať sa</h1>
-					<p>Staňte sa členom diskusného fóra Diggy's Helper.</p></caption><!-- display: table-caption -->
+					<p>Staňte sa členom diskusného fóra Diggy's Helper.</p></caption>
+				<!--/ display: table-caption -->
+
+				<!-- registration form body start -->
 				<tr>
 					<td style='color: maroon'>Všetky tri údaje <b>sú povinné</b>.</td>
 					<td></td>
 					<td ROWSPAN="6">
 						<h3>Výhody registrovaných používateľov:</h3>
 							- osobný profil<br>
-							- možnosť pridávať otázky a odpovede vo fóre<br>
-							- pridať si známych ľudí, spoluhráčov do priateľov<br>
+							- možnosť pridávať otázky a odpovede vo fóre<br><!-- // yet not possible, but save it till implementing fb login
+							- pridať si známych ľudí, spoluhráčov do priateľov<br-->
 							- možnosť zapojiť sa do sútaží o GEMY
 					</td>
+					<td style='color: maroon; display: none' class='required-patch'>Všetky tri údaje <b>sú povinné</b>.</td>
 				</tr><tr>
 					<td>
 						<input name='username' type='text' placeholder='Nickname' class='input' autocomplete='off' required>
