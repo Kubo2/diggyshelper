@@ -209,6 +209,20 @@ body {
 	color:#fff;
 }
 
+@media (max-width: 400px) {
+/*
+	#loginprovizor, #loginprovizor input,
+	#loginprovizor .button_register {
+		width: 100%;
+	}
+
+
+	#loginprovizor input[type=submit], #loginprovizor .button_register {
+		display: block
+	}
+*/
+}
+
 #loginprovizor label input[type=checkbox] {
 	background-color: #FFF;
 	border:2px #106cb5 solid;
@@ -397,6 +411,12 @@ body {
 	height:150px;
 	width:auto;
 	background:#106cb5 url(../images/bg/logo.png) no-repeat;
+}
+
+@media (max-width: 400px) {
+	#header {
+		background-image: none;
+	}
 }
 
 #header h1 {
