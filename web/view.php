@@ -96,7 +96,7 @@ TOPICSTABLE;
 					$topics .= <<<TOPICSTABLE
 	<tr>
 		<td>
-			<center><img width='40' height='40' src='http://diggyshelper.php5.sk/images/icon/icon2.jpg'></center>
+			<center><img width='40' height='40' src='images/icon/icon2.jpg'></center>
 		</td>
 		<td>
 			<a class='topic' href='view_topic.php?cid=$cid&amp;tid=$topicId'>
@@ -104,7 +104,7 @@ TOPICSTABLE;
 			</a>
 		<br>
 			<span class='post_info'>Pridal/a: 
-				<a class="memberusers" href="http://diggyshelper.net/profile.php?user=$topicCreatorName">$topicCreatorName</a>
+				<a class="memberusers" href="profile.php?user=$topicCreatorName">$topicCreatorName</a>
 			dňa 
 				<font color='#33CC00'>$topicDate</font>
 			</span>
