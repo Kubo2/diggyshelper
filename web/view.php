@@ -92,27 +92,50 @@ SQLQUERY;
 TOPICSTABLE;
 
 				while(list($topicId, $topicTitle, $topicDate, $topicPostCount, $topicCreatorName) = mysql_fetch_row($res2)) {
-					$topicDate = date("d.m.Y / H:i:s", strtotime($topicDate));
-					$topics .= <<<TOPICSTABLE
+					/** Process & escape the values */
+					{
+						/** @var stdClass topic data ready for rendering */
+						$topic = new stdClass;
+
+						// format the DH-style date
+						$topic->date = date('d.m.Y / H:i:s', strtotime($topicDate));
+
+						// escape text data against XSS (don't employ that "SanitizeLib", we will be getting rid of it soon)
+						$topic->title = htmlspecialchars($topicTitle, ENT_NOQUOTES);
+						$topic->author = (object) [
+							'name' => htmlspecialchars($topicCreatorName, ENT_NOQUOTES),
+							'profileUrl' => 'profile.php?user=' . urlencode($topicCreatorName),
+						];
+
+						//$topic->id = $topicId;
+						//$topic->categoryId = $cid;
+						$topic->url = "view_topic.php?cid={$cid}&amp;tid={$topicId}";
+
+						$topic->postCount = $topicPostCount;
+					}
+
+					// append next table row to the topics <table>
+					$topics .= <<<HTML
 	<tr>
 		<td>
 			<center><img width='40' height='40' src='images/icon/icon2.jpg'></center>
 		</td>
 		<td>
-			<a class='topic' href='view_topic.php?cid=$cid&amp;tid=$topicId'>
-				<strong>$topicTitle</strong>
+			<a data-wrong-class='.topic is supposed to indicate that we are **viewing** a topic page and should be specified only on a higher level element'
+				class='topic topic-link' href='{$topic->url}'>
+				<strong>{$topic->title}</strong>
 			</a>
 		<br>
 			<span class='post_info'>Pridal/a: 
-				<a class="memberusers" href="profile.php?user=$topicCreatorName">$topicCreatorName</a>
+				<a class="memberusers" href="{$topic->author->profileUrl}">{$topic->author->name}</a>
 			dňa 
-				<font color='#33CC00'>$topicDate</font>
+				<font color='#33CC00'>{$topic->date}</font>
 			</span>
-		</td><td align='center'>$topicPostCount</td>
+		</td><td align='center'>{$topic->postCount}</td>
 	</tr><tr>
 		<td colspan='3'><hr></td>
 	</tr>
-TOPICSTABLE;
+HTML;
 				}
 				$topics .= "\n</table>";
 				echo $topics;
