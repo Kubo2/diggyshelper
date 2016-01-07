@@ -146,4 +146,16 @@ document404
 </body>
 </html>
 
-<?php ob_end_flush(); flush() ?>
+<?php
+
+if(isset($topic) && $topic instanceof \stdClass) {
+	// TODO: ↓ is a provisional solution; we must get rid of it in favor of non-PHP templates
+	// we replace the current "universal title" by the name of the topic
+	$html = ob_get_clean();
+	$html = preg_replace('~<title>(?:.+(?<!</title>))</title>~i', "<title>{$topic->title}</title>", $html);
+	echo $html;
+} else {
+	ob_end_flush();
+}
+
+flush();
