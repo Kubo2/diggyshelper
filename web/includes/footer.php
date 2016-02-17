@@ -8,7 +8,7 @@
 		target="_blank">GitHub Diggy's Helper</a>
 	</div>
 	<div class="copy">
-		&copy;&nbsp;2015&nbsp;Diggy's Helper / Vladimír WladinQ Jacko &amp; Jakub Kubo2 Kubíček
+		&copy;&nbsp;2015&nbsp;Diggy's Helper / Vladimír <strong>WladinQ</strong> Jacko &amp; Jakub <strong>Kubo2</strong> Kubíček
 	</div>
 </div>
 
