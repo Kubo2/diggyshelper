@@ -39,8 +39,7 @@ body {
 
   /* backwards compatibility */
  h1.no-center {
- 	width: inherit;
- 	text-align: initial;
+ 	text-align: start;
  }
 
  /* paragraphs */
@@ -59,19 +58,17 @@ body {
  /* buttons */
 [class*='button'] {
 	color: #fff;
-	text-decoration:none;
-	font-family: "Andika", "Times New Roman";
-	border-radius:5px;
-	cursor:pointer;
+	text-decoration: none;
+	font-family: Andika, "Times New Roman";
+	cursor: pointer;
 }
 
 [class*='button']:hover {
 	color: #fff;
-	text-decoration:none;
-	font-family: "Andika", "Times New Roman";
-	border-radius:5px;
-	font-size:14px;
-	cursor:pointer;
+	text-decoration: none;
+	font-family: Andika, "Times New Roman";
+	font-size: 14px;
+	cursor: pointer;
 }
 
 .input_button {
@@ -83,21 +80,20 @@ body {
 }
 
 .input_button:hover {
-	background-color:#106cb5;
-	border:2px #106cb5 solid;
+	background-color: #106cb5;
+	border: 2px #106cb5 solid;
 }
 
 .button {
-	background:#5999cc;
-	border:2px #5999cc solid;
-	font-size:14px;
-	padding-left:4px;
-	padding-right:4px;
+	background: #5999cc;
+	font-size: 14px;
+	padding-left: 4px;
+	padding-right: 4px;
+	float: left;
 }
 
 .button:hover {
-	background-color:#106cb5;
-	border:2px #106cb5 solid;
+	background-color: #106cb5;
 }
 
 .button_register {
@@ -114,16 +110,14 @@ body {
 }
 
 .button_logout {
-	background:#d44d4d;
-	border:2px #d44d4d solid;
-	font-size:14px;
-	padding-left:4px;
-	padding-right:4px;
+	background: #d44d4d;
+	font-size: 14px;
+	padding-left: 4px;
+	padding-right: 4px;
 }
 
 .button_logout:hover {
-	background-color:#c00000;
-	border:2px #c00000 solid;
+	background-color: #c00000;
 }
 
 .setting {
@@ -134,12 +128,11 @@ body {
 	padding-right: 4px;
 	color: #fff;
 	text-decoration: none;
-	border-radius: 5px;
 }
 
 .setting:hover {
-	background-color: #FF6600;
-	border: 2px #FF6600 solid;
+	background-color: #F60;
+	border: 2px #F60 solid;
 	font-size: 14px;
 	padding-left: 4px;
 	padding-right: 4px;
@@ -172,15 +165,11 @@ body {
 }
 
 #zaujimavosti {
-	width:auto;
-	margin-right:5px;
-	margin-left:5px;
-	margin-bottom:5px;
-	margin-top:0px;
-	border:2px #106cb5 solid;
-	border-radius:5px;
-	padding:5px;
-	font-family: "Andika", "Times New Roman";
+	width: auto;
+	margin: 0 5px 5px;
+	border: 2px #106cb5 solid;
+	padding: 5px;
+	font-family: Andika, "Times New Roman";
 }
 
 #zaujimavosti table {
@@ -202,7 +191,6 @@ body {
 	width: auto;
 	float: right;
 	font-size: 14px;
-	border-radius: 5px;
 	margin-right: 5px;
 	margin-top: 5px;
 	padding:7px;
@@ -234,8 +222,7 @@ body {
 	margin-right: 7px;
 	height: 85px;
 	width: 85px;
-	border-radius: 5px;
-	border: 2px #5999cc solid;
+	border: 2px #5999CC solid;
 }
 
 #loginprovizor img[type=userbuttons] {
@@ -256,7 +243,6 @@ body {
 
 #loginprovizor hr {
 	border: 1px #5999cc solid;
-	border-radius: 2px;
 }
 
 #provizorne {
@@ -269,7 +255,6 @@ body {
 	text-align: left;
 	padding: 5px;
 	display: none;
-	border-radius: 5px;
 }
 
 #provizorne p:first-child {
@@ -295,7 +280,6 @@ body {
 	margin-bottom:5px;
 	margin-top:0px;
 	border:2px #106cb5 solid;
-	border-radius:5px;
 	padding:5px;
 	font-family: "Andika", "Times New Roman";
 }
@@ -307,7 +291,6 @@ body {
 	margin-bottom:5px;
 	margin-top:0px;
 	border:2px #106cb5 solid;
-	border-radius:5px;
 	padding:5px;
 	font-family: "Andika", "Times New Roman";
 }
@@ -330,7 +313,6 @@ body {
 	text-decoration:none;
 	border:1px solid #d64000;
 	padding:5px;
-	border-radius:5px;
 }
 
 #coako .playgamefb {
@@ -339,13 +321,12 @@ body {
 	text-decoration:none;
 	border:1px solid #dddddd;
 	padding:5px;
-	border-radius:5px;
 }
 
 #menu {
 	background: #33cc00;
 	color: #fff;
-	font-family: "Andika", "Times New Roman";
+	font-family: Andika, "Times New Roman";
 	padding: 5px;
 	height: 26px;
 	text-align: center;
@@ -362,7 +343,6 @@ body {
 
 #menu a:hover {
 	background: #71dc4d;
-	border-radius: 5px;
 	color: #fff;
 }
 
@@ -444,7 +424,6 @@ body {
 	margin-bottom:5px;
 	margin-top:0px;
 	border:2px #106cb5 solid;
-	border-radius:5px;
 	padding:5px;
 	font-family: "Andika", "Times New Roman";
 }
@@ -484,16 +463,18 @@ body {
 #footer {
 	background-color: #106CB5;
 	background-position: bottom;
-	height: 10em;
-	width: auto;
-	padding: 20px 0 0 3.5%;
+	height: 5em;
+	width: 98%;
 	color: #FFF;
+	position: relative;
+	bottom: 0;
+	padding: 1%;
 }
 
 #footer .fb, #footer .git {
 	float: left;
-	width: 90%;
 	height: 2.5em;
+	margin: 0 50px 15px 0;
 }
 
 #footer .git {
@@ -546,17 +527,15 @@ body {
 	margin-bottom:5px;
 	margin-top:0px;
 	border:2px #106cb5 solid;
-	border-radius:5px;
 	padding:5px;
 	color:#000;
-	font-family: "Andika", "Times New Roman";
+	font-family: Andika, "Times New Roman";
 }
 
 #news {
-	border-radius:5px;
 	border:2px #106cb5 solid;
 	margin:10px;
-	font-family: "Andika", "Times New Roman";
+	font-family: Andika, "Times New Roman";
 	padding:5px;
 	min-height:20px;
 }
@@ -580,7 +559,6 @@ body {
 
 .user-profil .user-info table tr td img {
 	border: 2px solid #8CB8DC;
-	border-radius: 5px;
 }
 
 @media (max-width: 43.75em) {
@@ -635,20 +613,11 @@ body {
 }
 
 .imgbox {
-    border: 1px solid #eee;
-    padding: 10px;
-	width:auto;
-    margin-bottom: 10px;
-    background: #f3fbff;
-
-    /* radius vendors (backward) */
-    -webkit-border-radius:	10px;
-    -moz-border-radius:	10px;
-    -ms-border-radius:	10px;
-    -o-border-radius:		10px;
-
-    /* radius forward */
-    border-radius:			10px;
+	border: 1px solid #eee;
+	padding: 10px;
+	width: auto;
+	margin-bottom: 10px;
+	background: #f3fbff;
 }
 
 .memberusers {
@@ -665,7 +634,6 @@ body {
 	background:#87b5da;
 	color:#fff;
 	padding:10px;
-	border-radius:5px;
 	border:0px;
 	margin:10px 0px;
 	text-decoration:none;
@@ -675,7 +643,6 @@ body {
 	background:#106cb5;
 	color:#fff;
 	padding:10px;
-	border-radius:5px;
 	border:0px;
 	margin:10px 0px;
 	text-decoration:none;
@@ -689,7 +656,6 @@ body {
 .jazykon {
 	padding:2px;
 	background:#71dc4d;
-	border-radius:5px;
 	color:#fff;
 	margin-left:150px;
 }
@@ -697,7 +663,6 @@ body {
 .jazykoff {
 	padding:2px;
 	background:#71dc4d;
-	border-radius:5px;
 	float:right;
 	color:#fff;
 }
@@ -711,7 +676,6 @@ body {
 	padding:5px;
 	padding-left:5px;
 	border:2px #106cb5 solid;
-	border-radius: 5px;
 	margin: 0 0 7px 0;
 }
 
@@ -735,7 +699,6 @@ body {
 	border:0px solid #000;
 	margin-bottom:5px;
 	background-color:#5999cc;
-	border-radius:5px;
 	color:#fff;
 	text-decoration:none;
 	text-align:left;
@@ -768,7 +731,7 @@ div.dialog.profile {
   min-width:400px;
   min-height:250px;
   border:2px solid #000000;
-  font-family: "Andika", "Times New Roman";
+  font-family: Andika, "Times New Roman";
   background-color:#fff;
   float:center;
   left:calc(50% - 200px);
@@ -776,7 +739,7 @@ div.dialog.profile {
 
 div.dialog.profile h3 {
   text-align:center;
-  font-family: "Andika", "Times New Roman";
+  font-family: Andika, "Times New Roman";
 }
 
 div.dialog.profile img {
