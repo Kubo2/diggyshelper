@@ -17,6 +17,7 @@
 
   - [ ] zaregistrovať/objednať hosting pre skladovanie dát na serveroch Amazon SSS (S3) — http://djpw.cz/158727
   - [ ] vytvoriť **GitHub wiki** repozitára s informáciami pre developerov
+  - [ ] skonvertovať `database-state.xml` z CRLF na LF
 
 ### Pre vývojárov
 
@@ -45,6 +46,7 @@ Implementovať:
 #### upload obrázkov
 
   - [ ] implementovať Gravatar
+  - [ ] implementovať nahrávanie obrázkov do DB
   - [ ] prepojenie so servermi Amazon S3 za pomoci REST API
   - [ ] after upload resize image to 350x250px or simply 3:1
 
