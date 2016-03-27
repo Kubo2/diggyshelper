@@ -342,6 +342,18 @@ body {
 	border-radius:5px;
 }
 
+/**
+ * Menu alebo tiež navigácia webu.
+ *
+ * #menu   hlavný container pre menu, obsahuje prvky <a>
+ * #menu a   položka menu
+ * #menu a.first-item   prvá položka menu, menu môže obsahovať iba jednu položku s touto triedou
+ * #menu a:hover   aktívny stav položky menu, keď nad ňou je užívateľova myš
+ * #mmenu-state, [for=mmenu-state]   <input type=checkbox> a "ovládač" <label> použité na prepínanie stavu skryté/odkryté pre mobilné menu
+ * #mmenu-state:checked   stav "odkryté" pre #menu
+ *
+ * No styleguide reference.
+ */
 #menu {
 	background: #33CC00;
 	font-family: Andika, "Times New Roman";
@@ -364,17 +376,16 @@ body {
 	border-radius: 5px;
 }
 
+#mmenu-state, #mmenu-state + label {
+	display: none;
+}
+
 @media (max-width: 845px) {
+	/* mobilné štýly pre menu */
 	#menu {
 		height: auto;
 		height: initial;
-		background-image: url(../images/icon/mmenu.png);
-		background-repeat: no-repeat;
-		background-position: right top;
-	}
-
-	#menu:focus {
-		background-image: none;
+		background: url(../images/icon/mmenu.png) #33CC00 right top no-repeat;
 	}
 
 	#menu a {
@@ -385,9 +396,30 @@ body {
 		margin: 0;
 	}
 
-	#menu:focus a {
-		visibility: visible;
-		height: auto;
+	/* štýly pre otvorené menu */
+	#mmenu-state:checked + label +
+		#menu {
+			background-position: center top;
+		}
+
+	#mmenu-state:checked + label +
+		#menu a {
+			visibility: visible;
+			height: auto;
+		}
+
+	#mmenu-state:checked + label +
+		#menu .first-item {
+			margin-top: 28px;
+		}
+
+	/* "ovládač" <label> */
+	#mmenu-state + label {
+		display: block;
+		position: absolute;
+		width: 100%;
+		height: 28px;
+		cursor: pointer;
 	}
 }
 
