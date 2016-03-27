@@ -1,5 +1,7 @@
-<div id="menu" tabindex='-1'>
-	<a href="index.php">Domov</a>
+<!-- znásilnený checkbox (http://djpw.cz/166587#22)' --><input type='checkbox' id='mmenu-state'>
+<label for='mmenu-state'><!-- tu nie je nič, ale tento element sa napozicuje nad ikonku menu --></label>
+<div id="menu">
+	<a href="index.php" class='first-item'>Domov</a>
 	<a href="forum.php">Fórum</a>
 	<a href="whatandhow.php">Diggy's Adventure</a>
 	<a href="attractions.php">Zaujímavosti</a>
