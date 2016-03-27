@@ -343,27 +343,25 @@ body {
 }
 
 #menu {
-	background: #33cc00;
-	color: #fff;
-	font-family: "Andika", "Times New Roman";
+	background: #33CC00;
+	font-family: Andika, "Times New Roman";
+	text-align: center;
 	padding: 5px;
 	height: 26px;
-	text-align: center;
 	width: auto;
 }
 
 #menu a {
 	text-decoration: none;
-	color: #fff;
+	color: #FFF;
 	padding: 2px;
 	margin: 7px;
 	margin: 0.4375em
 }
 
 #menu a:hover {
-	background: #71dc4d;
+	background: #71DC4D;
 	border-radius: 5px;
-	color: #fff;
 }
 
 @media (max-width: 845px) {
@@ -373,10 +371,6 @@ body {
 		background-image: url(../images/icon/mmenu.png);
 		background-repeat: no-repeat;
 		background-position: right top;
-
-		/* completely   unuseful - but great extension. */
-		cursor: hand !important; /* i dont really know IE - an instead of exploring, i am letting this hack*/
-		cursor: pointer;
 	}
 
 	#menu:focus {
