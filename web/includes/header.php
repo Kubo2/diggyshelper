@@ -21,8 +21,9 @@ $page = basename((0 < $q = strpos($u = $_SERVER['REQUEST_URI'], '?')) ? substr_r
 		<?php else: ?>
 		<img type="userimages" src="images/thumb/no-avatar.jpg" align="left" alt="Profilová fotografia">
 		Prihlásený používateľ &raquo; <strong><?php echo($_SESSION['username']) ?></strong><br><br>
-		Počet príspevkov: -1<br>
-		Posledná návšteva: 00/00/0000<br>
+		Počet príspevkov: <?= $_SESSION['userbox']['user.posts.count'] ?><br>
+<!--		Posledná návšteva: 00/00/0000<br>-->
+		Deň registrácie: <?= date('d/m/Y', $_SESSION['userbox']['user.reg.date']) ?><br>
 		<hr>
 		<a class='button' title='Môj profil' href='./profile.php?user=<?= urlencode($_SESSION['username']) ?>'>
 			<img type='userbuttons' src='./images/icon/profile1.png'>

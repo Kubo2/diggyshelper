@@ -78,6 +78,8 @@ $_SESSION = [
 	"username" => $_POST['username'],
 ];
 
+_saveUserBoxInfo($_SESSION['uid']);
+
 presmerovanie:
 
 $schema = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' ? 'https' : 'http';
@@ -125,3 +127,38 @@ header("Content-Type: text/html; charset=utf-8", true, 403);
 	</div>
 </body>
 </html>
+
+<?php
+
+
+/**
+ * Should be called on successful login/sign-in request.
+ * Fetches a pair of information from database and stores it in array( user.posts.count => int, user.reg.date => timestamp )
+ * which is then stored in $_SESSION['userbox']. These data are updated only on login.
+ *
+ * @param int   The internal ID of currently active (logged-in) user
+ * @return void
+ */
+function _saveUserBoxInfo($userId) {
+
+	static $compoundSql = <<<SQL
+-- sql select for pulling out user's register date and last post count at once
+select count(p.id) posts_count, u.registerdate reg_date
+from users u
+join posts p
+  on p.post_creator = u.id
+
+where u.id = {\$userId}
+;
+SQL;
+
+	$res = mysql_query(str_replace('{$userId}', $userId, $compoundSql));
+	if(!$res) {
+		$_SESSION['userbox'] = array( 'user.posts.count' => 0, 'user.reg.date' => NULL );
+	}
+
+	$row = mysql_fetch_assoc($res);
+	$_SESSION['userbox'] = array( 'user.posts.count' => (int) $row['posts_count'], 'user.reg.date' => strtotime($row['reg_date']) );
+
+	return NULL;
+}
