@@ -80,33 +80,37 @@ $_SESSION = [
 
 presmerovanie:
 
+$schema = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' ? 'https' : 'http';
+
 // kam presmerovať
-$redirectTo = "http://$_SERVER[SERVER_NAME]/" . trim(dirname($_SERVER["SCRIPT_NAME"]), '/') . "/index.php";
+$redirectTo = "{$schema}://{$_SERVER['SERVER_NAME']}" . substr($u = $_SERVER['REQUEST_URI'], 0, strrpos($u, '/', -strrpos($u, '?'))) . '/index.php';
+
 
 // presmerovať na referer?
 $ref = !isset($_POST["redirect-noreferer"]);
 
 // ak existuje referrer a je z nášho servera, presmeruj na referrer
-if(
-	isset($_SERVER["HTTP_REFERER"])
-	&& preg_match('~^https?://' . preg_quote($_SERVER["SERVER_NAME"]) . '/~', $_SERVER["HTTP_REFERER"])
-	&& $ref) {
-	$redirectTo = $_SERVER["HTTP_REFERER"];
+if($ref && !empty($_SERVER['HTTP_REFERER']) && preg_match('~^https?://' . preg_quote($_SERVER['SERVER_NAME']) . '/~', $_SERVER['HTTP_REFERER'])) {
+	$redirectTo = $_SERVER['HTTP_REFERER'];
 }
 
 // presmeruj na správnu adresu
-//print($redirectTo); # the bug unpacker
-header("Location: $redirectTo", true, 302);
+{
+	header('Content-Type: text/plain');
+	header("Location: $redirectTo", TRUE, 303);
 
-exit;
+	echo "Resource Has Been Moved To: $redirectTo";
+
+	exit();
+}
 
 // chybová stránka prihlasovania
 login_errorpage:
-header("Content-Type: text/html; charset=utf-8", true, 401);
+header("Content-Type: text/html; charset=utf-8", true, 403);
 ?>
+<!doctype html>
 <html>
 	<head>
-		<meta charset='utf-8'>
 		<?php $titleConst = "Login Error &bull; Chyba prihlásenia"; include "includes/head.php" ?>
 	</head>
 <body>

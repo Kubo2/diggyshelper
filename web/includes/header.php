@@ -1,9 +1,15 @@
+<?php
+
+/** @var string current processing script */
+$page = basename((0 < $q = strpos($u = $_SERVER['REQUEST_URI'], '?')) ? substr_replace($u, '', $q) : $u);
+
+?>
 <div id="header">
 	<div id="loginprovizor">
 		<?php 	if(!isset($_SESSION['uid'])): // TODO: restructure session array	?>
 		<form action='login.php' method='post'>
-			<?php if(in_array(trim(basename($_SERVER["REQUEST_URI"]), '?'), [ 'register.php', ])): ?>
-			<input type="hidden" name="redirect-noreferer" value="1">
+			<?php   if(in_array($page, [ 'register.php', 'login.php', ], TRUE)):   ?>
+				<input type="hidden" name="redirect-noreferer" value="1">
 			<?php endif ?>
 			<input class='input' type='text' name='username' placeholder='Nickname'><br>
 			<input class='input' type='password' name='password' placeholder='Heslo'>
