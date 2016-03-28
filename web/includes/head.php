@@ -20,7 +20,7 @@ require_once __DIR__ . '/../sanitize.lib.php';
 <?php /* Universal title. Only temporarily. */ ?>
 <title><?=
 			! empty( $titleConst )
-			? SanitizeLib\sanitize($titleConst, SanitizeLib\HTML)
+			? htmlspecialchars(html_entity_decode($titleConst, ENT_HTML5, 'UTF-8'), ENT_NOQUOTES | ENT_HTML5)
 			: "Diggy's Helper &ndash; Česko-slovenské Diggy's Adventure fórum"
 ?></title>
 
