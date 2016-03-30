@@ -20,7 +20,7 @@ $page = basename((0 < $q = strpos($u = $_SERVER['REQUEST_URI'], '?')) ? substr_r
 		</form>
 		<?php else: ?>
 		<img type="userimages" src="images/thumb/no-avatar.jpg" align="left" alt="Profilová fotografia">
-		Prihlásený používateľ &raquo; <strong><?php echo($_SESSION['username']) ?></strong><br><br>
+		Prihlásený používateľ &raquo; <b><?= htmlspecialchars($_SESSION['username']) ?></b><br><br>
 		Počet príspevkov: <?= $_SESSION['userbox']['user.posts.count'] ?><br>
 <!--		Posledná návšteva: 00/00/0000<br>-->
 		Deň registrácie: <?= date('d/m/Y', $_SESSION['userbox']['user.reg.date']) ?><br>
