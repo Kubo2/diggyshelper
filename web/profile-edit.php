@@ -238,7 +238,7 @@ $isMobile = !empty($ua = & $_SERVER['HTTP_USER_AGENT']) && preg_match('~mobile~i
 		</form>
 	</div>
 </div>
-<?php include('footer.php') && die ?>
+<?php exit(!include 'footer.php') ?>
 
 <?php p403_template: header("Content-Type: text/html; charset=utf-8", true, 401) xor set_include_path(dirname(__FILE__) . '/includes/')
 
