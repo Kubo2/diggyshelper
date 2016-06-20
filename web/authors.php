@@ -42,6 +42,9 @@ header("Content-Type: text/html; charset=utf-8", true, 200);
 	p {
 		margin: .1em 0 1.2em;
 	}
+	dd, dt {
+		clear: both;
+	}
 		</style>
 	</head>
 	<body>
@@ -64,7 +67,7 @@ header("Content-Type: text/html; charset=utf-8", true, 200);
 	</p>
 	
 	<h2 id="historia">História vzniku</h2>
-	<p>Ak ste našli cestu k našemu Česko-Slovenskému fóru, predpokladám, že ste oboznámený s online hrou Diggy's Adventure.
+	<p>Ak ste našli cestu k našemu česko-slovenskému fóru, predpokladám, že ste oboznámený s online hrou Diggy's Adventure.
 	Táto online hra doposiaľ nemala žiadne Česko-Slovenské fórum, tak sme sa rozhodli jedno fórum pre vás naprogramovať. :-<i>)</i>
 	<br>
 	Podnet prišiel od Vladimíra Jacka dňa <time datetime='2013-12-08'>8. 12. 2013</time>. Kedže však prácu na fóre nemôže spravovať
@@ -73,34 +76,36 @@ header("Content-Type: text/html; charset=utf-8", true, 200);
 	baniach v sekcii <a class="memberusers" href="http://diggyshelper.php5.sk/attractions.php">Zaujímavosti</a>, alebo je k dispozícii
 	online česko-slovenská diskusná poradňa v sekcii <a class="memberusers" href="http://diggyshelper.php5.sk/forum.php">Fórum</a>.
 	<p>
-	Po <a href="./register.php" class='memberusers'>registrácii</a> vlastného používateľského profilu je možné okrem iného prispievať do fóra, podeliť sa 
-	o osobné skúsenosti s hrou Diggy's Adventure, položiť vlastnú otázku či  napríklad spestriť si profil pridaním svojej fotografie. :-<i>)</i>
+	Po <a href="./register.php" class='memberusers'>registrácii vlastného používateľského profilu</a> je možné okrem iného prispievať do fóra, podeliť sa 
+	s ostatnými o osobné skúsenosti s hrou Diggy's Adventure, položiť vlastnú otázku či napríklad spestriť si profil pridaním svojej fotografie. :-<i>)</i>
 	<br>
 	Za celý tím Diggy's Helper dúfam, že nájdete na našich stránkach to, čo hľadáte.</p>
 	
 	<h2 id="autori">Autori fóra</h2>
 	<dl>
-		<dt id="WladinQ"><a class="memberusers" href="https://www.facebook.com/WladinQ" target="_blank">Vladimír Jacko</a></dt>
+		<dt id="WladinQ"><a class="memberusers" href="https://www.facebook.com/WladinQ" target="_blank">Vladimír <strong>WladinQ</strong> Jacko</a></dt>
 		<dd>
+			<img src="images/icon/WladinQ.jpg" style='float: left; width: 180px; margin: .25em 1em 0 0'>
 			<p>Vášnivý programátor v najlepších rokoch a zakladateľ projektu
 			Diggy's Helper. Pri programovaní najradšej počúva skupinu KABÁT.
 			Rád si pozrie dobrý film, miluje prírodu a dobre vychladené pivo.
 			Každý deň premýšla ako najlepšie spríjemniť Váš pobyt na našich stránkach.<p>
 			Zaoberá sa prevažne dizajnom projektu. </p>
 		</dd>
-		<dt id="Kubo2"><a class="memberusers" href="http://kubo2.wz.sk/" target="_blank">Jakub Kubíček</a></dt>
+		<dt id="Kubo2"><a class="memberusers" href="http://kubo2.wz.sk/" target="_blank">Jakub <strong>Kubo2</strong> Kubíček</a></dt>
 		<dd>
+							 <img src="images/icon/Kubo2.jpg" style='float: right; width: 180px'>
 							  <p>Mladý programátor zameraný na webové technológie. Ako rýchlostný kanoista 
 							  jazdí na pretekárskej kanojke, v lete si často na tréning zájde bicyklom a v zime sa neunúva zostávať 
 							  doma, keď sa s rodinou a známimi ide na lyžovačku. Za najlepšie ovocie považuje 
 							  exotický kúsok nazývaný pomelo.
 							  <!--br-->Medzi jeho ďaľšie záľuby patrí najmä <b>programovanie</b> a tvorba webových 
 							  stránok.
-							  <br>Na webe je ho možné nájsť pod prezývkou <strong>Kubo2</strong>.
+							  <br>Na webe je ho možné nájsť pod prezývkou <strong>Kubo2</strong>.</p>
 
 							  <p>Na projekte Diggy's Helper má zásluhy hlavne ako <b>manažér</b> projektu, 
 							  <b>programátor</b> serverovej aplikácie v&nbsp;skriptovacom jazyku PHP a klientského 
-							  aplikačného rozhrania v jazyku JavaScript.
+							  aplikačného rozhrania v jazyku JavaScript.</p>
 
 							  <!-- tento obrázok si musím niekde poznačiť ;-) images/icon/kanoistika-voda.jpg -->
 		</dd>
