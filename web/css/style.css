@@ -706,6 +706,7 @@ body .pages {
 	background-color: #5F9CCC;
 	border: 2px #5F9CCC solid;
 	color: #FFF;
+	margin: 1% 0 0 0;
 }
 
 #content table tr:last-child .button {
