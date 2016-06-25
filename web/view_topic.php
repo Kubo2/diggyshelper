@@ -29,10 +29,10 @@ header("Content-Type: text/html; charset=utf-8", true, 200);
 	require('./lib/bbcode.php');
 
 	function _render_reply_anch_tpl($categoryId, $topicId) { ?>
-<a rel='nofollow' class='input_button' href=<?php
+<a rel='nofollow' class='input_button2' href=<?php
 		printf("'./post_reply.php?cid=%d&amp;tid=%d'", $categoryId, $topicId)
 ?>>
-	<b>Pridať</b> otázku / odpoveď
+	Pridať otázku / odpoveď
 </a>
 	<?php
 	}
@@ -90,7 +90,7 @@ document404
 		<tr>
 			<td colspan=2>
 				<?php if( $cid ): ?>
-					<a class='button' <?php printf("href='./view.php?cid=%d'", $cid) ?>>Späť do kategórie</a> |
+					<a class='button' <?php printf("href='./view.php?cid=%d'", $cid) ?>>Späť do kategórie</a>
 				<?php endif ?>
 
 				<?php if( ! loggedIn() ) { ?>
@@ -101,9 +101,8 @@ document404
 		</tr>
 		<?php while(($post = mysql_fetch_object($posts)) !== false): ?>
 		<tr>
-			<td valign='top' style='border: 2px solid #33cc00; padding: 5px'>
+			<td valign='top' id='topiccolor'>
 				<nobr class="post-meta line">Pridal/a: <a 
-					style="font-weight: bold" 
 					class='memberusers' 
 					href=<?=( sprintf("'./profile.php?user=%s'", urlencode($post->author)) ) // handles also ' " < > ?>><?=(
 						SanitizeLib\escape($post->author, 'HTML')
@@ -111,19 +110,29 @@ document404
 						id(new DateTime($post->added))->format("'c'")
 					)?> style='color: #33cc00'><?=( id(new DateTime($post->added))->format("d.m.Y / H:i:s") )?></time>
 				</nobr>
-				<hr><div class='post post-text'><?php
-				if($post->markup == 'html') {
-					echo $post->text;
-				} elseif($post->markup == 'bb') {
-					echo dh_bb_decode($post->text);
-				}
-				?></div>
+				<hr>
+				<div class='post post-text'>
+					<?php
+						if($post->markup == 'html') {
+							echo $post->text;
+						} elseif($post->markup == 'bb') {
+							echo dh_bb_decode($post->text);
+						}
+					?>
+				</div>
 			</td>
 		</tr>
 		<?php endwhile ?>
 		<tr>
 			<td colspan=2>
-				<?php if( loggedIn() ) _render_reply_anch_tpl($cid, $tid) ?>
+				<hr>
+				<?php if( $cid ): ?>
+					<a class='button' <?php printf("href='./view.php?cid=%d'", $cid) ?>>Späť do kategórie</a>
+				<?php endif ?>
+
+				<?php if( ! loggedIn() ) { ?>
+					Na pridanie odpovede je potrebné sa <b style="color: #106cb5">Prihlásiť</b>, alebo sa <b style="color: #33cc00">Registrovať</b>!
+				<?php } else _render_reply_anch_tpl($cid, $tid) ?>
 			</td>
 		</tr>
 	</table>

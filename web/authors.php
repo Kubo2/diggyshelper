@@ -23,27 +23,41 @@ header("Content-Type: text/html; charset=utf-8", true, 200);
 		transition: none;
 	}
 	[id]:target {
-		outline: 1.8px solid #ff9e49;
+		outline: 1.8px solid #106CB5;
 		border-top-color: transparent;
-		background: #ffcfa4;
+		background: #8CB8DC;
 		transition: all 1.2s;
+		color: #FFF;
 	}
 	[id]:not(:target) {
 		transition: all .7s;
 	}
 	h1, h2, h3 {
 		margin: 0;
-		padding: .4em 0 .4em .7em;
+		padding: 0 0 10px;
 		outline: 1.8px solid transparent;
 	}
 	h2, h3 {
-		border-top: 2px dashed silver; 
-	}
-	p {
-		margin: .1em 0 1.2em;
+		border-top: 1px dashed silver;
+		text-align: center;
 	}
 	dd, dt {
 		clear: both;
+	}
+	dl {
+		margin: 0;
+	}
+	dt {
+		text-align: center;
+		margin: 0 0 10px;
+	}
+	dd {
+		margin: 0;
+	}
+
+	p {
+		margin: 0;
+		max-width: 100%;
 	}
 		</style>
 	</head>
@@ -83,7 +97,7 @@ header("Content-Type: text/html; charset=utf-8", true, 200);
 	
 	<h2 id="autori">Autori fóra</h2>
 	<dl>
-		<dt id="WladinQ"><a class="memberusers" href="https://www.facebook.com/WladinQ" target="_blank">Vladimír <strong>WladinQ</strong> Jacko</a></dt>
+		<dt id="WladinQ"><a class="memberusers" href="https://www.facebook.com/WladinQ" target="_blank">Vladimír WladinQ Jacko</a></dt>
 		<dd>
 			<img src="images/icon/WladinQ.jpg" style='float: left; width: 180px; margin: .25em 1em 0 0'>
 			<p>Vášnivý programátor v najlepších rokoch a zakladateľ projektu
@@ -92,7 +106,8 @@ header("Content-Type: text/html; charset=utf-8", true, 200);
 			Každý deň premýšla ako najlepšie spríjemniť Váš pobyt na našich stránkach.<p>
 			Zaoberá sa prevažne dizajnom projektu. </p>
 		</dd>
-		<dt id="Kubo2"><a class="memberusers" href="http://kubo2.wz.sk/" target="_blank">Jakub <strong>Kubo2</strong> Kubíček</a></dt>
+		<hr>
+		<dt id="Kubo2"><a class="memberusers" href="http://kubo2.wz.sk/" target="_blank">Jakub Kubo2 Kubíček</a></dt>
 		<dd>
 							 <img src="images/icon/Kubo2.jpg" style='float: right; width: 180px'>
 							  <p>Mladý programátor zameraný na webové technológie. Ako rýchlostný kanoista 

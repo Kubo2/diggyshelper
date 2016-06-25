@@ -15,8 +15,8 @@ $curUrl = $_SERVER['REQUEST_URI'];
 require_once __DIR__ . '/../sanitize.lib.php';
 
 ?>
+<meta charset='UTF-8'>
 <meta name='theme-color' content='#106CB5'>
-<meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1, user-scalable=no'>
 <?php /* Universal title. Only temporarily. */ ?>
 <title><?=
@@ -78,4 +78,3 @@ window['GoogleAnalyticsObject'] = <?= json_encode(GA_GLOBAL) ?>;
 <link href='<?= "http://diggyshelper.net{$curUrl}" ?>' rel='canonical'>
 <link href='<?= $absUrl ?>/css/style.css' rel='stylesheet'>
 <link href='<?= $absUrl ?>/favicon.png'   rel='icon' type='image/png'>
-

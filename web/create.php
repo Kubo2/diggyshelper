@@ -24,7 +24,7 @@ header("Content-Type: text/html; charset=utf-8", true, 200);
 		?>
 		<div id="forum">
 			<a class='button' href='javascript:history.back(1)'>Späť</a>
-			<a class='button_register' onclick="window.open('upload.php', 'okno1', 'width=500,height=400')">Nahrať obrázok</a>
+			<!--a class='button_upload' onclick="window.open('upload.php', 'okno1', 'width=500,height=400')">Nahrať obrázok</a-->
 			<hr/>
 			<div id="content">
 				<form action="create_topic.php" method="post" name="vytvor-temu">
@@ -32,11 +32,7 @@ header("Content-Type: text/html; charset=utf-8", true, 200);
 					<input type="text" name="topic_title" size="98" maxlength="150" tabindex=1>
 					<p>Obsah témy:</p>
 					<textarea name="prispevok" rows="12" cols="75" tabindex=2></textarea>
-					<br>
-					<!-- WladinQ! Povedz mi krista, načo je dobré dávať tagu <button>
-					atribút type="button" (ktorý na tomto elemente minimálne nie je dovolený)
-					plus dávať mu triedu .button? ~ Kubo2 -->
-					<!-- Trieda .button ponechaná zámerne. Slúži pre tunajšie vkladanie BB tagov. ~Kubo2 -->
+
 					<button class='button' id="b" tabindex=0><b>tučné</b></button>
 					<button class='button' id="i" tabindex=0><i>kurzíva</i></button>
 					<button class='button' id="u" tabindex=0><u>podčiarknuté</u></button>

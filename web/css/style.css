@@ -1,4 +1,3 @@
-
 @charset "UTF-8";
 @import "https://fonts.googleapis.com/css?family=Andika&subset=latin,latin-ext";
 
@@ -7,7 +6,7 @@
  * Nobody may reuse or redistribute it.
  *
  * @author   WladinQ <vladimir.jacko.ml@gmail.com>
- * @copyright 2013-2014 dh-forum workgroup
+ * @copyright 2013-2016 dh-forum workgroup
  *
  * Little but important edits to this file also made Kubo2.
  *
@@ -35,28 +34,26 @@ body {
  h1:not(.no-center) {
  	width: 100%;
  	text-align: center;
+	margin: 0 0 10px 0;
  }
 
   /* backwards compatibility */
  h1.no-center {
  	width: inherit;
  	text-align: initial;
+	margin: 0;
  }
 
- /* paragraphs */
- p {
- 	max-width: 92%;
- 	margin: auto;
- }
+/* paragraphs */
+p {
+	width: 100%;
+}
 
-  table p, form p {
+table p, form p {
   	max-width: 100%;
-  }
+}
 
-/**
- * Universal.
- */
- /* buttons */
+/* buttons */
 [class*='button'] {
 	color: #fff;
 	text-decoration:none;
@@ -74,15 +71,40 @@ body {
 	cursor:pointer;
 }
 
+body .pages {
+	width: 85%;
+	padding: 0 0.5% 0 0.5%;
+	margin: 0.5% 7% 0.5% 7%;
+	float: left;
+	font-family: "Andika", "Times New Roman";
+	border-left: 1px solid #DCDCDC;
+	border-right: 1px solid #DCDCDC;
+}
+
 .input_button {
 	background:#5999cc;
 	border:2px #5999cc solid;
 	cursor:pointer;
 	font-size:14px;
-	margin: 4px 0 0 0;
+	padding-left:4px;
+	padding-right:4px;
 }
 
 .input_button:hover {
+	background-color:#106cb5;
+	border:2px #106cb5 solid;
+}
+
+.input_button2 {
+	background:#5999cc;
+	border:2px #5999cc solid;
+	cursor:pointer;
+	font-size:14px;
+	padding-left:4px;
+	padding-right:4px;
+}
+
+.input_button2:hover {
 	background-color:#106cb5;
 	border:2px #106cb5 solid;
 }
@@ -101,38 +123,56 @@ body {
 }
 
 .button_register {
-	background:#71dc4d;
-	border:2px #71dc4d solid;
-	font-size:14px;
-	padding-left:4px;
-	padding-right:4px;
+	background-color: #71dc4d;
+	border: 2px #71dc4d solid;
+	font-size: 14px;
+	padding-left: 4px;
+	padding-right: 4px;
 }
 
 .button_register:hover {
-	background-color:#33cc00;
-	border:2px #33cc00 solid;
+	background-color: #33cc00;
+	border: 2px #33cc00 solid;
+}
+
+.input_log {
+	background-color: #5999cc;
+	border: 2px #5999cc solid;
+	cursor: pointer;
+	text-decoration: none;
+	font-family: "Andika", "Times New Roman";
+	border-radius: 5px;
+	font-size: 14px;
+	padding-left: 4px;
+	padding-right: 4px;
+	color: #FFFFFF;
+}
+
+.input_log:hover {
+	background-color: #106cb5;
+	border: 2px #106cb5 solid;
 }
 
 .button_logout {
-	background:#d44d4d;
-	border:2px #d44d4d solid;
-	font-size:14px;
-	padding-left:4px;
-	padding-right:4px;
+	background-color: #d44d4d;
+	border: 2px #d44d4d solid;
+	font-size: 14px;
+	padding-left: 4px;
+	padding-right: 4px;
 }
 
 .button_logout:hover {
-	background-color:#c00000;
-	border:2px #c00000 solid;
+	background-color: #c00000;
+	border: 2px #c00000 solid;
 }
 
 .setting {
-	background: #FF954D; /* 70% opacity */
+	background-color: #FF954D; /* 70% opacity */
 	border: 2px #FF954D solid;
 	font-size: 14px;
 	padding-left: 4px;
 	padding-right: 4px;
-	color: #fff;
+	color: #ffffff;
 	text-decoration: none;
 	border-radius: 5px;
 }
@@ -147,8 +187,23 @@ body {
 	text-decoration: none;
 }
 
-/** Koniec universal. */
+/** Koniec buttons */
 /** ID */
+
+#topiccolor {
+	background-color: #E0E0E0;
+	border: 0;
+}
+
+#topiccolor a {
+	text-decoration: none;
+	cursor: pointer;
+}
+
+#topiccolor .book {
+	width: 40px;
+	height: 40px;
+}
 
 #sutaz {
 	position: fixed;
@@ -172,15 +227,13 @@ body {
 }
 
 #zaujimavosti {
-	width:auto;
-	margin-right:5px;
-	margin-left:5px;
-	margin-bottom:5px;
-	margin-top:0px;
-	border:2px #106cb5 solid;
-	border-radius:5px;
-	padding:5px;
+	width: 85%;
+	padding: 0 0.5% 0 0.5%;
+	margin: 0.5% 7% 0.5% 7%;
+	float: left;
 	font-family: "Andika", "Times New Roman";
+	border-left: 1px solid #DCDCDC;
+	border-right: 1px solid #DCDCDC;
 }
 
 #zaujimavosti table {
@@ -207,6 +260,12 @@ body {
 	margin-top: 5px;
 	padding:7px;
 	color:#fff;
+}
+
+#loginprovizor .buttonmenu {
+	width: 100%;
+	float: left;
+	margin: 12px 0 0 0;
 }
 
 @media (max-width: 400px) {
@@ -289,35 +348,31 @@ body {
 }
 
 #pages {
-	width:auto;
-	margin-right:5px;
-	margin-left:5px;
-	margin-bottom:5px;
-	margin-top:0px;
-	border:2px #106cb5 solid;
-	border-radius:5px;
-	padding:5px;
+	width: 85%;
+	padding: 0 0.5% 0 0.5%;
+	margin: 0.5% 7% 0.5% 7%;
+	float: left;
 	font-family: "Andika", "Times New Roman";
+	border-left: 1px solid #DCDCDC;
+	border-right: 1px solid #DCDCDC;
 }
 
 #coako {
-	width:auto;
-	margin-right:5px;
-	margin-left:5px;
-	margin-bottom:5px;
-	margin-top:0px;
-	border:2px #106cb5 solid;
-	border-radius:5px;
-	padding:5px;
+	width: 85%;
+	padding: 0 0.5% 0 0.5%;
+	margin: 0.5% 7% 0.5% 7%;
+	float: left;
 	font-family: "Andika", "Times New Roman";
+	border-left: 1px solid #DCDCDC;
+	border-right: 1px solid #DCDCDC;
 }
 
 #coako h3 {
-   margin-bottom: 7px;
-   background: #106cb5;
+	margin-bottom: 7px;
+	background: #106cb5;
 	color:#fff;
-   border-bottom: 1px solid #ddd;
-   padding: 0 10px;
+	border-bottom: 1px solid #ddd;
+	padding: 0 10px;
 }
 
 #pages table tr td {
@@ -354,6 +409,7 @@ body {
  *
  * No styleguide reference.
  */
+
 #menu {
 	background: #33CC00;
 	font-family: Andika, "Times New Roman";
@@ -378,49 +434,6 @@ body {
 
 #mmenu-state, #mmenu-state + label {
 	display: none;
-}
-
-@media (max-width: 845px) {
-	/* mobilné štýly pre menu */
-	#menu {
-		height: auto;
-		height: initial;
-		background: url(../images/icon/mmenu.png) #33CC00 right top no-repeat;
-	}
-
-	#menu a {
-		display: block;
-		visibility: hidden;
-		overflow: hidden;
-		height: 0;
-		margin: 0;
-	}
-
-	/* štýly pre otvorené menu */
-	#mmenu-state:checked + label +
-		#menu {
-			background-position: center top;
-		}
-
-	#mmenu-state:checked + label +
-		#menu a {
-			visibility: visible;
-			height: auto;
-		}
-
-	#mmenu-state:checked + label +
-		#menu .first-item {
-			margin-top: 28px;
-		}
-
-	/* "ovládač" <label> */
-	#mmenu-state + label {
-		display: block;
-		position: absolute;
-		width: 100%;
-		height: 28px;
-		cursor: pointer;
-	}
 }
 
 #menuleft {
@@ -464,24 +477,70 @@ body {
 }
 
 #forum {
-	width:auto;
-	margin-right:5px;
-	margin-left:5px;
-	margin-bottom:5px;
-	margin-top:0px;
-	border:2px #106cb5 solid;
-	border-radius:5px;
-	padding:5px;
+	width: 85%;
+	padding: 0 0.5% 0 0.5%;
+	margin: 0.5% 7% 0.5% 7%;
+	float: left;
 	font-family: "Andika", "Times New Roman";
+	border-left: 1px solid #DCDCDC;
+	border-right: 1px solid #DCDCDC;
 }
 
 #content {
-	
+	float: left;
+	width: 100%;
 }
 
-#content table tr td a {
+#content .nazov h1 {
+	text-align: left;
+}
+
+#content form {
+	margin: 0;
+}
+
+#content form p {
+	margin: 0;
+}
+
+#content .category {
+	margin: 5px 0 5px 0;
+	width: 100%;
+	_border: 1px solid #000000;
+	background-color: #E0E0E0;
+}
+
+#content .category tr td {
+	padding: 0 5px 0 5px;
+}
+
+#content .category tr td a {
+	color: #000000;
+	font-weight: bold;
 	text-decoration: none;
-	cursor: pointer;
+}
+
+#content .category tr td a:hover {
+	text-decoration: underline;
+}
+
+#content form input[name=topic_title] {
+	width: 50%;
+	padding: 5px;
+	border: 1px solid #CECECE;
+	margin: 10px 0 10px 0;
+}
+
+#content form textarea {
+	resize: none;
+	width: 99%;
+	border: 1px solid #CECECE;
+	margin: 10px 0 10px 0;
+}
+
+#content table tr td img {
+	width: 32%;
+	margin: 0 0.5% 0 0.5%;
 }
 
 #content table tr td a:title {
@@ -509,29 +568,32 @@ body {
 
 #footer {
 	background-color: #106CB5;
-	background-position: bottom;
-	height: 10em;
-	width: auto;
-	padding: 20px 0 0 3.5%;
-	color: #FFF;
+	width: 98%;
+	float: left;
+	padding: 1%;
+	color: #FFFFFF;
+	position: relative;
+	bottom: 0;
+	left: 0;
 }
 
 #footer .fb, #footer .git {
-	float: left;
-	width: 90%;
-	height: 2.5em;
+	float: right;
+	_height: 2.5em;
+	position: relative;
+	top: 2px;
 }
 
 #footer .git {
-	margin: 5px 0 20px 0;
+	margin: 0 20px 0 0;
 }
 
 #footer .fb a, #footer .git a {
 	color: #FFF;
 	text-decoration: none;
-	font-size: 22px;
+	font-size: 15px;
 	position: relative;
-	bottom: 12px;
+	bottom: 10px;
 }
 
 #footer .fb a:hover, #footer .git a:hover {
@@ -539,43 +601,25 @@ body {
 }
 
 #footer .fb img, #footer .git img {
-	width: 40px;
-	height: 40px;
+	width: 30px;
+	height: 30px;
 	margin: 0 10px 0 0;
 }
 
 #footer .copy {
 	float: left;
-	width: 90%;
-}
-
-@media (max-width: 700px) {
-	#footer .fb, #footer .git {
-		display: none;
-	}
-
-	#footer .copy {
-		float: none;
-		width: 100%;
-		font-size: x-small;
-	}
-
-	#footer {
-		height: auto;
-	}
+	position: relative;
+	top: 7px;
 }
 
 #statistiky {
-	width:auto;
-	margin-right:5px;
-	margin-left:5px;
-	margin-bottom:5px;
-	margin-top:0px;
-	border:2px #106cb5 solid;
-	border-radius:5px;
-	padding:5px;
-	color:#000;
+	width: 85%;
+	padding: 0 0.5% 0 0.5%;
+	margin: 0.5% 7% 0.5% 7%;
+	float: left;
 	font-family: "Andika", "Times New Roman";
+	border-left: 1px solid #DCDCDC;
+	border-right: 1px solid #DCDCDC;
 }
 
 #news {
@@ -609,52 +653,6 @@ body {
 	border-radius: 5px;
 }
 
-@media (max-width: 43.75em) {
-	.user-profil .user-info h1 {
-		text-align: center;
-		color: transparent;
-	}
-
-	.user-profil .user-info h1 > big {
-		color: #000;
-		float: left;
-	}
-
-	.user-profil .user-info table {
-		width: 100% !important;
-		table-layout: auto !important;
-	}
-
-	.user-profil .user-info table tr,
-	.user-profil .user-info table td {
-		display: block;
-	}
-
-	.user-profil .user-info table td {
-		width: 100%;
-		text-align: center !important;
-		display: inline-block;
-		=display: inline; /* IE 7 below */
-		=zoom: 1; /* switch hasLayout on in IE */
-	}
-
-	.user-profil .user-info table td.odd,
-	.user-profil .user-info table td.even {
-		color: white;
-		opacity: 0.8;
-	}
-
-	.user-profil .user-info table td.odd {
-		background: #106cb5;
-	}
-
-	.user-profil .user-info table td.even {
-		font-weight: bold;
-		background: #33cc00;
-	}
-}
-
-
 .hbox {
     padding-bottom: 15px;
     margin-bottom: 25px;
@@ -677,14 +675,18 @@ body {
     border-radius:			10px;
 }
 
+.imgbox img {
+	max-width: 100%;
+}
+
 .memberusers {
 	color:#5999cc;
 	text-decoration:none;
 }
 
 .memberusers:hover {
+	text-decoration: underline;
 	color:#106cb5;
-	text-decoration:none;
 }
 
 .box {
@@ -710,6 +712,10 @@ body {
 .naj {
 	text-decoration:none;
 	color:#000;
+}
+
+.naj:hover {
+	text-decoration: underline;
 }
 
 .jazykon {
@@ -753,6 +759,7 @@ body {
 	float: left;
 }
 
+/*
 .cat_links {
 	display: block;
 	padding:5px;
@@ -772,6 +779,7 @@ body {
 	text-decoration:none;
 	text-align:left;
 }
+*/
 
 .clear {
 	clear: both;
@@ -790,19 +798,19 @@ hr {
 }
 
 div.dialog.profile {
-  position:absolute;
-  min-width:400px;
-  min-height:250px;
-  border:2px solid #000000;
-  font-family: "Andika", "Times New Roman";
-  background-color:#fff;
-  float:center;
-  left:calc(50% - 200px);
+	position:absolute;
+	min-width:400px;
+	min-height:250px;
+	border:2px solid #000000;
+	font-family: "Andika", "Times New Roman";
+	background-color:#fff;
+	float:center;
+	left:calc(50% - 200px);
 }
 
 div.dialog.profile h3 {
-  text-align:center;
-  font-family: "Andika", "Times New Roman";
+	text-align:center;
+	font-family: "Andika", "Times New Roman";
 }
 
 div.dialog.profile img {
@@ -833,4 +841,309 @@ div.dialog.profile img {
 
 .error {
 	color: red;
+}
+
+/* mobilna verzia */
+
+@media (max-width: 845px) {
+
+	hr {
+		margin: 5px 0 5px 0;
+		border: 1px solid #E0E0E0;
+	}
+
+	body .pages {
+		width: 95%;
+		padding: 0 0.5% 0 0.5%;
+		margin: 0.5% 2% 0.5% 2%;
+		float: left;
+		font-family: "Andika", "Times New Roman";
+		border: 0;
+	}
+
+	#mob-no {
+		display: none;
+	}
+
+	#bold {
+		font-weight: bold;
+	}
+
+	#mob-name {
+		width: 100%;
+		float: left;
+	}
+
+	#mob-author {
+		width: 49%;
+		float: left;
+		font-size: 12px;
+		border-bottom: 1px solid #E0E0E0;
+	}
+
+	#mob-date {
+		width: 49%;
+		float: right;
+		border-bottom: 1px solid #E0E0E0;
+		font-size: 12px;
+		text-align: right;
+	}
+
+	#header {
+		background-image: none;
+	}
+
+	#loginprovizor {
+		width: 95%;
+		background: #8CB8DC url(../images/bg/logo-mob.png) no-repeat;
+		background-position: right;
+		background-size: auto 99%;
+	}
+
+	#forum {
+		border: 0;
+		padding: 0;
+		margin: 0.5% 0.5% 0 0.5%;
+		width: 99%;
+	}
+
+	#topiccolor {
+		background-color: #F0F0F0;
+		border: 0;
+	}
+
+	#content table tr td img {
+		width: 100%;
+	}
+
+	#pages {
+		border: 0;
+		width: 98%;
+		margin: 0 1% 0 1%;
+		padding: 0;
+	}
+
+	#statistiky {
+		border: 0;
+		width: 98%;
+		margin: 0 1% 0 1%;
+		padding: 0;
+	}
+
+	#zaujimavosti {
+		border: 0;
+		width: 98%;
+		margin: 0 1% 0 1%;
+		padding: 0;
+	}
+
+	#coako {
+		border: 0;
+		width: 98%;
+		margin: 0 1% 0 1%;
+		padding: 0;
+	}
+
+	#content form p {
+		margin: 0;
+	}
+
+	#content form input[name=topic_title] {
+		width: 97%;
+		padding: 5px;
+		border: 1px solid #CECECE;
+		margin: 5px 0 5px 0;
+	}
+
+	#content form textarea {
+		width: 97%;
+		padding: 5px;
+		resize: none;
+		border: 1px solid #CECECE;
+		margin: 5px 0 5px 0;
+	}
+
+	.error {
+		color: red;
+		text-align: center;
+	}
+
+	.input_button {
+		background-color: #5999cc;
+		border: 2px #5999cc solid;
+		cursor: pointer;
+		font-size: 14px;
+		padding-left: 4px;
+		padding-right: 4px;
+		float: right;
+		position: relative;
+		bottom: 2px;
+	}
+
+	.input_button:hover {
+		background-color: #106cb5;
+		border: 2px #106cb5 solid;
+	}
+
+	.input_log {
+		background-color: #5999cc;
+		border: 2px #5999cc solid;
+		cursor: pointer;
+		text-decoration: none;
+		font-family: "Andika", "Times New Roman";
+		border-radius: 5px;
+		font-size: 14px;
+		padding-left: 4px;
+		padding-right: 4px;
+		color: #FFFFFF;
+	}
+
+	.input_log:hover {
+		background-color: #106cb5;
+		border: 2px #106cb5 solid;
+	}
+
+	.button_upload {
+		background:#71dc4d;
+		border:2px #71dc4d solid;
+		font-size:14px;
+		padding-left:4px;
+		padding-right:4px;
+		float: right;
+		position: relative;
+		top: 1px;
+	}
+
+	.button_upload:hover {
+		background-color:#33cc00;
+		border:2px #33cc00 solid;
+	}
+
+	.input_button2 {
+		background:#5999cc;
+		border:2px #5999cc solid;
+		cursor:pointer;
+		font-size:14px;
+		padding-left:4px;
+		padding-right:4px;
+		float: right;
+		position: relative;
+		top: 1px;
+	}
+
+	.input_button2:hover {
+		background-color:#106cb5;
+		border:2px #106cb5 solid;
+	}
+}
+
+/* mobilné štýly pre menu */
+@media (max-width: 845px) {
+
+	/* štýly pre zavreté menu */
+	#menu {
+		background: url(../images/icon/mmenu.png) #33CC00 right top no-repeat;
+		margin: 0 0 3px 0;
+	}
+
+	#menu a {
+		display: block;
+		visibility: hidden;
+		overflow: hidden;
+		height: 0;
+		margin: 0;
+	}
+
+	/* štýly pre otvorené menu */
+	#mmenu-state:checked + label +
+		#menu {
+			height: auto;
+		}
+
+	#mmenu-state:checked + label +
+		#menu a {
+			visibility: visible;
+			height: auto;
+		}
+
+	#mmenu-state:checked + label +
+		#menu .first-item {
+			margin-top: 35px;
+		}
+
+	/* "ovládač" <label> */
+	#mmenu-state + label {
+		display: block;
+		position: absolute;
+		width: 100%;
+		height: 28px;
+		cursor: pointer;
+	}
+}
+
+@media (max-width: 43.75em) {
+	.user-profil .user-info h1 {
+		text-align: center;
+		width: 100%;
+		float: left;
+	}
+
+	.user-profil .user-info h1 > big {
+		color: #000;
+		float: left;
+		width: 100%;
+		text-align: center;
+	}
+
+	.user-profil .user-info table {
+		width: 100% !important;
+		table-layout: auto !important;
+	}
+
+	.user-profil .user-info table tr,
+	.user-profil .user-info table td {
+		display: block;
+	}
+
+	.user-profil .user-info table td {
+		width: 100%;
+		text-align: center !important;
+		display: inline-block;
+		=display: inline; /* IE 7 below */
+		=zoom: 1; /* switch hasLayout on in IE */
+	}
+
+	.user-profil .user-info table td.odd,
+	.user-profil .user-info table td.even {
+		color: white;
+		opacity: 0.8;
+	}
+
+	.user-profil .user-info table td.odd {
+		background: #106cb5;
+	}
+
+	.user-profil .user-info table td.even {
+		font-weight: bold;
+		background: #33cc00;
+	}
+}
+
+@media (max-width: 700px) {
+	#footer .fb, #footer .git {
+		display: none;
+	}
+
+	#footer .copy {
+		float: none;
+		width: 100%;
+		text-align: left;
+		position: relative;
+		top: -1px;
+	}
+
+	#footer {
+		height: auto;
+		padding: 1%;
+	}
 }

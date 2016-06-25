@@ -46,9 +46,24 @@ if(FALSE === require('connect.php')) {
 
 		if($crs && mysql_num_rows($crs) > 0) {
 			while(list($cId, $cTitle, $cDescription) = mysql_fetch_row($crs)) { ?>
-		<a class="cat_links categories links" href="./view.php?cid=<?php echo($cId) ?>">
-		<?php echo($cTitle), '<br>', $cDescription; // TODO: fixnúť menší font ?>
-		</a>
+		<!--div class="category">
+			<div class="cat-name">
+			<a class="cat_links categories links" href="./view.php?cid=<?php echo($cId) ?>">
+				<?php echo($cTitle); ?>
+			</a>
+			</div>
+			<>
+			<br>
+			<?php echo($cDescription); ?>
+		</div-->
+		<table class="category">
+			<tr>
+				<td width="100%"><a href="./view.php?cid=<?php echo($cId) ?>"><?php echo($cTitle); ?></a></td>
+			</tr>
+			<tr>
+				<td width="100%"><?php echo($cDescription); ?></td>
+			</tr>
+		</table>
 			<?php }
 		} else {
 			echo "<p>Zatial nie sú k dispozícii žiadne kategórie.</p>";

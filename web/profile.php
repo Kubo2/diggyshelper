@@ -91,7 +91,7 @@ set_include_path("./includes/");
 					<style scoped>table td {text-align: left !important}</style>
 					<tr>
 						<td rowspan="6">
-							<?=( SanitizeLib\escape((string) $userinfo['description'], 'HTML') )?>
+							"<?=( SanitizeLib\escape((string) $userinfo['description'], 'HTML') )?>"
 						</td>
 					</tr>
 					<tr>

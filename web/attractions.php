@@ -33,8 +33,9 @@ session_start();
 		<p><strong>Obetoval som pre vás veľké množstvo energie</strong> (v Diggy's Adventure), aby som vám
 		odhalil kde, koľko a čoho miniete a získate. Dúfam, že vám to pri ďalšom kopaní aspoň trochu pomôže.
 		<cite><a class="memberusers" href="profile.php?user=WladinQ">WladinQ</a></cite>
-		<p style='margin-top: .3em'><i>Ak sa <strong>chcete aj vy podeliť s Vašou snahou pomôcť ostatným</strong>, môžete si <a href='./'>prezrieť naše fórum</a>
-			a po <a href='./register.php'>registrácii účtu</a> sem <strong>posielať príspevky do tém</strong> iných ľudí.</i>
+		<p style='margin-top: .3em; font-size: larger'><strong>Chcete sa aj vy podeliť o vaše kopáčske zážitky?</strong>
+			<a href='./' class='memberusers'>Prezrite si</a> naše fórum a <a href='./register.php' class='memberusers'>zaregistrujte sa</a>,
+			aby ste si mohli aj vy vytvárať vlastné vlákna.</p>
 
 		<!-- ================================== -->
 		<h2 style='text-align: center'>Resetovateľné bane</h2>
@@ -73,7 +74,6 @@ session_start();
 			</tr>
 		</table>
 	</div>
-	<hr style='border: 1px solid #457EB7'>
 	<?php include 'includes/footer.php'; ?>
 </body>
 </html>

@@ -101,7 +101,7 @@ function renderNonExisting() {
 	header('HTTP/1.1 404 Forum Not Found', TRUE, 404);
 
 	ob_start() ?>
-<a href='index.php' class='button'>Návrat do fóra</a><hr>
+<a href='forum.php' class='input_button'>Návrat do fóra</a><hr>
 <p>Pokúšate sa zobraziť kategóriu, ktorá neexistuje.</p>
 <?php
 	_renderLayout(ob_get_clean(), [ 'titleConst' => 'Kategória neexistuje' ]);
@@ -133,42 +133,46 @@ function renderNonExisting() {
 function renderForum($context) {
 	header('HTTP/1.1 200 Rendering Forum');
 
-	$logged = ' | ' . (loggedIn()
-		? "<a href='create.php?cid={$context->id}' class='button'>Vytvoriť tému</a>"
+	$logged = (loggedIn()
+		? "<a href='create.php?cid={$context->id}' class='input_button'>Vytvoriť tému</a>"
 		: "Pre vytvorenie témy sa budeš potrebovať <a style='color: #106CB5; font-weight: bold' href='login.php'>prihlásiť</a>,
 			alebo sa <a style='color: #33CC00; font-weight: bold' href='register.php'>zaregistrovať</a>!"
 	);
 
 	ob_start() ?>
 
+<div class='nazov'><h1><?= htmlspecialchars($context->title) ?></h1></div>
+
 <?php if(!$context->topics): ?>
-	<a href='forum.php' class='button'>Návrat do fóra</a><hr>
-	<p>V tejto kategórii nie sú k dispozícii žiadne témy. <?= $logged ?></p>
+	<a href='forum.php' class='input_button'>Návrat do fóra</a>&nbsp;<?= $logged ?><hr>
+	<p>V tejto kategórii nie sú k dispozícii žiadne témy.</p>
 <?php else: ?>
 	<table style='width: 100%; border-collapse: collapse'>
 		<!-- table heading -->
-		<tr><td colspan=3><a href='forum.php' class='button'>Návrat do fóra</a><?= $logged ?><hr></td></tr>
-		<tr style='background-color: #106CB5; color: #FFF; text-align: center'>
-			<td width='50'></td><td>Názov témy</td><td width='200'>Počet odpovedí</td>
+		<tr><td colspan=3><a href='forum.php' class='input_button'>Návrat do fóra</a>&nbsp;<?= $logged ?><hr></td></tr>
+		<tr style='color: #FFF; background-color: #106CB5'>
+			<td width='6%' align='center' id='mob-no'></td><!-- span --><td>Názov témy</td><!-- span --><td width='15%'>Počet odpovedí</td>
 		</tr>
-		<tr><td colspan='3'><hr></td></tr>
+		<tr><td colspan=3 style='padding: .5em 0 0'></td></tr>
 		<!-- /table heading -->
 
+		<!-- table -->
 	<?php foreach($context->topics as $topic): ?>
-		<tr><td style='text-align: center'><img width='40' height='40' src='images/icon/icon2.jpg'></td>
-		<td>
-			<a class='topic topic-link' href='<?= getTopicUrl($topic->id, $context->id) ?>'><strong><?= htmlspecialchars($topic->title) ?></strong></a><br>
-			<span class='post_info'>
-				Pridal/a: <a class='memberusers' href='<?= getProfileUrl($topic->author) ?>'><?= htmlspecialchars($topic->author) ?></a>
-				dňa <font color='#33CC00'><?= $topic->postDate->format('d.m.Y / H:i:s') ?></font>
-			</span>
-		</td>
-		<td style='text-align: center'><?= $topic->postCount ?></td>
-	</tr>
-	<tr><td colspan='3'><hr></td></tr>
+		<tr id='topiccolor'>
+			<td style='text-align: center' id='mob-no'><img width='40' height='40' class='book' src='images/icon/book.png'></td>
+			<td>
+				<a class='topic topic-link' href='<?= getTopicUrl($topic->id, $context->id) ?>'><strong><?= htmlspecialchars($topic->title) ?></strong></a><br>
+				<span class='post_info'>
+					Pridal/a: <a class='memberusers' href='<?= getProfileUrl($topic->author) ?>'><?= htmlspecialchars($topic->author) ?></a>
+					dňa <font color='#33CC00'><?= $topic->postDate->format('d.m.Y / H:i:s') ?></font>
+				</span>
+			</td>
+			<td style='text-align: center'><?= $topic->postCount ?></td>
+		</tr>
+		<tr><td colspan=3></td></tr>
 	<?php endforeach ?>
+		<!-- /table -->
 
-	<!-- /table -->
 	</table>
 <?php endif ?>
 
