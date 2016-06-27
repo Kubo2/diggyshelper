@@ -535,11 +535,13 @@ body .pages {
 	bottom: 5px;
 }
 
-#content .input_button2:hover {
-	background-color: #cca440;
-	border: 2px #cca440 solid;
-	color: #222;
-}
+/* mobilné štýly pre menu */
+@media (max-width: 845px) {
+
+	/* štýly pre zavreté menu */
+	#menu {
+		background: url(../images/icon/mmenu.png) #33CC00 right top no-repeat;
+	}
 
 #content .category {
 	background-color: #666;
@@ -548,12 +550,11 @@ body .pages {
 	margin: 5px 0 5px;
 }
 
-.light #content .category {
-	background-color: #5F9CCC;
-	border-radius: 5px;
-	padding: 0;
-	margin: 5px 0 5px;
-}
+	/* štýly pre otvorené menu */
+	#mmenu-state:checked + label +
+		#menu {
+			height: auto;
+		}
 
 #content .category li {
 	color: #fff;
@@ -2483,17 +2484,4 @@ div.dialog.profile img {
 		border: 2px solid #cca440;
 		border-radius: 5px;
 	}
-
-	.light .user-profil .user-info .foto img {
-		width: 160px;
-		height: 160px;
-		border: 2px solid #106CB5;
-		border-radius: 5px;
-	}
 }
-
-@media (max-width: 700px) {
-
-}
-
-/** ------------------ KONIEC WTF ??? ------------------ **/
