@@ -15,6 +15,7 @@ $curUrl = $_SERVER['REQUEST_URI'];
 require_once __DIR__ . '/../sanitize.lib.php';
 
 ?>
+<meta name='theme-color' content='#106CB5'>
 <meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1, user-scalable=no'>
 <?php /* Universal title. Only temporarily. */ ?>
