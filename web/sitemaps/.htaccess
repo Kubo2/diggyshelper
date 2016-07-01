@@ -1,12 +1,8 @@
-#Options +FollowSymLinks
+DirectoryIndex index.xml index.php
+AddType application/xml .xml .xml.php
 
-<FilesMatch "\.(cache|sample)$">
-    Order deny,allow
-    Deny from all
-</FilesMatch>
+RewriteEngine on
+RewriteBase /sitemaps
 
-<FilesMatch "\.xml\.php$">
-    Header set Content-Type "application/xml; charset=utf-8"
-</FilesMatch>
-
-Header set X-Validator "Narozdiel od HTML, u XML mi na validite záleží. ~Kubo2"
+RewriteCond %{ENV:REDIRECT_STATUS} =""
+RewriteRule ^index.xml$ ./ [R=301,L]

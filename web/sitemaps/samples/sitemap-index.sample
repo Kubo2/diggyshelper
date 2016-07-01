@@ -1,5 +1,0 @@
-{INCLUDE "sitemap-head.sample"}
-<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:html="http://www.w3.org/TR/html4/strict.dtd">
-	<!-- this is sitemap enumeration (if empty, no sitemaps are available) -->
-		{%SOMETHING%}
-</sitemapindex>
