@@ -1,175 +1,253 @@
 <?php
-//error_reporting(E_ALL|E_STRICT);
-/* Session sa musí inicializovať ešte *pred* odoslaním akéhokoľvek výstupu */
-// @see http://php.net/session-start
+
+/**
+ * Category topics listing page.
+ *
+ * @author  Kubo2
+ */
+
+
 session_start();
 
-// zapnutie output bufferingu (nemám iný spôsob posielania hlavičiek po výstupe) 
-// @see http://php.net/ob-start
-@ob_start();
+header('Content-Type: text/html; charset=UTF-8');
 
-// pridaná HTTP hlavička určujúca kódovanie (neviem, čo máš v head.php, ale pre istotu, keďže 
-// si mi písal, že ti nejde utf8) -- diakritika by už mala fachať 
-@header("Content-Type: text/html; charset=utf-8", true, 200);
+require __DIR__ . '/functions.php';
+require __DIR__ . '/connect.php';
 
-// pre odkomentovanie doctypu jednoducho odstráň sekvenciu -- zo začiatku aj z konca
-?>
-<!--DOCTYPE HTML-->
-<html>
-<head>
-	<?php include 'includes/head.php'; ?>
-</head>
-<body>
-	<?php include 'includes/header.php'; ?>
-	
-	<?php include 'includes/menu.php'; ?>
-	
-	<?php include 'includes/submenu.php'; ?>
+/** @var stdClass Current listing view context */
+$forum = new stdClass;
 
-	<div id="forum">
-<div id="content">
-<?php
-include_once("connect.php");
-// skrakta zbavujúca nevyhnutnosti kontrolovať existenciu
-// TODO: zaviesť nejakú funckiu, ktorá sa o to automaticky postará
-$_GET['cid'] = & $_GET['cid'] && $cid = max(0, $_GET['cid']);
-
-if(!$cid) {
-	// tu treba ošetriť situáciu, keď nebolo zadané id
-	// presmeruje sa na výpis kategórií
-	header("Location: http://$_SERVER[SERVER_NAME]" . dirName($_SERVER["PHP_SELF"]) . "/forum.php", true, 301);
-	// @see http://php.net/ob-end-clean
-	@ob_end_clean();
-	exit;
+if(!isset($_GET['cid'])) {
+	$forum->id = 0;
 } else {
-	if(isset($_SESSION['uid']))
-		$logged = " | <a href='create.php?cid=".$cid."' class='button'>Vytvoriť tému</a>";
-	else
-		$logged = " | Na vytvorenie témy je potrebné sa <span style='color:#106CB5'><b>Prihlásiť</b></span>, alebo sa <font color='#33CC00'><b>Registrovať</b></span>!";
-	
-	$sql = " SELECT `id` FROM `categories` WHERE `id` = $cid ";
-	$res = mysql_query($sql);
-	
-	// táto podmienka je tu namiesto or die(...), zabezpečuje zobrazenie jednoduchej chybovky 
-	// celé fórum by šlo napísať inak 
-	if($res) {
-		if(mysql_num_rows($res) == 1) {
-		// zmenil som dotaz, aby ťahal všetky potrebné dáta naraz 
-		// obmedzil som dotazy na konštantnú hodnotu 2, aplikácia bude vďaka tomu bežať rýchlejšie 
-		// @see http://php.vrana.cz/predcasna-optimalizace.php
-		$sql2 = <<<SQLQUERY
-select 
-	t.id as topic_id, 
-	t.topic_title, 
-	t.topic_date, 
-	count(p.id) as topic_post_count, 
-	u.username as topic_creator_name 
-from posts p 
-join (users u, topics t) on t.id = p.topic_id and t.topic_creator = u.id
-where t.category_id = $cid 
-group by p.topic_id 
-order by t.topic_reply_date desc
-SQLQUERY;
+	$forum->id = max(0, (strval($cid = intval($_GET['cid'], 10)) === $_GET['cid']) ? $cid : 0);
+}
 
-		$res2 = mysql_query($sql2); // odmazané ďaľšie or die(...)
-		
-		if($res2) {
-			if(mysql_num_rows($res2)) {
-				$topics = <<<TOPICSTABLE
-<table style="width:100%;border-collapse:collapse;">
-	<tr>
-		<td colspan='3'>
-			<a href='forum.php' class='button'>Návrat do fóra</a>$logged
-			<hr>
-		</td>
-	</tr><tr style='background-color:#106CB5'>
-		<td width='50' align='center'></td>
-		<td><span style='color:#FFF'>Názov témy</span></td>
-		<td width='200' align='center'><font color='#FFF'>Počet odpovedí</font></td>
-	</tr><tr>
-		<td colspan='3'><hr></td>
-	</tr>
-TOPICSTABLE;
+// echo "Forum ID: {$forum->id}";
 
-				while(list($topicId, $topicTitle, $topicDate, $topicPostCount, $topicCreatorName) = mysql_fetch_row($res2)) {
-					/** Process & escape the values */
-					{
-						/** @var stdClass topic data ready for rendering */
-						$topic = new stdClass;
+// try to fetch the current context
+$forumResource = mysql_query(<<< SQL
+select id,
+	category_title title,
+	category_description description
+from categories
+where id = {$forum->id}
+SQL
+);
 
-						// format the DH-style date
-						$topic->date = date('d.m.Y / H:i:s', strtotime($topicDate));
+if(!is_resource($forumResource) || !mysql_num_rows($forumResource)) {
+	renderNonExisting(); // implies exit() ======>
+}
 
-						// escape text data against XSS (don't employ that "SanitizeLib", we will be getting rid of it soon)
-						$topic->title = htmlspecialchars($topicTitle, ENT_NOQUOTES);
-						$topic->author = (object) [
-							'name' => htmlspecialchars($topicCreatorName, ENT_NOQUOTES),
-							'profileUrl' => 'profile.php?user=' . urlencode($topicCreatorName),
-						];
+// replace the current dummy context with a newly fetched resource
+$forum = mysql_fetch_object($forumResource);
 
-						//$topic->id = $topicId;
-						//$topic->categoryId = $cid;
-						$topic->url = "view_topic.php?cid={$cid}&amp;tid={$topicId}";
+// try to fetch topics into the current context
+$topicsResource = mysql_query(<<<SQL
+select
+	t.id,
+	t.topic_title title,
+	t.topic_date postDate,
+	count(p.id) as postCount,
+	u.username as author
+from
+	posts p
+inner join
+	(users u, topics t)
+on
+	t.id = p.topic_id
+	and t.topic_creator = u.id
+where
+	t.category_id = {$forum->id}
+group by
+	p.topic_id
+order by
+	t.topic_reply_date desc
+SQL
+);
 
-						$topic->postCount = $topicPostCount;
-					}
+if(!is_resource($topicsResource) || !mysql_num_rows($topicsResource)) {
+	$forum->topics = array();
+} else {
 
-					// append next table row to the topics <table>
-					$topics .= <<<HTML
-	<tr>
+	while($topic = mysql_fetch_object($topicsResource)) {
+		$topic->id = intval($topic->id, 10);
+		$topic->postCount = intval($topic->postCount, 10);
+		$topic->postDate = new DateTime($topic->postDate, new DateTimeZone('Europe/Bratislava'));;
+
+		$forum->topics[$topic->id] = $topic;
+	}
+}
+
+// var_dump($forum);
+
+renderForum($forum); // implies exit() ======>
+
+
+//
+// views
+//
+
+
+/**
+ * Renders a non-existing category (404) view.
+ *
+ * @param stdClass $context The current forum context:
+ * {
+ *   id: int
+ * }
+ */
+function renderNonExisting() {
+	header('HTTP/1.1 404 Forum Not Found', TRUE, 404);
+
+	ob_start() ?>
+<a href='index.php' class='button'>Návrat do fóra</a><hr>
+<p>Pokúšate sa zobraziť kategóriu, ktorá neexistuje.</p>
+<?php
+	_renderLayout(ob_get_clean(), [ 'titleConst' => 'Kategória neexistuje' ]);
+	exit();
+}
+
+
+/**
+ * Renders the in-category topics listing.
+ *
+ * @param stdClass $context The current forum context:
+ * {
+ *   id: int,
+ *   title: string,
+ *   description: string,
+ *   topics: [
+ *     topicId => {
+ *       id: int,
+ *       title: string,
+ *       author: string,
+ *       postDate: DateTime,
+ *       postCount: int
+ *     },
+ *     topicId => ...
+ *   ]
+ * }
+ *
+ */
+function renderForum($context) {
+	header('HTTP/1.1 200 Rendering Forum');
+
+	$logged = ' | ' . (loggedIn()
+		? "<a href='create.php?cid={$context->id}' class='button'>Vytvoriť tému</a>"
+		: "Pre vytvorenie témy sa budeš potrebovať <a style='color: #106CB5; font-weight: bold' href='login.php'>prihlásiť</a>,
+			alebo sa <a style='color: #33CC00; font-weight: bold' href='register.php'>zaregistrovať</a>!"
+	);
+
+	ob_start() ?>
+
+<?php if(!$context->topics): ?>
+	<a href='forum.php' class='button'>Návrat do fóra</a><hr>
+	<p>V tejto kategórii nie sú k dispozícii žiadne témy. <?= $logged ?></p>
+<?php else: ?>
+	<table style='width: 100%; border-collapse: collapse'>
+		<!-- table heading -->
+		<tr><td colspan=3><a href='forum.php' class='button'>Návrat do fóra</a><?= $logged ?><hr></td></tr>
+		<tr style='background-color: #106CB5; color: #FFF; text-align: center'>
+			<td width='50'></td><td>Názov témy</td><td width='200'>Počet odpovedí</td>
+		</tr>
+		<tr><td colspan='3'><hr></td></tr>
+		<!-- /table heading -->
+
+	<?php foreach($context->topics as $topic): ?>
+		<tr><td style='text-align: center'><img width='40' height='40' src='images/icon/icon2.jpg'></td>
 		<td>
-			<center><img width='40' height='40' src='images/icon/icon2.jpg'></center>
-		</td>
-		<td>
-			<a data-wrong-class='.topic is supposed to indicate that we are **viewing** a topic page and should be specified only on a higher level element'
-				class='topic topic-link' href='{$topic->url}'>
-				<strong>{$topic->title}</strong>
-			</a>
-		<br>
-			<span class='post_info'>Pridal/a: 
-				<a class="memberusers" href="{$topic->author->profileUrl}">{$topic->author->name}</a>
-			dňa 
-				<font color='#33CC00'>{$topic->date}</font>
+			<a class='topic topic-link' href='<?= getTopicUrl($topic->id, $context->id) ?>'><strong><?= htmlspecialchars($topic->title) ?></strong></a><br>
+			<span class='post_info'>
+				Pridal/a: <a class='memberusers' href='<?= getProfileUrl($topic->author) ?>'><?= htmlspecialchars($topic->author) ?></a>
+				dňa <font color='#33CC00'><?= $topic->postDate->format('d.m.Y / H:i:s') ?></font>
 			</span>
-		</td><td align='center'>{$topic->postCount}</td>
-	</tr><tr>
-		<td colspan='3'><hr></td>
+		</td>
+		<td style='text-align: center'><?= $topic->postCount ?></td>
 	</tr>
-HTML;
-				}
-				$topics .= "\n</table>";
-				echo $topics;
-				unset($topics);
-				mysql_free_result($res2);
-			} else {
-			echo <<<NOTOPICSTEXT
-<a href='index.php' class='button'>Návrat do fóra</a><hr>
-<p>V tejto kategórii nie sú k dispozícii žiadne témy.$logged</p>
-NOTOPICSTEXT;
-			}
-		}
-	} else {
-			echo <<<NONEXISTING
-<a href='index.php' class='button'>Návrat do fóra</a><hr>
-<p>Pokúšate sa zobraziť kategóriu, ktorá neexistuje.
-NONEXISTING;
-		}
-		// v prípade, že sa jeden z výsledkov nepodarilo načítať
-	} elseif(!$res || !$res2) {
-	@header("Retry-After: 900", true, 503);
-	echo <<<OFFLINE_PAGE
-<h1>Databáza nedostupná</h1>
-<p class=warning>Ospravedlňujeme sa Vám, ale túto stránku sa bohužiaľ nepodarilo zobraziť, 
-lebo náš databázový server je dočasne nedostupný. Vyskúšajte to prosím neskôr.</p>
-<p><a href="" onclick="location.reload();return false">Obnoviť stránku</a></p>
-OFFLINE_PAGE;
-}
+	<tr><td colspan='3'><hr></td></tr>
+	<?php endforeach ?>
+
+	<!-- /table -->
+	</table>
+<?php endif ?>
+
+<?php
+	_renderLayout(ob_get_clean(), [ 'titleConst' => $context->title ]);
+	exit();
 }
 
-?>
-</div>
-</div>
-	<?php include 'includes/footer.php'; ?>
-</body>
-</html>
-<?php ob_end_flush() ?>
+
+/**
+ * Renders the page's layout around the specified $content.
+ *
+ * @param string $content
+ * @param array $templateContext The variable scope accessible from subtemplates
+ */
+function _renderLayout($content, $templateContext = array()) {
+	// fix invalid dependancy of footer.php on a variable from header.php
+	$templateContext['absUrl'] = & $templateContext['absUrl']; // TODO: fix this in templates
+
+	echo "<!doctype html>\n";
+	_renderSubtemplate('header', $templateContext); ?>
+<div id='forum'><div id='content'>
+	<?= $content ?>
+</div></div>
+<?php
+	_renderSubtemplate('footer', $templateContext);
+}
+
+
+/**
+ * Renders a subtemplate.
+ *
+ * @param string $name The subtemplate symbolic name out of: 'header', 'footer'
+ * @param array $vars Specific variable context being passed the subtemplate: [ varname => value, varname... ]
+ * @internal This function should be called only inside the main rendering functions.
+ */
+function _renderSubtemplate($name, $vars = array()) {
+	static $map = [
+		'header' => ['head', 'header', 'menu', 'submenu', ],
+		'footer' => ['footer', ],
+	];
+
+	if(!isset($map[$name])) {
+		throw new RuntimeException("The subtemplate '$name' not found");
+	}
+
+	foreach($map[$name] as $template) {
+		includeScoped(__DIR__ . "/includes/$template.php", $vars);;
+	}
+}
+
+
+//
+// helpers
+//
+
+
+/**
+ * Generates a single relative topic URL to be used in the HTML template.
+ * Note: This function does not check whether the topic really exists
+ * in the database.
+ *
+ * @param int $tid Topic ID
+ * @param int $cid Category ID
+ * @return string Relative URL to the topic view
+ */
+function getTopicUrl($tid, $cid) {
+	return sprintf('view_topic.php?cid=%d&amp;tid=%d', $cid, $tid);
+}
+
+
+/**
+ * Generates a single relative profile URL to be used in the HTML template.
+ * Note: This function does not check whether the topic really exists in the
+ * database.
+ *
+ * @param string $username
+ * @return string Relative URL to $username's public profile
+ */
+function getProfileUrl($username) {
+	return sprintf('profile.php?user=%s', urlencode($username));
+}

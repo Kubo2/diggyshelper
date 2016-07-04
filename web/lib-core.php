@@ -38,6 +38,24 @@ function id($o)
 	return $o;
 }
 
+
+/**
+ * Include $file and provide a specific variable $scope to it.
+ *
+ * @param string $file
+ * @param array $scope
+ * @return mixed
+ */
+function includeScoped($file, $scope = array()) {
+	foreach($scope as $name => $value) {
+		$$name = $value;
+	}
+
+	unset($scope, $name, $value);
+	return include $file;
+}
+
+
 /**
  * Sometimes it is called ifsetor(), we use name whether() for it.
  * Its role is to determine *wheter* some variable was set; if it was,
