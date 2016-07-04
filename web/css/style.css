@@ -565,6 +565,20 @@ body .pages {
 	color: #151515;
 }
 
+#content .category tr td {
+	padding: 0 5px 0 5px;
+}
+
+#content .category tr td a {
+	color: #000000;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+#content .category tr td a:hover {
+	text-decoration: underline;
+}
+
 #content form input[name=topic_title] {
 	width: 50%;
 	padding: 5px;
