@@ -1,22 +1,22 @@
 <?php
 
+if(DEFINED('DH_PHP_CORE')) RETURN;
+
 /**
  * This is the "core" library supposed to provide some low-level polyfill functionality
  * that is not natively included in PHP nor implemented yet, but is going to be
  * implemented in newer versions of PHP.
  *
- * @internal This file should not be include()d separately as it is already part of "functions" library, but there can be some exceptions.
- * @internal Sometimes when any of these "core" functions became {@deprecated} because of native implementation, you can still use it, but they will only slow down your code, because they will act like 'adapters'.
  *
  * @author   Kubo2
  * @version  1.0.0.0
- * @license <current>
- *
+ * @deprecated This package is deprecated as of v2 and will be removed in v3.
  * @package 		DH
  * @subpackage 	DH_PHP_CORE
  *
  */
-if(DEFINED('DH_PHP_CORE')) return;
+
+
 /**
  * The core can be **really** included only once.
  *
@@ -24,17 +24,16 @@ if(DEFINED('DH_PHP_CORE')) return;
  */
 DEFINE('DH_PHP_CORE', TRUE);
 
+
 /**
  * Identity of object. Returns passed value unchanged.
  *
  * @author   Jakub Vrána
  * @since v1.5-beta
- *
  * @param mixed
  * @return mixed
  */
-function id($o)
-{
+function id($o) {
 	return $o;
 }
 
@@ -42,6 +41,7 @@ function id($o)
 /**
  * Include $file and provide a specific variable $scope to it.
  *
+ * @since v1.5-beta
  * @param string $file
  * @param array $scope
  * @return mixed
@@ -57,43 +57,44 @@ function includeScoped($file, $scope = array()) {
 
 
 /**
- * Sometimes it is called ifsetor(), we use name whether() for it.
- * Its role is to determine *wheter* some variable was set; if it was,
- * then return its value; if not, return the default value, specified in
+ * Sometimes it is called ifsetor(), we use the name whether() for it.
+ * Its role is to determine *whether* some variable was set; if it was,
+ * then return its value; if not, return the default value, specified in the
  * second parameter.
  *
  * @internal An alternative to coalesce (T_COALESCE) operator available through PHP >= 5.6.1
- *
- * @param & mixed Variable or value reference
+ * @deprecated as of v1.5
+ * @param & mixed Variable reference
  * @param mixed The default value
  * @return mixed Either variable's or the default value
  */
 function whether(& $var, $default) {
-	if(isset($var))
-		return $var;
-	return $default;
+	return isset($var) ? $var : $default;
 }
 
+
 /**
- * Sometimes we only need to determine, if value of something *evalueates*
- * to boolean's <code>false</code> after type coercion, and not directly
- * whether it is set. There you can take hand on this function.
+ * Alias of whether().
+ * @see whether()
+ * @since v1.5-beta
+ */
+function ifsetor(& $var, $default) {
+	return whether($var, $default);
+}
+
+
+/**
+ * This function is an alias of PHP > 5.5 native ?: operator.
  *
- * You pass to its first parameter a variable; if its vlaue coercies to {@code false},
- * the default value from second parameter will be returned; otherwise, the value
- * of the first parameter will be returned.
- *
- * @internal An alternative to shortened ternary (like <code>$var ?: 'default')
- *
+ * @deprecated as of v1.5
  *  @param mixed Variable or value reference
  *  @param mixed The default value
  *  @return mixed Either variable's or the default value
  */
 function iftrue($val, $default) {
-	if((boolean) $val)
-		return $val;
-	return $default;
+	return $val ?: $default;
 }
+
 
 /**
  * Array slice function that works with associative arrays (keys).
@@ -105,6 +106,6 @@ function iftrue($val, $default) {
  * @param array
  * @return array
  */
-function array_slice_assoc($array,$keys) {
-    return array_intersect_key($array,array_flip($keys));
+function array_slice_assoc($array, $keys) {
+	return array_intersect_key($array, array_flip($keys));
 }
