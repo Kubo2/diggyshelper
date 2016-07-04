@@ -2332,6 +2332,7 @@ body .pages {
 
 	/** ------------------ KONIEC CLASS ------------------ **/
 }
+*/
 
 /** ------------------ KONIEC - MOBILNA VERZIA MAX WIDTH 845PX ------------------ **/
 
@@ -2484,5 +2485,184 @@ div.dialog.profile img {
 		height: 160px;
 		border: 2px solid #cca440;
 		border-radius: 5px;
+	}
+	
+	.input_button {
+		background-color: #5999cc;
+		border: 2px #5999cc solid;
+		cursor: pointer;
+		font-size: 14px;
+		padding-left: 4px;
+		padding-right: 4px;
+		float: right;
+		position: relative;
+		bottom: 2px;
+	}
+
+	.input_button:hover {
+		background-color: #106cb5;
+		border: 2px #106cb5 solid;
+	}
+	
+	.input_log {
+		background-color: #5999cc;
+		border: 2px #5999cc solid;
+		cursor: pointer;
+		text-decoration: none;
+		font-family: "Andika", "Times New Roman";
+		border-radius: 5px;
+		font-size: 14px;
+		padding-left: 4px;
+		padding-right: 4px;
+		color: #FFFFFF;
+	}
+
+	.input_log:hover {
+		background-color: #106cb5;
+		border: 2px #106cb5 solid;
+	}
+	
+	.button_upload {
+		background:#71dc4d;
+		border:2px #71dc4d solid;
+		font-size:14px;
+		padding-left:4px;
+		padding-right:4px;
+		float: right;
+		position: relative;
+		top: 1px;
+	}
+
+	.button_upload:hover {
+		background-color:#33cc00;
+		border:2px #33cc00 solid;
+	}
+	
+	.input_button2 {
+		background:#5999cc;
+		border:2px #5999cc solid;
+		cursor:pointer;
+		font-size:14px;
+		padding-left:4px;
+		padding-right:4px;
+		float: right;
+		position: relative;
+		top: 1px;
+	}
+
+	.input_button2:hover {
+		background-color:#106cb5;
+		border:2px #106cb5 solid;
+	}
+}
+
+/* mobilné štýly pre menu */
+@media (max-width: 845px) {
+
+	/* štýly pre zavreté menu */
+	#menu {
+		background: url(../images/icon/mmenu.png) #33CC00 right top no-repeat;
+		margin: 0 0 3px 0;
+	}
+
+	#menu a {
+		display: block;
+		visibility: hidden;
+		overflow: hidden;
+		height: 0;
+		margin: 0;
+	}
+
+	/* štýly pre otvorené menu */
+	#mmenu-state:checked + label +
+		#menu {
+			height: auto;
+		}
+
+	#mmenu-state:checked + label +
+		#menu a {
+			visibility: visible;
+			height: auto;
+		}
+
+	#mmenu-state:checked + label +
+		#menu .first-item {
+			margin-top: 35px;
+		}
+
+	/* "ovládač" <label> */
+	#mmenu-state + label {
+		display: block;
+		position: absolute;
+		width: 100%;
+		height: 28px;
+		cursor: pointer;
+	}
+}
+
+@media (max-width: 43.75em) {
+	.user-profil .user-info h1 {
+		text-align: center;
+		width: 100%;
+		float: left;
+	}
+
+	.user-profil .user-info h1 > big {
+		color: #000;
+		float: left;
+		width: 100%;
+		text-align: center;
+	}
+
+	.user-profil .user-info table {
+		width: 100% !important;
+		table-layout: auto !important;
+	}
+
+	.user-profil .user-info table tr,
+	.user-profil .user-info table td {
+		display: block;
+	}
+
+	.user-profil .user-info table td {
+		width: 100%;
+		text-align: center !important;
+		display: inline-block;
+		=display: inline; /* IE 7 below */
+		=zoom: 1; /* switch hasLayout on in IE */
+	}
+
+	.user-profil .user-info table td.odd,
+	.user-profil .user-info table td.even {
+		color: white;
+		opacity: 0.8;
+	}
+
+	.user-profil .user-info table td.odd {
+		background: #106cb5;
+	}
+
+	.user-profil .user-info table td.even {
+		font-weight: bold;
+		background: #33cc00;
+	}
+}
+
+@media (max-width: 700px) {
+	#footer .fb, #footer .git {
+		display: none;
+	}
+
+	#footer .copy {
+		float: none;
+		width: 100%;
+		text-align: left;
+		position: relative;
+		top: -1px;
+	}
+
+	#footer {
+		height: auto;
+		padding: 1%;
 	}
 }
