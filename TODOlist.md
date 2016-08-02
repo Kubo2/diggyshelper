@@ -53,9 +53,20 @@ Implementovať:
 ### Frontend
 #### Hlavička stráky
 
-  - [ ] tlačítka "Zapamätať heslo" a "Zabudli ste heslo?" v _userbox_e
+  - [ ] **tlačítka "Zapamätať heslo" a "Zabudli ste heslo?" v *userbox*e**
 
 #### Fórum (príspevky, kategórie, vlákna atď.)
 
   - [ ] odkazy v príspevkoch by mali byť bez dekorácií modrou farbou akou sú teraz odkazy vo {web/index.php}
   - [ ] naprogramovat pocet 20tich blokov s príspevkami na  jednu stranku
+
+### Obsah
+#### Stránky: Čo a ako
+
+  - [ ] Zotriediť otázky-odpovede podľa kategórií
+  - [ ] Rozlíšiť medzi `about-game.php` a `whatandhow.php` (alebo začleniť jednu do druhej)
+
+#### Duplicitné titulky
+
+  - [ ] `about-game.php`: nemá vlastný &lt;title>
+  - [x] `view.php`: všetky kategórie majú ten istý &lt;title> (adresované)
