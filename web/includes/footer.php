@@ -8,7 +8,7 @@
 		target="_blank">GitHub Diggy's Helper</a>
 	</div>
 	<div class="copy">
-		&copy;&nbsp;<?= date('2013-Y') ?>&nbsp;<nobr>Diggy's Helper</nobr>
+		<span>© 2013 – <?= date('Y') ?> Diggy's Helper</span>
 	</div>
 </div>
 
