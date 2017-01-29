@@ -25,6 +25,7 @@
 
 #### Príspevky
 
+  - [ ]  (!) Poďakovanie za hodnotný príspevok (členovia aj návštevníci)
   - [ ] Upravovanie príspevkov
   - [ ] Po nahratí obrázku _na pozadí_ automaticky vložiť do príspevku za kurzor značku `[img][/img]` s URL adresou nahraného obrázku (#ref/JS)
 
