@@ -36,8 +36,4 @@ on their own; this makes it easy to switch to HTTPS at anytime -->
 		<priority>0.5</priority>
 		<changefreq>daily</changefreq>
 	</url>
-	<url>
-		<loc>https://diggyshelper.net/members.php</loc>
-		<priority>0.4</priority>
-	</url>
 </urlset>
