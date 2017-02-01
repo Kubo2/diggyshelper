@@ -1,73 +1,78 @@
-# Zoznam úloh
+# TODO (do ďalšej @stable)
 
- Zjednotený štruktúrovaný a formátovaný zoznam čakajúcich úloh.
 
-## Preambula
+## Funkcionalita _obnoviť heslo_
 
- Po dokončení vašej práce na jednej z úloh, prosím nájdite ju v tomto zozname a označte ju sekvenciou `[x]`. Následne bude riešenie úlohy prezreté niektorým z administrátorov repozitára projektu a po začlenení bude úloha zo zoznamu odstránená.
+- [ ] hotovo?
+* zaviesť samostatný formulár alebo nejaký iný spôsob pre používateľov, aby si mohli obnoviť zabudnuté heslá k svojim účtom
 
- Všetky úlohy by mali byť jednoznačne kategorizované. (V prípade neexistencie príslušnej kategórie je samozrejmosťou jej zavedenie.)
 
-## Štruktúra
+## Notifikácie o nových príspevkoch
 
- Dohodnútá štruktúra tohoto súboru je popísaná našej [GitHub wiki](https://github.com/Kubo2/diggyshelper/wiki/Zoznam-úloh); predovšetkým je však potrebné vedieť, že tento súbor je písaný v tzv. _Flavored Markdown_, ale mal by byť spracovateľný akýmkoľvek Markdownovým parserom.
+- [ ] hotovo?
+* Emailové notifikácie
+* Webové notifikácie
 
-## Do ďalšej @stable
-### Pre administrátorov
 
-  - [ ] zaregistrovať/objednať hosting pre skladovanie dát na serveroch Amazon SSS (S3) — http://djpw.cz/158727
-  - [ ] vytvoriť **GitHub wiki** repozitára s informáciami pre developerov
-  - [ ] skonvertovať `database-state.xml` z CRLF na LF
+## Upload používateľských obrázkov _k príspevkom_
 
-### Pre vývojárov
+- [ ] hotovo?
+* využiť [api.tinify.com](https://tinypng.com/developers) pre kompresiu obrázkov pred nahratím na server (šetrí miesto)
 
-  - [ ]  (!) Upload obrázkov do `images/profilefoto` namiesto Amazon S3 (dočasne)
+### jednoduché riešenie
 
-#### Príspevky
+- [ ] hotovo?
+* využiť neoficiálne API servera [img.djpw.cz](http://img.djpw.cz)
+* upload na endpoint `http://img.djpw.cz/upload-data` a získanie URL obrázka z JSON odpovede servera
 
-  - [ ]  (!) Poďakovanie za hodnotný príspevok (členovia aj návštevníci)
-  - [ ] Upravovanie príspevkov
-  - [ ] Po nahratí obrázku _na pozadí_ automaticky vložiť do príspevku za kurzor značku `[img][/img]` s URL adresou nahraného obrázku (#ref/JS)
+### dlhodobé riešenie
 
-#### Prihlasovanie
+- [ ] hotovo?
+* naprogramovať upload používateľských obrázkov cez webové rozhranie do databázového úložiska na serveri
+* vytvoriť lokálny API endpoint pre jednoduché programatické nahrávanie používateľských obrázkov na server
+* napísať klientské rozhranie pre nahrávanie obrázkov priamo integrované do rozhrania formulára pre napísanie príspevku, v jazyku JavaScript
+  * toto rozhranie musí spĺňať podmienku, že po nahratí obrázka vloží do textarey s príspevkom bb text `[img]url-obrazka[/img]`
 
-Implementovať:
 
-  - [ ] prihlasovanie pomocou facebook account
-  - [ ] funkciu "Zapamätať si ma"
-  - [ ] mechanizmus "Zabudli ste heslo?"
+## Upload používateľských obrázkov _k profilu_
 
-#### Používatelia
-##### skupiny používateľov (`admin`, `moderator`, `member`)
+- [ ] hotovo?
+* implementovať Gravatar
 
-  - [ ] dorobit moderatorov fora
-    - [ ] rozlíšiť práva moderátorov a administrátorov
-      - [x] partially in forum posts
 
-#### upload obrázkov
+## Polymorfné prihlasovanie
 
-  - [ ] implementovať Gravatar
-  - [ ] implementovať nahrávanie obrázkov do DB
-  - [ ] prepojenie so servermi Amazon S3 za pomoci REST API
-  - [ ] after upload resize image to 350x250px or simply 3:1
+- [ ] hotovo?
+* implementovať [OAuth 2.0](https://oauth.net/2/)
+* implementovať prihlasovanie použitím používateľských účtov od iných ručiteľov identity než lokálna databáza
+* umožniť naviac prihlasovanie použitím účtu od [Google](https://www.google.com) alebo [Facebooku](http://fb.com), nasledujúc vzor [Pixelu](https://pixelfederation.com)
 
-### Frontend
-#### Hlavička stráky
 
-  - [ ] **tlačítka "Zapamätať heslo" a "Zabudli ste heslo?" v *userbox*e**
+## Poďakovanie za príspevok
 
-#### Fórum (príspevky, kategórie, vlákna atď.)
+- [ ] hotovo?
+* implementovať možnosť používateľov z radov členov aj používateľov z radov okoloidúcich návšteníkov _**poďakovať za hodnotný príspevok**_, ktorý obsahuje kvalitné informácie a/alebo svojím obsahom nejakým spôsob bol nápomocný týmto používateľom
 
-  - [ ] odkazy v príspevkoch by mali byť bez dekorácií modrou farbou akou sú teraz odkazy vo {web/index.php}
-  - [ ] naprogramovat pocet 20tich blokov s príspevkami na  jednu stranku
 
-### Obsah
-#### Stránky: Čo a ako
+## Upravovanie príspevkov
 
-  - [ ] Zotriediť otázky-odpovede podľa kategórií
-  - [ ] Rozlíšiť medzi `about-game.php` a `whatandhow.php` (alebo začleniť jednu do druhej)
+- [ ] hotovo?
+* umožniť moderátorom i nemoderátorom upraviť obsah príspevkov po ich odoslaní
 
-#### Duplicitné titulky
 
-  - [ ] `about-game.php`: nemá vlastný &lt;title>
-  - [x] `view.php`: všetky kategórie majú ten istý &lt;title> (adresované)
+## Problém s _Čo a ako_
+
+- [ ] hotovo?
+* rozdeliť neprehľadnú a obsahovo bohatú stránku na jednotlivé body
+  * každý bod by mal mať svoju vlastnú URL adresu, a samozrejme _Čo a ako_ by si malo zachovať svoju URL adresu
+  * JavaScriptové klientské rozhranie by malo zabezpečiť zmenu URL adresy bez prechodu na odkazovanú stránku a zobrazenie odpovede akoby pod daným bodom, či odkazom, na ktorý bolo kliknuté, pričom ktorýkoľvek iný „zobrazený“ bod sa zatvorí
+* obsah _Čo a ako_ nahradiť „rozcestníkom“ – súhrnom otázkových odkazov odkazujúcich na jednotlivé odpovede
+  * obsah _Čo a ako_ (`whatandhow.php`) mimo vlastných otázok rozumne zlúčiť s obsahom _O hre Diggy's Adventure_ (`about-game.php`) a to posledné odstrániť
+* rozumne roztriediť otázky (body) do tematických kategórií (vedľajší efekt, kvôli návrhom v rôznych kategóriách na fóre)
+
+
+## Stránkovanie dlhých tém
+
+- [ ] hotovo?
+* rozdeliť veľmi dlhé a stredne dlhé témy na stránky o určitom množstve príspevkov
+* umožniť _konfigurovať_ vlastnosti stránkovania
