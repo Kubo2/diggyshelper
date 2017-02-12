@@ -3,6 +3,7 @@
 log.*
 
 # really? ignore temporary files
+Thumbs.db
 tmp/*
 temp/*
 cache/*

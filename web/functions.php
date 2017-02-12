@@ -104,6 +104,39 @@ function sk_sanitizeEmail($email)
 }
 
 /**
+ * Records a line to the log.
+ * (Trying to log a newline will result in logging everything BEFORE
+ * the newline character and raising a E_USER_NOTICE.)
+ *
+ * @param string description of the information
+ * @param string error level, used as a prefix for the line
+ * @param string topic of the error, if provided, used as a prefix for the log filename
+ * @param string
+ * @return bool TRUE on success, FALSE on failure
+ */
+function recordLog($message, $level, $section = NULL, $logdir = NULL) {
+	$origLen = strlen($message);
+	$message = substr($message, 0, strcspn($message, "\r\n"));
+	if(strlen($message) < $origLen) {
+		trigger_error('$message should not contain a newline', E_USER_NOTICE);
+		if(!$message) return false; // ============>
+	}
+
+	$message = sprintf('[%s] %s: %s', date('Y-d-m H:i:s'), ucfirst($level), $message);
+	$message .= "\n"; // always trailing newline at EOF
+
+	if(!$logdir) $logdir = __DIR__ . '/logs';
+	{
+		if(!is_dir($logdir) && !@mkdir($logdir)) { // intentionally @; not atomic
+			return false; // ============>
+		}
+	}
+
+	$logfile = sprintf('%s/%s%d-%s.log', $logdir, ($section ? "$section-" : NULL), date('Y'), date('m'));
+	return !!@file_put_contents($logfile, $message, FILE_APPEND);
+}
+
+/**
  * Whether at least one field of array is empty.
  *
  * @param array

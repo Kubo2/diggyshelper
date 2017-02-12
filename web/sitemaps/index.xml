@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+	<sitemap>
+		<loc>https://diggyshelper.net/sitemaps/sitemap-basic.xml</loc>
+		<lastmod>2016-06-01</lastmod>
+	</sitemap>
+	<sitemap>
+		<loc>https://diggyshelper.net/sitemaps/sitemap-topics.xml.php</loc>
+	</sitemap>
+</sitemapindex>

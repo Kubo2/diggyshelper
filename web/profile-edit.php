@@ -107,78 +107,97 @@ if(isset($_POST['basic-info-change'])) {
 // ====== template start ======
 page_template: {
 
-header("Content-Type: text/html; charset=utf-8");
+header('Content-Type: text/html; charset=utf-8');
+header('Vary: User-Agent');
 
 // template components
-require('./sanitize.lib.php');
+require __DIR__ . '/sanitize.lib.php';
 
 // template settings
-set_include_path("./includes/");
+set_include_path(__DIR__ . '/includes/');
 extract($data);
+
+$isMobile = !empty($ua = & $_SERVER['HTTP_USER_AGENT']) && preg_match('~mobile~i', $ua);
 
 }
 
 // ====== template HTML ====== ?>
 <!doctype html>
 <?php ($titleConst = "Úprava profilu") && include('head.php') ?>
+<style><?php if(!$isMobile): ?>
+
+	/* TODO: kompletný refaktoring HTML a CSS, výsledok funkčný na väčšine zariadení; */
+
+	.pages {
+		position: relative;
+	}
+
+	.user-profil {
+		width: 80%;
+		margin: auto
+	}
+
+	form.alter-profile {
+		box-sizing: border-box;
+		display: inline-block;
+		position: relative;
+		width: 50%;
+		margin: auto;
+		zoom: 1;
+	}
+
+	.alter-profile fieldset {
+		float: left;
+		min-width: 40%;
+		border: 2px dashed  silver;
+		margin: .08em .45em;
+	}
+
+	.alter-profile legend {
+		font-size: large;
+		font-size: larger;
+	}
+
+	.alter-profile label:not([for]) {
+		display: block;
+	}
+
+	.alter-profile label input {
+		float: right;
+		min-width: 70%;
+		min-width: available;
+		min-width: fill-available;
+		width: 70%;
+	}
+
+	.alter-profile input[type=text], .alter-profile input[type=password], .alter-profile input[type=email] {
+		box-sizing: border-box;
+		font-size: 102%;
+		padding: .3em .08em;
+	}
+
+	.alter-profile input[type=submit] {
+		width: 100%;
+		margin-top: .65em;
+		padding: .34em;
+		cursor: pointer;
+		cursor: hand;
+	}
+<?php else: // $isMobile ?>
+	.alter-profile fieldset {
+		border: 1px dashed silver;
+	}
+<?php endif ?>
+</style>
 </head><body class="page profile-edit">
 <?php
 	include('header.php');
 	include('menu.php');
 	include('submenu.php');
 		?>
-<div id="pages" >
-	<div class="user-profil" style="width: 80%; margin: auto">
-		<h1>Úprava používateľského profilu</h1>
-		<style scoped>
-			form.alter-profile {
-				box-sizing: border-box;
-				display: inline-block;
-				position: relative;
-				width: 50%;
-				margin: auto;
-				/* overflow: hidden; */
-				zoom: 1;
-			}
-
-			fieldset {
-				float: left;
-				min-width: 40%;
-				border: 2px dashed  silver;
-				margin: .08em .45em;
-			}
-
-			legend {
-				font-size: large;
-				font-size: larger;
-			}
-
-			label:not([for]) {
-				display: block;
-			}
-
-			label input {
-				float: right;
-				min-width: 70%;
-				min-width: available;
-				min-width: fill-available;
-				width: 70%;
-			}
-
-			input[type=text], input[type=password], input[type=email] {
-				box-sizing: border-box;
-				font-size: 102%;
-				padding: .3em .08em;
-			}
-
-			input[type=submit] {
-				width: 100%;
-				margin-top: .65em;
-				padding: .34em;
-				cursor: pointer;
-				cursor: hand;
-			}
-		</style>
+<div id="pages">
+	<div class="user-profil">
+		<h1><?php if(!$isMobile): ?>Úprava používateľského profilu<?php else: ?>Upraviť profil<?php endif ?></h1>
 		<form class='alter-profile' method='POST' action='?'>
 			<fieldset>
 				<legend>Základné</legend>
@@ -219,12 +238,12 @@ extract($data);
 		</form>
 	</div>
 </div>
-<?php include('footer.php') && die ?>
+<?php exit(!include 'footer.php') ?>
 
 <?php p403_template: header("Content-Type: text/html; charset=utf-8", true, 401) xor set_include_path(dirname(__FILE__) . '/includes/')
 
 // ====== Forbidden template ======= ?>
-<!doctype html>
+<!DOCTYPE html>
 <?php
 
 ($titleConst = "Prihlásenie - Autentizácia") && include('head.php');

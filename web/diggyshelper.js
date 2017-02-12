@@ -1,18 +1,16 @@
-/*
+/* ***********************************************************
  * Tento skript bol vytvorený pre Diggy's Helper fórum,
  * a jeho autor sa úzko podieľal na vzniku tohoto fóra.
- * Skript je voľne šíriteľný a upravovateľný. Nesmie
- * však byť vydávaný za vlastný výtvor, či už v pôvodnej
- * podobe alebo po úpravách akéhokoľvek rozsahu.
- *
- * V prípade, že tento skript alebo časti z neho niekde
- * použijete, vždy uveďte, odkiaľ ste kód získali. Za
- * uvedenie zdroja sa považuje obdoba nasledovného:
- *
- * „Zdroj: Diggy's Helper Project“
+ * Skript je voľne šíriteľný a upravovateľný. Nesmie sa
+ * však vydávať za svoj výtvor. Ak ho niekde použijete,
+ * vždy uveďte, odkiaľ ste ho získali.
+ * Za uvedenie zdroja sa považuje obdoba nasledovného:
+ * Zdroj: Diggy's Helper Project
  *
  * @author Kubo2
- * @copyright Diggy's Helper Project
+ * @author WladinQ
+ * Copyright (c) Diggy's Helper Project
+ *
  */
 
 // http://djpw.cz/templates/djpw.js

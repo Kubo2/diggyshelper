@@ -1,5 +1,7 @@
 <?php
 
+require __DIR__ . '/functions.php';
+
 define('DB_ERROR', !(require "./connect.php"));
 
 if(DB_ERROR) {
@@ -67,6 +69,11 @@ date_default_timezone_set("Europe/Bratislava");
 // ====== template HTML ====== ?>
 <!doctype html>
 <?php include('head.php') ?>
+
+<?php // ====== META DESCRIPTION ====== ?>
+<meta content="Diggy's Helper je úplne prvé česko-slovenské diskusné fórum, kde sa diskutuje najmä na tému online hry Diggy's Adventure." name='description'>
+<?php // === END META DESCRIPTION ====== ?>
+
 </head><body class="page front">
 <?php
 	include('header.php');
@@ -80,8 +87,9 @@ date_default_timezone_set("Europe/Bratislava");
 	 * Stylesheet available only in div.pages scope.
 	 */
 	table.newest-topics {
-		margin: 3.5%;
+		margin: 3.5% 0 0;
 		table-layout: fixed;
+		width: 100%;
 	}
 
 	.newest-topics th {
@@ -94,31 +102,30 @@ date_default_timezone_set("Europe/Bratislava");
 	<br>Taktiež v prípade, že niečomu nerozumieš alebo sa chceš o niečom dozvedieť viac, sú tu vítané tvoje
 	otázky a problémy. Stačí vybrať správnu kategóriu a vytvoriť v nej tému.
 	<table class="newest-topics">
-		<caption>Najnovšia diskusia</caption>
+		<caption id="bold">Najnovšia diskusia</caption>
 		<thead>
 			<tr>
-				<th width="50%"><font color="#fff">Meno vlákna</font></th>
-				<th width="16%"><font color="#fff">Zakľadateľ vlákna</font></th>
-				<th width="12%"><font color="#fff">Dátum založenia</font></th>
+				<th width="50%" id="mob-no"><font color="#fff">Meno vlákna</font></th>
+				<th width="16%" id="mob-no"><font color="#fff">Posledný príspevok pridal</font></th>
+				<th width="12%" id="mob-no"><font color="#fff">Dátum založenia</font></th>
 			</tr>
 		</thead>
 		<tbody>
 			<?php foreach($topics as $thread): ?>
 			<tr>
-				<td>
+				<td id="mob-name">
 					<a class="memberusers" href=<?= '"' . "./view_topic.php?cid={$thread['cid']}&amp;tid={$thread['tid']}" . '"' ?>>
 						<?= SanitizeLib\escape($thread['title'], 'HTML') ?>
 					</a>
 				</td>
-				<td>
-					<!-- will add a counter per click and it will show, whether this link would be kept ~Kubo2 -->
-					<a class="memberusers" href="profile.php?user=<?= SanitizeLib\escape($thread['author'], 'HTML') ?>">
+				<td id="mob-author">
+					<a class="memberusers" href="./profile.php?user=<?= SanitizeLib\escape($thread['author'], 'HTML') ?>">
 						<?= SanitizeLib\escape($thread['author'], 'HTML') ?>
 					</a>
 				</td>
-				<td>
+				<td id="mob-date">
 					<time datetime=<?= $thread['created']->format("\"c\"") ?>>
-						<?= $thread['created']->format("j. n. Y, H:i") ?>
+						<?= $thread['created']->format("j. n. Y H:i") ?>
 					</time>
 				</td>
 			</tr>

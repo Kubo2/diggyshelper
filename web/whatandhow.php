@@ -16,7 +16,7 @@ session_start();
 header_remove('Expires');
 
 ?>
-<!doctype html>
+<!DOCTYPE HTML>
 <html>
 <head>
 	<?php
@@ -36,7 +36,7 @@ header_remove('Expires');
 			<h2>O hre Diggy's Adventure</h2>
 			<img src="images/bg/logo-DA.png">
 		</div>
-		<p style='margin-bottom: 1em; font-size: 120%'><!--b-->Nerieši<!--/b--> táto stránka váš problém? Založte si <b>vlastné vlákno</b> v našom <a href='forum.php'>diskusnom fóre</a>, kde vám môžu poradiť ostatní užívatelia.</p>
+		<p style='margin-bottom: 1em; font-size: 120%'><!--b-->Nerieši<!--/b--> táto stránka váš problém? Založte si <b>vlastné vlákno</b> v našom <a href='forum.php' class='memberusers'>diskusnom fóre</a>, kde vám môžu poradiť ostatní užívatelia.</p>
 		<P>
 			Kto povedal, že&nbsp;všetky mýtické poklady už boli objavené? 
 			Prekop&nbsp;sa&nbsp;s&nbsp;Diggym k&nbsp;tajomstvám ukrytým 
@@ -47,7 +47,7 @@ header_remove('Expires');
 			šikovné ruky a myseľ objaviteľa. Pridaj sa k Profesorovi, Linde a robotovi 
 			Rustymu, postav kemp a vydaj sa na dobrodružstvo tvojho života.
 		</P>
-		<div style="width: 100%; text-align: center; margin-top: .80em">
+		<div style="width: 100%; text-align: center; margin-top: .80em" id="mob-no">
 			<a href="http://portal.pixelfederation.com/diggysadventure/?lang=SK" target="_blank" class="playgamepp">Hraj na Pixel Portáli</a>
 			<a href="https://apps.facebook.com/diggysadventure/" target="_blank" class="playgamefb">Hraj na Facebooku</a>
 		</div>

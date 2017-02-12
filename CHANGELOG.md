@@ -18,8 +18,10 @@ For more information about _planned features_, please [see TODO list](TODOlist.m
    - Removal of the 'most viewed topic' in statistics (~ Kubo2)
    + Fixed some general minor bugs (~ Kubo2 + WladinQ)
    + The 'Back' ('Späť') button above on topic page now always links to the topic's category (~ Kubo2)
-   + Add PHPT test-case (~ Kubo2)
+   + Add PHPT test-case (sucks) (~ Kubo2)
+   * Rewritten sitemaps from scratch (~Kubo2)
+     + Add a sitemap listing of the topics on the forum
 
 # Previous versions
 
-We're sorry, previous versions weren't recorded here.
+We're sorry, previous versions aren't recorded here.
