@@ -5,6 +5,8 @@ $page = basename((0 < $q = strpos($u = $_SERVER['REQUEST_URI'], '?')) ? substr_r
 
 ?>
 <div id="header">
+	<a href='./' class='logo'>Diggy's Helper</a>
+
 	<div id="loginprovizor">
 		<?php 	if(!isset($_SESSION['uid'])): // TODO: restructure session array	?>
 		<form action='login.php' method='post'>
@@ -26,11 +28,11 @@ $page = basename((0 < $q = strpos($u = $_SERVER['REQUEST_URI'], '?')) ? substr_r
 		Deň registrácie: <?= date('d. m. Y', $_SESSION['userbox']['user.reg.date']) ?>
 
 		<div class="buttonmenu">
-			<a class='button' title='Môj profil' href='./profile.php?user=<?= urlencode($_SESSION['username']) ?>'>
+			<a class='button-header' title='Môj profil' href='./profile.php?user=<?= urlencode($_SESSION['username']) ?>'>
 				Môj profil
 			</a>
 			&nbsp;&nbsp;&nbsp;&nbsp;
-			<a class='button' title='Fórum' href='forum.php'>
+			<a class='button-header' title='Fórum' href='forum.php'>
 				Fórum
 			</a>
 			&nbsp;&nbsp;&nbsp;&nbsp;

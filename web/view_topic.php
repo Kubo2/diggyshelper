@@ -34,6 +34,7 @@ header("Content-Type: text/html; charset=utf-8", true, 200);
 ?>>
 	Pridať otázku / odpoveď
 </a>
+
 	<?php
 	}
 
@@ -85,7 +86,7 @@ document404
 
 				$topic = mysql_fetch_object($topic) ?>
 
-	<h1 class='no-center' ><?= SanitizeLib\sanitize($topic->title, SanitizeLib\HTML) ?></h1>
+	<h2 class='no-center' ><?= SanitizeLib\sanitize($topic->title, SanitizeLib\HTML) ?></h2>
 	<table border=0 style='width: 100%'>
 		<tr>
 			<td colspan=2>
@@ -94,9 +95,9 @@ document404
 				<?php endif ?>
 
 				<?php if( ! loggedIn() ) { ?>
-					Na pridanie odpovede je potrebné sa <b style="color: #106cb5">Prihlásiť</b>, alebo sa <b style="color: #33cc00">Registrovať</b>!
+					<br>Na pridanie odpovede je potrebné sa prihlásiť, alebo sa <a style="color: #CCA440; font-weight: bold" href="register.php">zaregistrovať</a>!
 				<?php } else _render_reply_anch_tpl($cid, $tid) ?>
-				<hr>
+				
 			</td>
 		</tr>
 		<?php while(($post = mysql_fetch_object($posts)) !== false): ?>
@@ -108,7 +109,7 @@ document404
 						SanitizeLib\escape($post->author, 'HTML')
 					)?></a> dňa <time datetime=<?=(
 						id(new DateTime($post->added))->format("'c'")
-					)?> style='color: #33cc00'><?=( id(new DateTime($post->added))->format("d.m.Y / H:i:s") )?></time>
+					)?> style='color: #ffffff'><?=( id(new DateTime($post->added))->format("d.m.Y / H:i:s") )?></time>
 				</nobr>
 				<hr>
 				<div class='post post-text'>
@@ -122,16 +123,17 @@ document404
 				</div>
 			</td>
 		</tr>
+		<tr><td></td></tr>
 		<?php endwhile ?>
 		<tr>
 			<td colspan=2>
-				<hr>
+				
 				<?php if( $cid ): ?>
 					<a class='button' <?php printf("href='./view.php?cid=%d'", $cid) ?>>Späť do kategórie</a>
 				<?php endif ?>
 
 				<?php if( ! loggedIn() ) { ?>
-					Na pridanie odpovede je potrebné sa <b style="color: #106cb5">Prihlásiť</b>, alebo sa <b style="color: #33cc00">Registrovať</b>!
+					<br>Na pridanie odpovede je potrebné sa prihlásiť, alebo sa <a style="color: #CCA440; font-weight: bold" href="register.php">zaregistrovať</a>!
 				<?php } else _render_reply_anch_tpl($cid, $tid) ?>
 			</td>
 		</tr>

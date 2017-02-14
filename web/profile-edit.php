@@ -197,7 +197,7 @@ $isMobile = !empty($ua = & $_SERVER['HTTP_USER_AGENT']) && preg_match('~mobile~i
 		?>
 <div id="pages">
 	<div class="user-profil">
-		<h1><?php if(!$isMobile): ?>Úprava používateľského profilu<?php else: ?>Upraviť profil<?php endif ?></h1>
+		<h2><?php if(!$isMobile): ?>Úprava používateľského profilu<?php else: ?>Upraviť informácie<?php endif ?></h2>
 		<form class='alter-profile' method='POST' action='?'>
 			<fieldset>
 				<legend>Základné</legend>
@@ -209,17 +209,20 @@ $isMobile = !empty($ua = & $_SERVER['HTTP_USER_AGENT']) && preg_match('~mobile~i
 					<?php endif ?>
 				<?php endif ?>
 				<label>
-					<b>Prezývka</b>: <input type="text" value="<?= SanitizeLib\escape($username, 'html') ?>" disabled>
+					<b>Prezývka</b>:<br><input type="text" value="<?= SanitizeLib\escape($username, 'html') ?>" disabled>
 				</label>
+				<br>
 				<label>
-					<b>E-mail</b>ová <wbr>adresa: <input type="email" name="user[email]" value="<?= SanitizeLib\escape($email, 'html') ?>">
+					<b>E-mail</b>ová <wbr>adresa:<br><input type="email" name="user[email]" value="<?= SanitizeLib\escape($email, 'html') ?>">
 				</label>
+				<br>
 				<div id="details">
-					<p style="clear: right !important"><b>stručný popis</b> používateľa</p>
+					<p style="clear: right !important"><b>stručný popis</b> používateľa:</p>
 					<textarea name="user[description]" style="width: 100%; height: 70px; resize: none"><?= SanitizeLib\sanitize($description, SanitizeLib\HTML) ?></textarea>
 				</div>
-				<input type="submit" name="basic-info-change" value="Aktualizovať informácie">
+				<input type="submit" class="button_repair" name="basic-info-change" value="Uložiť">
 			</fieldset>
+			<br>
 		</form><!--
 		--><form class='alter-profile' method='POST' action='?'>
 			<fieldset>
@@ -231,9 +234,11 @@ $isMobile = !empty($ua = & $_SERVER['HTTP_USER_AGENT']) && preg_match('~mobile~i
 						<p class="warning">Pri zmene hesla nastal problém. Skúste to prosím znova.</p>
 					<?php endif  ?>
 				<?php endif ?>
-				<label>Potvrď <b>súčasné</b> heslo: <input type="password" name="sudo-auth"></label>
-				<label>Zadaj <b>Nové</b> heslo: <input type="text" name="new-password"></label>
-				<input type="submit" name="password-change" value="Potvrdiť zmenu">
+				<label>Potvrď <b>súčasné</b> heslo:<br><input type="password" name="sudo-auth"></label>
+				<br>
+				<label>Zadaj <b>nové</b> heslo:<br><input type="text" name="new-password"></label>
+				<br>
+				<input type="submit" class="button_repair" name="password-change" value="Zmeniť heslo">
 			</fieldset>
 		</form>
 	</div>

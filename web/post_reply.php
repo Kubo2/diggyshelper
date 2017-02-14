@@ -51,7 +51,7 @@ if(!empty($_GET["flash"])) {
 	
 <div id="forum">
 <div id="content">
-	<a class='button' href='./view_topic.php?<?php echo "tid=$_GET[tid]&cid=$_GET[cid]"; ?>'>Návrat do témy</a>
+	<a class='button-back' href='./view_topic.php?<?php echo "tid=$_GET[tid]&cid=$_GET[cid]"; ?>'>Návrat do témy</a>
 	<!--script>document.write('<a class="button_upload" onclick="window.open(&quot;upload.php&quot;, &quot;okno1&quot;, &quot;width=500,height=400&quot;)">Nahrať obrázok</a>')</script-->
 	<hr>
 

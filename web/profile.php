@@ -86,12 +86,15 @@ set_include_path("./includes/");
 	<?php if($httpStatus == 200): ?>
 	<div class="user-profil">
 			<div class="user-info">
-				<h1 class="no-center">Profil používateľa <big><?= SanitizeLib\escape($userinfo['user-name'], 'html') ?></big></h1>
+				<h2 class="no-center">Profil používateľa <big><?= SanitizeLib\escape($userinfo['user-name'], 'html') ?></big></h2>
+				
+				<div class="foto"><img src="images/thumb/no-avatar.jpg"></div>
+				
 				<table style="table-layout: fixed; width: 800px">
 					<style scoped>table td {text-align: left !important}</style>
 					<tr>
 						<td rowspan="6">
-							"<?=( SanitizeLib\escape((string) $userinfo['description'], 'HTML') )?>"
+							<?=( SanitizeLib\escape((string) $userinfo['description'], 'HTML') )?><hr>
 						</td>
 					</tr>
 					<tr>
@@ -119,7 +122,7 @@ set_include_path("./includes/");
 						<tr>
 							<td colspan=2>
 								<form action="profile-edit.php?" method="POST" accept-charset="utf-8">
-									<button class='button_register' type="submit">Upraviť informácie</button>
+									<button class='button_repair' type="submit">Upraviť informácie</button>
 								</form>
 							</td>
 						</tr>

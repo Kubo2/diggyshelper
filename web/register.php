@@ -96,8 +96,8 @@ header("Content-Type: text/html; charset=utf-8", true, 200);
 		require 'includes/submenu.php'; 
 	?>
 <div id="forum">
-	<a class='button' href='index.php'>Návrat na hlavnú stránku</a>
-	<hr>
+	<a class='button_reg' id='mob-no' href='index.php'>Návrat na hlavnú stránku</a>
+
 	<div id="content">
 <?php
 // Tu vychádzam z faktu, že ak užívateľ neodoslal aspoň username,
@@ -116,15 +116,15 @@ var timeout = window.setTimeout(regForm.submit, 700);
 ga('send', 'event', 'registerUserAccount', 'formSubmit', { hitCallback: function() { window.clearTimeout(timeout); regForm.submit() } });
 return false;
 		">
-			<table border='0' style='margin: auto'>
+			<table border='0px' style='margin: auto'>
 				<!-- display: table-caption -->
-				<caption><h1>Registrovať sa</h1>
+				<caption><h2>Registrovať sa</h2>
 					<p>Staňte sa členom diskusného fóra Diggy's Helper.</p></caption>
 				<!--/ display: table-caption -->
 
 				<!-- registration form body start -->
 				<tr>
-					<td style='color: maroon'>Všetky tri údaje <b>sú povinné</b>.</td>
+					<td style='color: #c00000'>Všetky tri údaje <b>sú povinné</b>.</td>
 					<td></td>
 					<td ROWSPAN="6">
 						<h3>Výhody registrovaných používateľov:</h3>
@@ -133,35 +133,44 @@ return false;
 							- pridať si známych ľudí, spoluhráčov do priateľov<br-->
 							- možnosť zapojiť sa do sútaží o GEMY
 					</td>
-					<td style='color: maroon; display: none' class='required-patch'>Všetky tri údaje <b>sú povinné</b>.</td>
-				</tr><tr>
+					<td style='color: #c00000; display: none' class='required-patch'>Všetky tri údaje <b>sú povinné</b>.</td>
+				</tr>
+				<tr>
 					<td>
-						<input name='username' type='text' placeholder='Nickname' class='input' autocomplete='off' required>
+						<input name='username' type='text' placeholder='Nickname' class='input_reg' autocomplete='off' required>
 					</td>
-				</tr><tr>
+				</tr>
+				<tr>
 					<td>
-						<input name='password' type='password' placeholder='Heslo' class='input' autocomplete='off' id='status' required>
-					</td><td style="min-width: 180px">
+						<input name='password' type='password' placeholder='Heslo' class='input_reg' autocomplete='off' id='status' required>
+					</td>
+					<td style="min-width: 180px">
 						<span class="first"></span>
 					</td>
-				</tr><tr>
+				</tr>
+				<tr>
 					<td>
-						<input name='password2' type='password' placeholder='Heslo znovu' class='input' autocomplete='off' required>
+						<input name='password2' type='password' placeholder='Heslo znovu' class='input_reg' autocomplete='off' required>
 					</td>
-				</tr><tr class="ochrana-pred-robotmi">
+				</tr>
+				<tr class="ochrana-pred-robotmi">
 					<td>
 						Prosím, <strong>nevypĺňajte</strong>.
 						Políčko si iba overuje, či nie ste <b>automatický spamovací robot.</b>
-					</td><td>
+					</td>
+					<td>
 						<input type="url" name='url'>
 					</td>
-				</tr><tr>
+				</tr>
+				<tr>
 					<td>
-						<input name='email' type='email' placeholder='E-mail' class='input' required>
+						<input name='email' type='email' placeholder='E-mail' class='input_reg' required>
 					</td>
-				</tr><!--tr>
+				</tr>
+				<!--tr>
 					<td><input class='input' autocomplete='off' name='facebookname' placeholder='Meno na facebooku' value='' type='text'></td>
-				</tr--><tr>
+				</tr-->
+				<tr>
 					<td>
 						<input class='button_register' type='submit' value='Registrovať sa'>
 					</td>

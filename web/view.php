@@ -134,24 +134,25 @@ function renderForum($context) {
 	header('HTTP/1.1 200 Rendering Forum');
 
 	$logged = (loggedIn()
-		? "<a href='create.php?cid={$context->id}' class='input_button'>Vytvoriť tému</a>"
-		: "Pre vytvorenie témy sa budeš potrebovať <a style='color: #106CB5; font-weight: bold' href='login.php'>prihlásiť</a>,
-			alebo sa <a style='color: #33CC00; font-weight: bold' href='register.php'>zaregistrovať</a>!"
+		? "<a href='create.php?cid={$context->id}' class='input_button2'>Vytvoriť tému</a>"
+		: "<br>Pre vytvorenie témy je potrebné sa prihlásiť,
+			alebo sa <a style='color: #CCA440; font-weight: bold' href='register.php'>zaregistrovať</a>!"
 	);
 
 	ob_start() ?>
 
-<div class='nazov'><h1><?= htmlspecialchars($context->title) ?></h1></div>
+<div class='nazov'><h2><?= htmlspecialchars($context->title) ?></h2></div>
 
 <?php if(!$context->topics): ?>
 	<a href='forum.php' class='input_button'>Návrat do fóra</a>&nbsp;<?= $logged ?><hr>
 	<p>V tejto kategórii nie sú k dispozícii žiadne témy.</p>
 <?php else: ?>
+	
 	<table style='width: 100%; border-collapse: collapse'>
 		<!-- table heading -->
-		<tr><td colspan=3><a href='forum.php' class='input_button'>Návrat do fóra</a>&nbsp;<?= $logged ?><hr></td></tr>
-		<tr style='color: #FFF; background-color: #106CB5'>
-			<td width='6%' align='center' id='mob-no'></td><!-- span --><td>Názov témy</td><!-- span --><td width='15%'>Počet odpovedí</td>
+		<tr><td colspan=3><a href='forum.php' class='input_button'>Návrat do fóra</a>&nbsp;<?= $logged ?></td></tr>
+		<tr style='background-color: #666666'>
+			<td width='6%' align='center' id='mob-no'></td><!-- span --><td style='color: #000; font-weight: bold;'>&nbsp;Názov témy</td><!-- span --><td width='15%' style='text-align: center;'>Odpovede&nbsp;</td>
 		</tr>
 		<tr><td colspan=3 style='padding: .5em 0 0'></td></tr>
 		<!-- /table heading -->
@@ -161,15 +162,16 @@ function renderForum($context) {
 		<tr id='topiccolor'>
 			<td style='text-align: center' id='mob-no'><img width='40' height='40' class='book' src='images/icon/book.png'></td>
 			<td>
-				<a class='topic topic-link' href='<?= getTopicUrl($topic->id, $context->id) ?>'><strong><?= htmlspecialchars($topic->title) ?></strong></a><br>
+				<a class='topic topic-link' href='<?= getTopicUrl($topic->id, $context->id) ?>'>&nbsp;<strong style='color: #000000;'><?= htmlspecialchars($topic->title) ?></strong></a><br>
 				<span class='post_info'>
-					Pridal/a: <a class='memberusers' href='<?= getProfileUrl($topic->author) ?>'><?= htmlspecialchars($topic->author) ?></a>
-					dňa <font color='#33CC00'><?= $topic->postDate->format('d.m.Y / H:i:s') ?></font>
+					&nbsp;Pridal/a: <a class='memberusers' href='<?= getProfileUrl($topic->author) ?>'><?= htmlspecialchars($topic->author) ?></a>
+					<font color='#FFFFFF'>dňa <?= $topic->postDate->format('d.m.Y / H:i:s') ?></font>
 				</span>
 			</td>
 			<td style='text-align: center'><?= $topic->postCount ?></td>
 		</tr>
 		<tr><td colspan=3></td></tr>
+		<tr><td></td></tr>
 	<?php endforeach ?>
 		<!-- /table -->
 

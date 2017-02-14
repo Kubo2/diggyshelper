@@ -46,14 +46,9 @@ if(FALSE === require('connect.php')) {
 		if($crs && mysql_num_rows($crs) > 0) {
 			while(list($cId, $cTitle, $cDescription) = mysql_fetch_row($crs)) { ?>
 
-		<table class="category">
-			<tr>
-				<td width="100%"><a href="./view.php?cid=<?php echo($cId) ?>"><?php echo(htmlspecialchars($cTitle)) ?></a></td>
-			</tr>
-			<tr>
-				<td width="100%"><?php echo(htmlspecialchars($cDescription)) ?></td>
-			</tr>
-		</table>
+		<ul class="category">
+			<a href="./view.php?cid=<?php echo($cId) ?>"><li><b><?= htmlspecialchars($cTitle) ?></b><br><?= htmlspecialchars($cDescription) ?></li></a>
+		</ul>
 			<?php }
 		} else {
 			echo "<p>Zatial nie sú k dispozícii žiadne kategórie.</p>";

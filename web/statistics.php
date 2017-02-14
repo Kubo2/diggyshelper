@@ -97,7 +97,7 @@ where topic_date = (
 	</p>
 
 	<h3>O používateľoch fóra Diggy's Helper</h3>
-		<p>Administrátorom fóra je: <a class="memberusers" href="profile.php?user=WladinQ">WladinQ</a> &amp; <a class="memberusers" href="profile.php?user=Kubo2">Kubo2</a></p>
+		<p>Administrátormi fóra sú: <a class="memberusers" href="profile.php?user=WladinQ">WladinQ</a> &amp; <a class="memberusers" href="profile.php?user=Kubo2">Kubo2</a></p>
 		<?php
 		$admins =  mysql_query("SELECT `username` FROM `users` WHERE `access` IN ('admin', 'moderator') AND NOT `username` IN ('Kubo2', 'WladinQ')"); # intentionally hardcoded
 		if($admins) {

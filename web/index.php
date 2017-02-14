@@ -93,7 +93,8 @@ date_default_timezone_set("Europe/Bratislava");
 	}
 
 	.newest-topics th {
-		background: rgb(6, 90, 156);
+		background: #CCA440;
+		font-weight: normal;
 	}
 	</style>
 	<h1>Vítame ťa na stránke Diggy's Helper</h1>
@@ -101,7 +102,8 @@ date_default_timezone_set("Europe/Bratislava");
 	záľubou podeliť o svoje postrehy a skúsenosti s hrou <a class="memberusers" href="./about-game.php">Diggy's Adventure</a>.
 	<br>Taktiež v prípade, že niečomu nerozumieš alebo sa chceš o niečom dozvedieť viac, sú tu vítané tvoje
 	otázky a problémy. Stačí vybrať správnu kategóriu a vytvoriť v nej tému.
-	<table class="newest-topics">
+	
+	<table class="newest-topics" id="mob-no">
 		<caption id="bold">Najnovšia diskusia</caption>
 		<thead>
 			<tr>
@@ -132,5 +134,19 @@ date_default_timezone_set("Europe/Bratislava");
 			<?php endforeach ?>
 		</tbody>
 	</table>
+	
+	<div id="mob-prispevky">
+		<b>Najnovšia diskusia</b>
+		<?php foreach($topics as $thread): ?>
+		<ul>
+			<a href=<?= '"' . "./view_topic.php?cid={$thread['cid']}&amp;tid={$thread['tid']}" . '"' ?>>
+				<li>
+					<?= SanitizeLib\escape($thread['title'], 'HTML') ?>
+					<time datetime=<?= $thread['created']->format("\"c\"") ?>><?= $thread['created']->format("j. n. Y H:i") ?></time>
+				</li>
+			</a>
+		</ul>
+		<?php endforeach ?>
+	</div>
 </div>
 <?php include('footer.php') ?>
