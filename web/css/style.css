@@ -450,14 +450,14 @@ body .pages {
 }
 
 /**
- * Menu alebo tie� navig�cia webu.
+ * Menu alebo tiež navigácia webu.
  *
- * #menu   hlavn� container pre menu, obsahuje prvky <a>
- * #menu a   polo�ka menu
- * #menu a.first-item   prv� polo�ka menu, menu m�e obsahova� iba jednu polo�ku s touto triedou
- * #menu a:hover   akt�vny stav polo�ky menu, ke� nad �ou je u��vate�ova my�
- * #mmenu-state, [for=mmenu-state]   <input type=checkbox> a "ovl�da�" <label> pou�it� na prep�nanie stavu skryt�/odkryt� pre mobiln� menu
- * #mmenu-state:checked   stav "odkryt�" pre #menu
+ * #menu   hlavný container pre menu, obsahuje prvky <a>
+ * #menu a   položka menu
+ * #menu a.first-item   prvá položka menu, menu môže obsahovať iba jednu položku s touto triedou
+ * #menu a:hover   aktívny stav položky menu, keď nad ňou je používateľova myš
+ * #mmenu-state, [for=mmenu-state]   <input type=checkbox> a "ovládač" <label> použitý na prepínanie stavu skrytý/odkrytý pre mobilné menu
+ * #mmenu-state:checked   stav "odkrytý" pre #menu
  *
  * No styleguide reference.
  */
@@ -1529,10 +1529,10 @@ div.dialog.profile img {
 	}
 }
 
-/* mobiln� �t�ly pre menu */
+/* mobilné štýly pre menu */
 @media (max-width: 845px) {
 
-	/* �t�ly pre zavret� menu */
+	/* štýly pre zavreté menu */
 	#menu {
 		background: url(../images/icon/mmenu.png) #151515 right top no-repeat;
 		margin: 0 0 3px 0;
@@ -1558,7 +1558,7 @@ div.dialog.profile img {
 		background-color: #222222;
 	}
 
-	/* �t�ly pre otvoren� menu */
+	/* štýly pre otvorené menu */
 	#mmenu-state:checked + label +
 		#menu {
 			height: auto;
@@ -1575,7 +1575,7 @@ div.dialog.profile img {
 			margin-top: 35px;
 		}
 
-	/* "ovl�da�" <label> */
+	/* "ovládač" <label> */
 	#mmenu-state + label {
 		display: block;
 		position: absolute;
@@ -1672,4 +1672,4 @@ div.dialog.profile img {
 		background-color: #151515;
 		margin: 5px 0 0 0;
 	}
-}				
+}
