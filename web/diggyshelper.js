@@ -13,15 +13,16 @@
  *
  */
 
+
 // http://djpw.cz/templates/djpw.js
-function getHttpRequest()
-{
-  return !window.XMLHttpRequest ? !window.ActiveXObject ? null : new ActiveXObject("Microsoft.XMLHTTP") : new XMLHttpRequest();
+function getHttpRequest() {
+	return !window.XMLHttpRequest ? !window.ActiveXObject ? null : new ActiveXObject("Microsoft.XMLHTTP") : new XMLHttpRequest();
 }
+
 
 // oznámenie / hlavička
 function updateBoard(text, classification) {
-	if(!classification) classification = "notice";
+	if(!classification) classification = 'notice';
 	var board = document.getElementById('provizorne');
 	if(!board) {
 		board = document.createElement('div');
@@ -32,6 +33,9 @@ function updateBoard(text, classification) {
 	board.innerHTML = text;
 
 }
+
+//updateBoard('<p>Ospravedlňujeme sa za neočakávanú funkčnosť niektorých prvkov tohoto webu.<br>Stránka je momentálne v prestavbe, čoskoro bude nasadená nová, vylepšená verzia.<p>Ďakujeme za pochopenie.<br><span style="text-align:right">~ Tím Diggy\'s Helper</span>', "warning");
+
 
 // kontrola hesla na stránke registrácia
 var pswfield = document.getElementById('status');
@@ -58,7 +62,6 @@ if(pswfield) {
 	}
 }
 
-//updateBoard('<p>Ospravedlňujeme sa za neočakávanú funkčnosť niektorých prvkov tohoto webu.<br>Stránka je momentálne v prestavbe, čoskoro bude nasadená nová, vylepšená verzia.<p>Ďakujeme za pochopenie.<br><span style="text-align:right">~ Tím Diggy\'s Helper</span>', "warning");
 
 /**********************************
  *******     BB Kódy - UI    *******
@@ -120,17 +123,20 @@ function vlozitBBTag(tag, text /*, oblast */ ) {
  		}
 
  	} catch(ex) {  }
-} 
+}
+
 
 // inicializačná anonymná funkcia, ktorá naviaže na buttony s príslušným {@code id} akciu
-(function(formular){
+(function(formular) {
 	if(!formular) return;
+
 	var buttony = [];
 	for(var el = 0, len = formular.elements.length; el < len; el++) { // iteration has compatibility reason - IE 7
 		if(formular.elements[el].className == "button") {
 			buttony.push(formular.elements[el]);
 		}
 	}
+
 	if(!buttony) return;
 
 	for(var btn in buttony) {
@@ -142,31 +148,26 @@ function vlozitBBTag(tag, text /*, oblast */ ) {
 
 })(document.forms["vytvor-temu"] || document.forms["zasli-prispevok"]);
 
-// inicializačná anonymná funkcia, ktorá vráti email v profile späť do pôovodného tvaru
-(function() {
-	var email, emailOrig;
-	var patt2symbols=
-	{
-		" (bodka) " : '.',
-		" (zavináč) " : '@'
+
+// inicializačná anonymná funkcia, ktorá vráti email v profile späť do pôvodného tvaru
+(function(table) {
+	if(!table) return;
+
+	var elem;
+	for(var i = 0, l = table.rows.length; i < l; i++) {
+		if(table.rows[i].cells[0].textContent == 'E-mail:') {
+			elem = table.rows[i].cells[1];
+			break;
+		}
+	}
+
+	var translate = {
+		'bodka': '.',
+		'zavináč': '@'
 	};
 
-	try {
-		emailOrig = document
-						.getElementsByClassName('user-info')[0]
-						.getElementsByTagName('table')[0]
-						.rows[2]
-						.cells[1]
-					//.innerHTML
-		email = emailOrig.innerHTML;
-	} catch(e) {  }
+	elem.textContent = elem.textContent.replace(/\s+?\(([^)]+)\)\s+?/g, function(m, p) {
+		return translate.hasOwnProperty(p) ? translate[p] : m;
+	});
 
-	if(!emailOrig) return;
-
-	for(patt in patt2symbols) (function() {
-		while(email.indexOf(patt) > -1) 
-			email = email.replace(patt, patt2symbols[patt]);
-	})()
-
-	emailOrig.innerHTML = email;
-})();
+})(document.querySelector('.user-info table'));
