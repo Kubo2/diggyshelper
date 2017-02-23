@@ -9,9 +9,11 @@ session_start();
 require __DIR__ . '/connect.php';
 require __DIR__ . '/functions.php';
 
-if( !isset($_SESSION["uid"]) || (!@intval($_GET["cid"]) || !@intval($_GET["tid"])) && !isset($_GET["flash"]) ) { // intentionally @
+$uri = getUriParam('intval', 'cid', 'tid'); // escaped by intval()
+
+if( !isset($_SESSION["uid"]) || !($uri['cid'] && $uri['tid']) && !isset($_GET["flash"]) ) {
 	header("Location: http://$_SERVER[SERVER_NAME]" . dirname($_SERVER["PHP_SELF"]) . "/index.php", true, 302);
-	exit;
+	exit();
 }
 
 header("Content-Type: text/html; charset=utf-8", true, 200);
@@ -51,7 +53,7 @@ if(!empty($_GET["flash"])) {
 	
 <div id="forum">
 <div id="content">
-	<a class='button_reg' href='./view_topic.php?<?php echo "tid=$_GET[tid]&cid=$_GET[cid]"; ?>'>Návrat do témy</a>
+	<a class='button_reg' href='./view_topic.php?<?= "tid=$uri[tid]&cid=$uri[cid]" ?>'>Návrat do témy</a>
 	<!--script>document.write('<a class="button_upload" onclick="window.open(&quot;upload.php&quot;, &quot;okno1&quot;, &quot;width=500,height=400&quot;)">Nahrať obrázok</a>')</script-->
 	<hr>
 
@@ -74,9 +76,9 @@ if(!empty($_GET["flash"])) {
 			<button class='button' id="i" tabindex=0><i>kurzíva</i></button>
 			<button class='button' id="u" tabindex=0><u>podčiarknuté</u></button>
 			<button class='button' id="del" tabindex=0><s>prečiarknuté</s></button>
-			<br /><br />
-		<input type="hidden" name="cid" value="<?php echo $_GET['cid']; ?>" />
-		<input type="hidden" name="tid" value="<?php echo $_GET['tid']; ?>" />
+			<br><br>
+		<input type="hidden" name="tid" value="<?= $uri['tid'] ?>">
+		<input type="hidden" name="cid" value="<?= $uri['cid'] ?>">
 		<input type="submit" name="reply_submit" class="input_button" value="+ Pridať otázku / odpoveď">
 	</form>
 	<?php } ?>

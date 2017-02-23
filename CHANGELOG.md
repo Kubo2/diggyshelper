@@ -13,6 +13,7 @@ For more information about _planned features_, please [see TODO list](TODOlist.m
 ## Proposed to v1.5-beta2, release date: 2017-02-21
 
 * Frontend looks dark-theme fixes (~WladinQ)
+* Fix XSS hole in `post_reply.php`: passing raw `$_GET` (non-escaped) to the output
 
 ## v1.5-beta1, release date: 2017-02-14
 

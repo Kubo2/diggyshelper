@@ -7,6 +7,43 @@
 require dirname(__FILE__) . '/lib-core.php';
 
 /**
+ * Retrieves a HTTP GET parameter applying $filter.
+ * - A $filter can be a function with one argument the value of the GET param, or can be NULL,
+ * in which case no filter is  applied on any value retrieved.
+ * - $params ca be an array of strings, or a variable argument list of strings. Either case
+ * must contain at least one non-empty string.
+ * This function returns a non-empty array with indexes the strings given in $params and values
+ * of either the original values retrieved from GET and run through the $filter, or NULL in case a
+ * particular param does not exist in GET.
+ *
+ * @param callable|NULL
+ * @param array(string, ...)|...string
+ * @return array(string => mixed, ...)
+ */
+function getUriParam(callable $filter = NULL, $params) {
+	if(!is_array($params)) {
+		$params = func_get_args();
+		array_shift($params);
+	}
+
+	if(!count($params)) {
+		trigger_error('$params must contain at least one element', E_USER_WARNING);
+	}
+
+	$values = array_slice_assoc($_GET, $params);
+
+	foreach($params as $p) {
+		if(!isset($values[$p])) {
+			$values[$p] = NULL;
+		} elseif($filter) {
+			$values[$p] = $filter($values[$p]);
+		}
+	}
+
+	return $values;
+}
+
+/**
  * Is current user signed in?
  *
  * @since 1.3.3
@@ -153,20 +190,4 @@ function emptyArray(array $array)
 		}
 	}
 	return false;
-}
-
-/**
- * Which fields in array are empty.
- *
- * @param array
- * @return array with keys from arg1 and field values true/false (empty/not empty)
- */
-function emptyArrayFields(array $array)
-{
-	$result = [];
-	foreach($array as $index => $field)
-	{
-		$result[$index] = empty($field);
-	}
-	return $result;
 }
