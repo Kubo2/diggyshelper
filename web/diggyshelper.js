@@ -51,12 +51,12 @@ if(pswfield) {
 			label.innerHTML = 'SLABÉ HESLO';
 			label.className = "first red";
 		} else if(psw.match(/^[\x20-\x7E]{7,12}$/i)) {
-			label.innerHTML = 'POKROČILÉ HESLO';
+			label.innerHTML = 'PRIEMERNÉ HESLO';
 			label.className = "first orange";
 		} else if(psw.match(/^[\x20-\xFF]{8,}$/i)) {
 			if(psw.length > 8 && psw.match(/^[a-z\d-]+$/))
 				return;
-			label.innerHTML = "<b>SILNÉ</b> HESLO";
+			label.innerHTML = "SILNÉ HESLO";
 			label.className = "first green";
 		}
 	}

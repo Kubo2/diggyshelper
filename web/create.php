@@ -23,7 +23,7 @@ header("Content-Type: text/html; charset=utf-8", true, 200);
 		// < / end including other content >
 		?>
 		<div id="forum">
-			<a class='button-back' href='javascript:history.back(1)'>Späť</a>
+			<a class='button_reg' href='javascript:history.back(1)'>Návrat do kategórie</a>
 			<!--a class='button_upload' onclick="window.open('upload.php', 'okno1', 'width=500,height=400')">Nahrať obrázok</a-->
 			<hr/>
 			<div id="content">
@@ -44,7 +44,7 @@ header("Content-Type: text/html; charset=utf-8", true, 200);
 					<br>
 					<br>
 					<input type="hidden" name="cid" value="<?php echo intval($_GET["cid"]) ?>">
-					<input type="submit" name="topic_submit" class='input_button' value="Vytvoriť novú tému" tabindex=3>
+					<input type="submit" name="topic_submit" class='input_button' value="+ Vytvoriť novú tému" tabindex=3>
 				</form>
 			</div>
 		</div>

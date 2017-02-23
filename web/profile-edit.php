@@ -124,83 +124,24 @@ $isMobile = !empty($ua = & $_SERVER['HTTP_USER_AGENT']) && preg_match('~mobile~i
 // ====== template HTML ====== ?>
 <!doctype html>
 <?php ($titleConst = "Úprava profilu") && include('head.php') ?>
-<style><?php if(!$isMobile): ?>
 
-	/* TODO: kompletný refaktoring HTML a CSS, výsledok funkčný na väčšine zariadení; */
-
-	.pages {
-		position: relative;
-	}
-
-	.user-profil {
-		width: 80%;
-		margin: auto
-	}
-
-	form.alter-profile {
-		box-sizing: border-box;
-		display: inline-block;
-		position: relative;
-		width: 50%;
-		margin: auto;
-		zoom: 1;
-	}
-
-	.alter-profile fieldset {
-		float: left;
-		min-width: 40%;
-		border: 2px dashed  silver;
-		margin: .08em .45em;
-	}
-
-	.alter-profile legend {
-		font-size: large;
-		font-size: larger;
-	}
-
-	.alter-profile label:not([for]) {
-		display: block;
-	}
-
-	.alter-profile label input {
-		float: right;
-		min-width: 70%;
-		min-width: available;
-		min-width: fill-available;
-		width: 70%;
-	}
-
-	.alter-profile input[type=text], .alter-profile input[type=password], .alter-profile input[type=email] {
-		box-sizing: border-box;
-		font-size: 102%;
-		padding: .3em .08em;
-	}
-
-	.alter-profile input[type=submit] {
-		width: 100%;
-		margin-top: .65em;
-		padding: .34em;
-		cursor: pointer;
-		cursor: hand;
-	}
-<?php else: // $isMobile ?>
-	.alter-profile fieldset {
-		border: 1px dashed silver;
-	}
-<?php endif ?>
-</style>
-</head><body class="page profile-edit">
+</head>
+<body class="page profile-edit">
 <?php
 	include('header.php');
 	include('menu.php');
 	include('submenu.php');
-		?>
+?>
 <div id="pages">
 	<div class="user-profil">
+		<a class='button_reg' id='mob-no' href='./profile.php?user=<?= urlencode($_SESSION['username']) ?>'>Návrat do profilu</a>
+		
 		<h2><?php if(!$isMobile): ?>Úprava používateľského profilu<?php else: ?>Upraviť informácie<?php endif ?></h2>
+		
 		<form class='alter-profile' method='POST' action='?'>
-			<fieldset>
-				<legend>Základné</legend>
+			<div class="zakladne">
+				<h3>Základné informácie</h3>
+				
 				<?php if(isset($updated['basic-info-change'])): ?>
 					<?php if($updated['basic-info-change']): ?>
 						<p class="success">Informácie aktualizované.</p>
@@ -208,25 +149,22 @@ $isMobile = !empty($ua = & $_SERVER['HTTP_USER_AGENT']) && preg_match('~mobile~i
 						<p>Informácie neboli aktualizované. Pravdepodobne ste ich nezmenili alebo nastal problém.</p>
 					<?php endif ?>
 				<?php endif ?>
-				<label>
-					<b>Prezývka</b>:<br><input type="text" value="<?= SanitizeLib\escape($username, 'html') ?>" disabled>
-				</label>
-				<br>
-				<label>
-					<b>E-mail</b>ová <wbr>adresa:<br><input type="email" name="user[email]" value="<?= SanitizeLib\escape($email, 'html') ?>">
-				</label>
-				<br>
-				<div id="details">
-					<p style="clear: right !important"><b>stručný popis</b> používateľa:</p>
-					<textarea name="user[description]" style="width: 100%; height: 70px; resize: none"><?= SanitizeLib\sanitize($description, SanitizeLib\HTML) ?></textarea>
-				</div>
-				<input type="submit" class="button_repair" name="basic-info-change" value="Uložiť">
-			</fieldset>
-			<br>
-		</form><!--
-		--><form class='alter-profile' method='POST' action='?'>
-			<fieldset>
-				<legend>Zmena hesla</legend>
+				
+				<hr>
+				Používateľské meno:<br>
+				<input type="text" value="<?= SanitizeLib\escape($username, 'html') ?>" disabled><br>
+				E-mailová adresa:<br>
+				<input type="email" name="user[email]" value="<?= SanitizeLib\escape($email, 'html') ?>"><br>
+				Stručný popis používateľa:<br>
+				<textarea name="user[description]" style="height: 70px; resize: none"><?= SanitizeLib\sanitize($description, SanitizeLib\HTML) ?></textarea><br>
+				<input type="submit" class="button_repair" name="basic-info-change" value="Uložiť informácie">
+			</div>
+		</form>
+		
+		<form class='alter-profile' method='POST' action='?'>
+			<div class="zmenahesla">
+				<h3>Zmena hesla</h3>
+				
 				<?php if(isset($updated['password-change'])): ?>
 					<?php if($updated['password-change']): ?>
 						<p class="success">Heslo bolo úspešne zmenené.</p>
@@ -234,12 +172,14 @@ $isMobile = !empty($ua = & $_SERVER['HTTP_USER_AGENT']) && preg_match('~mobile~i
 						<p class="warning">Pri zmene hesla nastal problém. Skúste to prosím znova.</p>
 					<?php endif  ?>
 				<?php endif ?>
-				<label>Potvrď <b>súčasné</b> heslo:<br><input type="password" name="sudo-auth"></label>
-				<br>
-				<label>Zadaj <b>nové</b> heslo:<br><input type="text" name="new-password"></label>
-				<br>
+				
+				<hr>
+				Potvrď súčasné heslo:<br>
+				<input type="password" name="sudo-auth" placeholder="****" autocomplete="off"><br>
+				Zadaj nové heslo:<br>
+				<input type="text" name="new-password" placeholder="****" autocomplete="off"><br>
 				<input type="submit" class="button_repair" name="password-change" value="Zmeniť heslo">
-			</fieldset>
+			</div>
 		</form>
 	</div>
 </div>

@@ -41,6 +41,3 @@ if((bool)$connection && $selectedDb) {
 	return true;
 }
 return false;
-
-
-?>

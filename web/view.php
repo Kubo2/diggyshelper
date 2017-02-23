@@ -134,7 +134,7 @@ function renderForum($context) {
 	header('HTTP/1.1 200 Rendering Forum');
 
 	$logged = (loggedIn()
-		? "<a href='create.php?cid={$context->id}' class='input_button2'>Vytvoriť tému</a>"
+		? "<a href='create.php?cid={$context->id}' class='input_button2'>+ Vytvoriť novú tému</a>"
 		: "<br>Pre vytvorenie témy je potrebné sa prihlásiť,
 			alebo sa <a style='color: #CCA440; font-weight: bold' href='register.php'>zaregistrovať</a>!"
 	);

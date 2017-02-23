@@ -13,7 +13,7 @@ $page = basename((0 < $q = strpos($u = $_SERVER['REQUEST_URI'], '?')) ? substr_r
 			<?php   if(in_array($page, [ 'register.php', 'login.php', ], TRUE)):   ?>
 				<input type="hidden" name="redirect-noreferer" value="1">
 			<?php endif ?>
-			<input class='input' type='text' name='username' placeholder='Nickname'><br>
+			<input class='input' type='text' name='username' placeholder='Používateľské meno'><br>
 			<input class='input' type='password' name='password' placeholder='Heslo'>
 			<!--label><input class='input' type='checkbox' name='remember'>&nbsp;Neodhlasovať ma</label--><br><br>
 			<input type='submit' name='submit' class='input_log' value='Prihlásiť sa'>&nbsp;

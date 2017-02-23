@@ -32,7 +32,7 @@ header("Content-Type: text/html; charset=utf-8", true, 200);
 <a rel='nofollow' class='input_button2' href=<?php
 		printf("'./post_reply.php?cid=%d&amp;tid=%d'", $categoryId, $topicId)
 ?>>
-	Pridať otázku / odpoveď
+	+ Pridať otázku / odpoveď
 </a>
 
 	<?php
@@ -91,7 +91,7 @@ document404
 		<tr>
 			<td colspan=2>
 				<?php if( $cid ): ?>
-					<a class='button' <?php printf("href='./view.php?cid=%d'", $cid) ?>>Späť do kategórie</a>
+					<a class='button' <?php printf("href='./view.php?cid=%d'", $cid) ?>>Návrat do kategórie</a>
 				<?php endif ?>
 
 				<?php if( ! loggedIn() ) { ?>

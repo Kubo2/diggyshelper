@@ -17,78 +17,103 @@ header("Content-Type: text/html; charset=utf-8", true, 200);
 <head>
 	<?php ($titleConst = 'Registrácia') &&require 'includes/head.php' ?>
 	<style type="text/css">
-		.red{
-		color:white;
-		background:red;
-		border-radius:5px;
-		padding:0px 10px;
+		.red {
+			color:white;
+			background:red;
+			border-radius:5px;
+			padding: 5px;
+			font-size: 12px;
+			position: relative;
+			bottom: 1px;
 		}
 
-		.orange{
-		color:white;
-		background:orange;
-		border-radius:5px;
-		padding:0px 10px;
+		.orange {
+			color:white;
+			background:orange;
+			border-radius:5px;
+			padding: 5px;
+			font-size: 12px;
+			position: relative;
+			bottom: 1px;
 		}
 
-		.green{
-		color:white;
-		background:green;
-		border-radius:5px;
-		padding:0px 10px;
+		.green {
+			color:white;
+			background:green;
+			border-radius:5px;
+			padding: 5px;
+			font-size: 12px;
+			position: relative;
+			bottom: 1px;
 		}
-	</style><style>
-@media (max-width: 620px) {
-	/* break the <table> into pieces (rows) */
-	td, th, tr,
-	thead, tbody, tfoot,
-	table, table caption {
-		display: block;
-		width: 100%;
-		text-align: center;
-	}
 
-	/* add bottom margin for the benefits list and center the block */
-	table td[rowspan='6'] {
-		margin: 0 auto 1em;
-		width: 80%;
-		text-align: left;
-	}
+		@media (max-width: 620px) {
+			.red {
+				margin: 5px 0 5px 0;
+				width: 100%;
+			}
+			
+			.orange {
+				margin: 5px 0 5px 0;
+				width: 100%;
+			}
+			
+			.green {
+				margin: 5px 0 5px 0;
+				width: 100%;
+			}
+			
+			/* break the <table> into pieces (rows) */
+			td, th, tr,
+			thead, tbody, tfoot,
+			table, table caption {
+				display: block;
+				width: 100%;
+				text-align: center;
+			}
 
-	/* spread the <input>s */
-	table input {
-		width: 100%;
-		box-sizing: border-box;
+			/* add bottom margin for the benefits list and center the block */
+			table td[rowspan='6'] {
+				margin: 0 auto 1em;
+				width: 80%;
+				text-align: left;
+			}
 
-		/* box-sizing prefixes */
-		-webkit-box-sizing: border-box;
-		-moz-box-sizing: border-box;
-	}
+			/* spread the <input>s */
+			table input {
+				width: 100%;
+				box-sizing: border-box;
 
-	/* remove the original statement & apply the fix */
-	table tr:first-child td:nth-child(1) {
-		display: none;
-	}
+				/* box-sizing prefixes */
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;
+			}
 
-	table td.required-patch {
-		display: block !important;
-	}
+			/* remove the original statement & apply the fix */
+			table tr:first-child td:nth-child(1) {
+				display: none;
+			}
 
-	/* remove the unwanted space */
-	table tr:first-child td:nth-child(2) {
-		display: none;
-	}
-}
+			table td.required-patch {
+				display: block !important;
+			}
 
-@media (max-width: 400px) {
-	/* cancel the width of the block */
-	table td[rowspan='6'] {
-		/*width: 100%;*/
-		display: none;
-	}
-}
+			/* remove the unwanted space */
+			table tr:first-child td:nth-child(2) {
+				display: none;
+			}
+		}
+
+		@media (max-width: 400px) {
+			/* cancel the width of the block */
+			table td[rowspan='6'] {
+				/*width: 100%;*/
+				display: none;
+			}
+		}
 	</style>
 </head>
+
 <body>
 	<?php
 		require 'includes/header.php';
@@ -96,7 +121,7 @@ header("Content-Type: text/html; charset=utf-8", true, 200);
 		require 'includes/submenu.php'; 
 	?>
 <div id="forum">
-	<a class='button_reg' id='mob-no' href='index.php'>Návrat na hlavnú stránku</a>
+	<a class='button_reg' href='index.php'>Návrat na hlavnú stránku</a>
 
 	<div id="content">
 <?php
@@ -111,34 +136,58 @@ if(empty($_POST['username'])) {
 ?>
 		<style scoped>.ochrana-pred-robotmi{display:none}</style>
 		<form method='post' action='?' onsubmit="
-var regForm = this; this.onsubmit = null;
-var timeout = window.setTimeout(regForm.submit, 700);
-ga('send', 'event', 'registerUserAccount', 'formSubmit', { hitCallback: function() { window.clearTimeout(timeout); regForm.submit() } });
-return false;
+			var regForm = this; this.onsubmit = null;
+			var timeout = window.setTimeout(regForm.submit, 700);
+			ga('send', 'event', 'registerUserAccount', 'formSubmit', { hitCallback: function() { window.clearTimeout(timeout); regForm.submit() } });
+			return false;
 		">
-			<table border='0px' style='margin: auto'>
+			<table border='0px' width="80%" style="margin: auto;">
 				<!-- display: table-caption -->
-				<caption><h2>Registrovať sa</h2>
-					<p>Staňte sa členom diskusného fóra Diggy's Helper.</p></caption>
+				<caption>
+					<h2>Registrovať sa</h2>
+					
+					<p>Staňte sa členom diskusného fóra Diggy's Helper.</p>
+					
+					<div id="mob-yes">
+						<br><b>Výhody registrovaných používateľov:</b>
+						
+						<ul>
+							<li>- osobný profil</li>
+							<li>- možnosť pridávať otázky a odpovede vo fóre</li><!-- // yet not possible, but save it till implementing fb login
+							<li>- pridať si známych ľudí, spoluhráčov do priateľov</li-->
+							<li>- možnosť zapojiť sa do sútaží o GEMY</li>
+						</ul>
+					</div>
+				</caption>
 				<!--/ display: table-caption -->
-
+				
 				<!-- registration form body start -->
 				<tr>
-					<td style='color: #c00000'>Všetky tri údaje <b>sú povinné</b>.</td>
-					<td></td>
-					<td ROWSPAN="6">
+					<td style="color: #cca440" colspan="2">Všetky tri údaje sú povinné.</td>
+					
+					<td ROWSPAN="6" width="40%">
 						<h3>Výhody registrovaných používateľov:</h3>
-							- osobný profil<br>
-							- možnosť pridávať otázky a odpovede vo fóre<br><!-- // yet not possible, but save it till implementing fb login
-							- pridať si známych ľudí, spoluhráčov do priateľov<br-->
-							- možnosť zapojiť sa do sútaží o GEMY
+						
+						<ul>
+							<li>osobný profil</li>
+							<li>možnosť pridávať otázky a odpovede vo fóre</li><!-- // yet not possible, but save it till implementing fb login
+							<li>pridať si známych ľudí, spoluhráčov do priateľov</li-->
+							<li>možnosť zapojiť sa do sútaží o GEMY</li>
+						</ul>
 					</td>
-					<td style='color: #c00000; display: none' class='required-patch'>Všetky tri údaje <b>sú povinné</b>.</td>
+					<td style='color: #cca440; display: none' class='required-patch'>Všetky tri údaje sú povinné.</td>
+				</tr>
+				<tr>
+					<td width="25%">
+						<input name='username' type='text' placeholder='Používateľské meno' class='input_reg' autocomplete='off' required>
+					</td>
+					<td></td>
 				</tr>
 				<tr>
 					<td>
-						<input name='username' type='text' placeholder='Nickname' class='input_reg' autocomplete='off' required>
+						<input name='email' type='email' placeholder='E-mail' class='input_reg' required>
 					</td>
+					<td></td>
 				</tr>
 				<tr>
 					<td>
@@ -152,6 +201,7 @@ return false;
 					<td>
 						<input name='password2' type='password' placeholder='Heslo znovu' class='input_reg' autocomplete='off' required>
 					</td>
+					<td></td>
 				</tr>
 				<tr class="ochrana-pred-robotmi">
 					<td>
@@ -162,11 +212,6 @@ return false;
 						<input type="url" name='url'>
 					</td>
 				</tr>
-				<tr>
-					<td>
-						<input name='email' type='email' placeholder='E-mail' class='input_reg' required>
-					</td>
-				</tr>
 				<!--tr>
 					<td><input class='input' autocomplete='off' name='facebookname' placeholder='Meno na facebooku' value='' type='text'></td>
 				</tr-->
@@ -174,6 +219,7 @@ return false;
 					<td>
 						<input class='button_register' type='submit' value='Registrovať sa'>
 					</td>
+					<td></td>
 				</tr>
 			</table>
 			<!--font color='#5999cc'>*</font> "Meno na facebooku" sa zobrazuje len administrátorom stránky. Slúži na odosielanie GEMOV výhercom. (toto pole nieje povinné)-->

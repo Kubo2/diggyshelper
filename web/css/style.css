@@ -2,24 +2,15 @@
 @import "https://fonts.googleapis.com/css?family=Andika&subset=latin,latin-ext";
 
 /**
- * This stylesheet is originally made for dh-forum website.
- * Nobody may reuse or redistribute it.
+ * This stylesheet was originally written for the Diggy's Helper website.
  *
- * @author   WladinQ <vladimir.jacko.ml@gmail.com>
- * @copyright 2013-2016 dh-forum workgroup
+ * @project dh Forum
+ * @author Vladimír WladinQ Jacko <vladimir.jacko.ml@gmail.com>
+ * @author Kubo2 <kubo2@diggyshelper.net>
+ * @copyright 2013-2017 dh Forum workgroup
  *
- * Little but important edits to this file also made Kubo2.
- *
- * For more information on dh-forum workgroup, please read
- * the article at {@link http://diggyshelper.net/authors.php}.
- *
- * Please note that this stylesheet does not carry about backwards
- * compatibility in most old browsers including old versions
- * of Opera Browser, Microsoft Internet Explorer or Netscape
- * Navigator, because our target group is not supposed to use
- * some of these browser. If it will show they does, backwards
- * compatibility will quickly be made.
- *
+ * For more information on the dh Forum workgroup, please read
+ * the article located at {@link http://diggyshelper.net/authors.php}.
  */
 
 body {
@@ -29,29 +20,24 @@ body {
 	color: #ffffff;
 }
 
-/**
- * General.
- */
- /* headings */
- h1 {
+h1 {
 	width: 100%;
 	text-align: center;
- }
+}
  
- h2:not(.no-center) {
+h2:not(.no-center) {
  	width: 100%;
  	text-align: center;
 	margin: 5px 0 5px 0;
- }
+}
 
-  /* backwards compatibility */
- h2.no-center {
+/* backwards compatibility */
+h2.no-center {
  	width: inherit;
  	text-align: center;
 	margin: 5px 0 5px 0;
- }
+}
 
-/* paragraphs */
 p {
 	width: 100%;
 }
@@ -61,7 +47,7 @@ table p, form p {
 	margin: 0;
 }
 
-/* buttons */
+/** ------------------ BUTTONS ------------------ **/
 [class*='button'] {
 	color: #ffffff;
 	text-decoration: none;
@@ -71,7 +57,7 @@ table p, form p {
 }
 
 [class*='button']:hover {
-	color: #ffffff;
+	color: #222222;
 	text-decoration: none;
 	font-family: "Andika", "Times New Roman";
 	border-radius: 5px;
@@ -89,20 +75,32 @@ body .pages {
 	border-right: 1px solid #151515;
 }
 
-.input_button {
-	background:#cca440;
+/* ------------------ button ------------------ */
+
+.button-header {
+	background-color: #cca440;
 	border: 2px #cca440 solid;
-	cursor: pointer;
+	font-size: 14px;
+	padding-left:4px;
+}
+
+.button-header:hover {
+	background-color: #cca440;
+	border: 2px #cca440 solid;
+	color: #222222;
+}
+
+.button_logout {
+	background-color: #d44d4d;
+	border: 2px #d44d4d solid;
 	font-size: 14px;
 	padding-left: 4px;
 	padding-right: 4px;
-	position: relative;
-	bottom: 5px;
 }
 
-.input_button:hover {
-	background-color: #cca440;
-	border: 2px #cca440 solid;
+.button_logout:hover {
+	background-color: #d44d4d;
+	border: 2px #d44d4d solid;
 	color: #222222;
 }
 
@@ -138,6 +136,66 @@ body .pages {
 	color: #151515;
 }
 
+.button_repair {
+	background-color: #cca440;
+	border: 2px #cca440 solid;
+	font-size: 14px;
+	padding-left: 4px;
+	padding-right: 4px;
+	margin: 5px 0 5px 0;
+	width: 50%;
+}
+	
+.button_repair:hover {
+	background-color: #cca440;
+	border: 2px #cca440 solid;
+	color: #222222;
+}
+
+.button_repair2 {
+	background-color: #cca440;
+	border: 2px #cca440 solid;
+	font-size: 14px;
+	padding-left: 4px;
+	padding-right: 4px;
+	margin: 5px 0 5px 0;
+}
+	
+.button_repair2:hover {
+	background-color: #cca440;
+	border: 2px #cca440 solid;
+	color: #222222;
+}
+
+/* ------------------ koniec button ------------------ */
+/* ------------------ input ------------------ */
+
+.input {
+	padding: 5px;
+	padding-left: 5px;
+	border: 2px #ffffff solid;
+	border-radius: 5px;
+	margin: 0 0 7px 0;
+	width: 50%;
+}
+
+.input_button {
+	background:#cca440;
+	border: 2px #cca440 solid;
+	cursor: pointer;
+	font-size: 14px;
+	padding-left: 4px;
+	padding-right: 4px;
+	position: relative;
+	bottom: 5px;
+}
+
+.input_button:hover {
+	background-color: #cca440;
+	border: 2px #cca440 solid;
+	color: #222222;
+}
+
 .input_log {
 	background-color: #cca440;
 	border: 2px #cca440 solid;
@@ -157,49 +215,15 @@ body .pages {
 	color: #151515;
 }
 
-.button_logout {
-	background-color: #d44d4d;
-	border: 2px #d44d4d solid;
-	font-size: 14px;
-	padding-left: 4px;
-	padding-right: 4px;
+.input_reg {
+	width: 90%;
+	padding: 5px;
+	border: 2px #ffffff solid;
+	border-radius: 5px;
+	margin: 0;
 }
 
-.button_logout:hover {
-	background-color: #d44d4d;
-	border: 2px #d44d4d solid;
-	color: #222222;
-}
-
-.button-header {
-	background-color: #cca440;
-	border: 2px #cca440 solid;
-	font-size: 14px;
-	padding-left:4px;
-	_padding-right:4px;
-}
-
-.button-header:hover {
-	background-color: #cca440;
-	border: 2px #cca440 solid;
-	color: #222222;
-}
-
-.button_repair {
-	background-color: #cca440;
-	border: 2px #cca440 solid;
-	font-size: 14px;
-	padding-left: 4px;
-	padding-right: 4px;
-	margin: 5px 0 5px 0;
-	width: 50%;
-}
-	
-.button_repair:hover {
-	background-color: #cca440;
-	border: 2px #cca440 solid;
-	color: #222222;
-}
+/* ------------------ koniec input ------------------ */
 
 .setting {
 	background-color: #ff954d; /* 70% opacity */
@@ -222,193 +246,8 @@ body .pages {
 	text-decoration: none;
 }
 
-/** Koniec buttons */
-/** ID */
-
-#topiccolor {
-	background-color: #666666;
-	border: 0;
-	padding: 1%;
-	width: 98%;
-	border-radius: 5px;
-}
-
-#topiccolor hr {
-	margin: 5px 0 5px 0;
-	border: 1px solid #222222;
-}
-
-#topiccolor a {
-	text-decoration: none;
-	cursor: pointer;
-        color: #cca440;
-        font-weight: bold;
-}
-
-#topiccolor .book {
-	width: 40px;
-	height: 40px;
-}
-
-#sutaz {
-	position: fixed;
-	right: 0;
-	top: 50%;
-	width: auto;
-	margin: -2.5em 0 0 0;
-	margin-top: -2.5em;
-	margin-right: 0px;
-	margin-bottom: 0px;
-	margin-left: 0px;
-	background: rgba(255, 0, 0, 0.5);
-	color: #ffffff;
-	display: none;
-	padding: 0.5em 0.5em 0.5em 0.5em;
-	box-shadow: 0 1px 3px black;
-}
-
-#sutaz strong {
-	text-align: center;
-}
-
-#zaujimavosti {
-	width: 85%;
-	padding: 0 0.5% 0 0.5%;
-	margin: 0.5% 7% 0.5% 7%;
-	float: left;
-	font-family: "Andika", "Times New Roman";
-	border-left: 1px solid #151515;
-	border-right: 1px solid #151515;
-}
-
-#zaujimavosti table {
-	width: 100%;
-	color: #ffffff;
-}
-
-#zaujimavosti table tr td {
-	text-align: center;
-	font-size: 15px;
-	background: #cca440;
-	color: #ffffff;
-}
-
-#mob-author {
-	text-align: center;
-}
-
-#mob-date {
-        text-align: right;
-}
-
-#loginprovizor {
-	background: #666666;
-	height: 126px;
-	width: 330px;
-	float: right;
-	font-size: 14px;
-	border-radius: 5px;
-	margin-right: 5px;
-	margin-top: 5px;
-	padding: 7px;
-	color: #ffffff;
-}
-
-#loginprovizor .buttonmenu {
-	width: 100%;
-	float: left;
-	margin: 12px 0 0 0;
-}
-
-@media (max-width: 400px) {
-/*
-	#loginprovizor, #loginprovizor input,
-	#loginprovizor .button_register {
-		width: 100%;
-	}
-
-
-	#loginprovizor input[type=submit], #loginprovizor .button_register {
-		display: block
-	}
-*/
-}
-
-#loginprovizor label input[type=checkbox] {
-	background-color: #ffffff;
-	border: 2px #106cb5 solid;
-}
-
-#loginprovizor img[type=userimages] {
-	margin-top: 0px;
-	margin-bottom: 0px;
-	margin-right: 7px;
-	height: 85px;
-	width: 85px;
-	border-radius: 5px;
-	border: 2px #cca440 solid;
-	display: block;
-}
-
-#loginprovizor img[type=userbuttons] {
-	width: 15px;
-	height: 15px;
-	border: 0px solid #ffffff;
-	position: relative;
-	top: 2px;
-}
-
-#loginprovizor img[type=adminmoderatorbuttons] {
-	width: 30px;
-	height: 15px;
-	border: 0px solid #ffffff;
-	position: relative;
-	top: 2px;
-}
-
-#loginprovizor hr {
-	border: 1px #5999cc solid;
-	border-radius: 2px;
-}
-
-#provizorne {
-	color: #ffffff;
-	background: grey;
-	font-size: 90%;
-	height: auto;
-	width: 95%;
-	margin: 0 auto 23px;
-	text-align: left;
-	padding: 5px;
-	display: none;
-	border-radius: 5px;
-}
-
-#provizorne p:first-child {
-	margin-top: 0px;
-}
-
-#provizorne p:last-child {
-	margin-bottom: 0px;
-}
-
-#provizorne.warning {
-	background: red;
-}
-
-#provizorne.notice {
-	background: ligthgreen;
-}
-
-#pages {
-	width: 85%;
-	padding: 0 0.5% 0 0.5%;
-	margin: 0.5% 7% 0.5% 7%;
-	float: left;
-	font-family: "Andika", "Times New Roman";
-	border-left: 1px solid #151515;
-	border-right: 1px solid #151515;
-}
+/** ------------------ KONIEC BUTTONS ------------------ **/
+/** ------------------ ID ------------------ **/
 
 #coako {
 	width: 85%;
@@ -427,10 +266,6 @@ body .pages {
 	padding: 0 10px;
 }
 
-#pages table tr td {
-	text-align: center;
-}
-
 #coako .playgamepp {
 	background: #f54e07;
 	color: #ffffff;
@@ -447,104 +282,6 @@ body .pages {
 	border: 1px solid #dddddd;
 	padding: 5px;
 	border-radius: 5px;
-}
-
-/**
- * Menu alebo tiež navigácia webu.
- *
- * #menu   hlavný container pre menu, obsahuje prvky <a>
- * #menu a   položka menu
- * #menu a.first-item   prvá položka menu, menu môže obsahovať iba jednu položku s touto triedou
- * #menu a:hover   aktívny stav položky menu, keď nad ňou je používateľova myš
- * #mmenu-state, [for=mmenu-state]   <input type=checkbox> a "ovládač" <label> použitý na prepínanie stavu skrytý/odkrytý pre mobilné menu
- * #mmenu-state:checked   stav "odkrytý" pre #menu
- *
- * No styleguide reference.
- */
-
-#menu {
-	background: #151515;
-	font-family: Andika, "Times New Roman";
-	text-align: center;
-	padding: 5px;
-	height: 26px;
-	width: auto;
-}
-
-#regAlog {
-	display: none;
-}
-
-#menu a {
-	text-decoration: none;
-	color: #ffffff;
-	padding: 2px;
-	margin: 7px;
-	margin: 0.4375em;
-	border-radius: 5px;
-}
-
-#menu a:hover {
-	background: #666666;
-	border-radius: 5px;
-}
-
-#mmenu-state, #mmenu-state + label {
-	display: none;
-}
-
-#menuleft {
-	float: left;
-	margin-left: 5px;
-}
-
-#menuright {
-	float: right;
-	margin-right: 5px;
-}
-
-/*
-#header {
-	height: 150px;
-	width: auto;
-	_background: #222222 url(../images/bg/logo.png) no-repeat;
-}
-*/
-
-#header a.logo {
-    display: inline-block;
-    background: #222222 url(../images/bg/logo.png) no-repeat;
-	height: 150px;
-	width: 450px;
-	color: transparent;
-}
-
-#header h1 {
-	font-size: 25px;
-	padding-left: 450px;
-	padding-top: 20px;
-	padding-bottom: 5px;
-	color: #87b5da;
-	font-family: "Andika", "Times New Roman";
-	cursor: default;
-}
-
-#header h2 {
-	font-size: 15px;
-	padding-left: 450px;
-	color: #87b5da;
-	font-family: "Andika", "Times New Roman";
-	cursor: default;
-}
-
-#forum {
-	width: 85%;
-	padding: 0 0.5% 0 0.5%;
-	margin: 0.5% 7% 0.5% 7%;
-	float: left;
-	font-family: "Andika", "Times New Roman";
-	border-left: 1px solid #151515;
-	border-right: 1px solid #151515;
 }
 
 #content {
@@ -574,6 +311,46 @@ body .pages {
 #content ul a {
 	text-decoration: none;
 }
+
+#content .button {
+	color: #ffffff;
+	text-decoration: none;
+	font-family: "Andika", "Times New Roman";
+	border-radius: 5px;
+	cursor: pointer;
+	font-size:14px;
+	background-color: #cca440;
+	border: 2px solid #cca440;
+}
+
+#content .button:hover {
+	color: #222222;
+	text-decoration: none;
+	font-family: "Andika", "Times New Roman";
+	border-radius: 5px;
+	font-size: 14px;
+	cursor: pointer;
+	background-color: #cca440;
+	border: 2px solid #cca440;
+}
+
+#content .input_button2 {
+	background: #cca440;
+	border:2px #cca440 solid;
+	cursor:pointer;
+	font-size:14px;
+	padding-left:4px;
+	padding-right:4px;
+	float: right;
+	position: relative;
+	bottom: 5px;
+}
+
+#content .input_button2:hover {
+	background-color: #cca440;
+	border: 2px #cca440 solid;
+	color: #222222;
+}
 	
 #content .category {
 	background-color: #666666;
@@ -591,22 +368,6 @@ body .pages {
 	color: #151515;
 }
 
-/*
-#content .category tr td {
-	padding: 0 5px 0 5px;
-}
-
-#content .category tr td a {
-	color: #000000;
-	font-weight: bold;
-	text-decoration: none;
-}
-
-#content .category tr td a:hover {
-	text-decoration: underline;
-}
-*/
-
 #content form input[name=topic_title] {
 	width: 50%;
 	padding: 5px;
@@ -623,7 +384,6 @@ body .pages {
 
 #content table tr td img {
 	width: 32%;
-	_margin: 0 0.5% 0 0.5%;
 }
 
 #content table tr td a:title {
@@ -698,23 +458,20 @@ body .pages {
 	color: #222222;
 }
 
-#profilelinkfb {
-	height: auto;
-	text-align: center;
-	padding: 5px;
+#content table tr td h3 {
+	margin: 0 0 10px 0;
 }
 
-#profilelinkfb a img {
-	margin: 5px;
+#content table tr td ul {
+	margin: 0;
 }
 
-#upload {
-	min-height: 400px;
-	width: auto;
-	overflow: hidden;
-	color: #ffffff;
-	font-family: "Andika", "Times New Roman";
-	background: #106cb5 url(../images/bg/upload.png) no-repeat;
+#content table tr td ul li {
+	list-style-type: none;
+}
+
+#content table tr td ul li::before {
+	content: '- ';
 }
 
 #footer {
@@ -727,7 +484,6 @@ body .pages {
 
 #footer .fb, #footer .git {
 	float: right;
-	_height: 2.5em;
 	position: relative;
 	top: 2px;
 }
@@ -760,7 +516,7 @@ body .pages {
 	top: 7px;
 }
 
-#statistiky {
+#forum {
 	width: 85%;
 	padding: 0 0.5% 0 0.5%;
 	margin: 0.5% 7% 0.5% 7%;
@@ -768,6 +524,162 @@ body .pages {
 	font-family: "Andika", "Times New Roman";
 	border-left: 1px solid #151515;
 	border-right: 1px solid #151515;
+}
+
+#header a.logo {
+    display: inline-block;
+    background: #222222 url(../images/bg/logo.png) no-repeat;
+	height: 150px;
+	width: 450px;
+	color: transparent;
+}
+
+#header h1 {
+	font-size: 25px;
+	padding-left: 450px;
+	padding-top: 20px;
+	padding-bottom: 5px;
+	color: #87b5da;
+	font-family: "Andika", "Times New Roman";
+	cursor: default;
+}
+
+#header h2 {
+	font-size: 15px;
+	padding-left: 450px;
+	color: #87b5da;
+	font-family: "Andika", "Times New Roman";
+	cursor: default;
+}
+
+#left {
+	float: left;
+}
+
+#loginprovizor {
+	background: #666666;
+	height: 126px;
+	width: 330px;
+	float: right;
+	font-size: 14px;
+	border-radius: 5px;
+	margin-right: 5px;
+	margin-top: 5px;
+	padding: 7px;
+	color: #ffffff;
+}
+
+#loginprovizor .buttonmenu {
+	width: 100%;
+	float: left;
+	margin: 12px 0 0 0;
+}
+
+#loginprovizor label input[type=checkbox] {
+	background-color: #ffffff;
+	border: 2px #106cb5 solid;
+}
+
+#loginprovizor img[type=userimages] {
+	margin-top: 0px;
+	margin-bottom: 0px;
+	margin-right: 7px;
+	height: 85px;
+	width: 85px;
+	border-radius: 5px;
+	border: 2px #cca440 solid;
+	display: block;
+}
+
+#loginprovizor img[type=userbuttons] {
+	width: 15px;
+	height: 15px;
+	border: 0px solid #ffffff;
+	position: relative;
+	top: 2px;
+}
+
+#loginprovizor img[type=adminmoderatorbuttons] {
+	width: 30px;
+	height: 15px;
+	border: 0px solid #ffffff;
+	position: relative;
+	top: 2px;
+}
+
+#loginprovizor hr {
+	border: 1px #5999cc solid;
+	border-radius: 2px;
+}
+
+/**
+ * Menu alebo tiež navigácia webu.
+ *
+ * #menu   hlavný container pre menu, obsahuje prvky <a>
+ * #menu a   položka menu
+ * #menu a.first-item   prvá položka menu, menu môže obsahovať iba jednu položku s touto triedou
+ * #menu a:hover   aktívny stav položky menu, keď nad ňou je používateľova myš
+ * #mmenu-state, [for=mmenu-state]   <input type=checkbox> a "ovládač" <label> použitý na prepínanie stavu skrytý/odkrytý pre mobilné menu
+ * #mmenu-state:checked   stav "odkrytý" pre #menu
+ *
+ * No styleguide reference.
+**/
+
+#menu {
+	background: #151515;
+	font-family: Andika, "Times New Roman";
+	text-align: center;
+	padding: 5px;
+	height: 26px;
+	width: auto;
+}
+
+#menu a {
+	text-decoration: none;
+	color: #ffffff;
+	padding: 2px;
+	margin: 7px;
+	margin: 0.4375em;
+	border-radius: 5px;
+}
+
+#menu a:hover {
+	background: #666666;
+	border-radius: 5px;
+}
+
+#mmenu-state, #mmenu-state + label {
+	display: none;
+}
+
+#menuleft {
+	float: left;
+	margin-left: 5px;
+}
+
+#menuright {
+	float: right;
+	margin-right: 5px;
+}
+
+#mob-author {
+	text-align: center;
+}
+
+#mob-date {
+    text-align: right;
+}
+
+#mob-no {
+	_display: block;
+}
+
+#mob-prispevky {
+	display: none;
+}
+
+#mob-yes {
+	display: none;
 }
 
 #news {
@@ -779,13 +691,104 @@ body .pages {
 	min-height: 20px;
 }
 
+#pages {
+	width: 85%;
+	padding: 0 0.5% 0 0.5%;
+	margin: 0.5% 7% 0.5% 7%;
+	float: left;
+	font-family: "Andika", "Times New Roman";
+	border-left: 1px solid #151515;
+	border-right: 1px solid #151515;
+}
+
+#pages table tr td {
+	text-align: center;
+}
+
+#pages .user-profil .zakladne, #pages .user-profil .zmenahesla {
+	width: 32%;
+	float: left;
+	background-color: #666666;
+	border-radius: 5px;
+	margin: 1% 0.5% 0 0.5%;
+	text-align: center;
+}
+
+#pages .user-profil .zakladne h3, #pages .user-profil .zmenahesla h3 {
+	margin: 0;
+	font-size: 15px;
+	color: #151515;
+	width: 100%;
+	text-align: center;
+}
+
+#pages .user-profil .zakladne hr, #pages .user-profil .zmenahesla hr {
+	border: 1px solid #151515;
+	margin: 0 0 5px 0;
+}
+
+#pages .user-profil .zakladne input[type=text], #pages .user-profil .zakladne input[type=email], #pages .user-profil .zakladne textarea {
+	width: 90%;
+	margin: 0 0 5px 0;
+	padding: 5px;
+	border-radius: 5px;
+	border: 1px solid #ffffff;
+}
+
+#pages .user-profil .zmenahesla input[type=password], #pages .user-profil .zmenahesla input[type=text] {
+	width: 90%;
+	margin: 0 0 5px 0;
+	padding: 5px;
+	border-radius: 5px;
+	border: 1px solid #ffffff;
+}
+
 #profilinfo {
 	background: #ffffff;
 	border: 0px;
 }
 
-#left {
-	float: left;
+#profilelinkfb {
+	height: auto;
+	text-align: center;
+	padding: 5px;
+}
+
+#profilelinkfb a img {
+	margin: 5px;
+}
+
+#provizorne {
+	color: #ffffff;
+	background: grey;
+	font-size: 90%;
+	height: auto;
+	width: 95%;
+	margin: 0 auto 23px;
+	text-align: left;
+	padding: 5px;
+	display: none;
+	border-radius: 5px;
+}
+
+#provizorne p:first-child {
+	margin-top: 0px;
+}
+
+#provizorne p:last-child {
+	margin-bottom: 0px;
+}
+
+#provizorne.warning {
+	background: red;
+}
+
+#provizorne.notice {
+	background: ligthgreen;
+}
+
+#regAlog {
+	display: none;
 }
 
 #right {
@@ -793,61 +796,108 @@ body .pages {
 	margin-right: 5px;
 }
 
-#mob-prispevky {
+#statistiky {
+	width: 85%;
+	padding: 0 0.5% 0 0.5%;
+	margin: 0.5% 7% 0.5% 7%;
+	float: left;
+	font-family: "Andika", "Times New Roman";
+	border-left: 1px solid #151515;
+	border-right: 1px solid #151515;
+}
+
+#sutaz {
+	position: fixed;
+	right: 0;
+	top: 50%;
+	width: auto;
+	margin: -2.5em 0 0 0;
+	margin-top: -2.5em;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	background: rgba(255, 0, 0, 0.5);
+	color: #ffffff;
 	display: none;
+	padding: 0.5em 0.5em 0.5em 0.5em;
+	box-shadow: 0 1px 3px black;
 }
 
-#mob-no {
-	_display: block;
+#sutaz strong {
+	text-align: center;
 }
 
-#mob-yes {
-	display: none;
-}
-
-/** Koniec ID */
-/** CLASS */
-
-.user-profil .user-info table tr td img {
-	border: 2px solid #8CB8DC;
+#topiccolor {
+	background-color: #666666;
+	border: 0;
+	padding: 1%;
+	width: 98%;
 	border-radius: 5px;
 }
 
-.hbox {
-    _padding-bottom: 15px;
-    _margin-bottom: 25px;
+#topiccolor hr {
+	margin: 5px 0 5px 0;
+	border: 1px solid #222222;
 }
 
-.imgbox {
-    _border: 1px solid #eee;
-    _padding: 10px;
-	width: auto;
-    margin-bottom: 10px;
-    _background: #f3fbff;
-
-    /* radius vendors (backward) */
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    -ms-border-radius: 10px;
-    -o-border-radius: 10px;
-
-    /* radius forward */
-    border-radius: 10px;
-}
-
-.imgbox img {
-	max-width: 100%;
-}
-
-.memberusers {
-	color: #cca440;
+#topiccolor a {
 	text-decoration: none;
+	cursor: pointer;
+    color: #cca440;
+    font-weight: bold;
 }
 
-.memberusers:hover {
-	text-decoration: underline;
+#topiccolor a:hover {
 	color: #cca440;
 }
+
+#topiccolor .book {
+	width: 40px;
+	height: 40px;
+}
+
+#topiccolor img {
+	position: relative;
+	top: 3px;
+}
+
+#topiccolor .post_info {
+	font-size: 12px;
+}
+
+#upload {
+	min-height: 400px;
+	width: auto;
+	overflow: hidden;
+	color: #ffffff;
+	font-family: "Andika", "Times New Roman";
+	background: #106cb5 url(../images/bg/upload.png) no-repeat;
+}
+
+#zaujimavosti {
+	width: 85%;
+	padding: 0 0.5% 0 0.5%;
+	margin: 0.5% 7% 0.5% 7%;
+	float: left;
+	font-family: "Andika", "Times New Roman";
+	border-left: 1px solid #151515;
+	border-right: 1px solid #151515;
+}
+
+#zaujimavosti table {
+	width: 100%;
+	color: #ffffff;
+}
+
+#zaujimavosti table tr td {
+	text-align: center;
+	font-size: 15px;
+	background: #cca440;
+	color: #ffffff;
+}
+
+/** ------------------ KONIEC ID ------------------ **/
+/** ------------------ CLASS ------------------ **/
 
 .box {
 	background: #87b5da;
@@ -869,13 +919,30 @@ body .pages {
 	text-decoration: none;
 }
 
-.naj {
-	text-decoration: none;
-	color: #cca440;
+.clear {
+	clear: both;
 }
 
-.naj:hover {
-	text-decoration: underline;
+.hbox {
+    
+}
+
+.imgbox {
+	width: auto;
+    margin-bottom: 10px;
+
+    /* radius vendors (backward) */
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+
+    /* radius forward */
+    border-radius: 10px;
+}
+
+.imgbox img {
+	max-width: 100%;
 }
 
 .jazykon {
@@ -894,67 +961,666 @@ body .pages {
 	color: #ffffff;
 }
 
+.left {
+	float: left;
+	padding: 5px;
+}
+
+.memberusers {
+	color: #cca440;
+	text-decoration: none;
+}
+
+.memberusers:hover {
+	text-decoration: underline;
+	color: #cca440;
+}
+
+.naj {
+	text-decoration: none;
+	color: #cca440;
+}
+
+.naj:hover {
+	text-decoration: underline;
+}
+
+.right {
+	float: right;
+	padding: 5px;
+}
+
 .topic {
 	text-decoration: none;
 	color: #000000;
 }
 
-.input {
-	padding: 5px;
-	padding-left: 5px;
-	border: 2px #ffffff solid;
+.user-profil .user-info h2 {
+	color: #cca440;
+}
+
+.user-profil .user-info table {
+	border: 0px solid #ffffff;
+}
+
+.user-profil .user-info table tr td img {
+	border: 2px solid #cca440;
 	border-radius: 5px;
-	margin: 0 0 7px 0;
-	width: 50%;
+	height: 150px;
+	width: 150px;
 }
 
-.input_reg {
-	width: 100%;
-	padding: 5px;
-	border: 2px #ffffff solid;
-	border-radius: 5px;
-	margin: 0 0 7px 0;
+.user-profil .user-info table hr {
+	border: 1px solid #151515;
 }
 
-.right, .left {
-	padding: 5px;
+.user-profil .user-info .foto {
+	_display: none;
 }
 
-.right {
-	float: right;
+/** ------------------ Koniec CLASS ------------------ **/
+
+/** ------------------ MOBILNA VERZIA MAX WIDTH 845PX ------------------ **/
+
+@media (max-width: 845px) {
+	
+	body {
+		background-color: #222222;
+		color: #ffffff;
+	}
+
+	body .pages {
+		width: 95%;
+		padding: 0 0.5% 0 0.5%;
+		margin: 0.5% 2% 0.5% 2%;
+		float: left;
+		font-family: "Andika", "Times New Roman";
+		border: 0;
+	}
+	
+	body .pages h1 {
+		color: #cca440;
+		text-align: center;
+	}
+	
+	body .pages p a {
+		color: #cca440;
+		text-decoration: none;
+	}
+	
+	body .pages p a:hover {
+		text-decoration: underline;
+		color: #cca440;
+	}
+	
+	hr {
+		margin: 5px 0 5px 0;
+		border: 1px solid #151515;
+	}
+	
+	p {
+		width: 100%;
+	}
+
+	table p, form p {
+		max-width: 100%;
+		margin: 0;
+	}
+	
+	/** ------------------ BUTTONS ------------------ **/
+	
+	/* ------------------ button ------------------ */
+	
+	.button {
+		background-color: #cca440;
+		border: 2px #cca440 solid;
+		font-size: 14px;
+		position: relative;
+		bottom: 5px;
+	}
+
+	.button:hover {
+		background-color: #cca440;
+		border: 2px #cca440 solid;
+	}
+	
+	.button-back {
+		background-color: #cca440;
+		border: 2px #cca440 solid;
+		font-size: 14px;
+		padding-left:4px;
+		padding-right:4px;
+	}
+
+	.button-back:hover {
+		background-color: #cca440;
+		border: 2px #cca440 solid;
+	}
+	
+	.button-down {
+		background-color: #cca440;
+		border: 2px #cca440 solid;
+		font-size: 14px;
+		padding-left:4px;
+		padding-right:4px;
+	}
+
+	.button-down:hover {
+		background-color: #cca440;
+		border: 2px #cca440 solid;
+	}
+	
+	.button-header {
+		background-color: #cca440;
+		border: 2px #cca440 solid;
+		font-size: 14px;
+		padding-left:4px;
+	}
+
+	.button-header:hover {
+		background-color: #cca440;
+		border: 2px #cca440 solid;
+		color: #222222;
+	}
+	
+	.button_logout {
+		background-color: #c00000;
+		border: 2px #c00000 solid;
+		font-size: 14px;
+		padding-left: 4px;
+		padding-right: 4px;
+	}
+
+	.button_logout:hover {
+		background-color: #c00000;
+		border: 2px #c00000 solid;
+		color: #222222;
+	}
+	
+	.button_register {
+		background-color: #cca440;
+		border: 2px #cca440 solid;
+		font-size: 14px;
+		padding-left: 4px;
+		padding-right: 4px;
+		margin: 0 0 7px 0;
+		width: 50%;
+	}
+	
+	.button_register:hover {
+		background-color: #cca440;
+		border: 2px #cca440 solid;
+	}
+	
+	.button_repair {
+		background-color: #cca440;
+		border: 2px #cca440 solid;
+		font-size: 14px;
+		padding-left: 4px;
+		padding-right: 4px;
+		margin: 5px 0 5px 0;
+		width: 50%;
+	}
+	
+	.button_repair:hover {
+		background-color: #cca440;
+		border: 2px #cca440 solid;
+	}
+	
+	.button_upload {
+		background:#71dc4d;
+		border:2px #71dc4d solid;
+		font-size:14px;
+		padding-left:4px;
+		padding-right:4px;
+		float: right;
+		position: relative;
+		top: 1px;
+	}
+
+	.button_upload:hover {
+		background-color: #33cc00;
+		border: 2px #33cc00 solid;
+	}
+	
+	/* ------------------ koniec button ------------------ */
+	
+	/* ------------------ input ------------------ */
+	
+	.input {
+		padding:5px;
+		padding-left:5px;
+		border:2px #ffffff solid;
+		border-radius: 5px;
+		margin: 0 0 7px 0;
+		width: 50%;
+	}
+	
+	.input_button {
+		background-color: #cca440;
+		border: 2px #cca440 solid;
+		cursor: pointer;
+		font-size: 14px;
+		padding-left: 4px;
+		padding-right: 4px;
+		position: relative;
+		bottom: 5px;
+	}
+
+	.input_button:hover {
+		background-color: #cca440;
+		border: 2px #cca440 solid;
+	}
+	
+	.input_button2 {
+		background: #cca440;
+		border:2px #cca440 solid;
+		cursor:pointer;
+		font-size:14px;
+		padding-left:4px;
+		padding-right:4px;
+		float: right;
+		position: relative;
+		bottom: 3px;
+	}
+
+	.input_button2:hover {
+		background-color: #cca440;
+		border: 2px #cca440 solid;
+		color: #222222;
+	}
+	
+	.input_button2-down {
+		background: #5999cc;
+		border:2px #5999cc solid;
+		cursor:pointer;
+		font-size:14px;
+		padding-left:4px;
+		padding-right:4px;
+		float: right;
+		position: relative;
+		top: 2px;
+	}
+
+	.input_button2-down:hover {
+		background-color:#106cb5;
+		border:2px #106cb5 solid;
+	}
+
+	.input_log {
+		background-color: #cca440;
+		border: 2px #cca440 solid;
+		text-decoration: none;
+		font-family: "Andika", "Times New Roman";
+		border-radius: 5px;
+		font-size: 14px;
+		padding-left: 4px;
+		padding-right: 4px;
+		color: #ffffff;
+	}
+
+	.input_log:hover {
+		background-color: #cca440;
+		border: 2px #cca440 solid;
+	}
+	
+	/* ------------------ koniec input ------------------ */
+	
+	/** ------------------ KONIEC BUTTONS ------------------ **/
+	
+	/** ------------------ ID ------------------ **/
+	
+	#bold {
+		font-weight: bold;
+	}
+	
+	#coako {
+		border: 0;
+		width: 98%;
+		margin: 0 1% 0 1%;
+		padding: 0;
+	}
+	
+	#coako h3 {
+		border: 0;
+		background-color: #cca440;
+		border-radius: 5px;
+	}
+	
+	#content ul {
+		padding: 0;
+		width: 100%;
+		float: left;
+		list-style-type: none;
+	}
+	
+	#content ul a {
+		text-decoration: none;
+	}
+	
+	#content .category {
+		background-color: #666666;
+		border-radius: 5px;
+		padding: 0;
+		margin: 0 0 5px 0;
+	}
+	
+	#content .category li {
+		color: #ffffff;
+		margin: 5px;
+	}
+	
+	#content .category li b {
+		color: #151515;
+	}
+
+	#content table tr td img {
+		width: 100%;
+		margin: 0;
+	}
+	
+	#content .nazov h2 {
+		text-align: center;
+		margin: 5px 0 5px 0;
+	}
+	
+	#content form p {
+		margin: 0;
+	}
+
+	#content form input[name=topic_title] {
+		width: 97%;
+		padding: 5px;
+		border: 1px solid #CECECE;
+		margin: 5px 0 5px 0;
+	}
+
+	#content form textarea {
+		width: 97%;
+		padding: 5px;
+		resize: none;
+		border: 1px solid #CECECE;
+		margin: 5px 0 5px 0;
+	}
+	
+	#content form table caption h2 {
+		color: #cca440;
+		margin: 10px 0 10px 0;
+	}
+	
+	#footer {
+		height: auto;
+		padding: 1%;
+		background-color: #151515;
+		margin: 5px 0 0 0;
+	}
+	
+	#footer .copy {
+		float: none;
+		width: 100%;
+		text-align: center;
+		position: relative;
+		top: -1px;
+	}
+	
+	#footer .fb, #footer .git {
+		display: none;
+	}
+	
+	#forum {
+		border: 0;
+		padding: 0;
+		margin: 0.5% 0.5% 0 0.5%;
+		width: 99%;
+	}
+	
+	#header {
+		background-image: none;
+		background-color: #222222;
+		height: 135px;
+	}
+	
+	#header a.logo {
+		display: none;
+	}
+	
+	#loginprovizor {
+		width: 97%;
+		float: left;
+		background: none;
+		margin: 0;
+		padding: 5px;
+		border-radius: 0px;
+		background: url(../images/bg/logo-mob.png) no-repeat;
+		background-position: right;
+		background-size: auto 95%;
+	}
+	
+	#loginprovizor .button_register {
+		display: none;
+	}
+	
+	#loginprovizor img[type=userimages] {
+		border: 2px solid #cca440;
+		display: none;
+	}
+	
+	/* mobilné štýly pre menu */
+	
+	/* štýly pre zavreté menu */
+	#menu {
+		background: url(../images/icon/mmenu.png) #151515 right top no-repeat;
+		margin: 0 0 3px 0;
+		box-shadow: 0px 3px 10px #151515;
+	}
+
+	#menu a {
+		display: block;
+		visibility: hidden;
+		overflow: hidden;
+		height: 0;
+		margin: 0 0 5px 0;
+	}
+	
+	#menu a:hover {
+		background-color: #222222;
+	}
+
+	/* štýly pre otvorené menu */
+	#mmenu-state:checked + label +
+		#menu {
+			height: auto;
+		}
+
+	#mmenu-state:checked + label +
+		#menu a {
+			visibility: visible;
+			height: auto;
+		}
+
+	#mmenu-state:checked + label +
+		#menu .first-item {
+			margin-top: 35px;
+		}
+
+	/* "ovládač" <label> */
+	#mmenu-state + label {
+		display: block;
+		position: absolute;
+		width: 100%;
+		height: 28px;
+		cursor: pointer;
+	}
+	
+	/* koniec - mobilné štýly pre menu */
+	
+	#mob-author {
+		width: 49%;
+		float: left;
+		font-size: 12px;
+		border-bottom: 1px solid #E0E0E0;
+	}
+	
+	#mob-date {
+		width: 49%;
+		float: right;
+		border-bottom: 1px solid #E0E0E0;
+		font-size: 12px;
+		text-align: right;
+	}
+	
+	#mob-name {
+		width: 100%;
+		float: left;
+	}
+	
+	#mob-no {
+		display: none;
+	}
+	
+	#mob-prispevky {
+		float: left;
+		width: 100%;
+		display: block;
+		text-align: center;
+	}
+	
+	#mob-prispevky b {
+		font-weight: normal;
+		color: #ffffff;
+	}
+	
+	#mob-prispevky ul {
+		padding: 0;
+		margin: 5px 0 5px 0;
+		text-align: left;
+	}
+	
+	#mob-prispevky ul a {
+		text-decoration: none;
+		color: #cca440;
+		font-size: 15px;
+	}
+	
+	#mob-prispevky ul a:hover {
+		text-decoration: none;
+		color: #cca440;
+		font-size: 15px;
+	}
+	
+	#mob-prispevky ul a li {
+		background-color: #151515;
+		list-style-type: none;
+	}
+	
+	#mob-prispevky ul a li time {
+		color: #ffffff;
+		font-size: 15px;
+		float: right;
+	}
+
+	#mob-yes {
+		display: block;
+	}
+	
+	#pages {
+		border: 0;
+		width: 98%;
+		margin: 0 1% 0 1%;
+		padding: 0;
+	}
+	
+	#pages .user-profil .zakladne, #pages .user-profil .zmenahesla {
+		width: 100%;
+		float: left;
+		background-color: #666666;
+		border-radius: 5px;
+		margin: 0 0 2% 0;
+		text-align: center;
+	}
+	
+	#regAlog {
+		background-color: #cca440;
+		border-radius: 5px;
+	}
+	
+	#statistiky {
+		border: 0;
+		width: 98%;
+		margin: 0 1% 0 1%;
+		padding: 0;
+	}
+	
+	#topiccolor {
+		background-color: #666666;
+		border-radius: 5px;
+		margin: 0 0 5px 0;
+		padding: 5px;
+	}
+	
+	#topiccolor a {
+		color: #cca440;
+		text-decoration: none;
+	}
+	
+	#topiccolor a:hover {
+		text-decoration: none;
+	}
+	
+	#topiccolor .post_info {
+		font-size: 12px;
+	}
+	
+	#topiccolor hr {
+		border: 1px solid #222222;
+		margin: 5px 0 5px 0;
+	}
+	
+	#zaujimavosti {
+		border: 0;
+		width: 98%;
+		margin: 0 1% 0 1%;
+		padding: 0;
+	}
+	
+	#zaujimavosti table {
+		display: none;
+	}
+	
+	/** ------------------ KONIEC ID ------------------ **/
+	/** ------------------ CLASS ------------------ **/
+	
+	.error {
+		color: red;
+		text-align: center;
+	}
+	
+	.memberusers {
+		color: #cca440;
+		text-decoration:none;
+	}
+
+	.memberusers:hover {
+		text-decoration: underline;
+		color: #cca440;
+	}
+	
+	.naj {
+		text-decoration:none;
+		color: #cca440;
+	}
+
+	.naj:hover {
+		text-decoration: underline;
+		color: #cca440;
+	}
+	
+	/** ------------------ KONIEC CLASS ------------------ **/
 }
 
-.left {
-	float: left;
-}
+/** ------------------ KONIEC - MOBILNA VERZIA MAX WIDTH 845PX ------------------ **/
 
-/*
-.cat_links {
-	display: block;
-	padding:5px;
-	padding-top:10px;
-	padding-bottom:10px;
-	border:0px solid #000;
-	margin-bottom:5px;
-	background-color:#5999cc;
-	border-radius:5px;
-	color:#ffffff;
-	text-decoration:none;
-	text-align:left;
-}
-
-.cat_links:hover {
-	background-color:#106cb5;
-	text-decoration:none;
-	text-align:left;
-}
-*/
-
-.clear {
-	clear: both;
-}
-
-/** Koniec CLASS */
+/** ------------------ WTF ??? ------------------ **/
 
 div#header > p.in-development {
 	float: right;
@@ -1010,579 +1676,6 @@ div.dialog.profile img {
 
 .error {
 	color: red;
-}
-
-.user-profil .user-info .foto {
-	display: none;
-}
-
-/* mobilna verzia */
-
-@media (max-width: 845px) {
-
-	/* paragraphs */
-	p {
-		width: 100%;
-	}
-
-	table p, form p {
-		max-width: 100%;
-		margin: 0;
-	}
-
-	hr {
-		margin: 5px 0 5px 0;
-		border: 1px solid #151515;
-	}
-	
-	body {
-		background-color: #222222;
-		color: #ffffff;
-	}
-
-	body .pages {
-		width: 95%;
-		padding: 0 0.5% 0 0.5%;
-		margin: 0.5% 2% 0.5% 2%;
-		float: left;
-		font-family: "Andika", "Times New Roman";
-		border: 0;
-	}
-	
-	body .pages h1 {
-		color: #cca440;
-		text-align: center;
-	}
-	
-	body .pages p a {
-		color: #cca440;
-		text-decoration: none;
-	}
-	
-	body .pages p a:hover {
-		text-decoration: underline;
-		color: #cca440;
-	}
-	
-	#mob-no {
-		display: none;
-	}
-
-	#mob-yes {
-		display: block;
-	}
-
-	#bold {
-		font-weight: bold;
-	}
-
-	#mob-name {
-		width: 100%;
-		float: left;
-	}
-
-	#mob-author {
-		width: 49%;
-		float: left;
-		font-size: 12px;
-		border-bottom: 1px solid #E0E0E0;
-	}
-
-	#mob-date {
-		width: 49%;
-		float: right;
-		border-bottom: 1px solid #E0E0E0;
-		font-size: 12px;
-		text-align: right;
-	}
-
-	#header {
-		background-image: none;
-		background-color: #222222;
-		height: 135px;
-	}
-	
-	#header a.logo {
-		display: none;
-	}
-
-	#loginprovizor {
-		width: 97%;
-		float: left;
-		background: none;
-		margin: 0;
-		padding: 5px;
-		border-radius: 0px;
-		background: url(../images/bg/logo-mob.png) no-repeat;
-		background-position: right;
-		background-size: auto 95%;
-	}
-	
-	#loginprovizor .button_register {
-		display: none;
-	}
-	
-	#loginprovizor img[type=userimages] {
-		border: 2px solid #cca440;
-		display: none;
-	}
-
-	#forum {
-		border: 0;
-		padding: 0;
-		margin: 0.5% 0.5% 0 0.5%;
-		width: 99%;
-	}
-
-	#topiccolor {
-		background-color: #666666;
-		border-radius: 5px;
-		margin: 0 0 5px 0;
-		padding: 5px;
-	}
-	
-	#topiccolor a {
-		color: #cca440;
-		text-decoration: none;
-	}
-	
-	#topiccolor a:hover {
-		text-decoration: none;
-	}
-	
-	#topiccolor .post_info {
-		font-size: 12px;
-	}
-	
-	#topiccolor hr {
-		border: 1px solid #222222;
-		margin: 5px 0 5px 0;
-	}
-	
-	#content ul {
-		padding: 0;
-		width: 100%;
-		float: left;
-		list-style-type: none;
-	}
-	
-	#content ul a {
-		text-decoration: none;
-	}
-	
-	#content .category {
-		background-color: #666666;
-		border-radius: 5px;
-		padding: 0;
-		margin: 0 0 5px 0;
-	}
-	
-	#content .category li {
-		color: #ffffff;
-		margin: 5px;
-	}
-	
-	#content .category li b {
-		color: #151515;
-	}
-
-	#content table tr td img {
-		width: 100%;
-		margin: 0;
-	}
-	
-	#content .nazov h2 {
-		text-align: center;
-		margin: 5px 0 5px 0;
-	}
-
-	#pages {
-		border: 0;
-		width: 98%;
-		margin: 0 1% 0 1%;
-		padding: 0;
-	}
-	
-	#pages .user-profil label {
-		width: 100%;
-		float: left;
-	}
-	
-	#pages .user-profil label input {
-		float: left;
-		width: 98%;
-		padding: 1%;
-		margin: 0 0 10px 0;
-	}
-
-	#statistiky {
-		border: 0;
-		width: 98%;
-		margin: 0 1% 0 1%;
-		padding: 0;
-	}
-
-	#zaujimavosti {
-		border: 0;
-		width: 98%;
-		margin: 0 1% 0 1%;
-		padding: 0;
-	}
-
-	#coako {
-		border: 0;
-		width: 98%;
-		margin: 0 1% 0 1%;
-		padding: 0;
-	}
-	
-	#coako h3 {
-		border: 0;
-		background-color: #cca440;
-		border-radius: 5px;
-	}
-
-	#content form p {
-		margin: 0;
-	}
-
-	#content form input[name=topic_title] {
-		width: 97%;
-		padding: 5px;
-		border: 1px solid #CECECE;
-		margin: 5px 0 5px 0;
-	}
-
-	#content form textarea {
-		width: 97%;
-		padding: 5px;
-		resize: none;
-		border: 1px solid #CECECE;
-		margin: 5px 0 5px 0;
-	}
-	
-	#content form table caption h2 {
-		color: #cca440;
-		margin: 10px 0 10px 0;
-	}
-	
-	#zaujimavosti table {
-		display: none;
-	}
-	
-	#mob-prispevky {
-		float: left;
-		width: 100%;
-		display: block;
-		text-align: center;
-	}
-	
-	#mob-prispevky b {
-		font-weight: normal;
-		color: #ffffff;
-	}
-	
-	#mob-prispevky ul {
-		padding: 0;
-		margin: 5px 0 5px 0;
-		text-align: left;
-	}
-	
-	#mob-prispevky ul a {
-		text-decoration: none;
-		color: #cca440;
-		font-size: 15px;
-	}
-	
-	#mob-prispevky ul a:hover {
-		text-decoration: none;
-		color: #cca440;
-		font-size: 15px;
-	}
-	
-	#mob-prispevky ul a li {
-		background-color: #151515;
-	}
-	
-	#mob-prispevky ul a li time {
-		color: #ffffff;
-		font-size: 15px;
-		float: right;
-	}
-
-	.error {
-		color: red;
-		text-align: center;
-	}
-
-	.input_button {
-		background-color: #cca440;
-		border: 2px #cca440 solid;
-		cursor: pointer;
-		font-size: 14px;
-		padding-left: 4px;
-		padding-right: 4px;
-		_float: right;
-		position: relative;
-		bottom: 5px;
-	}
-
-	.input_button:hover {
-		background-color: #cca440;
-		border: 2px #cca440 solid;
-	}
-
-	.input_log {
-		background-color: #cca440;
-		border: 2px #cca440 solid;
-		text-decoration: none;
-		font-family: "Andika", "Times New Roman";
-		border-radius: 5px;
-		font-size: 14px;
-		padding-left: 4px;
-		padding-right: 4px;
-		color: #ffffff;
-	}
-
-	.input_log:hover {
-		background-color: #cca440;
-		border: 2px #cca440 solid;
-	}
-	
-	.button {
-		background-color: #cca440;
-		border: 2px #cca440 solid;
-		font-size: 14px;
-		_padding-left:4px;
-		_padding-right:4px;
-		position: relative;
-		bottom: 5px;
-	}
-
-	.button:hover {
-		background-color: #cca440;
-		border: 2px #cca440 solid;
-	}
-	
-	.button-header {
-		background-color: #cca440;
-		border: 2px #cca440 solid;
-		font-size: 14px;
-		padding-left:4px;
-		_padding-right:4px;
-	}
-
-	.button-header:hover {
-		background-color: #cca440;
-		border: 2px #cca440 solid;
-		color: #222222;
-	}
-	
-	.button-back {
-		background-color: #cca440;
-		border: 2px #cca440 solid;
-		font-size: 14px;
-		padding-left:4px;
-		padding-right:4px;
-	}
-
-	.button-back:hover {
-		background-color: #cca440;
-		border: 2px #cca440 solid;
-	}
-	
-	.button-down {
-		background-color: #cca440;
-		border: 2px #cca440 solid;
-		font-size: 14px;
-		padding-left:4px;
-		padding-right:4px;
-	}
-
-	.button-down:hover {
-		background-color: #cca440;
-		border: 2px #cca440 solid;
-	}
-
-	.button_upload {
-		background:#71dc4d;
-		border:2px #71dc4d solid;
-		font-size:14px;
-		padding-left:4px;
-		padding-right:4px;
-		float: right;
-		position: relative;
-		top: 1px;
-	}
-
-	.button_upload:hover {
-		background-color: #33cc00;
-		border: 2px #33cc00 solid;
-	}
-
-	.input_button2 {
-		background: #cca440;
-		border:2px #cca440 solid;
-		cursor:pointer;
-		font-size:14px;
-		padding-left:4px;
-		padding-right:4px;
-		float: right;
-		position: relative;
-		bottom: 3px;
-	}
-
-	.input_button2:hover {
-		background-color: #cca440;
-		border: 2px #cca440 solid;
-		color: #222222;
-	}
-	
-	.input_button2-down {
-		background: #5999cc;
-		border:2px #5999cc solid;
-		cursor:pointer;
-		font-size:14px;
-		padding-left:4px;
-		padding-right:4px;
-		float: right;
-		position: relative;
-		top: 2px;
-	}
-
-	.input_button2-down:hover {
-		background-color:#106cb5;
-		border:2px #106cb5 solid;
-	}
-	
-	.button_register {
-		background-color: #cca440;
-		border: 2px #cca440 solid;
-		font-size: 14px;
-		padding-left: 4px;
-		padding-right: 4px;
-		margin: 0 0 7px 0;
-		width: 50%;
-	}
-	
-	.button_register:hover {
-		background-color: #cca440;
-		border: 2px #cca440 solid;
-	}
-	
-	.button_repair {
-		background-color: #cca440;
-		border: 2px #cca440 solid;
-		font-size: 14px;
-		padding-left: 4px;
-		padding-right: 4px;
-		margin: 5px 0 5px 0;
-		width: 50%;
-	}
-	
-	.button_repair:hover {
-		background-color: #cca440;
-		border: 2px #cca440 solid;
-	}
-	
-	.input {
-		padding:5px;
-		padding-left:5px;
-		border:2px #ffffff solid;
-		border-radius: 5px;
-		margin: 0 0 7px 0;
-		width: 50%;
-	}
-	
-	.memberusers {
-		color: #cca440;
-		text-decoration:none;
-	}
-
-	.memberusers:hover {
-		text-decoration: underline;
-		color: #cca440;
-	}
-	
-	.naj {
-		text-decoration:none;
-		color: #cca440;
-	}
-
-	.naj:hover {
-		text-decoration: underline;
-		color: #cca440;
-	}
-	
-	.button_logout {
-		background-color: #c00000;
-		border: 2px #c00000 solid;
-		font-size: 14px;
-		padding-left: 4px;
-		padding-right: 4px;
-	}
-
-	.button_logout:hover {
-		background-color: #c00000;
-		border: 2px #c00000 solid;
-		color: #222222;
-	}
-}
-
-/* mobilné štýly pre menu */
-@media (max-width: 845px) {
-
-	/* štýly pre zavreté menu */
-	#menu {
-		background: url(../images/icon/mmenu.png) #151515 right top no-repeat;
-		margin: 0 0 3px 0;
-		box-shadow: 0px 3px 10px #151515;
-	}
-	
-	/* box shadow sirka vyska rozmazanie */
-	
-	#regAlog {
-		background-color: #cca440;
-		border-radius: 5px;
-	}
-
-	#menu a {
-		display: block;
-		visibility: hidden;
-		overflow: hidden;
-		height: 0;
-		margin: 0 0 5px 0;
-	}
-	
-	#menu a:hover {
-		background-color: #222222;
-	}
-
-	/* štýly pre otvorené menu */
-	#mmenu-state:checked + label +
-		#menu {
-			height: auto;
-		}
-
-	#mmenu-state:checked + label +
-		#menu a {
-			visibility: visible;
-			height: auto;
-		}
-
-	#mmenu-state:checked + label +
-		#menu .first-item {
-			margin-top: 35px;
-		}
-
-	/* "ovládač" <label> */
-	#mmenu-state + label {
-		display: block;
-		position: absolute;
-		width: 100%;
-		height: 28px;
-		cursor: pointer;
-	}
 }
 
 @media (max-width: 43.75em) {
@@ -1654,22 +1747,7 @@ div.dialog.profile img {
 }
 
 @media (max-width: 700px) {
-	#footer .fb, #footer .git {
-		display: none;
-	}
-
-	#footer .copy {
-		float: none;
-		width: 100%;
-		text-align: center;
-		position: relative;
-		top: -1px;
-	}
-
-	#footer {
-		height: auto;
-		padding: 1%;
-		background-color: #151515;
-		margin: 5px 0 0 0;
-	}
+	
 }
+
+/** ------------------ KONIEC WTF ??? ------------------ **/

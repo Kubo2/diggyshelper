@@ -29,8 +29,8 @@ $rawinfo= <<< SQL
 		u.email as`user-email`,
 		u.description,
 		u.access as `user-group`,
-		date_format(u.registerdate, '%e. %c. %Y') as `user-register-date`,
-		date_format('00-00-0000 00:00', '%e. %c. %Y') as `stats-last-visit`, -- TODO: fix last visit
+		date_format(u.registerdate, '%d. %m. %Y') as `user-register-date`,
+		date_format('00-00-0000 00:00', '%d. %m. %Y') as `stats-last-visit`, -- TODO: fix last visit
 		count(p.id) as `stats-post-count`
 	from
 		users u
@@ -88,13 +88,16 @@ set_include_path("./includes/");
 			<div class="user-info">
 				<h2 class="no-center">Profil používateľa <big><?= SanitizeLib\escape($userinfo['user-name'], 'html') ?></big></h2>
 				
-				<div class="foto"><img src="images/thumb/no-avatar.jpg"></div>
+				<div id="mob-yes" class="foto"><img src="images/thumb/no-avatar.jpg"></div>
 				
-				<table style="table-layout: fixed; width: 800px">
-					<style scoped>table td {text-align: left !important}</style>
+				<table style="table-layout: fixed; width: 100%" border="0px">
+					<!--style scoped>table td {text-align: left !important}</style-->
 					<tr>
+						<td colspan="3"><?=( SanitizeLib\escape((string) $userinfo['description'], 'HTML') )?><hr></td>
+					</tr>
+					<tr id="mob-no">
 						<td rowspan="6">
-							<?=( SanitizeLib\escape((string) $userinfo['description'], 'HTML') )?><hr>
+							<div class="foto"><img src="images/thumb/no-avatar.jpg"></div>
 						</td>
 					</tr>
 					<tr>
@@ -106,7 +109,7 @@ set_include_path("./includes/");
 						<td class='odd'><?= SanitizeLib\escape(sk_sanitizeEmail($userinfo['user-email']), 'html') ?></td>
 					</tr>
 					<tr>
-						<td class='even'>Celkový počet príspevkov:</td>
+						<td class='even'>Počet príspevkov:</td>
 						<td class='odd'><?= $userinfo['stats-post-count'] ?></td>
 					</tr>
 					<tr>
@@ -114,15 +117,16 @@ set_include_path("./includes/");
 						<td class='odd'><?= $userinfo['stats-last-visit'] ?></td>
 					</tr>
 					<tr>
-						<td class='even'>Registrovaný dňa:</td>
+						<td class='even'>Deň registrácie:</td>
 						<td class='odd'><?= $userinfo['user-register-date'] ?></td>
 					</tr>
 					<?php if(isset($_SESSION['uid']) && $_SESSION['username'] === $userinfo['user-name']): // je užívateľ prihlásený a je to jeho profil?>
 					<tfoot>
 						<tr>
-							<td colspan=2>
+							<td colspan="3" style="text-align: right;">
+								<hr>
 								<form action="profile-edit.php?" method="POST" accept-charset="utf-8">
-									<button class='button_repair' type="submit">Upraviť informácie</button>
+									<button class='button_repair2' type="submit">Upraviť informácie</button>
 								</form>
 							</td>
 						</tr>

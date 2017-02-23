@@ -51,7 +51,7 @@ if(!empty($_GET["flash"])) {
 	
 <div id="forum">
 <div id="content">
-	<a class='button-back' href='./view_topic.php?<?php echo "tid=$_GET[tid]&cid=$_GET[cid]"; ?>'>Návrat do témy</a>
+	<a class='button_reg' href='./view_topic.php?<?php echo "tid=$_GET[tid]&cid=$_GET[cid]"; ?>'>Návrat do témy</a>
 	<!--script>document.write('<a class="button_upload" onclick="window.open(&quot;upload.php&quot;, &quot;okno1&quot;, &quot;width=500,height=400&quot;)">Nahrať obrázok</a>')</script-->
 	<hr>
 
@@ -60,7 +60,7 @@ if(!empty($_GET["flash"])) {
 	<?php } else { ?>
 	<form action="post_reply_parse.php" method="post" name="zasli-prispevok">
 		<?php if(getUser($_SESSION['uid'], 'access') == 'admin') { ?>
-		<p><label for='post-markup'><b>Pridať odpoveď</b> vo formáte:</label> 
+		<p><label for='post-markup'>Pridať otázku / odpoveď vo formáte:</label> 
 			<select name="post-markup" id='post-markup'>
 				<option value="bb" selected="selected">BB kód</option>
 				<option value="html">HTML</option>
@@ -77,7 +77,7 @@ if(!empty($_GET["flash"])) {
 			<br /><br />
 		<input type="hidden" name="cid" value="<?php echo $_GET['cid']; ?>" />
 		<input type="hidden" name="tid" value="<?php echo $_GET['tid']; ?>" />
-		<input type="submit" name="reply_submit" class="input_button" value="Pridať odpoveď">
+		<input type="submit" name="reply_submit" class="input_button" value="+ Pridať otázku / odpoveď">
 	</form>
 	<?php } ?>
 </div>
