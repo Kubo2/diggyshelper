@@ -10,6 +10,8 @@ define(
 
 session_start();
 
+require __DIR__ . '/functions.php';
+
 if(empty($_SESSION['uid'])) {
 	header("Location:" . ABSURL . "index.php", true, 302);
 	exit();
@@ -22,6 +24,11 @@ if(isset($_POST['topic_submit'])) {
 	} else {
 		include_once("connect.php");
 
+		$markup = 'bb'; // default for non-admin users
+
+		if(getUser($_SESSION['uid'], 'access') == 'admin' && !empty($_POST['post-markup']) && in_array($_POST['post-markup'], ['html', 'bb']))
+			$markup = $_POST['post-markup'];
+
 		/**
 		 * @internal {2} a {3} by mohli byť riešené trigermi vyvolanými pri {1}
 		 * @todo zaistiť atomicitu operácií
@@ -33,7 +40,7 @@ if(isset($_POST['topic_submit'])) {
 		$sql = "INSERT INTO topics (category_id, topic_title, topic_creator, topic_date, topic_reply_date) VALUES ($cid, '$title', $creator, now(), now())"; // 1
 		$res = mysql_query($sql);
 		$new_topic_id = mysql_insert_id();
-		$sql2 = "INSERT INTO posts (category_id, topic_id, post_creator, post_content, post_date) VALUES ($cid, $new_topic_id, '$creator', '$content', now())"; // 2
+		$sql2 = "INSERT INTO posts (category_id, topic_id, post_creator, post_content, post_markup, post_date) VALUES ($cid, $new_topic_id, '$creator', '$content', '$markup', now())"; // 2
 		$res2 = mysql_query($sql2);
 		$sql3 = "UPDATE categories SET last_post_date = now(), last_user_posted = $creator WHERE id = $cid LIMIT 1"; // 3
 		$res3 = mysql_query($sql3);
@@ -45,7 +52,3 @@ if(isset($_POST['topic_submit'])) {
 		}
 	}
 }
-
-?>
-
-

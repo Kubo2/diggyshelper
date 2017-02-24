@@ -2,6 +2,9 @@
 
 session_start();
 
+require __DIR__ . '/connect.php';
+require __DIR__ . '/functions.php';
+
 if(!isset($_SESSION["uid"]) || !intval(!empty($_GET["cid"]) ? $_GET["cid"] : 0)) {
 	header("Location: http://$_SERVER[SERVER_NAME]" . dirname($_SERVER["PHP_SELF"]) . "/index.php", true, 302);
 	exit;
@@ -31,6 +34,16 @@ header("Content-Type: text/html; charset=utf-8", true, 200);
 					<p>Názov témy:</p>
 					<input type="text" name="topic_title" size="98" maxlength="150" tabindex=1>
 					<p>Obsah témy:</p>
+
+					<?php if(getUser($_SESSION['uid'], 'access') == 'admin'): ?>
+					<p><label for='post-markup'>(Písať príspevok vo formáte:</label> 
+						<select name="post-markup" id='post-markup'>
+							<option value="bb" selected="selected">BB kód</option>
+							<option value="html">HTML</option>
+						</select>)
+					</p>
+					<?php endif ?>
+
 					<textarea name="prispevok" rows="12" cols="75" tabindex=2></textarea>
 
 					<button class='button' id="b" tabindex=0><b>tučné</b></button>
