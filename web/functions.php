@@ -128,20 +128,13 @@ function getUser($id, $fieldList) {
  * Prepares an email address passed as argument for future rendering on the HTML webpage.
  *
  * @lang sk-sk
+ * @see diggyshelper.js
+ *
  * @param string
  * @return string
  */
 function sk_sanitizeEmail($email) {
-	// dots
-	$email = str_replace('.', ' (bodka) ', $email);
-
-	// at-sign
-	$email = preg_replace('#^([^@]+)@(.+)#', '$1 (zavináč) $2', $email);
-
-	// strip any extra at-signs
-	$email = str_replace('@', '', $email);
-
-	return $email;
+	return str_replace(['.', '@'], [' (bodka) ', ' (zavináč) '], $email);
 }
 
 
@@ -169,7 +162,7 @@ function recordLog($message, $level, $section = NULL, $logdir = NULL) {
 
 	if(!$logdir) $logdir = __DIR__ . '/logs';
 	{
-		if(!is_dir($logdir) && !@mkdir($logdir)) { // intentionally @; not atomic
+		if(!is_dir($logdir) && !@mkdir($logdir)) { // intentionally @ -- expression not atomic
 			return FALSE; // ============>
 		}
 	}
@@ -180,17 +173,18 @@ function recordLog($message, $level, $section = NULL, $logdir = NULL) {
 
 
 /**
- * Whether at least one field of array is empty.
+ * Checks whether at least one of an array's elements is empty().
  *
  * @param array
- * @return bool true if at least one array field is empty, otherwise false
+ * @return bool
+ *         TRUE if at least one of the array's elements is empty,
+ *         FALSE otherwise (even if there are no elements in the array)
  */
-function emptyArray(array $array) {
-	foreach($array as $field) {
-		if(empty($field)) {
-			return TRUE;
-		}
+function arrayHasEmptyElements(array $array) {
+	$isEmpty = FALSE;
+	foreach($array as $elem) {
+		$isEmpty = $isEmpty || empty($elem); // if $isEmpty is TRUE, empty() is being ignored
 	}
 
-	return FALSE;
+	return $isEmpty;
 }

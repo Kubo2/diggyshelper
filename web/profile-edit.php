@@ -39,7 +39,7 @@ if(isset($_POST['basic-info-change'])) {
 
 	if(
 		empty($info['description']) // the description is a non-required information
-		&& emptyArray(
+		&& arrayHasEmptyElements(
 			array_slice_assoc($info, [ 'username', 'email' ])
 		)
 	) {
