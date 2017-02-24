@@ -1406,44 +1406,27 @@ body .pages {
 	}
 	
 	/* mobilné štýly pre menu */
-	
-	/* štýly pre zavreté menu */
 	#menu {
 		background: url(../images/icon/mmenu.png) #151515 right top no-repeat;
-		margin: 0 0 3px 0;
 		box-shadow: 0px 3px 10px #151515;
+		margin: 0 0 3px 0;
+		height: auto;
 	}
 
 	#menu a {
 		display: block;
-		visibility: hidden;
-		overflow: hidden;
-		height: 0;
 		margin: 0 0 5px 0;
 	}
-	
+
 	#menu a:hover {
 		background-color: #222222;
 	}
 
-	/* štýly pre otvorené menu */
-	#mmenu-state:checked + label +
-		#menu {
-			height: auto;
-		}
+	#menu .first-item {
+		margin-top: 35px;
+	}
 
-	#mmenu-state:checked + label +
-		#menu a {
-			visibility: visible;
-			height: auto;
-		}
-
-	#mmenu-state:checked + label +
-		#menu .first-item {
-			margin-top: 35px;
-		}
-
-	/* "ovládač" <label> */
+	/* ovládač <label> */
 	#mmenu-state + label {
 		display: block;
 		position: absolute;
@@ -1451,8 +1434,33 @@ body .pages {
 		height: 28px;
 		cursor: pointer;
 	}
+
+	@supports (color: #000) {
+		/* štýly pre zavreté menu, ak prehliadač podporuje @supports/:checked */
+		#menu {
+			height: 26px;
+		}
+
+		#menu a {
+			visibility: hidden;
+			overflow: hidden;
+			height: 0;
+		}
+
+		/* štýly pre otvorené menu */
+		#mmenu-state:checked + label +
+			#menu {
+				height: auto;
+		}
+
+		#mmenu-state:checked + label +
+			#menu a {
+				visibility: visible;
+				height: auto;
+		}
+	}
 	
-	/* koniec - mobilné štýly pre menu */
+	/* KONIEC - mobilné štýly pre menu */
 	
 	#mob-author {
 		width: 49%;
