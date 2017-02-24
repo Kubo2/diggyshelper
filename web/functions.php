@@ -1,10 +1,11 @@
 <?php
 
+require dirname(__FILE__) . '/lib-core.php';
+
 /**
  * Functions library.
  */
 
-require dirname(__FILE__) . '/lib-core.php';
 
 /**
  * Retrieves a HTTP GET parameter applying $filter.
@@ -15,6 +16,8 @@ require dirname(__FILE__) . '/lib-core.php';
  * This function returns a non-empty array with indexes the strings given in $params and values
  * of either the original values retrieved from GET and run through the $filter, or NULL in case a
  * particular param does not exist in GET.
+ *
+ * @since v1.5
  *
  * @param callable|NULL
  * @param array(string, ...)|...string
@@ -43,20 +46,21 @@ function getUriParam(callable $filter = NULL, $params) {
 	return $values;
 }
 
+
 /**
  * Is current user signed in?
  *
  * @since 1.3.3
  * @return bool
  */
-function loggedIn()
-{
+function loggedIn() {
 	return !empty($_SESSION['uid']);
-	
 }
+
 
 /**
  * Retrieves an information about user specified by unique identifier.
+ * @internal  Requires and assumes an active ext_mysql connection
  *
  * @since v1.5.0-alpha1
  *
@@ -74,13 +78,13 @@ function getUser($id, $fieldList) {
 	
 	// skips the execution if there is no user with specified id
 	{
-		$statement = sprintf( "SELECT COUNT(*) FROM users WHERE id = %d", $id );
+		$statement = sprintf("SELECT COUNT(*) FROM users WHERE id = %d", $id);
 
 		if(empty($cache[$id])) {
 			$result = mysql_query($statement);
 
 			if(mysql_num_rows($result) < 1) {
-				return false; // ============>
+				return FALSE; // ============>
 			}
 
 			mysql_free_result($result);
@@ -105,7 +109,7 @@ function getUser($id, $fieldList) {
 	}
 
 	if(count($select)) {
-		$statement = sprintf(	"SELECT %s FROM users WHERE id = %d",
+		$statement = sprintf("SELECT %s FROM users WHERE id = %d",
 			'`' . join('`, `', $select) . '`', // joins array('a', 'b', 'c') to the string "`a`, `b`, `c`"
 			$id
 		);
@@ -119,6 +123,7 @@ function getUser($id, $fieldList) {
 	return count($fields) === 1 ? array_shift($fields) : $fields;
 }
 
+
 /**
  * Prepares an email address passed as argument for future rendering on the HTML webpage.
  *
@@ -126,8 +131,7 @@ function getUser($id, $fieldList) {
  * @param string
  * @return string
  */
-function sk_sanitizeEmail($email)
-{
+function sk_sanitizeEmail($email) {
 	// dots
 	$email = str_replace('.', ' (bodka) ', $email);
 
@@ -139,6 +143,7 @@ function sk_sanitizeEmail($email)
 
 	return $email;
 }
+
 
 /**
  * Records a line to the log.
@@ -156,7 +161,7 @@ function recordLog($message, $level, $section = NULL, $logdir = NULL) {
 	$message = substr($message, 0, strcspn($message, "\r\n"));
 	if(strlen($message) < $origLen) {
 		trigger_error('$message should not contain a newline', E_USER_NOTICE);
-		if(!$message) return false; // ============>
+		if(!$message) return FALSE; // ============>
 	}
 
 	$message = sprintf('[%s] %s: %s', date('Y-d-m H:i:s'), ucfirst($level), $message);
@@ -165,7 +170,7 @@ function recordLog($message, $level, $section = NULL, $logdir = NULL) {
 	if(!$logdir) $logdir = __DIR__ . '/logs';
 	{
 		if(!is_dir($logdir) && !@mkdir($logdir)) { // intentionally @; not atomic
-			return false; // ============>
+			return FALSE; // ============>
 		}
 	}
 
@@ -173,21 +178,19 @@ function recordLog($message, $level, $section = NULL, $logdir = NULL) {
 	return !!@file_put_contents($logfile, $message, FILE_APPEND);
 }
 
+
 /**
  * Whether at least one field of array is empty.
  *
  * @param array
  * @return bool true if at least one array field is empty, otherwise false
  */
-
-function emptyArray(array $array)
-{
-	foreach($array as $field)
-	{
-		if(empty($field))
-		{
-			return true;
+function emptyArray(array $array) {
+	foreach($array as $field) {
+		if(empty($field)) {
+			return TRUE;
 		}
 	}
-	return false;
+
+	return FALSE;
 }
