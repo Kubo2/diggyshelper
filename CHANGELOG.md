@@ -6,9 +6,9 @@ This changelog contains all major and minor changes done in united versions.
 
 For more information about _planned features_, please [see TODO list](TODOlist.md).
 
-## Proposed to v1.5, release date: 2017-02-28
+## v1.5, release date: 2017-02-28
 
-(not available)
+* (Supposedly) Fix issue [#8](https://github.com/Kubo2/diggyshelper/issues/8) where the mobile menu couldn't be opened in Android Browser 4.0 and older
 
 ## v1.5-beta2, release date: 2017-02-21
 
