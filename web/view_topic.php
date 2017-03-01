@@ -4,7 +4,7 @@
 session_start();
 
 // initialize buffer (temporary; will be replaced by templates)
-ob_start(  );
+ob_start();
 
 header("Content-Type: text/html; charset=utf-8", true, 200);
 
@@ -109,7 +109,7 @@ document404
 						SanitizeLib\escape($post->author, 'HTML')
 					)?></a> dňa <time datetime=<?=(
 						id(new DateTime($post->added))->format("'c'")
-					)?> style='color: #ffffff'><?=( id(new DateTime($post->added))->format("d.m.Y / H:i:s") )?></time>
+					)?> style='color: #FFF'><?=( id(new DateTime($post->added))->format("d.m.Y / H:i:s") )?></time>
 				</nobr>
 				<hr>
 				<div class='post post-text'>
@@ -129,7 +129,7 @@ document404
 			<td colspan=2>
 				
 				<?php if( $cid ): ?>
-					<a class='button' <?php printf("href='./view.php?cid=%d'", $cid) ?>>Späť do kategórie</a>
+					<a class='button' <?php printf("href='./view.php?cid=%d'", $cid) ?>>Návrat do kategórie</a>
 				<?php endif ?>
 
 				<?php if( ! loggedIn() ) { ?>
