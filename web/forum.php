@@ -2,9 +2,6 @@
 
 if(isset($_COOKIE[ini_get('session.name')])) session_start();
 
-// <production server> only
-error_reporting(E_ALL & ~E_WARNING/* | ~E_NOTICE*/);
-
 // 200 can be replaced, but Content-Type header is neccessary
 header("Content-Type: text/html; charset=utf-8", true, 200);
 

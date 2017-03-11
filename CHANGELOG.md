@@ -6,6 +6,10 @@ This changelog contains all major and minor changes done in united versions.
 
 For more information about _planned features_, please [see TODO list](TODOlist.md).
 
+## v1.5.1, release date: 2017-03-??
+
+* issue [#14](https://github.com/Kubo2/diggyshelper/issues/14) first point: let `connect.php` always return the mysql connection resource in case the connection is successfuly established
+
 ## v1.5, release date: 2017-02-28
 
 * (Supposedly) Fix issue [#8](https://github.com/Kubo2/diggyshelper/issues/8) where the mobile menu couldn't be opened in Android Browser 4.0 and older
