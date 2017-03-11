@@ -12,43 +12,76 @@ if(DB_ERROR) {
 // performs a query to the database
 // it result-set will be stored in two-dimensional array internally
 $theQuery = <<<SQL
-SELECT t.id as tid,
-	t.category_id as cid,
-        t.topic_title as title,
-        u.username as author,
-        p.count - 1 as answers,
-        t.topic_date as created
+SELECT
+	t.id topic_id,
+	t.category_id,
+	t.topic_date,
+	p.post_count,
+	t.topic_title,
+	lp.post_date last_post_date,
+	lp.post_creator last_post_user,
+	lp.username last_post_username
 FROM topics t
-INNER JOIN (
-	users u,
-	(
-        	SELECT COUNT(id) as count,
-                	topic_id
-                FROM posts
-                GROUP BY topic_id
-                -- LIMIT 0, 11
-        ) p
-      )
-        ON(t.id = p.topic_id AND t.topic_creator = u.id)
-ORDER BY t.topic_reply_date DESC,
-	p.count ASC,
+
+LEFT JOIN
+(
+	SELECT
+		COUNT(id) - 1 post_count,
+		topic_id
+	FROM posts
+	GROUP BY topic_id
+) p
+ON t.id = p.topic_id
+
+LEFT JOIN
+(
+	SELECT
+		p.topic_id,
+		p.post_date,
+		p.post_creator,
+		u.username
+	FROM posts p
+
+	LEFT JOIN
+		users u
+	ON p.post_creator = u.id
+
+	WHERE
+		p.post_date
+	IN (
+		SELECT
+			MAX(p.post_date)
+		FROM posts p
+		GROUP BY p.topic_id
+	)
+) lp
+ON t.id = lp.topic_id
+
+ORDER BY
+	last_post_date DESC,
+	p.post_count ASC,
 	t.topic_date DESC
+
 LIMIT 0, 11
+
 SQL;
 
 $theData = mysql_query($theQuery);
+
 $topics = array();
 if($theData) {
-	while(false !== ($thread = mysql_fetch_assoc($theData))) {
-		$topics[] = array(
-			"tid" => intval($thread['tid']),
-			"cid" => intval($thread['cid']),
-			"title" => $thread["title"],
-			"author" => $thread["author"],
-			"created" => new DateTime($thread["created"]),
-		);
-	}
-	unset($thread);
+	while(FALSE !== ($thread = mysql_fetch_object($theData))) {
+		$topics[] = (object) [
+			'topicID' => intval($thread->topic_id),
+			'categoryID' => intval($thread->category_id),
+			'topicDate' => new DateTime($thread->topic_date),
+			'postCount' => intval($thread->post_count),
+			'topicTitle' => $thread->topic_title,
+			'lastPostDate' => new DateTime($thread->last_post_date),
+			'lastPostUser' => intval($thread->last_post_user), // user ID
+			'lastPostUsername' => $thread->last_post_username,
+		];
+	} unset($thread);
 }
 
 // ====== template start ======
@@ -58,9 +91,6 @@ session_start();
 header("Content-Type: text/html; charset=utf-8", true, 200);
 header("Cache-Control: max-age=9, must-revalidate");
 // TODO: napísať cachovanie na strane servera + HTTP ETag
-
-// template components
-require "sanitize.lib.php";
 
 // template settings
 set_include_path("./includes/");
@@ -95,6 +125,7 @@ date_default_timezone_set("Europe/Bratislava");
 	.newest-topics th {
 		background: #CCA440;
 		font-weight: normal;
+		color: #FFF;
 	}
 	</style>
 	<h1>Vítame ťa na stránke Diggy's Helper</h1>
@@ -107,27 +138,27 @@ date_default_timezone_set("Europe/Bratislava");
 		<caption id="bold">Najnovšia diskusia</caption>
 		<thead>
 			<tr>
-				<th width="50%" id="mob-no"><font color="#fff">Meno vlákna</font></th>
-				<th width="16%" id="mob-no"><font color="#fff">Posledný príspevok pridal</font></th>
-				<th width="12%" id="mob-no"><font color="#fff">Dátum založenia</font></th>
+				<th width="50%" id="mob-no">Meno vlákna</th>
+				<th width="16%" id="mob-no">Posledný príspevok pridal</th>
+				<th width="12%" id="mob-no">dňa</th>
 			</tr>
 		</thead>
 		<tbody>
 			<?php foreach($topics as $thread): ?>
 			<tr>
 				<td id="mob-name">
-					<a class="memberusers" href=<?= '"' . "./view_topic.php?cid={$thread['cid']}&amp;tid={$thread['tid']}" . '"' ?>>
-						<?= SanitizeLib\escape($thread['title'], 'HTML') ?>
+					<a href='<?= "./view_topic.php?cid={$thread->categoryID}&amp;tid={$thread->topicID}" ?>' class='memberusers'>
+						<?= htmlspecialchars($thread->topicTitle) ?>
 					</a>
 				</td>
 				<td id="mob-author">
-					<a class="memberusers" href="./profile.php?user=<?= SanitizeLib\escape($thread['author'], 'HTML') ?>">
-						<?= SanitizeLib\escape($thread['author'], 'HTML') ?>
+					<a href='./profile.php?user=<?= rawurlencode($thread->lastPostUsername) ?>' class='memberusers'>
+						<?= htmlspecialchars($thread->lastPostUsername) ?>
 					</a>
 				</td>
 				<td id="mob-date">
-					<time datetime=<?= $thread['created']->format("\"c\"") ?>>
-						<?= $thread['created']->format("j. n. Y H:i") ?>
+					<time datetime=<?= $thread->lastPostDate->format('"c"') ?>>
+						<?= $thread->lastPostDate->format('j. n. Y H:i') ?>
 					</time>
 				</td>
 			</tr>
@@ -139,10 +170,10 @@ date_default_timezone_set("Europe/Bratislava");
 		<b>Najnovšia diskusia</b>
 		<?php foreach($topics as $thread): ?>
 		<ul>
-			<a href=<?= '"' . "./view_topic.php?cid={$thread['cid']}&amp;tid={$thread['tid']}" . '"' ?>>
+			<a href='<?= "./view_topic.php?cid={$thread->categoryID}&amp;tid={$thread->topicID}" ?>'>
 				<li>
-					<?= SanitizeLib\escape($thread['title'], 'HTML') ?>
-					<time datetime=<?= $thread['created']->format("\"c\"") ?>><?= $thread['created']->format("j. n. Y H:i") ?></time>
+					<?= htmlspecialchars($thread->topicTitle) ?>
+					<time datetime=<?= $thread->lastPostDate->format('"c"') ?>><?= $thread->lastPostDate->format('j. n. Y H:i') ?></time>
 				</li>
 			</a>
 		</ul>

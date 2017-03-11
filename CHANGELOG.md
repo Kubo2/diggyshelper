@@ -8,11 +8,12 @@ For more information about _planned features_, please [see TODO list](TODOlist.m
 
 ## v1.5.1, release date: 2017-03-??
 
-* issue [#14](https://github.com/Kubo2/diggyshelper/issues/14) first point: let `connect.php` always return the mysql connection resource in case the connection is successfuly established
+* issue [#14](https://github.com/Kubo2/diggyshelper/issues/14) first point: let `connect.php` always return the mysql connection resource in case the connection is successfuly established (~ Kubo2)
+* fix column 'Autor posledného príspevku' in `index.php`: show last post date and author instead of self-related topic data (~ Kubo2)
 
 ## v1.5, release date: 2017-02-28
 
-* (Supposedly) Fix issue [#8](https://github.com/Kubo2/diggyshelper/issues/8) where the mobile menu couldn't be opened in Android Browser 4.0 and older
+* (Supposedly) Fix issue [#8](https://github.com/Kubo2/diggyshelper/issues/8) where the mobile menu couldn't be opened in Android Browser 4.0 and older (~ Kubo2)
 
 ## v1.5-beta2, release date: 2017-02-21
 
