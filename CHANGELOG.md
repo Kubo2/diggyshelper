@@ -10,6 +10,7 @@ For more information about _planned features_, please [see TODO list](TODOlist.m
 
 * issue [#14](https://github.com/Kubo2/diggyshelper/issues/14) first point: let `connect.php` always return the mysql connection resource in case the connection is successfuly established (~ Kubo2)
 * fix column 'Autor posledného príspevku' in `index.php`: show last post date and author instead of self-related topic data (~ Kubo2)
+* Replace HTTP 304 Not Modified with HTTP 503 Service Unavailable and an error message in `index.php` when no topics could be fetched or database unavailable (~ Kubo2)
 
 ## v1.5, release date: 2017-02-28
 

@@ -1,16 +1,14 @@
 <?php
 
+/**
+ * Front page.
+ */
+
+
 require __DIR__ . '/functions.php';
+require __DIR__ . '/connect.php';
 
-define('DB_ERROR', !(require "./connect.php"));
-
-if(DB_ERROR) {
-	header("HTTP/1.1 304 Not Modified");
-	exit;
-}
-
-// performs a query to the database
-// it result-set will be stored in two-dimensional array internally
+// database query for topic metadata
 $theQuery = <<<SQL
 SELECT
 	t.id topic_id,
@@ -66,10 +64,9 @@ LIMIT 0, 11
 
 SQL;
 
-$theData = mysql_query($theQuery);
 
 $topics = array();
-if($theData) {
+if(DB_CONNECTED && ($theData = mysql_query($theQuery, DB_CONNECTED))) {
 	while(FALSE !== ($thread = mysql_fetch_object($theData))) {
 		$topics[] = (object) [
 			'topicID' => intval($thread->topic_id),
@@ -82,13 +79,15 @@ if($theData) {
 			'lastPostUsername' => $thread->last_post_username,
 		];
 	} unset($thread);
+
+	mysql_free_result($theData);
 }
 
 // ====== template start ======
 page_template:
 
 session_start();
-header("Content-Type: text/html; charset=utf-8", true, 200);
+header("Content-Type: text/html; charset=utf-8", TRUE, $topics ? 200 : 503);
 header("Cache-Control: max-age=9, must-revalidate");
 // TODO: napísať cachovanie na strane servera + HTTP ETag
 
@@ -134,6 +133,10 @@ date_default_timezone_set("Europe/Bratislava");
 	<br>Taktiež v prípade, že niečomu nerozumieš alebo sa chceš o niečom dozvedieť viac, sú tu vítané tvoje
 	otázky a problémy. Stačí vybrať správnu kategóriu a vytvoriť v nej tému.
 	
+	<?php if(!count($topics)): ?>
+	<p style='font-size: larger; color: #666'>(Je nám to ľúto, najnovšiu diskusiu sa nám tentoraz nepodarilo zistiť. Vyzerá to na dočasný problém s pripojením k našej
+		databáze, alebo žeby tu vážne neboli žiadne témy?)</p>
+	<?php else: // count($topics) > 0 ?>
 	<table class="newest-topics" id="mob-no">
 		<caption id="bold">Najnovšia diskusia</caption>
 		<thead>
@@ -179,5 +182,7 @@ date_default_timezone_set("Europe/Bratislava");
 		</ul>
 		<?php endforeach ?>
 	</div>
+	<?php endif // !count($topics) ?>
+
 </div>
 <?php include('footer.php') ?>

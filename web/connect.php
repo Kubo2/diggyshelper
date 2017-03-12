@@ -118,7 +118,7 @@ final class DbConnectionHelper {
 		}
 
 		// setup
-		$link = mysql_connect($params['host'], $params['user'], $params['password']);
+		$link = @ mysql_connect($params['host'], $params['user'], $params['password']); // intentionally @ - throws E_WARNING in certain cases
 		if(is_resource($link)) {
 			$success = TRUE;
 
