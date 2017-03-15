@@ -139,6 +139,17 @@ function vlozitBBTag(tag, text /*, oblast */ ) {
 
 	if(!buttony) return;
 
+	// hide the buttons when the selected markup is HTML
+	var markup = formular['post-markup'], style = document.createElement('style');
+	document.body.appendChild(style);
+	markup.onchange = function() {
+		if(this.selectedOptions[0].value == 'html') { // [0] - only one option can be selected
+			style.innerText = 'button#b, button#i, button#u, button#del {display: none !important}';
+		} else if(this.selectedOptions[0].value == 'bb') {
+			style.innerText = '/* display: auto */'; // get the original computed styles back
+		}
+	}
+
 	for(var btn in buttony) {
 		buttony[btn].onclick = function() {
 			vlozitBBTag(this.id);
