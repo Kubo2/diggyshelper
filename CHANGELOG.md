@@ -1,10 +1,17 @@
 # CHANGELOG
 
-This changelog contains all major and minor changes done in united versions.
+This changelog contains all the changes released in major, minor and patch versions of the dh Forum.
+
 
 # Features
 
-For more information about _planned features_, please [see TODO list](TODOlist.md).
+For more information about the _planned features_, please check out our [TODO list](TODOlist.md).
+
+
+## Proposed to v1.5.2
+
+* Remove the dependency on support.diggysadventure.com for our hotlinked images in `whatandhow.php`, store the files locally instead (~ Kubo2)
+
 
 ## v1.5.1, release date: 2017-03-15
 
@@ -13,15 +20,18 @@ For more information about _planned features_, please [see TODO list](TODOlist.m
 * Replace HTTP 304 Not Modified with HTTP 503 Service Unavailable and an error message in `index.php` when no topics could be fetched or database unavailable (~ Kubo2)
 + In the `create.php`/`post_reply.php` form hide the bbcode snippet buttons when HTML is chosen as the form's markup (~ Kubo2)
 
+
 ## v1.5, release date: 2017-02-28
 
 * (Supposedly) Fix issue [#8](https://github.com/Kubo2/diggyshelper/issues/8) where the mobile menu couldn't be opened in Android Browser 4.0 and older (~ Kubo2)
+
 
 ## v1.5-beta2, release date: 2017-02-21
 
 * Frontend looks dark-theme fixes (~ WladinQ)
 * Fix XSS hole in `post_reply.php`: passing raw `$_GET` (non-escaped) to the output (~ Kubo2)
 * Fix having implemented admin markup-switch for new posts, but not for new topics (~ Kubo2)
+
 
 ## v1.5-beta1, release date: 2017-02-14
 
@@ -39,6 +49,7 @@ For more information about _planned features_, please [see TODO list](TODOlist.m
 + Add PHPT test-case (sucks) (~ Kubo2)
 * Rewritten sitemaps from scratch (~ Kubo2)
   + Add a sitemap listing of the topics on the forum
+
 
 # Previous versions
 
