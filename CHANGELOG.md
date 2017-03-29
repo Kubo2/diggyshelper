@@ -14,6 +14,7 @@ For more information about the _planned features_, please check out our [TODO li
 * Remove the dependency on support.diggysadventure.com for our hotlinked images in `whatandhow.php`, store the files locally instead (~ Kubo2)
 * Dark-theme improvements (~ WladinQ)
 * Stick to our new [CSS Coding Standards (in slovak)](https://github.com/Kubo2/diggyshelper/wiki/CSS-%C5%A1tylistika-k%C3%B3du) in `css/style.css` (~ Kubo2)
+* Flip the order of the footer links to FB and GitHub + forward fix the [window.opener](http://jecas.cz/noopener) vulnerability of theirs (~ Kubo2)
 
 
 ## v1.5.1, release date: 2017-03-15
