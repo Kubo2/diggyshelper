@@ -17,6 +17,11 @@ For more information about the _planned features_, please check out our [TODO li
 - Remove `members.php` completely (after a period of serving it as 410 gone) ([@Kubo2][0])
 
 
+## Proposed to v1.5.3
+
+* Make the footer links look more technical ([@Kubo2][0])
+
+
 ## v1.5.2, release date: 2017-03-30
 
 * Add reached DA levels into `attractions.php` instead of having them being posted in a regular topic ([@WladinQ][1])
