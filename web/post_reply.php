@@ -71,7 +71,7 @@ if(!empty($_GET["flash"])) {
 		<?php } else { ?>
 		<p>Pridať odpoveď:</p>
 		<?php } ?>
-		<textarea name="prispevok" rows="5" cols="75"></textarea><br>
+		<textarea name="prispevok" rows="12" cols="75"></textarea><br>
 			<button class='button' id="b" tabindex=0><b>tučné</b></button>
 			<button class='button' id="i" tabindex=0><i>kurzíva</i></button>
 			<button class='button' id="u" tabindex=0><u>podčiarknuté</u></button>

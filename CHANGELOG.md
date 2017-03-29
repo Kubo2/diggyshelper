@@ -10,7 +10,10 @@ For more information about the _planned features_, please check out our [TODO li
 
 ## Proposed to v1.5.2
 
+* Add reached DA levels into `attractions.php` instead of having them being posted in a regular topic (~ WladinQ)
 * Remove the dependency on support.diggysadventure.com for our hotlinked images in `whatandhow.php`, store the files locally instead (~ Kubo2)
+* Dark-theme improvements (~ WladinQ)
+* Stick to our new [CSS Coding Standards (in slovak)](https://github.com/Kubo2/diggyshelper/wiki/CSS-%C5%A1tylistika-k%C3%B3du) in `css/style.css` (~ Kubo2)
 
 
 ## v1.5.1, release date: 2017-03-15

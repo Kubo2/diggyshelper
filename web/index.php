@@ -9,7 +9,7 @@ require __DIR__ . '/functions.php';
 require __DIR__ . '/connect.php';
 
 // database query for topic metadata
-$theQuery = <<<SQL
+$theQuery = <<< SQL
 SELECT
 	t.id topic_id,
 	t.category_id,
@@ -87,8 +87,8 @@ if(DB_CONNECTED && ($theData = mysql_query($theQuery, DB_CONNECTED))) {
 page_template:
 
 session_start();
-header("Content-Type: text/html; charset=utf-8", TRUE, $topics ? 200 : 503);
-header("Cache-Control: max-age=9, must-revalidate");
+header('Content-Type: text/html; charset=UTF-8', TRUE, $topics ? 200 : 503);
+header('Cache-Control: max-age=9, must-revalidate');
 // TODO: napísať cachovanie na strane servera + HTTP ETag
 
 // template settings
@@ -129,7 +129,7 @@ date_default_timezone_set("Europe/Bratislava");
 	</style>
 	<h1>Vítame ťa na stránke Diggy's Helper</h1>
 	<p><strong>Diggy's Helper je diskusné fórum</strong>, kde sa môžeš  s komunitou ľudí s rovnakou
-	záľubou podeliť o svoje postrehy a skúsenosti s hrou <a class="memberusers" href="./about-game.php">Diggy's Adventure</a>.
+	záľubou podeliť o svoje postrehy a skúsenosti s hrou <a class="memberusers" href="about-game.php">Diggy's Adventure</a>.
 	<br>Taktiež v prípade, že niečomu nerozumieš alebo sa chceš o niečom dozvedieť viac, sú tu vítané tvoje
 	otázky a problémy. Stačí vybrať správnu kategóriu a vytvoriť v nej tému.
 	
@@ -150,12 +150,12 @@ date_default_timezone_set("Europe/Bratislava");
 			<?php foreach($topics as $thread): ?>
 			<tr>
 				<td id="mob-name">
-					<a href='<?= "./view_topic.php?cid={$thread->categoryID}&amp;tid={$thread->topicID}" ?>' class='memberusers'>
+					<a href='<?= "view_topic.php?cid={$thread->categoryID}&amp;tid={$thread->topicID}" ?>' class='memberusers'>
 						<?= htmlspecialchars($thread->topicTitle) ?>
 					</a>
 				</td>
 				<td id="mob-author">
-					<a href='./profile.php?user=<?= rawurlencode($thread->lastPostUsername) ?>' class='memberusers'>
+					<a href='profile.php?user=<?= rawurlencode($thread->lastPostUsername) ?>' class='memberusers'>
 						<?= htmlspecialchars($thread->lastPostUsername) ?>
 					</a>
 				</td>
@@ -171,9 +171,13 @@ date_default_timezone_set("Europe/Bratislava");
 	
 	<div id="mob-prispevky">
 		<b>Najnovšia diskusia</b>
+		<div class="hlavicka">
+			<p class="left">Meno vlákna</p><p class="right">pridané dňa</p>
+		</div>
+		<br><br>
 		<?php foreach($topics as $thread): ?>
 		<ul>
-			<a href='<?= "./view_topic.php?cid={$thread->categoryID}&amp;tid={$thread->topicID}" ?>'>
+			<a href='<?= "view_topic.php?cid={$thread->categoryID}&amp;tid={$thread->topicID}" ?>'>
 				<li>
 					<?= htmlspecialchars($thread->topicTitle) ?>
 					<time datetime=<?= $thread->lastPostDate->format('"c"') ?>><?= $thread->lastPostDate->format('j. n. Y H:i') ?></time>
