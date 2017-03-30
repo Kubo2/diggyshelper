@@ -8,7 +8,7 @@ This changelog contains all the changes released in major, minor and patch versi
 For more information about the _planned features_, please check out our [TODO list](TODOlist.md).
 
 
-## Proposed to v1.5.2
+## v1.5.2, release date: 2017-03-30
 
 * Add reached DA levels into `attractions.php` instead of having them being posted in a regular topic (~ WladinQ)
 * Remove the dependency on support.diggysadventure.com for our hotlinked images in `whatandhow.php`, store the files locally instead (~ Kubo2)
