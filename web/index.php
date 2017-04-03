@@ -161,7 +161,7 @@ date_default_timezone_set("Europe/Bratislava");
 				</td>
 				<td id="mob-date">
 					<time datetime=<?= $thread->lastPostDate->format('"c"') ?>>
-						<?= $thread->lastPostDate->format('j. n. Y H:i') ?>
+						<?= $thread->lastPostDate->format('d. m. Y H:i') ?>
 					</time>
 				</td>
 			</tr>
@@ -180,7 +180,7 @@ date_default_timezone_set("Europe/Bratislava");
 			<a href='<?= "view_topic.php?cid={$thread->categoryID}&amp;tid={$thread->topicID}" ?>'>
 				<li>
 					<?= htmlspecialchars($thread->topicTitle) ?>
-					<time datetime=<?= $thread->lastPostDate->format('"c"') ?>><?= $thread->lastPostDate->format('j. n. Y H:i') ?></time>
+					<time datetime=<?= $thread->lastPostDate->format('"c"') ?>><?= $thread->lastPostDate->format('d. m. Y H:i') ?></time>
 				</li>
 			</a>
 		</ul>
