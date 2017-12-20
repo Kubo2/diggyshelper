@@ -6,6 +6,9 @@ This changelog contains all the changes released in major, minor and patch versi
 [0]: https://github.com/Kubo2
 [1]: https://github.com/WladinQ
 
+So far we are approaching the grand __v2.0__ step-by-step with minors and their patches, but that one will
+mark the beginning of the real development instead of just rewriting each and every piece of code.
+
 
 # Features
 
@@ -15,6 +18,15 @@ For more information about the _planned features_, please check out our [TODO li
 ## Proposed to v1.6
 
 - Remove `members.php` completely (after a period of serving it as 410 gone) ([@Kubo2][0])
+* Finalize the [SSL issue #13](https://github.com/Kubo2/diggyshelper/issues/13) (--)
+* Finalize the [Prechod na mysqli issue #14](https://github.com/Kubo2/diggyshelper/issues/14) (--)
+
+
+## Proposed to v1.5.x
+
+Sometime in one of the future v1.5 patches but before the full new v1.6 minor.
+
++ pridať BB kód `[img]https://obrazok[/img]` do príspevkov (--)
 
 
 ## Proposed to v1.5.3
