@@ -39,24 +39,9 @@ function dh_bb_decode( $snippet ) // : string
 PATTERN;
 		}
 
-		if(false) { // intentionally
-			// bold
-			$bb[ ] 			= '#\\[b\\](.+)\\[/b\\]#i';
-			$replace[ ] 	= '<b>\\1</b>';
-
-			// italics
-			$bb[ ] 			= '#\\[i\\](.+)\\[/i\\]#i';
-			$replace[ ] 	= '<i>\\1</i>';
-
-			// deleted text
-			$bb[ ] 			= '#\\[del\\](.+)\\[/del\\]#i';
-			$replace[ ] 	= '<del>\\1</del>';
-
-			// "underlined" (i think it would be inserted) text
-			$bb[ ] 			= '#\\[u\\](.+)\\[/u\\]#i';
-			$replace[ ] 	= '<u>\\1</u>';
-		}
+		$pattern[ ] = '~\[(img)](https?://.+?(?<!\[/img]))\[/img]~i';
 	}
+
 
 	// preprocessing
 	$snippet = trim($snippet);
@@ -66,10 +51,15 @@ PATTERN;
 
 	// replacement
 	$snippet = preg_replace_callback($pattern, function( $token ) {
-		return
-			!empty($token[2])
-				? sprintf('<%1$s>%2$s</%1$s>', strtolower($token[1]), $token[2])
+		$tagName = strtolower($token[1]);
+		if($tagName === 'img') {
+			return "<a href='$token[2]' target='_blank' rel='noopener'>"
+				. "<img src='$token[2]'></a>";
+		} else {
+			return !empty($token[2]) // tag contents ought not be empty
+				? sprintf('<%1$s>%2$s</%1$s>', strtolower($tagName), $token[2])
 				: $token[0];
+		}
 	}, $snippet);
 
 	// close it to paragraph

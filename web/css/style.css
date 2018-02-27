@@ -1162,14 +1162,14 @@ body .pages {
 }
 
 #provizorne {
-	color: #fff;
-	background-color: #666;
+	display: block;
 	height: auto;
 	width: 90%;
-	margin: 10px auto 10px auto;
-	text-align: left;
+	margin: 10px auto;
 	padding: 5px;
-	display: none;
+	text-align: left;
+	color: #FFF;
+	background-color: #666;
 	border-radius: 5px;
 }
 
@@ -1194,7 +1194,8 @@ body .pages {
 }
 
 #provizorne.notice {
-	background: ligthgreen;
+	background: #A44D13;
+	font-weight: normal;
 }
 
 #regAlog {
