@@ -36,6 +36,7 @@ function dh_bb_decode( $snippet ) // : string
 	$snippet  = preg_replace("~\n{2,}~", "\n</p><p>\n", $snippet);
 
 	// bbcode processing
+	$openings = $pairs = array();
 	foreach($codes as $code => $format) {
 		$offset = 0;
 		while(FALSE !== $c = strpos($snippet, "[$code]", $offset)) {
