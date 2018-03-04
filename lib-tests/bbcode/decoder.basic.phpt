@@ -29,9 +29,9 @@ echo(dh_bb_decode($encoded));
 ?>
 --EXPECT--
 <p>
-Prvý odstavec, <b>tučný text</b>
+Prvý odstavec, <strong>tučný text</strong>
 </p><p>
-<i>Druhý ods</i>tavec, <i>kurzíva</i>
+<em>Druhý ods</em>tavec, <em>kurzíva</em>
 </p><p>
 Tretí odstav<u>ec, pod</u>čiarknuté<br>
 Nový riadok<del>, nový odstavec</del>

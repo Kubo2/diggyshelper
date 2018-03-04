@@ -1,82 +1,74 @@
 <?php
 
 /**
- * DH BB code decoder.
+ * DH BBCode decoder.
  *
  * @author   Kubo2
- * @version  0.0.0
+ * @version  0.1.0
  *
  * @package DH
  * @subpackage markup
- *
- * @internal This library requires ext 'pcre' to be loaded.
  */
-if(!extension_loaded('pcre')) {
-	throw new RuntimeException('dh / BB Code library requires PHP \'pcre\' extension to be loaded.', PHP_INT_MAX - 1);
-}
 
-//mb_internal_encoding('UTF-8');
 
 function dh_bb_decode( $snippet ) // : string
 {
-	static $bb = array('b', 'i', 'del', 'u'); // paired bb codes
-	static $pattern = array(); // regex patterns
+	static $codes = [ // code name => printf format string
+		'b' => '<strong>%s</strong>',
+		'i' => '<em>%s</em>',
+		'del' => '<del>%s</del>',
+		'u' => '<u>%s</u>',
+	];
 
-	if(!count($pattern)) {
-		foreach($bb as $tag) {
-			$tag = preg_quote($tag, '~');
-			$pattern[ ] = <<<PATTERN
-~(?six:
-	\[($tag)]
-	(
-		.+?
-		(?<!
-			\[/$tag]
-		)
-	)
-	\[/$tag]
-)~
-PATTERN;
-		}
-
-		$pattern[ ] = '~\[(img)](https?://.+?(?<!\[/img]))\[/img]~i';
+	if(!isset($codes['img'])) {
+		$codes['img'] = function($arg) {
+			return !preg_match('~^https?://~i', $arg)
+				? NULL // leave the original input alone
+				: "<a href='$arg' target='_blank' rel='noopener'><img src='$arg'></a>";
+		};
 	}
 
 
-	// preprocessing
+	// snippet preprocessing
 	$snippet = trim($snippet);
 	$snippet = str_replace(["\r\n", "\r"], "\n", $snippet);
 	$snippet = htmlspecialchars($snippet, ENT_QUOTES, 'utf-8');
 	$snippet  = preg_replace("~\n{2,}~", "\n</p><p>\n", $snippet);
 
-	// replacement
-	$snippet = preg_replace_callback($pattern, function( $token ) {
-		$tagName = strtolower($token[1]);
-		if($tagName === 'img') {
-			return "<a href='$token[2]' target='_blank' rel='noopener'>"
-				. "<img src='$token[2]'></a>";
-		} else {
-			return !empty($token[2]) // tag contents ought not be empty
-				? sprintf('<%1$s>%2$s</%1$s>', strtolower($tagName), $token[2])
-				: $token[0];
+	// bbcode processing
+	foreach($codes as $code => $format) {
+		$offset = 0;
+		while(FALSE !== $c = strpos($snippet, "[$code]", $offset)) {
+			$openings[] = ['code' => $code, 'pos' => $c, 'skip' => strlen($code) + 2];
+			$offset = $c + end($openings)['skip'];
 		}
-	}, $snippet);
+	}
 
-	// close it to paragraph
+	foreach($openings as $op) {
+		$end = strpos($snippet, "[/{$op['code']}]", $op['pos']);
+		if(FALSE === $end) {
+			continue;
+		} else {
+			$arg = substr($snippet, $op['pos'] + $op['skip'], $end - $op['pos'] - $op['skip']);
+			if(!$arg) {
+				continue;
+			}
+		}
+
+		$replace = is_callable($formatCode = $codes[$op['code']]) ? $formatCode($arg) : sprintf($formatCode, $arg);
+		if($replace !== NULL) {
+			$pairs["[{$op['code']}]{$arg}[/{$op['code']}]"] = $replace;
+		}
+	}
+
+	// replacement
+	$snippet = str_replace(array_keys($pairs), array_values($pairs), $snippet);
+
+	// enclose it in a paragraph
 	// (bb "document" root)
 	$snippet = "<p>\n" . $snippet . "\n</p>";
 
 	// strip newlines
-	// for($pos = 0; $pos + 1 <= strlen($snippet); ) {
-	// 	$next = strpos($snippet, "\n", $pos) + $pos; // next newline
-	// 	echo("Next newline: $next\n");
-	// 	$pos = $next + 1;
-
-	// 	if(substr($snippet, $next - 3, $next) === '<p>' OR substr($snippet, $next, 4) === '</p>')
-	// 		continue;
-
-	// 	$snippet = substr($snippet, 0, $next) . "<br>\n" . substr($snippet, $next);
-	// }
 	$snippet = preg_replace("~(?<!<p>)\n(?!</p>)~s", "<br>\n", $snippet);
 
 	return $snippet;
