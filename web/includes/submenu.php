@@ -1,11 +1,5 @@
-<div id="provizorne">
-	Ale čo, vyzerá to, že tvoj profil zomiera od nudy! Hybaj vytvoriť nejakú tému :-)
-	(<a href='forum.php?1.%20apríl'>vytvoriť tému</a> &middot;
-	<a href='https://google.sk/search?q=1.+apríl'>1. apríl</a>)
+<div id='provizorne' class='notice'>
+	Odteraz môžeš pridávať <strong>obrázky</strong> do svojich príspevkov!
+		<a href='https://github.com/Kubo2/diggyshelper/wiki/Obr%C3%A1zky-v-pr%C3%ADspevkoch' target='_blank'
+		onclick="ga('send', 'event', 'provizorne', 'viewMore', '[img] enabled', 1);">Zisti ako na to</a> a vyskúšaj si to.
 </div>
-<script>(function(p){
-	var qs = window.location.search === '?1.%20apr%C3%ADl';
-	var april, d = new Date();
-	april = d.getMonth() === 3 && d.getDate() === 1;
-	april && !qs && (p.style.display = 'block');
-})(document.getElementById('provizorne'))</script>
