@@ -1,5 +1,5 @@
-@charset "UTF-8";
-@import "https://fonts.googleapis.com/css?family=Andika&subset=latin,latin-ext";
+@charset 'UTF-8';
+@import 'https://fonts.googleapis.com/css?family=Andika&subset=latin,latin-ext';
 
 /**
  * This stylesheet was originally written for the Diggy's Helper website.
@@ -13,9 +13,17 @@
  * the article located at {@link http://diggyshelper.net/authors.php}.
  */
 
+
+html {
+	font-family: "Andika", "Times New Roman";
+}
+
+form, /* fieldset, */ legend, label, input, button, textarea, select, option /*, optgroup, progress, meter */ {
+	font-family: inherit;
+}
+
 body {
 	margin: 0;
-	font-family: "Andika", "Times New Roman";
 	background-color: #222;
 	color: #FFF;
 }
@@ -57,7 +65,6 @@ table p, form p {
 [class*='button'] {
 	color: #fff;
 	text-decoration: none;
-	font-family: "Andika", "Times New Roman";
 	border-radius: 5px;
 	cursor: pointer;
 }
@@ -65,7 +72,6 @@ table p, form p {
 [class*='button']:hover {
 	color: #222;
 	text-decoration: none;
-	font-family: "Andika", "Times New Roman";
 	border-radius: 5px;
 	font-size: 14px;
 	cursor: pointer;
@@ -76,7 +82,6 @@ body .pages {
 	padding: 0 0.5% 0 0.5%;
 	margin: 0.5% 7% 0.5% 7%;
 	float: left;
-	font-family: "Andika", "Times New Roman";
 	border-left: 1px solid #151515;
 	border-right: 1px solid #151515;
 }
@@ -86,7 +91,6 @@ body .pages {
 	padding: 0 0.5% 0 0.5%;
 	margin: 0.5% 7% 0.5% 7%;
 	float: left;
-	font-family: "Andika", "Times New Roman";
 	border-left: 1px solid #B0B0B0;
 	border-right: 1px solid #B0B0B0;
 }
@@ -280,8 +284,7 @@ body .pages {
 /* ------------------ input ------------------ */
 
 .input {
-	padding: 5px;
-	padding-left: 5px;
+	padding: 3.5px;
 	border: 2px #fff solid;
 	border-radius: 5px;
 	margin: 0 0 7px;
@@ -328,7 +331,6 @@ body .pages {
 	border: 2px #cca440 solid;
 	cursor: pointer;
 	text-decoration: none;
-	font-family: "Andika", "Times New Roman";
 	border-radius: 5px;
 	font-size: 14px;
 	padding-left: 4px;
@@ -341,7 +343,6 @@ body .pages {
 	border: 2px #33CC00 solid;
 	cursor: pointer;
 	text-decoration: none;
-	font-family: "Andika", "Times New Roman";
 	border-radius: 5px;
 	font-size: 14px;
 	padding-left: 4px;
@@ -408,7 +409,6 @@ body .pages {
 	padding: 0 0.5% 0 0.5%;
 	margin: 0.5% 7% 0.5% 7%;
 	float: left;
-	font-family: "Andika", "Times New Roman";
 	border-left: 1px solid #151515;
 	border-right: 1px solid #151515;
 }
@@ -418,7 +418,6 @@ body .pages {
 	padding: 0 0.5% 0 0.5%;
 	margin: 0.5% 7% 0.5% 7%;
 	float: left;
-	font-family: "Andika", "Times New Roman";
 	border-left: 1px solid #B0B0B0;
 	border-right: 1px solid #B0B0B0;
 }
@@ -486,7 +485,6 @@ body .pages {
 #content .button {
 	color: #fff;
 	text-decoration: none;
-	font-family: "Andika", "Times New Roman";
 	border-radius: 5px;
 	cursor: pointer;
 	font-size: 14px;
@@ -497,7 +495,6 @@ body .pages {
 .light #content .button {
 	color: #fff;
 	text-decoration: none;
-	font-family: "Andika", "Times New Roman";
 	border-radius: 5px;
 	cursor: pointer;
 	font-size: 14px;
@@ -508,7 +505,6 @@ body .pages {
 #content .button:hover {
 	color: #222;
 	text-decoration: none;
-	font-family: "Andika", "Times New Roman";
 	border-radius: 5px;
 	font-size: 14px;
 	cursor: pointer;
@@ -520,7 +516,6 @@ body .pages {
 .light #content .button:hover {
 	color: #FFF;
 	text-decoration: none;
-	font-family: "Andika", "Times New Roman";
 	border-radius: 5px;
 	font-size: 14px;
 	cursor: pointer;
@@ -816,7 +811,6 @@ body .pages {
 	padding: 0 0.5% 0 0.5%;
 	margin: 0.5% 7% 0.5% 7%;
 	float: left;
-	font-family: "Andika", "Times New Roman";
 	border-left: 1px solid #151515;
 	border-right: 1px solid #151515;
 }
@@ -826,7 +820,6 @@ body .pages {
 	padding: 0 0.5% 0 0.5%;
 	margin: 0.5% 7% 0.5% 7%;
 	float: left;
-	font-family: "Andika", "Times New Roman";
 	border-left: 1px solid #B0B0B0;
 	border-right: 1px solid #B0B0B0;
 }
@@ -857,7 +850,6 @@ body .pages {
 	padding-top: 20px;
 	padding-bottom: 5px;
 	color: #87b5da;
-	font-family: "Andika", "Times New Roman";
 	cursor: default;
 }
 
@@ -865,7 +857,6 @@ body .pages {
 	font-size: 15px;
 	padding-left: 450px;
 	color: #87b5da;
-	font-family: "Andika", "Times New Roman";
 	cursor: default;
 }
 
@@ -968,7 +959,6 @@ body .pages {
 
 #menu {
 	background: #151515;
-	font-family: Andika, "Times New Roman";
 	text-align: center;
 	padding: 5px;
 	height: 26px;
@@ -977,7 +967,6 @@ body .pages {
 
 .light #menu {
 	background: #33CC00;
-	font-family: Andika, "Times New Roman";
 	text-align: center;
 	padding: 5px;
 	height: 26px;
@@ -1051,7 +1040,6 @@ body .pages {
 	border-radius: 5px;
 	border: 2px #106cb5 solid;
 	margin: 10px;
-	font-family: "Andika", "Times New Roman";
 	padding: 5px;
 	min-height: 20px;
 }
@@ -1061,7 +1049,6 @@ body .pages {
 	padding: 0 0.5% 0 0.5%;
 	margin: 0.5% 7% 0.5% 7%;
 	float: left;
-	font-family: "Andika", "Times New Roman";
 	border-left: 1px solid #151515;
 	border-right: 1px solid #151515;
 }
@@ -1212,7 +1199,6 @@ body .pages {
 	padding: 0 0.5% 0 0.5%;
 	margin: 0.5% 7% 0.5% 7%;
 	float: left;
-	font-family: "Andika", "Times New Roman";
 	border-left: 1px solid #151515;
 	border-right: 1px solid #151515;
 }
@@ -1222,7 +1208,6 @@ body .pages {
 	padding: 0 0.5% 0 0.5%;
 	margin: 0.5% 7% 0.5% 7%;
 	float: left;
-	font-family: "Andika", "Times New Roman";
 	border-left: 1px solid #B0B0B0;
 	border-right: 1px solid #B0B0B0;
 }
@@ -1341,7 +1326,6 @@ body .pages {
 	width: auto;
 	overflow: hidden;
 	color: #fff;
-	font-family: "Andika", "Times New Roman";
 	background: #106cb5 url(../images/bg/upload.png) no-repeat;
 }
 
@@ -1350,7 +1334,6 @@ body .pages {
 	padding: 0 0.5% 0 0.5%;
 	margin: 0.5% 7% 0.5% 7%;
 	float: left;
-	font-family: "Andika", "Times New Roman";
 	border-left: 1px solid #151515;
 	border-right: 1px solid #151515;
 }
@@ -1360,7 +1343,6 @@ body .pages {
 	padding: 0 0.5% 0 0.5%;
 	margin: 0.5% 7% 0.5% 7%;
 	float: left;
-	font-family: "Andika", "Times New Roman";
 	border-left: 1px solid #B0B0B0;
 	border-right: 1px solid #B0B0B0;
 }
@@ -1597,7 +1579,6 @@ body .pages {
 		padding: 0 0.5% 0 0.5%;
 		margin: 0.5% 2% 0.5% 2%;
 		float: left;
-		font-family: "Andika", "Times New Roman";
 		border: 0;
 	}
 
@@ -1606,7 +1587,6 @@ body .pages {
 		padding: 0 0.5% 0 0.5%;
 		margin: 0.5% 2% 0.5% 2%;
 		float: left;
-		font-family: "Andika", "Times New Roman";
 		border: 0;
 	}
 
@@ -1828,7 +1808,6 @@ body .pages {
 		background-color: #cca440;
 		border: 2px #cca440 solid;
 		text-decoration: none;
-		font-family: "Andika", "Times New Roman";
 		border-radius: 5px;
 		font-size: 14px;
 		padding-left: 4px;
@@ -2371,7 +2350,6 @@ div.dialog.profile {
 	min-width: 400px;
 	min-height: 250px;
 	border: 2px solid #000;
-	font-family: "Andika", "Times New Roman";
 	background-color: #fff;
 	float: center;
 	left: calc(50% - 200px);
@@ -2379,7 +2357,6 @@ div.dialog.profile {
 
 div.dialog.profile h3 {
 	text-align: center;
-	font-family: "Andika", "Times New Roman";
 }
 
 div.dialog.profile img {
