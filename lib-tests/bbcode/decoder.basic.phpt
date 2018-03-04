@@ -36,7 +36,7 @@ Prvý odstavec, <strong>tučný text</strong>
 Tretí odstav<u>ec, pod</u>čiarknuté<br>
 Nový riadok<del>, nový odstavec</del>
 </p><p>
-Nasleduje obrázok: <a href='https://url-obrazku' target='_blank' rel='noopener'><img src='https://url-obrazku'></a> ale už [img]nie[/img]<br>
+Nasleduje obrázok: <a href='https://url-obrazku' target='_blank' rel='noopener'><img style='display: block' src='https://url-obrazku'></a> ale už [img]nie[/img]<br>
 A tento by sa [img]nemal chytiť[/img]
 </p><p>
 Nový odstavec a koniec textu, hm?

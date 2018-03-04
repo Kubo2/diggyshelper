@@ -24,7 +24,7 @@ function dh_bb_decode( $snippet ) // : string
 		$codes['img'] = function($arg) {
 			return !preg_match('~^https?://~i', $arg)
 				? NULL // leave the original input alone
-				: "<a href='$arg' target='_blank' rel='noopener'><img src='$arg'></a>";
+				: "<a href='$arg' target='_blank' rel='noopener'><img style='display: block' src='$arg'></a>";
 		};
 	}
 
