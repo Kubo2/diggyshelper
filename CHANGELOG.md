@@ -32,6 +32,7 @@ Sometime in one of the future v1.5 patches but before the full new v1.6 minor.
 * Make the footer links look more technical ([@Kubo2][0])
 + Povolený BB kód `[img]https://obrazok[/img]` do používateľských príspevkov ([@Kubo2][0])
 * rel=canonical now points to the https: version ([@Kubo2][0])
+* Deprecate SanitizeLib
 
 
 ## v1.5.2, release date: 2017-03-30

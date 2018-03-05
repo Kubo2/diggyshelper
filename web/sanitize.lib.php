@@ -6,6 +6,7 @@
  * @author   Kubo2 <kelerest123@gmail.com>
  * @version 1.0.0
  * @package sanitize-lib
+ * @deprecated v1.5.3 in favor of a brand-new DH templating engine
  *
  */
 namespace SanitizeLib;
