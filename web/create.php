@@ -10,7 +10,7 @@ if(!isset($_SESSION["uid"]) || !intval(!empty($_GET["cid"]) ? $_GET["cid"] : 0))
 	exit;
 }
 
-header("Content-Type: text/html; charset=utf-8", true, 200);
+header('Content-Type: text/html; charset=UTF-8', TRUE, 200);
 
 ?>
 <!doctype html>

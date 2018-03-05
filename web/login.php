@@ -108,7 +108,7 @@ if($ref && !empty($_SERVER['HTTP_REFERER']) && preg_match('~^https?://' . preg_q
 
 // chybová stránka prihlasovania
 login_errorpage:
-header("Content-Type: text/html; charset=utf-8", true, 403);
+header('Content-Type: text/html; charset=UTF-8', TRUE, 403);
 ?>
 <!doctype html>
 <html>

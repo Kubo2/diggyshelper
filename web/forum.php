@@ -3,7 +3,7 @@
 if(isset($_COOKIE[ini_get('session.name')])) session_start();
 
 // 200 can be replaced, but Content-Type header is neccessary
-header("Content-Type: text/html; charset=utf-8", true, 200);
+header('Content-Type: text/html; charset=UTF-8', TRUE, 200);
 
 if(FALSE === require('connect.php')) {
 	if(!defined('DB_ERROR'))

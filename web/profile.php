@@ -65,7 +65,7 @@ $userinfo = $rawinfo + $userinfo;
 page_template:
 
 session_start();
-header("Content-Type: text/html; charset=utf-8", true, (int) $httpStatus);
+header('Content-Type: text/html; charset=UTF-8', TRUE, (int) $httpStatus);
 
 // template components
 require_once("sanitize.lib.php");

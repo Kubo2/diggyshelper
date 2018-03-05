@@ -8,8 +8,13 @@ $absUrl = rtrim(strtr(dirname($_SERVER['PHP_SELF']), '\\', '/'), '/');
 
 /**
  * @var string
+ * @deprecated v1.5.3 in favor a more-contained touple
  */
 $curUrl = $_SERVER['REQUEST_URI'];
+
+/** @var array(hostname, request URI) */
+$requestLoc = array(1 => $curUrl, 0 => isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : $_SERVER['SERVER_NAME']);
+
 
 // data sanitization library
 require_once __DIR__ . '/../sanitize.lib.php';
@@ -41,6 +46,6 @@ ga('send', 'pageview');
   
 </script>
 
-<link href='<?= "http://diggyshelper.net{$curUrl}" ?>' rel='canonical'>
+<link href='<?= "https://$requestLoc[0]$requestLoc[1]" ?>' rel='canonical'>
 <link href='<?= $absUrl ?>/css/style.css' rel='stylesheet'>
 <link href='<?= $absUrl ?>/favicon.png'   rel='icon' type='image/png'>

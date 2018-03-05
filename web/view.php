@@ -7,9 +7,9 @@
  */
 
 
-session_start();
-
 header('Content-Type: text/html; charset=UTF-8');
+
+session_start();
 
 require __DIR__ . '/functions.php';
 require __DIR__ . '/connect.php';

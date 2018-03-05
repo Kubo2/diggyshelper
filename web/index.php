@@ -88,8 +88,9 @@ page_template:
 
 session_start();
 header('Content-Type: text/html; charset=UTF-8', TRUE, $topics ? 200 : 503);
-header('Cache-Control: max-age=9, must-revalidate');
+
 // TODO: napísať cachovanie na strane servera + HTTP ETag
+header('Cache-Control: max-age=9, must-revalidate');
 
 // template settings
 set_include_path("./includes/");

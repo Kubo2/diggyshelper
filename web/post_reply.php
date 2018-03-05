@@ -16,7 +16,7 @@ if( !isset($_SESSION["uid"]) || !($uri['cid'] && $uri['tid']) && !isset($_GET["f
 	exit();
 }
 
-header("Content-Type: text/html; charset=utf-8", true, 200);
+header('Content-Type: text/html; charset=UTF-8', TRUE, 200);
 
 /**
  * Flash messages.

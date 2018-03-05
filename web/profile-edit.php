@@ -107,7 +107,7 @@ if(isset($_POST['basic-info-change'])) {
 // ====== template start ======
 page_template: {
 
-header('Content-Type: text/html; charset=utf-8');
+header('Content-Type: text/html; charset=UTF-8');
 header('Vary: User-Agent');
 
 // template components
@@ -201,6 +201,4 @@ include('submenu.php');
 
 require('authentization-form.php');
 
-include('footer.php')
-
-?>
+include('footer.php');
