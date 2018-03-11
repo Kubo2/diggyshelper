@@ -27,7 +27,9 @@ For more information about the _planned features_, please check out our [TODO li
 Sometime in one of the future v1.5 patches but before the full new v1.6 minor.
 
 
-## Proposed to v1.5.3
+## v1.5.3
+
+Released on 2018-03-11.
 
 * Make the footer links look more technical ([@Kubo2][0])
 + Povolený BB kód `[img]https://obrazok[/img]` do používateľských príspevkov ([@Kubo2][0])
@@ -35,7 +37,9 @@ Sometime in one of the future v1.5 patches but before the full new v1.6 minor.
 * Deprecate SanitizeLib
 
 
-## v1.5.2, release date: 2017-03-30
+## v1.5.2
+
+Release on 2017-03-30.
 
 * Add reached DA levels into `attractions.php` instead of having them being posted in a regular topic ([@WladinQ][1])
 * Remove the dependency on support.diggysadventure.com for our hotlinked images in `whatandhow.php`, store the files locally instead ([@Kubo2][0])
@@ -44,7 +48,9 @@ Sometime in one of the future v1.5 patches but before the full new v1.6 minor.
 * Flip the order of the footer links to FB and GitHub + forward fix the [window.opener](http://jecas.cz/noopener) vulnerability of theirs ([@Kubo2][0])
 
 
-## v1.5.1, release date: 2017-03-15
+## v1.5.1
+
+Released on 2017-03-15.
 
 * Issue [#14](https://github.com/Kubo2/diggyshelper/issues/14) first point: let `connect.php` always return the mysql connection resource in case the connection is successfuly established ([@Kubo2][0])
 * Fix column 'Autor posledného príspevku' in `index.php`: show last post date and author instead of self-related topic data ([@Kubo2][0])
@@ -52,19 +58,25 @@ Sometime in one of the future v1.5 patches but before the full new v1.6 minor.
 + In the `create.php`/`post_reply.php` form hide the bbcode snippet buttons when HTML is chosen as the form's markup ([@Kubo2][0])
 
 
-## v1.5, release date: 2017-02-28
+## v1.5
+
+Released on 2017-02-28.
 
 * (Supposedly) Fix issue [#8](https://github.com/Kubo2/diggyshelper/issues/8) where the mobile menu couldn't be opened in Android Browser 4.0 and older ([@Kubo2][0])
 
 
-## v1.5-beta2, release date: 2017-02-21
+## v1.5-beta2
+
+Released on 2017-02-21.
 
 * Frontend looks dark-theme fixes ([@WladinQ][1])
 * Fix XSS hole in `post_reply.php`: passing raw `$_GET` (non-escaped) to the output ([@Kubo2][0])
 * Fix having implemented admin markup-switch for new posts, but not for new topics ([@Kubo2][0])
 
 
-## v1.5-beta1, release date: 2017-02-14
+## v1.5-beta1
+
+Released on 2017-02-14.
 
 * **Complete new frontend looks**, introducing the dark theme ([@WladinQ][1])
 + Bulletin Board (BB) codes parsing in user-written posts. ([@Kubo2][0])
@@ -84,4 +96,4 @@ Sometime in one of the future v1.5 patches but before the full new v1.6 minor.
 
 # Previous versions
 
-We're sorry, previous versions aren't recorded here.
+We're sorry, previous versions hadn't been recorded here.
