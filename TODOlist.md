@@ -38,6 +38,7 @@
 
 - [ ] hotovo?
 * implementovať Gravatar
+* implementovať prevzatie facebook profile picture
 
 
 ## Polymorfné prihlasovanie
@@ -52,6 +53,7 @@
 
 - [ ] hotovo?
 * implementovať možnosť používateľov z radov členov aj používateľov z radov okoloidúcich návšteníkov _**poďakovať za hodnotný príspevok**_, ktorý obsahuje kvalitné informácie a/alebo svojím obsahom nejakým spôsob bol nápomocný týmto používateľom
+* inšpirovať sa _Claps_ funkcionalitou zo siete webov [Medium](https://medium.com)
 
 
 ## Upravovanie príspevkov
