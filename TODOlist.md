@@ -12,6 +12,7 @@
 - [ ] hotovo?
 * Emailové notifikácie
 * Webové notifikácie
+* Messenger notifikácie
 
 
 ## Upload používateľských obrázkov _k príspevkom_
