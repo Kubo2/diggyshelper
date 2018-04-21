@@ -9,12 +9,11 @@ require __DIR__ . '/functions.php';
 
 $dbContext = require __DIR__ . '/connect.php';
 
-
 session_start();
 
-$uri = getUriParam('intval', 'cid', 'tid'); // escaped by intval()
+$uri = getUriParam('intval', 'tid'); // escaped by intval()
 
-if( !isset($_SESSION["uid"]) || !($uri['cid'] && $uri['tid']) && !isset($_GET["flash"]) ) {
+if(!loggedIn() || !$uri['tid'] && !isset($_GET["flash"]) ) {
 	header("Location: http://$_SERVER[SERVER_NAME]" . dirname($_SERVER["PHP_SELF"]) . "/index.php", true, 302);
 	exit();
 }
@@ -27,9 +26,9 @@ header('Content-Type: text/html; charset=UTF-8', TRUE, 200);
 $aMasTo = " Nezaškodí niekoľko minúť počkať. <noscript>Skúste sa vrátiť v histórii a opäť odoslať príspevok.</noscript><script>document.write(\"<a href='javascript:void(history.go(-1))'>Vráťte sa</a> (bez ujmy na príspevku) a skúste ho znova odoslať.\")</script>";
 $messages = [
 	"!db" => "Nebolo možné nadviazať komunikáciu s našou databázou.",
-	"!id" => "Nastala chyba. Neodoslali ste údaj o téme, do ktorej chcete prispievať či o kategórii, v ktorej je táto téma.",
+	"!id" => "Nastala chyba. Neodoslali ste údaj o téme, do ktorej chcete prispievať.",
 	"!post" => "Príspevok je prádzny. Skúste ho vyplniť a potom znova odoslať.",
-	"!ins" => "Príspevok sa nepodarilo vložiť.",
+	"!ins" => "Príspevok sa nepodarilo uložiť.",
 ];
 
 if(!empty($_GET["flash"])) {
@@ -56,7 +55,7 @@ if(!empty($_GET["flash"])) {
 	
 <div id="forum">
 <div id="content">
-	<a class='button_reg' href='./view_topic.php?<?= "tid=$uri[tid]&cid=$uri[cid]" ?>'>Návrat do témy</a>
+	<a class='button_reg' href='./view_topic.php?<?= "tid=$uri[tid]" ?>'>Návrat do témy</a>
 	<!--script>document.write('<a class="button_upload" onclick="window.open(&quot;upload.php&quot;, &quot;okno1&quot;, &quot;width=500,height=400&quot;)">Nahrať obrázok</a>')</script-->
 	<hr>
 
@@ -81,7 +80,6 @@ if(!empty($_GET["flash"])) {
 			<button class='button' id="del" tabindex=0><s>prečiarknuté</s></button>
 			<br><br>
 		<input type="hidden" name="tid" value="<?= $uri['tid'] ?>">
-		<input type="hidden" name="cid" value="<?= $uri['cid'] ?>">
 		<input type="submit" name="reply_submit" class="input_button" value="+ Pridať otázku / odpoveď">
 	</form>
 	<?php } ?>

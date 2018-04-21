@@ -156,7 +156,7 @@ function renderForum($context) {
 	<table style='width: 100%; border-collapse: collapse'>
 		<!-- table heading -->
 		<tr><td colspan=3><a href='forum.php' class='input_button'>Návrat do fóra</a>&nbsp;<?= $logged ?></td></tr>
-		<tr style='background-color: #666666'>
+		<tr style='background-color: #666'>
 			<td width='6%' align='center' id='mob-no'></td><!-- span --><td style='color: #000; font-weight: bold;'>&nbsp;Názov témy</td><!-- span --><td width='15%' style='text-align: center;'>Odpovede&nbsp;</td>
 		</tr>
 		<tr><td colspan=3 style='padding: .5em 0 0'></td></tr>
@@ -167,10 +167,10 @@ function renderForum($context) {
 		<tr id='topiccolor'>
 			<td style='text-align: center' id='mob-no'><img width='40' height='40' class='book' src='images/icon/book.png'></td>
 			<td>
-				<a class='topic topic-link' href='<?= getTopicUrl($topic->id, $context->id) ?>'>&nbsp;<strong style='color: #000000;'><?= htmlspecialchars($topic->title) ?></strong></a><br>
+				<a class='topic topic-link' href='<?= getTopicUrl($topic->id) ?>'>&nbsp;<strong style='color: #000'><?= htmlspecialchars($topic->title) ?></strong></a><br>
 				<span class='post_info'>
 					&nbsp;Pridal/a: <a class='memberusers' href='<?= getProfileUrl($topic->author) ?>'><?= htmlspecialchars($topic->author) ?></a>
-					<font color='#FFFFFF'>dňa <?= $topic->postDate->format('d.m.Y / H:i:s') ?></font>
+					<font color='#FFF'>dňa <?= $topic->postDate->format('d.m.Y / H:i:s') ?></font>
 				</span>
 			</td>
 			<td style='text-align: center'><?= $topic->postCount ?></td>
@@ -243,11 +243,10 @@ function _renderSubtemplate($name, $vars = array()) {
  * in the database.
  *
  * @param int $tid Topic ID
- * @param int $cid Category ID
  * @return string Relative URL to the topic view
  */
-function getTopicUrl($tid, $cid) {
-	return sprintf('view_topic.php?cid=%d&amp;tid=%d', $cid, $tid);
+function getTopicUrl($tid) {
+	return sprintf('view_topic.php?tid=%d', $tid);
 }
 
 

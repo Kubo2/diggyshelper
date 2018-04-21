@@ -65,11 +65,11 @@ INSERT INTO `topics` (
 
 --changeset Kubo2:posts-1
 INSERT INTO `posts` (
-	`category_id`, `topic_id`, `post_creator`, `post_content`, `post_date`
+	`topic_id`, `post_creator`, `post_content`, `post_date`
 ) VALUES (
-	1, 1, 2, 'Sledujeme týmto používanie beta-verzie diskusného fóra.', NOW()
+	1, 2, 'Sledujeme týmto používanie beta-verzie diskusného fóra.', NOW()
 ), (
-	2, 2, 1, 'Počiatočný príspevok debaty', NOW()
+	2, 1, 'Počiatočný príspevok debaty', NOW()
 );
 
 --rollback   /* FUCK IT! depends on topic existence*/ 

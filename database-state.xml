@@ -158,4 +158,8 @@
 			ALTER TABLE `topics` DROP COLUMN `topic_views`
 		</sql>
 	</changeSet>
+	<changeSet id='cid_independent_topics' author='Kubo2'>
+		<dropForeignKeyConstraint baseTableName="posts" constraintName="posts_ref1_category_id" />
+		<dropColumn columnName='category_id' tableName='posts' />
+	</changeSet>
 </databaseChangeLog>

@@ -152,7 +152,7 @@ date_default_timezone_set("Europe/Bratislava");
 			<?php foreach($topics as $thread): ?>
 			<tr>
 				<td id="mob-name">
-					<a href='<?= "view_topic.php?cid={$thread->categoryID}&amp;tid={$thread->topicID}" ?>' class='memberusers'>
+					<a href='<?= "view_topic.php?tid={$thread->topicID}" ?>' class='memberusers'>
 						<?= htmlspecialchars($thread->topicTitle) ?>
 					</a>
 				</td>
@@ -179,7 +179,7 @@ date_default_timezone_set("Europe/Bratislava");
 		<br><br>
 		<?php foreach($topics as $thread): ?>
 		<ul>
-			<a href='<?= "view_topic.php?cid={$thread->categoryID}&amp;tid={$thread->topicID}" ?>'>
+			<a href='<?= "view_topic.php?tid={$thread->topicID}" ?>'>
 				<li>
 					<?= htmlspecialchars($thread->topicTitle) ?>
 					<time datetime=<?= $thread->lastPostDate->format('"c"') ?>><?= $thread->lastPostDate->format('d. m. Y H:i') ?></time>

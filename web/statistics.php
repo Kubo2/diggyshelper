@@ -101,7 +101,7 @@ where topic_date = (
 				if(!$newestTopic)
 					echo "Žiadna.";
 				else { ?>
-				<b><a class="naj" href="./view_topic.php?tid=<?php echo $newestTopic['id']; ?>&amp;cid=<?php echo $newestTopic['category_id']; ?>">
+				<b><a class="naj" href="./view_topic.php?tid=<?php echo $newestTopic['id'] ?>">
 					<?php echo $newestTopic['topic_title']; ?>
 				</a></b>.
 				<?php } ?>
