@@ -6,7 +6,7 @@ This changelog contains all the changes released in major, minor and patch versi
 [0]: https://github.com/Kubo2
 [1]: https://github.com/WladinQ
 
-So far we are approaching the grand __v2.0__ step-by-step with minors and their patches, but that one will
+So far we are approaching the grand __v2.0__ step-by-step with several minors and their patches, but that one will
 mark the beginning of the real development instead of just rewriting each and every piece of code.
 
 
@@ -25,6 +25,8 @@ For more information about the _planned features_, please check out our [TODO li
 ## Proposed to v1.5.x
 
 Sometime in one of the future v1.5 patches but before the full new v1.6 minor.
+
+* Transform our TODOlist to make it significantly more readable ([@Kubo2][0])
 
 
 ## v1.5.3
