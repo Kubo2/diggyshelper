@@ -7,7 +7,7 @@
  * @constant resource|boolean DB_CONNECTED
  *
  * By our local convention, there's file placed in the same directory called {@file .db.cfg}.
- * This is a PHP script which yields to returning an array of strings containing all of
+ * This file is a PHP script which yields to returning an array of strings containing all of
  * the data necessary to connect to a database:
  *
  * array(
@@ -41,8 +41,7 @@ return DB_CONNECTED;
  */
 function _connectphp_dbconnect($dataFile) {
 	if(!is_file($dataFile)) {
-		trigger_error("You will need to configure your $dataFile file to get a database connection", E_USER_WARNING);
-		return FALSE;
+		throw new InvalidArgumentException("You will need to configure your $dataFile file to get a database connection");
 	}
 
 	$data = is_array($data = require $dataFile) ? $data : array();
@@ -85,7 +84,7 @@ final class DbConnectionHelper {
 	 * Destructor
 	 */
 	public function __destruct() {
-		$this->disconnect();
+		self::disconnect();
 	}
 
 
@@ -130,7 +129,7 @@ final class DbConnectionHelper {
 			self::$connection = $link;
 
 			if(!$success) {
-				self::disconnect(); // properly assign self::$connection
+				self::disconnect(); // properly reassign self::$connection
 			}
 		}
 
