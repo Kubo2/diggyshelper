@@ -1,35 +1,39 @@
 # CHANGELOG
 
-This changelog contains all the changes released in major, minor and patch versions of the dh Forum.
+This changelog contains all the changes released in the major, minor and patch versions of dh Forum.
 
 <!-- committers -->
 [0]: https://github.com/Kubo2
 [1]: https://github.com/WladinQ
 
-So far we are approaching the grand __v2.0__ step-by-step with several minors and their patches, but that one will
-mark the beginning of the real development instead of just rewriting each and every piece of code.
+So far we are approaching the grand __v2.0__, step-by-step, with several minors and their patches. But this release will
+mark the beginning of real development, instead of the current rewriting of each and every piece of code.
 
 
 # Features
 
-For more information about the _planned features_, please check out our [TODO list](TODOlist.md).
+For more information about _planned features_, please check out our [TODO list](TODOlist.md).
 
 
 ## Proposed to v1.6
 
-- Remove `members.php` completely (after a period of serving it as 410 gone) ([@Kubo2][0])
-* Finalize the [SSL issue #13](https://github.com/Kubo2/diggyshelper/issues/13) (--)
-* Finalize the [Prechod na mysqli issue #14](https://github.com/Kubo2/diggyshelper/issues/14) (--)
+Expected release date: within the next two years.
 
 
-## Proposed to v1.5.x
+## v1.5.4
 
-Sometime in one of the future v1.5 patches but before the full new v1.6 minor.
+Released on 2018-08-14.
 
-* Transform our TODOlist to make it significantly more readable ([@Kubo2][0])
 + Port all tests from php-src's run-tests.php to [Codeception](https://codeception.com/), a powerful PHP testing framework ([@Kubo2][0])
 + Make all files use $dbContext returned by connect.php to explicitly describe their database dependency ([@Kubo2][0])
-* Vyprostenie sa z _cid-pekla_: odstránená interná závislosť príspevkov a tém na kategóriách ([@Kubo2][0])
+- Vyprostenie sa z _cid-pekla_: odstránená interná závislosť príspevkov a tém na kategóriách ([@Kubo2][0])
+* Rewrite our TODOlist to make it significantly more readable + add README ([@Kubo2][0])
+* Switch the live server definitively to HTTPS (a redirect from HTTP occurs): [SSL issue #13](https://github.com/Kubo2/diggyshelper/issues/13) ([@Kubo2][0])
+* Fix buggy getUser() behavior on a non-existent user ([@Kubo2][0])
+- Remove the explicit Google Search Console site verification via a HTML file ([@Kubo2][0])
+- Instruct search engines not to index but simply follow the links on any view.php?cid=\d+ page ([@Kubo2][0])
+- Remove `members.php` completely (after a period of serving it as 410 gone) ([@Kubo2][0])
+* Other minor but important fixes (connect.php, typos, header comments, etc.)
 
 
 ## v1.5.3
@@ -44,9 +48,9 @@ Released on 2018-03-11.
 
 ## v1.5.2
 
-Release on 2017-03-30.
+Released on 2017-03-30.
 
-* Add reached DA levels into `attractions.php` instead of having them being posted in a regular topic ([@WladinQ][1])
+* Add reached DA levels into `attractions.php` instead of having them be posted in a regular topic ([@WladinQ][1])
 * Remove the dependency on support.diggysadventure.com for our hotlinked images in `whatandhow.php`, store the files locally instead ([@Kubo2][0])
 * Dark-theme improvements ([@WladinQ][1])
 * Stick to our new [CSS Coding Standards (in slovak)](https://github.com/Kubo2/diggyshelper/wiki/CSS-%C5%A1tylistika-k%C3%B3du) in `css/style.css` ([@Kubo2][0])

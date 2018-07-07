@@ -2,6 +2,11 @@
 
 require __DIR__ . '/functions.php';
 
+/**
+ * Create a topic.
+ */
+
+
 define(
 	'ABSURL',
 	"http://" . 
