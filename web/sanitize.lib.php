@@ -67,8 +67,8 @@ function sanitize($data, $context) {
 			case HTML: {
 				$data = htmlspecialchars($data, ENT_QUOTES);
 			} break;
-			case SQL: { // MUST be already connected to the database using PHP's mysql extension - this is slightly customized for dh-forum, sorry
-				$data = mysql_real_escape_string($data);
+			case SQL: {
+				throw new \UnexpectedValueException('Use of the SanitizeLib::SQL context is deprecated');
 			} break;
 			case JAVASCRIPT: { // MUST be json extension in disposition
 				$data = json_encode($data);

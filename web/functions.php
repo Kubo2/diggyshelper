@@ -60,10 +60,10 @@ function loggedIn() {
 
 /**
  * Retrieves information about a user specified by unique identifier.
- * @internal  Requires and assumes an active ext_mysql connection
  *
  * @since v1.5.0-alpha1
  *
+ * @param  resource database context
  * @param  int user identifier
  * @param  array|string the name/s of the column/s in [database].users
  * @return array|string|bool|null
@@ -72,14 +72,14 @@ function loggedIn() {
  * 	string if the second argument was scalar (= for backwards comapatibility) OR
  * 	NULL if the second argument was scalar and the database returned NULL
  */
-function getUser($id, $fieldList) {
+function getUser($dbContext, $id, $fieldList) {
 	// less queries to database
 	static $cache = [];
 
 	if(!isset($cache[$id])) {
 		// `id` is the primary key so we only have one user with that id
 		$stmt = sprintf('SELECT * FROM users WHERE id = %d', $id);
-		$cache[$id] = mysql_fetch_assoc(mysql_query($stmt));
+		$cache[$id] = mysql_fetch_assoc(mysql_query($stmt, $dbContext));
 	}
 
 	if(!$cache[$id]) {

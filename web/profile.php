@@ -1,10 +1,15 @@
 <?php
 
-require "./functions.php"; // some useful miscellanous functionality
-require "./connect.php"; // database connection
+require __DIR__ . '/functions.php';
 
-$id = !empty($_GET['user']) ? mysql_real_escape_string($_GET['user']) : false;
-$httpStatus = 200;
+/**
+ * Show a user's profile.
+ */
+
+
+$dbContext = require __DIR__ . '/connect.php';
+
+$id = $dbContext && !empty($_GET['user']) ? mysql_real_escape_string($_GET['user'], $dbContext) : FALSE;
 
 $userinfo = [
 	"user-name" => null,
@@ -18,6 +23,7 @@ $userinfo = [
 	"avatar-path" => null,
 ];
 
+$httpStatus = 200;
 if(!$id) {
 	$httpStatus = 404;
 	goto page_template;
@@ -44,8 +50,8 @@ $rawinfo= <<< SQL
 		username is not null
 SQL;
 
-if(defined('DB_CONNECTED')) {
-	$rawinfo = mysql_query($rawinfo);
+if($dbContext) {
+	$rawinfo = mysql_query($rawinfo, $dbContext);
 
 	if(! $rawinfo) {
 		$httpStatus = 'databáze'; // very tricky hack
@@ -120,7 +126,7 @@ set_include_path("./includes/");
 						<td class='even'>Deň registrácie:</td>
 						<td class='odd'><?= $userinfo['user-register-date'] ?></td>
 					</tr>
-					<?php if(isset($_SESSION['uid']) && $_SESSION['username'] === $userinfo['user-name']): // je užívateľ prihlásený a je to jeho profil?>
+					<?php if(loggedIn() && $_SESSION['username'] === $userinfo['user-name']): // je užívateľ prihlásený a je to jeho profil?>
 					<tfoot>
 						<tr>
 							<td colspan="3" style="text-align: right;">

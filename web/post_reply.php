@@ -1,13 +1,16 @@
 <?php
 
+require __DIR__ . '/functions.php';
+
 /**
  * @internal requires PHP >= 5.4
  */
 
-session_start();
 
-require __DIR__ . '/connect.php';
-require __DIR__ . '/functions.php';
+$dbContext = require __DIR__ . '/connect.php';
+
+
+session_start();
 
 $uri = getUriParam('intval', 'cid', 'tid'); // escaped by intval()
 
@@ -61,7 +64,7 @@ if(!empty($_GET["flash"])) {
 	<p class="warning"><?php echo $flashMessage ?></p>
 	<?php } else { ?>
 	<form action="post_reply_parse.php" method="post" name="zasli-prispevok">
-		<?php if(getUser($_SESSION['uid'], 'access') == 'admin') { ?>
+		<?php if(getUser($dbContext, $_SESSION['uid'], 'access') == 'admin') { ?>
 		<p><label for='post-markup'>Pridať otázku / odpoveď vo formáte:</label> 
 			<select name="post-markup" id='post-markup'>
 				<option value="bb" selected="selected">BB kód</option>

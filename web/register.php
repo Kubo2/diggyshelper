@@ -2,6 +2,11 @@
 
 require __DIR__ . '/functions.php';
 
+/**
+ * Create a user account.
+ */
+
+
 session_start();
 
 if(loggedIn()) {
@@ -11,54 +16,36 @@ if(loggedIn()) {
 }
 
 header('Content-Type: text/html; charset=UTF-8', TRUE, 200);
+
 ?>
 <!doctype html>
 <html>
 <head>
 	<?php ($titleConst = 'Registrácia') &&require 'includes/head.php' ?>
 	<style type="text/css">
-		.red {
-			color:white;
-			background:red;
-			border-radius:5px;
+		.red, .orange, .green {
+			color: white;
+			border-radius: 5px;
 			padding: 5px;
 			font-size: 12px;
 			position: relative;
 			bottom: 1px;
+		}
+
+		.red {
+			background: red;
 		}
 
 		.orange {
-			color:white;
-			background:orange;
-			border-radius:5px;
-			padding: 5px;
-			font-size: 12px;
-			position: relative;
-			bottom: 1px;
+			background: orange;
 		}
 
 		.green {
-			color:white;
-			background:green;
-			border-radius:5px;
-			padding: 5px;
-			font-size: 12px;
-			position: relative;
-			bottom: 1px;
+			background: green;
 		}
 
 		@media (max-width: 620px) {
-			.red {
-				margin: 5px 0 5px 0;
-				width: 100%;
-			}
-			
-			.orange {
-				margin: 5px 0 5px 0;
-				width: 100%;
-			}
-			
-			.green {
+			.red, .orange, .green {
 				margin: 5px 0 5px 0;
 				width: 100%;
 			}
@@ -125,13 +112,20 @@ header('Content-Type: text/html; charset=UTF-8', TRUE, 200);
 
 	<div id="content">
 <?php
+
+$dbContext = require __DIR__ . '/connect.php';
+
+if(!$dbContext) {
+	goto connect_err;
+}
+
+
 // Tu vychádzam z faktu, že ak užívateľ neodoslal aspoň username,
 // buď
 // 	- ešte neodoslal formulár (POST požiadavok)
 // alebo
 // 	- nemá záujem sa registrovať
 // pretože username slúži ako login a tým pádom je pre registráciu kľučové
-
 if(empty($_POST['username'])) {
 ?>
 		<style scoped>.ochrana-pred-robotmi{display:none}</style>
@@ -245,21 +239,19 @@ goto closing;
 	if(empty($_POST['email'])) goto empty_email;
 	// validácia emailovej adresy
 	if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) goto invalid_email;
-	// sme pripojení k databázi?
-	if(FALSE === (require 'connect.php')) goto connect_err;
 	// ošetríme username a email proti sql injection
-	$userdata['username'] = mysql_real_escape_string($_POST['username']);
-	$userdata['email'] = !empty($_POST['email']) ? mysql_real_escape_string($_POST['email']) : false;
+	$userdata['username'] = mysql_real_escape_string($_POST['username'], $dbContext);
+	$userdata['email'] = !empty($_POST['email']) ? mysql_real_escape_string($_POST['email'], $dbContext) : FALSE;
 	// primary structure
 	$newusr = "INSERT INTO `users`(`registerdate`, `username`, `password`, `email`)\n";
 	// data
 	$newusr .= "VALUES(NOW(), '$userdata[username]', '$userdata[password]', '$userdata[email]') ";
 	// query - pokúsime sa vložiť užívateľa do databáze
-	$success = mysql_query($newusr);
+	$success = mysql_query($newusr, $dbContext);
 	// was registration successful?
 	if(!$success) {
 		// 1062 - duplicate entry
-		if(mysql_errno() == 1062) {
+		if(mysql_errno($dbContext) == 1062) {
 			goto usr_already_exists;
 		}
 		// any else error

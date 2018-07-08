@@ -1,5 +1,14 @@
 <?php
 
+require __DIR__ . '/functions.php';
+
+/**
+ * Log a user in.
+ */
+
+
+$dbContext = require __DIR__ . '/connect.php';
+
 // ak skript nie je volaný metódou POST, pošleme 405 a krátku správu
 if($_SERVER["REQUEST_METHOD"] != 'POST') {
 	if(isset($_SERVER["HTTP_USER_AGENT"]) && stripos($_SERVER["HTTP_USER_AGENT"], 'bot') !== false) {
@@ -17,7 +26,7 @@ if($_SERVER["REQUEST_METHOD"] != 'POST') {
 session_start();
 
 // ak sme už prihlásení, presmerujeme
-if(isset($_SESSION['uid'])) goto presmerovanie;
+if(loggedIn()) goto presmerovanie;
 
 // nie sme prihlásení: ak teda už existuje cookie so session identifikátorom, vygenerujeme nový
 if(isset($_COOKIE[ini_get('session.name')])) {
@@ -30,7 +39,7 @@ if(empty($_POST["username"])) goto presmerovanie;
 // samotný proces prihlasovania
 $errorMessage = "";
 if(!empty($_POST["password"])) {
-	if(!defined('DB_CONNECTED') && FALSE === require __DIR__ . '/connect.php') {
+	if(!$dbContext) {
 		$errorMessage = "Ospravedlňujeme sa Vám, no naša databáza je bohužiaľ na niekoľko minút nedostupná. Skúste sa prihlásiť opäť o niekoľko minút.";
 		goto login_errorpage;
 	}
@@ -39,8 +48,8 @@ if(!empty($_POST["password"])) {
 // sme pripojení k databázi/databáze
 // ošetríme vstupy
 $userdata = [
-	"nick" => mysql_real_escape_string($_POST["username"]),
-	"password" => mysql_real_escape_string($_POST["password"]),
+	'nick' => mysql_real_escape_string($_POST['username'], $dbContext),
+	'password' => mysql_real_escape_string($_POST['password'], $dbContext),
 ];
 
 // poskladáme dotaz
@@ -56,7 +65,7 @@ AND
 SQL;
 
 // posielame dotaz
-$rs = mysql_query($usr);
+$rs = mysql_query($usr, $dbContext);
 
 // prázdne heslo alebo podobný problém
 if(!$rs) {
@@ -78,7 +87,7 @@ $_SESSION = [
 	"username" => $_POST['username'],
 ];
 
-_saveUserBoxInfo($_SESSION['uid']);
+_saveUserBoxInfo($dbContext, $_SESSION['uid']);
 
 presmerovanie:
 
@@ -136,10 +145,11 @@ header('Content-Type: text/html; charset=UTF-8', TRUE, 403);
  * Fetches a pair of information from database and stores it in array( user.posts.count => int, user.reg.date => timestamp )
  * which is then stored in $_SESSION['userbox']. These data are updated only on login.
  *
+ * @param  resource the mysql resource
  * @param int   The internal ID of currently active (logged-in) user
  * @return void
  */
-function _saveUserBoxInfo($userId) {
+function _saveUserBoxInfo($dbContext, $userId) {
 
 	static $compoundSql = <<<SQL
 -- sql select for pulling out user's register date and last post count at once
@@ -152,7 +162,7 @@ where u.id = {\$userId}
 ;
 SQL;
 
-	$res = mysql_query(str_replace('{$userId}', $userId, $compoundSql));
+	$res = mysql_query(str_replace('{$userId}', $userId, $compoundSql), $dbContext);
 	if(!$res) {
 		$_SESSION['userbox'] = array( 'user.posts.count' => 0, 'user.reg.date' => NULL );
 	}

@@ -1,5 +1,15 @@
 <?php
 
+require __DIR__ . '/functions.php';
+require __DIR__ . '/lib/bbcode.php';
+
+/**
+ * View a single topic thread.
+ */
+
+
+$dbContext = require __DIR__ . '/connect.php';
+
 // initialize sessions
 session_start();
 
@@ -23,11 +33,6 @@ header('Content-Type: text/html; charset=UTF-8', TRUE, 200);
 			?>
 	
 <div id="forum"><div id="content"><?php
-	
-	require("./connect.php");
-	require('./functions.php');
-	require('./lib/bbcode.php');
-
 	function _render_reply_anch_tpl($categoryId, $topicId) { ?>
 <a rel='nofollow' class='input_button2' href=<?php
 		printf("'./post_reply.php?cid=%d&amp;tid=%d'", $categoryId, $topicId)
@@ -67,7 +72,7 @@ document404
 					$cid,
 					$tid
 				)
-			);
+			, $dbContext);
 
 			if($topic && mysql_num_rows($topic)) {
 				$posts = mysql_query(
@@ -80,7 +85,7 @@ document404
 						$cid,
 						$tid
 					)
-				);
+				, $dbContext);
 
 				if(! $posts) goto suckableFail;
 

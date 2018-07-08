@@ -1,35 +1,33 @@
 <?php
 
+require __DIR__ . '/functions.php';
+
+$dbContext = require __DIR__ . '/connect.php';
+
+
 // load sessions
 {
 	session_start();
 	session_regenerate_id( $delete_old_session = true );
 }
 
+
 // user is not signed in
-if(! isset($_SESSION['uid'])) goto p403_template;
+if(!loggedIn()) {
+	goto p403_template;
+} elseif(!$dbContext) {
+	$updated = ['basic-info-change' => FALSE, 'password-change' => FALSE];
+	goto page_template;
+}
+
 
 $currentUser = $_SESSION['uid'];
 
-// misc
-require('./connect.php'); // MUST define() DB_CONNECTED constant in case of db connection success
-require('./functions.php');
+// array of user information available as variables within the template
+$data = \getUser($dbContext, $currentUser, [ 'username', 'description', 'email' ]);
 
-// array of variables in disposition inside template
-$data = \getUser($currentUser, [ 'username', 'description', 'email' ]);
-
-// ==== UPDATE ====
+// section of information that will have been updated
 $updated = array();
-
-// first, most common, condition
-// we can not update anything if we have no database connection
-if(!defined('DB_CONNECTED')) {
-	$updated = [
-		'basic-info-change' => false,
-		'password-change' => false,
-	];
-	goto page_template;
-}
 
 if(isset($_POST['basic-info-change'])) {
 	$user = & $_POST['user'];
@@ -62,15 +60,10 @@ if(isset($_POST['basic-info-change'])) {
 		$set = array();
 
 		// prepare data to format "`field1` = 'value1', `field2` = 'value2'"
-		foreach($change as $field => $new) $set[ ] = sprintf(' `%s` = \'%s\' ', $field, mysql_real_escape_string($new));
+		foreach($change as $field => $new) $set[ ] = sprintf(' `%s` = \'%s\' ', $field, mysql_real_escape_string($new, $dbContext));
 		$setstr = implode(', ', $set);
 
-		$updated['basic-info-change'] = mysql_query(
-			sprintf( "UPDATE users SET %s WHERE `id` = %d",
-				$setstr,
-				$currentUser
-			)
-		);
+		$updated['basic-info-change'] = mysql_query(sprintf("UPDATE users SET %s WHERE `id` = %d", $setstr, $currentUser), $dbContext);
 
 		if($updated['basic-info-change']) {
 			// output MUST show the UPDATED data
@@ -86,14 +79,12 @@ if(isset($_POST['basic-info-change'])) {
 } else if(isset($_POST['password-change'])) { // user wants to change his/her password
 	if(
 		!empty($_POST['sudo-auth'])
-		&& md5($_POST['sudo-auth']) === getUser($currentUser, 'password')
+		&& md5($_POST['sudo-auth']) === getUser($dbContext, $currentUser, 'password')
 	) {
 		if(!empty($_POST['new-password'])) {
 			$updated['password-change'] = mysql_query(
-				sprintf( "UPDATE users SET `password` = '%s' WHERE `id` = %d",
-					md5($_POST['new-password']),
-					$currentUser
-				)
+				sprintf("UPDATE users SET `password` = '%s' WHERE `id` = %d", md5($_POST['new-password']), $currentUser),
+				$dbContext
 			);
 		}
 	} else {
