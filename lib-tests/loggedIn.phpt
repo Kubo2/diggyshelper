@@ -1,20 +1,41 @@
 --TEST--
 test for loggedIn() library function
+--INI--
+session.gc_probability=0
+--COOKIE--
+PHPSESSID=user-session
 --FILE--
 <?php
 
-session_start(); 						// require sessions
-$_SESSION = array();
-require(__DIR__ . '/../web/functions.php'); 		// functions library being tested
+// functions library being tested
+require __DIR__ . '/../web/functions.php';
 
-/* IS signed in. */
-$_SESSION['uid'] = 1;
-echo 'User ', loggedIn() ? 'is' : 'is not', ' signed in.' . PHP_EOL;
+// loggedIn() needs an active session
+session_save_path(__DIR__ . '/../web-tests/session');
+session_start();
+
+$data = $_SESSION;
+
+
+/* test IS signed in. */
+test_translate(loggedIn());
+
+// sign out
+$_SESSION = array();
 
 /* Is NOT signed in. */
-$_SESSION['uid'] = NULL;
-echo 'User ', loggedIn() ? 'is' : 'is not', ' signed in.' . PHP_EOL;
+test_translate(loggedIn());
 
+
+// discard session changes!
+$_SESSION = $data;
+
+// helper
+function test_translate($bool) {
+	echo 'User ' . ($bool ? 'is' : 'is not') . " signed in.\n";
+}
+
+?>
 --EXPECT--
 User is signed in.
 User is not signed in.
