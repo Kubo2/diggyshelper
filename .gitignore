@@ -29,6 +29,7 @@ images/upload
 
 liquibase.properties
 !liquibase/*
+!web-tests/liquibase.properties
 
 # liquibase logs
 db-log
