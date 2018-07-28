@@ -535,17 +535,34 @@ body .pages {
 	bottom: 5px;
 }
 
-#content .input_button2:hover {
-	background-color: #cca440;
-	border: 2px #cca440 solid;
-	color: #222;
-}
+/* mobilné štýly pre menu */
+@media (max-width: 845px) {
+
+	/* štýly pre zavreté menu */
+	#menu {
+		background: url(../images/icon/mmenu.png) #33CC00 right top no-repeat;
+	}
 
 #content .category {
 	background-color: #666;
 	border-radius: 5px;
 	padding: 0;
 	margin: 5px 0 5px;
+}
+
+	/* štýly pre otvorené menu */
+	#mmenu-state:checked + label +
+		#menu {
+			height: auto;
+		}
+
+#content .category li {
+	color: #fff;
+	margin: 5px;
+}
+
+#content .category li b {
+	color: #151515;
 }
 
 .light #content .category {
@@ -705,6 +722,7 @@ body .pages {
 	background-color: #5F9CCC;
 	border: 2px #5F9CCC solid;
 	color: #FFF;
+	margin: 1% 0 0 0;
 }
 
 #content table tr:last-child .button {
@@ -2306,6 +2324,193 @@ body .pages {
 	.error {
 		color: red;
 		text-align: center;
+	}
+
+	.memberusers {
+		color: #cca440;
+		text-decoration: none;
+	}
+
+	.memberusers:hover {
+		text-decoration: underline;
+		color: #cca440;
+	}
+
+	.naj {
+		text-decoration: none;
+		color: #cca440;
+	}
+
+	.naj:hover {
+		text-decoration: underline;
+		color: #cca440;
+	}
+
+	/** ------------------ KONIEC CLASS ------------------ **/
+}
+
+/** ------------------ KONIEC - MOBILNA VERZIA MAX WIDTH 845PX ------------------ **/
+
+/** ------------------ WTF ??? ------------------ **/
+
+div#header > p.in-development {
+	float: right;
+	margin-top: 10px;
+	margin-right: 5px;
+}
+
+#pages .user-profil .zakladne hr, #pages .user-profil .zmenahesla hr, #pages .user-profil .zmenastylu hr {
+	border: 1px solid #151515;
+	margin: 0 0 5px;
+}
+
+div.dialog.profile {
+	position: absolute;
+	min-width: 400px;
+	min-height: 250px;
+	border: 2px solid #000;
+	background-color: #fff;
+	float: center;
+	left: calc(50% - 200px);
+}
+
+div.dialog.profile h3 {
+	text-align: center;
+}
+
+div.dialog.profile img {
+	border: 1px solid #000;
+	float: left;
+	margin-right: 10px;
+	margin-left: 10px;
+	width: 130px;
+	height: 150px;
+}
+
+#pages .user-profil .zmenahesla input[type=password], #pages .user-profil .zmenahesla input[type=text] {
+	width: 90%;
+	margin: 0 0 5px;
+	padding: 5px;
+	border-radius: 5px;
+	border: 1px solid #fff;
+}
+
+.light #pages .user-profil .zmenahesla input[type=password], .light #pages .user-profil .zmenahesla input[type=text] {
+	width: 90%;
+	margin: 0 0 5px;
+	padding: 5px;
+	border-radius: 5px;
+	border: 1px solid #106CB5;
+}
+
+#profilinfo {
+	background: #fff;
+	border: 0px;
+}
+
+#profilelinkfb {
+	height: auto;
+	text-align: center;
+	padding: 5px;
+}
+
+.warning a {
+	color: #cca440;
+	text-decoration: underline;
+}
+
+.warning a:hover {
+	color: #cca440;
+	text-decoration: none;
+}
+
+.error {
+	color: red;
+}
+
+@media (max-width: 43.75em) {
+
+	.user-profil .user-info h2 {
+		text-align: center;
+		width: 100%;
+		float: left;
+		margin: 5px 0 5px;
+	}
+
+	.user-profil .user-info h2 > big {
+		color: #cca440;
+		float: left;
+		width: 100%;
+		text-align: center;
+	}
+
+	.light .user-profil .user-info h2 > big {
+		color: #106CB5;
+		float: left;
+		width: 100%;
+		text-align: center;
+	}
+
+	.user-profil .user-info table {
+		width: 100% !important;
+		table-layout: auto !important;
+	}
+
+	.user-profil .user-info table tr,
+	.user-profil .user-info table td {
+		display: block;
+	}
+
+	.user-profil .user-info table td {
+		width: 100%;
+		text-align: center !important;
+		display: inline-block;
+		=display: inline; /* IE 7 below */
+		=zoom: 1; /* switch hasLayout on in IE */
+	}
+
+	.user-profil .user-info table td.odd,
+	.user-profil .user-info table td.even {
+		color: #FFF;
+		opacity: 0.8;
+	}
+
+	.light .user-profil .user-info table td.even {
+		color: #000;
+		opacity: 0.8;
+	}
+
+	.user-profil .user-info table td.odd {
+		background: #cca440;
+		border-radius: 5px;
+	}
+
+	.light .user-profil .user-info table td.odd {
+		background: #5F9CCC;
+		border-radius: 5px;
+	}
+
+	.user-profil .user-info table td.even {
+		font-weight: bold;
+		_background: #33cc00;
+	}
+
+	.user-profil .user-info hr {
+		border: 1px solid #151515;
+	}
+
+	.user-profil .user-info .foto {
+		width: 100%;
+		text-align: center;
+		float: left;
+		display: block;
+	}
+
+	.user-profil .user-info .foto img {
+		width: 160px;
+		height: 160px;
+		border: 2px solid #cca440;
+		border-radius: 5px;
 	}
 
 	.memberusers {
