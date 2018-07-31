@@ -19,7 +19,7 @@ assert((bool) mysql_stat($dbContext), 'mysql_stat failed to return server info')
 
 ?>
 ok
---EXPECT--
-ok
 --CLEAN--
 <?php require __DIR__ . '/cleanup.php' ?>
+--EXPECT--
+ok

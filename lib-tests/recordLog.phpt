@@ -11,9 +11,7 @@ const TEST_LOG_SECTION = 'dummy-sect';
 define('TEST_LOG_DIR', __DIR__ . '/logs');
 
 var_dump(recordLog('Launching at port XX...', 'notice', TEST_LOG_SECTION, TEST_LOG_DIR));
-sleep(2);
 var_dump(recordLog('Running' . "\nadditional information not logged", 'status', TEST_LOG_SECTION, TEST_LOG_DIR));
-sleep(7);
 var_dump(recordLog('Internal at xXX crashed', 'fatal error', TEST_LOG_SECTION, TEST_LOG_DIR));
 var_dump(recordLog('Stopped', 'status', TEST_LOG_SECTION, TEST_LOG_DIR));
 
