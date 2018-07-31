@@ -22,6 +22,10 @@ images/upload
 .ftp
 .db.cfg
 
+# Composer the dependency manager
+vendor/*
+!composer.lock
+
 # [liquibase] #
 
 ## Liquibase is a database schema migration tool
