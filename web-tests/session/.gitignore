@@ -2,3 +2,5 @@
 
 *
 !.gitignore
+!sess_adminUser
+!sess_memberUser

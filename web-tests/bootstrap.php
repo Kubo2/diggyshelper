@@ -40,6 +40,10 @@ if(!$dbContext->query('CREATE DATABASE `' . $dbContext->escape_string($dbDefault
 // will use liquibase.properties in the same directory
 $liquibase = escapeshellcmd(realpath(__DIR__ . '/../liquibase/liquibase.jar') . " --url=jdbc:mysql://{$dbDefaults['host']}/{$dbDefaults['name']} update");
 
+if((!$cwd = getcwd()) || !chdir(__DIR__)) {
+	failClean('change working directory', $dbCfg, $dbCfgOrig, $dbContext, $dbDefaults['name']);
+}
+
 if(substr(php_uname(), 0, 7) == 'Windows') {
 	$liquibase = strtr($liquibase, ['/' => '^/']);
 
@@ -53,13 +57,14 @@ if(substr(php_uname(), 0, 7) == 'Windows') {
 	$liquibaseOut = substr($liquibaseOut[0], 0, 27);
 }
 
+chdir($cwd);
 
 if(strcmp($liquibaseOut, 'Liquibase Update Successful') <> 0) {
-	failClean('database setup failed' . $liquibaseOut, $dbCfg, $dbCfgOrig, $dbContext, $dbDefaults['name']);
+	failClean('database setup failed: ' . $liquibaseOut, $dbCfg, $dbCfgOrig, $dbContext, $dbDefaults['name']);
 }
 
 
-unset($dbCfg, $dbCfgOrig, $dbDefaults, $dbContext, $liquibase, $liquibaseProc, $liquibaseOut);
+unset($dbCfg, $dbCfgOrig, $dbDefaults, $dbContext, $liquibase, $liquibaseProc, $liquibaseOut, $cwd);
 
 
 //
