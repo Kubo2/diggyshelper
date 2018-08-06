@@ -1,5 +1,19 @@
 {
-    "require-dev": {
-        "codeception/codeception": "^2.4"
-    }
+	"require-dev": {
+		"codeception/codeception": "^2.4"
+	},
+	"scripts": {
+		"phpv": "@php -v",
+		"version": "git describe --long --tags",
+		"test":
+		[
+			"@version",
+			"codecept run --colors --no-interaction --steps"
+		],
+		"database":
+		[
+			"@php -r \"$db = new mysqli('localhost', 'dh_tester', 'testing'); $db->query('DROP DATABASE IF EXISTS dhForum_test_db'); $db->query('CREATE DATABASE dhForum_test_db') || exit(127);\"",
+			"java -jar liquibase/liquibase.jar --url=\"jdbc:mysql://localhost/dhForum_test_db?useUnicode=true&characterEncoding=UTF-8\" --username=dh_tester --password=testing update"
+		]
+	}
 }

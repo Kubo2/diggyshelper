@@ -12,4 +12,11 @@ modules:
             handler: stream
             headers:
                 Host: diggyshelper.localhost
-        - \Helper\Acceptance
+        - \Helper\AcceptanceDatabase: # database
+            dsn: 'mysql:host=localhost;dbname=dhForum_test_db;charset=utf8mb4'
+            user: dh_tester
+            password: testing
+            dbCfg: web/.db.cfg
+            populate: true
+            cleanup: true
+            populator: 'composer --quiet --no-interaction database'
