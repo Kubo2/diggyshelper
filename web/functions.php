@@ -59,68 +59,39 @@ function loggedIn() {
 
 
 /**
- * Retrieves an information about user specified by unique identifier.
+ * Retrieves information about a user specified by unique identifier.
  * @internal  Requires and assumes an active ext_mysql connection
  *
  * @since v1.5.0-alpha1
  *
- * @param int user identifier
- * @param array|string the name(s) of the column(s) in database table
- * @return array|string|boolean an array of information about specified user or false when user does not exist, string if second parameter was scalar (= for backwards comapatibility)
+ * @param  int user identifier
+ * @param  array|string the name/s of the column/s in [database].users
+ * @return array|string|bool|null
+ * 	an array of information about the specified user OR
+ * 	FALSE when the user does not exist OR
+ * 	string if the second argument was scalar (= for backwards comapatibility) OR
+ * 	NULL if the second argument was scalar and the database returned NULL
  */
 function getUser($id, $fieldList) {
-
 	// less queries to database
 	static $cache = [];
 
-	// last assign may generate warnings in some cases
-	$cache[$id] = !isset($cache[$id]) ? [ ] : $cache[$id];
-	
-	// skips the execution if there is no user with specified id
-	{
-		$statement = sprintf("SELECT COUNT(*) FROM users WHERE id = %d", $id);
-
-		if(empty($cache[$id])) {
-			$result = mysql_query($statement);
-
-			if(mysql_num_rows($result) < 1) {
-				return FALSE; // ============>
-			}
-
-			mysql_free_result($result);
-		}
-
-		unset($statement, $result);
+	if(!isset($cache[$id])) {
+		// `id` is the primary key so we only have one user with that id
+		$stmt = sprintf('SELECT * FROM users WHERE id = %d', $id);
+		$cache[$id] = mysql_fetch_assoc(mysql_query($stmt));
 	}
 
-	// array of final fields and values
-	$fields = [];
-	// initial field list containing fields to return
-	$fieldList = (array) $fieldList;
-	// which fields to select in the following query
-	$select = [];
-
-	foreach($fieldList as $field) {
-		if(!isset($cache[$id][$field])) {
-			$select[] = $field;
-		} else {
-			$fields[$field] = $cache[$id][$field];
-		}
+	if(!$cache[$id]) {
+		return FALSE; // ======>
 	}
 
-	if(count($select)) {
-		$statement = sprintf("SELECT %s FROM users WHERE id = %d",
-			'`' . join('`, `', $select) . '`', // joins array('a', 'b', 'c') to the string "`a`, `b`, `c`"
-			$id
-		);
-
-		$result = mysql_query($statement);
-		$fields += mysql_fetch_assoc($result);
+	if(!is_array($fieldList)) {
+		$fieldList = [(string) $fieldList];
 	}
 
-	$cache[$id] += $fields;
-
-	return count($fields) === 1 ? array_shift($fields) : $fields;
+	$return = array_slice_assoc($cache[$id], $fieldList);
+	return count($return) <> 1 ? $return : array_shift($return);
 }
 
 
