@@ -14,5 +14,5 @@ modules:
             user: dh_tester
             password: testing
             populate: true
-            cleanup: true
+            cleanup: false
             populator: 'composer --quiet --no-interaction database'

@@ -2,6 +2,8 @@
 
 namespace Helper;
 
+use Codeception\Exception\ModuleException;
+
 
 /**
  * This module extends the functionality of DhDatabase to generate
@@ -19,16 +21,51 @@ class AcceptanceDatabase extends DhDatabase {
 	protected $requiredFields = ['dsn', 'user', 'password', 'dbCfg'];
 
 
+	/** @var string .db.cfg filename */
+	private $dbCfg;
+
+
+	/** @var string backup .db.cfg filename */
+	private $origCfg;
+
+
+	public function _initialize() {
+		parent::_initialize();
+		$this->dbCfg = realpath(getcwd() . '/' . $this->config['dbCfg']);
+		$this->origCfg = "$this->dbCfg.backup";
+	}
+
+
 	public function _beforeSuite($settings = array()) {
-		$this->debug(realpath(getcwd() . '/' . $this->config['dbCfg']));
 		parent::_beforeSuite($settings);
-		$this->debug(__METHOD__);
+
+		if(is_file($this->origCfg) || !$this->backupFile($this->dbCfg, $this->origCfg)) { // backup .db.cfg
+			$baseOrig = basename($this->origCfg);
+			throw new ModuleException($this, "failed to backup $this->dbCfg, perhaps $baseOrig already exists?");
+		}
+
+		$write = '<?php return ' . var_export([ 'name' => $this->mysqlConfig['dbname'] ] + $this->mysqlConfig, TRUE) . '?>';
+		$this->debug("Writing $this->dbCfg");
+		if(!file_put_contents($this->dbCfg, $write)) {
+			throw new ModuleException($this, "failed to write $this->dbCfg, please rollback from $this->origCfg manually");
+		}
 	}
 
 
 	public function _afterSuite() {
 		parent::_afterSuite();
-		$this->debug(__METHOD__);
+
+		if(is_file($this->origCfg)) { // assume this is the original version
+			if(!$this->backupFile($this->origCfg, $this->dbCfg)) {
+				throw new ModuleException($this, "failed to rollback $this->dbCfg");
+			}
+		}
+	}
+
+
+	private function backupFile($orig, $backup) {
+		$this->debugSection('Backup', "Renaming $orig to $backup");
+		return rename($orig, $backup);
 	}
 
 }

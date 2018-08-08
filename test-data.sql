@@ -20,9 +20,14 @@ INSERT INTO `users` (
 	3, 'WladinQ', MD5('heslo'), NOW(), 'vladimir.jacko.ml@gmail.com', 'Zakladateľ DH'
 ), (
 	4, 'Example', MD5('example'), NOW(), 'example@example.com', NULL
+), (
+	5, 'nonexistent', MD5('nonexistent'), NOW(), 'noreply@anonymous.com', NULL
 );
 
 --rollback TRUNCATE TABLE `users`;
+
+--changeset Kubo2:users-data-2
+DELETE FROM users WHERE id = 5;
 
 
 --changeset Kubo2:users-administrators-1

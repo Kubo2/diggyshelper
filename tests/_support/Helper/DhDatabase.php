@@ -5,6 +5,7 @@ namespace Helper;
 use Codeception\Exception\ModuleException;
 
 
+// ext-mysql in 5.4.0 >= PHP < 7.0.0 generates an E_DEPRECATED on each call
 error_reporting(E_ALL & ~E_DEPRECATED);
 
 
@@ -58,7 +59,7 @@ abstract class DhDatabase extends \Codeception\Module\Db {
 
 		mysql_select_db($meta['dbname'], $this->dbContext);
 
-		$this->mysqlConfig = $meta + array('username' => $this->config['user'], 'password' => $this->config['password']);
+		$this->mysqlConfig = $meta + array('user' => $this->config['user'], 'password' => $this->config['password']);
 		$this->debugSection('DhDatabase', json_encode($this->mysqlConfig));
 
 		parent::_initialize();

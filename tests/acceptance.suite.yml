@@ -8,7 +8,7 @@ actor: AcceptanceTester
 modules:
     enabled:
         - PhpBrowser:
-            url: 'http://localhost:80'
+            url: http://diggyshelper.localhost:80
             handler: stream
             headers:
                 Host: diggyshelper.localhost
@@ -16,7 +16,7 @@ modules:
             dsn: 'mysql:host=localhost;dbname=dhForum_test_db;charset=utf8mb4'
             user: dh_tester
             password: testing
-            dbCfg: web/.db.cfg
+            dbCfg: web/.db.cfg # this file is replaced with the testing configuration
             populate: true
             cleanup: true
             populator: 'composer --quiet --no-interaction database'
