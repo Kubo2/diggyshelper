@@ -1,5 +1,6 @@
 <?php
 
+
 class connectphpTest extends \Codeception\Test\Unit {
 	
 	/**
@@ -25,6 +26,9 @@ class connectphpTest extends \Codeception\Test\Unit {
 
 
 	// tests
+	/**
+	 * @skip requires the switching of .db.cfg but cannot be made a dbunit test before all usage of a DB resource is explicit
+	 */
 	public function testConnect() {
 		$this->assertTrue(defined('DB_CONNECTED'), 'DB_CONNECTED has not been defined');
 		$this->assertSame($this->dbContext, DB_CONNECTED, 'the value returned by connect.php is not the same as DB_CONNECTED');

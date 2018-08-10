@@ -1,7 +1,5 @@
 <?php
 
-require __DIR__ . '/../../web/functions.php';
-
 
 /**
  * @internal here in this test we rely on $tester->haveDbContext() to be the last opened 'mysql link'

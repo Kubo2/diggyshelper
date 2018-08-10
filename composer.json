@@ -2,6 +2,12 @@
 	"require-dev": {
 		"codeception/codeception": "^2.4"
 	},
+	"autoload-dev": {
+		"files":
+		[
+			"web/functions.php"
+		]
+	},
 	"scripts": {
 		"phpv": "@php -v",
 		"version": "git describe --long --tags",
