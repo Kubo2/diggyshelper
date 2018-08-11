@@ -1,11 +1,13 @@
 {
 	"require-dev": {
-		"codeception/codeception": "^2.4"
+		"codeception/codeception": "^2.4",
+		"mikey179/vfsStream": "^1.6"
 	},
 	"autoload-dev": {
 		"files":
 		[
-			"web/functions.php"
+			"web/functions.php",
+			"web/lib/bbcode.php"
 		]
 	},
 	"scripts": {
