@@ -26,20 +26,10 @@ images/upload
 vendor/*
 !composer.lock
 
-# [liquibase] #
-
 ## Liquibase is a database schema migration tool
 # see http://www.sitepoint.com/versioning-your-database-with-liquibase/
-
-liquibase.properties
 !liquibase/*
-!web-tests/liquibase.properties
-
-# liquibase logs
-db-log
-*-dump.sql
-
-# [/liquibase] #
+liquibase.local.properties
 
 ## githelp.txt is WladinQ's help file with useful git commands
 # we won't include this one (even if he's supposed to exclude this one in his own repo)
