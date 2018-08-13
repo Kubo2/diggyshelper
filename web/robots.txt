@@ -1,14 +1,8 @@
 #
-# Note that these restrictions are not just a formality. If you don't
-# respect them, you may be blocked from accessing this site.
+# dh Forum welcomes crawlers & robots!
 #
 
 User-agent: *
-Disallow: /test
-#Disallow: /statistics.php # I am not sure what to do with this one
-Disallow: /robots.txt
-
-User-Agent: ia_archiver
-Disallow: /test
+Disallow:
 
 Sitemap: http://diggyshelper.net/sitemaps/
