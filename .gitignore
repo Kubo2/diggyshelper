@@ -22,19 +22,14 @@ images/upload
 .ftp
 .db.cfg
 
-# [liquibase] #
+# Composer the dependency manager
+vendor/*
+!composer.lock
 
 ## Liquibase is a database schema migration tool
 # see http://www.sitepoint.com/versioning-your-database-with-liquibase/
-
-liquibase.properties
 !liquibase/*
-
-# liquibase logs
-db-log
-*-dump.sql
-
-# [/liquibase] #
+liquibase.local.properties
 
 ## githelp.txt is WladinQ's help file with useful git commands
 # we won't include this one (even if he's supposed to exclude this one in his own repo)

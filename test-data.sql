@@ -11,18 +11,23 @@ use skdiggyshelper;
 -- Some mysterious users
 --changeset Kubo2:users-data-1
 INSERT INTO `users` (
-	`username`, `password`, `registerdate`, `email`, `description`
+	`id`, `username`, `password`, `registerdate`, `email`, `description`
 ) VALUES (
-	'Kubo2', MD5('heslo123'), NOW(), 'kelerest123@gmail.com', 'Spoluzakladateľ projektu DH + softwarový manažér'
+	1, 'Kubo2', MD5('heslo123'), NOW(), 'kelerest123@gmail.com', 'Spoluzakladateľ projektu DH + softwarový manažér'
 ), (
-	'Administrátor', MD5('admin'), NOW(), 'admin@localhost', 'Administrátor diskusného fóra'
+	2, 'Administrátor', MD5('admin'), NOW(), 'admin@localhost', 'Administrátor diskusného fóra'
 ), (
-	'WladinQ', MD5('heslo'), NOW(), 'vladimir.jacko.ml@gmail.com', 'Zakladateľ DH'
+	3, 'WladinQ', MD5('heslo'), NOW(), 'vladimir.jacko.ml@gmail.com', 'Zakladateľ DH'
 ), (
-	'Example', MD5('example'), NOW(), 'example@example.com', NULL
+	4, 'Example', MD5('example'), NOW(), 'example@example.com', NULL
+), (
+	5, 'nonexistent', MD5('nonexistent'), NOW(), 'noreply@anonymous.com', NULL
 );
 
 --rollback TRUNCATE TABLE `users`;
+
+--changeset Kubo2:users-data-2
+DELETE FROM users WHERE id = 5;
 
 
 --changeset Kubo2:users-administrators-1
