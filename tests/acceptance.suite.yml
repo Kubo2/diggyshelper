@@ -19,4 +19,4 @@ modules:
             dbCfg: web/.db.cfg # this file is replaced with the testing configuration
             populate: true
             cleanup: true
-            populator: 'composer --quiet --no-interaction database'
+            populator: 'composer --quiet --no-interaction dh:database'

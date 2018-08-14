@@ -15,4 +15,4 @@ modules:
             password: testing
             populate: true
             cleanup: false
-            populator: 'composer --quiet --no-interaction database'
+            populator: 'composer --quiet --no-interaction dh:database'

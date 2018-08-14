@@ -14,7 +14,7 @@ class UnitDatabase extends DhDatabase {
 	 * Return the currently active database context.
 	 * @return resource(mysql link)
 	 */
-	public function haveDbContext() {
+	public function grabDbContext() {
 		return $this->dbContext;
 	}
 

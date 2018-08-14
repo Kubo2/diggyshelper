@@ -158,5 +158,4 @@
 			ALTER TABLE `topics` DROP COLUMN `topic_views`
 		</sql>
 	</changeSet>
-	<include file="test-data.sql" relativeToChangelogFile="true" />
 </databaseChangeLog>
