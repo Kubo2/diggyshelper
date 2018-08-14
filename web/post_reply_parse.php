@@ -12,21 +12,20 @@ $dbContext = require __DIR__ . '/connect.php';
 
 session_start();
 
-
 if(loggedIn()) { // iba ak je užívateľ prihlásený
 	if(isset($_POST['prispevok'])) { // iba ak existuje príspevok
 		$error = FALSE;
 
 		if(!$dbContext)
 			$error = "!db";
-		elseif(empty($_POST["tid"]) || empty($_POST["cid"]))
+		elseif(empty($_POST["tid"]))
 			$error = "!id";
 		elseif(!trim($_POST["prispevok"]))
 			$error = "!post";
 
 		if($error) goto error_occured;
 
-		list($c, $t, $u) = [ intval($_POST["cid"]), intval($_POST["tid"]), intval($_SESSION["uid"]) ];
+		list($t, $u) = [ intval($_POST["tid"]), intval($_SESSION["uid"]) ];
 		$post = mysql_real_escape_string($_POST['prispevok'], $dbContext); // TODO: kontrola badwords
 
 		$markup = 'bb'; // default for non-admin users
@@ -42,7 +41,7 @@ if(loggedIn()) { // iba ak je užívateľ prihlásený
 				mysql_query("
 					UPDATE `categories`
 					SET `last_post_date` = NOW(), `last_user_posted` = $u 
-					WHERE `id` = $c
+					WHERE `id` = (SELECT category_id FROM topics WHERE `id` = $t)
 			", $dbContext) &&
 				mysql_query("
 					UPDATE `topics`
@@ -52,14 +51,14 @@ if(loggedIn()) { // iba ak je užívateľ prihlásený
 			if(!$updated) goto db_error;
 			
 			$inserted = mysql_query("
-				INSERT INTO posts (`category_id`, `topic_id`, `post_creator`, `post_content`, `post_markup`, `post_date`)
-				VALUES ($c, $t, $u, '$post', '$markup', NOW())
+				INSERT INTO posts (`topic_id`, `post_creator`, `post_content`, `post_markup`, `post_date`)
+				VALUES ($t, $u, '$post', '$markup', NOW())
 			", $dbContext);
 			if(!$inserted) goto db_error;
 		mysql_query('COMMIT', $dbContext);
 		mysql_query('UNLOCK TABLES', $dbContext);
 		// success
-		header("Location: http://$_SERVER[SERVER_NAME]" . dirname($_SERVER["PHP_SELF"]) . "/view_topic.php?tid=$t&cid=$c", true, 302);
+		header("Location: http://$_SERVER[SERVER_NAME]" . dirname($_SERVER["PHP_SELF"]) . "/view_topic.php?tid=$t", TRUE, 302);
 		exit;
 
 		db_error:
@@ -76,11 +75,11 @@ if(loggedIn()) { // iba ak je užívateľ prihlásený
 		. dirname($_SERVER["PHP_SELF"]) 
 		. "/post_reply.php?flash=" 
 		. ($error ? $error : "!")
-		, true
+		, TRUE
 		, 302
 	);
 	exit;
 }
 
 // general redirect — user is not signed in
-header("Location: http://$_SERVER[SERVER_NAME]" . dirname($_SERVER["PHP_SELF"]) . "/index.php", true, 302);
+header("Location: http://$_SERVER[SERVER_NAME]" . dirname($_SERVER["PHP_SELF"]) . "/index.php", TRUE, 302);

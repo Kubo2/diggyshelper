@@ -33,9 +33,9 @@ header('Content-Type: text/html; charset=UTF-8', TRUE, 200);
 			?>
 	
 <div id="forum"><div id="content"><?php
-	function _render_reply_anch_tpl($categoryId, $topicId) { ?>
+	function _render_reply_anch_tpl($topicId) { ?>
 <a rel='nofollow' class='input_button2' href=<?php
-		printf("'./post_reply.php?cid=%d&amp;tid=%d'", $categoryId, $topicId)
+		printf("'./post_reply.php?tid=%d'", $topicId)
 ?>>
 	+ Pridať otázku / odpoveď
 </a>
@@ -45,11 +45,11 @@ header('Content-Type: text/html; charset=UTF-8', TRUE, 200);
 
 	/** @var callable */
 	$fuckable_404 = function($render = '<p>Táto téma neexistuje.</p>') {
-		header("HTTP/1.1 404 Topic does not exist");
+		header('HTTP/1.1 404 No such topic');
 		echo($render);
 	};
 
-	if(!isset($_GET['cid'], $_GET['tid'])) { // either one or both does not exist
+	if(!isset($_GET['tid'])) {
 		call_user_func($fuckable_404, <<<document404
 <h1>Chyba: Stránka sa nenašla</h1>
 <p>Požadovaná stránka na tomto serveri nebola nájdená.</p>
@@ -57,51 +57,63 @@ header('Content-Type: text/html; charset=UTF-8', TRUE, 200);
 document404
 );
 	} else {
-		$qs = array_slice_assoc($_GET, [ 'cid', 'tid' ]);
-		array_walk($qs, function(& $id) {
-			$id = max(0, intval($id));
-		});
-		extract($qs);
+		$qs = (object) getUriParam(function($arg) { return max(0, intval($arg)); }, 'tid', 'cid');
+		if($qs->tid) {
+			if(NULL !== $qs->cid) {
+				$qsParams = explode('&', $_SERVER['QUERY_STRING']);
+				foreach($qsParams as $key => $param) {
+					if(0 === strpos($param, 'cid=')) {
+						unset($qsParams[$key]);
+					}
+				}
 
-		if($cid && $tid) {
-			$topic = mysql_query(
-				sprintf( "SELECT `topic_title` as `title`, `topic_creator` as `creator`
-						FROM `topics`
-							WHERE `category_id` = %d AND `id` = %d
-						LIMIT 1",
-					$cid,
-					$tid
-				)
-			, $dbContext);
+				header('Location: ' . strstr($_SERVER['REQUEST_URI'], '?', TRUE) . '?' . implode('&', $qsParams), TRUE, 301); // affordable since we're using output buffering
+				exit(); // ======>
+			}
+
+			$topicSql = <<<SQL
+SELECT
+	topic_title title,
+	topic_creator creator,
+	category_id cid
+FROM
+	topics
+WHERE
+	`id` = %d
+SQL;
+			$topic = mysql_query(sprintf($topicSql, $qs->tid), $dbContext);
 
 			if($topic && mysql_num_rows($topic)) {
-				$posts = mysql_query(
-					sprintf("SELECT p.post_date as `added`, p.post_content as `text`, p.post_markup as 'markup', u.username as `author`
-							FROM `posts` p
-								JOIN `users` u
-									ON p.post_creator = u.id
-								WHERE `category_id` = %d AND `topic_id` = %d
-							ORDER BY p.post_date ASC",
-						$cid,
-						$tid
-					)
-				, $dbContext);
+				$postsSql = <<<SQL
+SELECT
+	p.post_date added,
+	p.post_content `text`,
+	p.post_markup markup,
+	u.username author
+FROM
+	posts p
+JOIN
+	users u
+ON
+	p.post_creator = u.id
+WHERE
+	topic_id = %d
+ORDER BY
+	p.post_date ASC
+SQL;
 
-				if(! $posts) goto suckableFail;
-
+				if(!$posts = mysql_query(sprintf($postsSql, $qs->tid), $dbContext)) goto suckableFail;
 				$topic = mysql_fetch_object($topic) ?>
 
-	<h2 class='no-center' ><?= SanitizeLib\sanitize($topic->title, SanitizeLib\HTML) ?></h2>
+	<h2 class='no-center' ><?= htmlspecialchars($topic->title) ?></h2>
 	<table border=0 style='width: 100%'>
 		<tr>
 			<td colspan=2>
-				<?php if( $cid ): ?>
-					<a class='button' <?php printf("href='./view.php?cid=%d'", $cid) ?>>Návrat do kategórie</a>
-				<?php endif ?>
+				<a class='button' <?php printf("href='./view.php?cid=%d'", $topic->cid) ?>>Návrat do kategórie</a>
 
 				<?php if( ! loggedIn() ) { ?>
 					<br>Na pridanie odpovede je potrebné sa prihlásiť, alebo sa <a style="color: #CCA440; font-weight: bold" href="register.php">zaregistrovať</a>!
-				<?php } else _render_reply_anch_tpl($cid, $tid) ?>
+				<?php } else _render_reply_anch_tpl($qs->tid) ?>
 				
 			</td>
 		</tr>
@@ -111,7 +123,7 @@ document404
 				<nobr class="post-meta line">Pridal/a: <a 
 					class='memberusers' 
 					href=<?=( sprintf("'./profile.php?user=%s'", urlencode($post->author)) ) // handles also ' " < > ?>><?=(
-						SanitizeLib\escape($post->author, 'HTML')
+						htmlspecialchars($post->author)
 					)?></a> dňa <time datetime=<?=(
 						id(new DateTime($post->added))->format("'c'")
 					)?> style='color: #FFF'><?=( id(new DateTime($post->added))->format("d.m.Y / H:i:s") )?></time>
@@ -132,22 +144,17 @@ document404
 		<?php endwhile ?>
 		<tr>
 			<td colspan=2>
-				
-				<?php if( $cid ): ?>
-					<a class='button' <?php printf("href='./view.php?cid=%d'", $cid) ?>>Návrat do kategórie</a>
-				<?php endif ?>
+				<a class='button' <?php printf("href='./view.php?cid=%d'", $topic->cid) ?>>Návrat do kategórie</a>
 
 				<?php if( ! loggedIn() ) { ?>
 					<br>Na pridanie odpovede je potrebné sa prihlásiť, alebo sa <a style="color: #CCA440; font-weight: bold" href="register.php">zaregistrovať</a>!
-				<?php } else _render_reply_anch_tpl($cid, $tid) ?>
+				<?php } else _render_reply_anch_tpl($qs->tid) ?>
 			</td>
 		</tr>
 	</table>
 <?php suckableFail:
 	if(! $posts): ?>
-	<p>Niečo sa nepodarilo. Skúste <a href=<?= (unset)
-		printf("\"%s\"", SanitizeLib\escape($_SERVER['REQUEST_URI'], 'html'))
-	?>>obnoviť stránku.</a>
+	<p>Niečo sa nepodarilo. Skúste <a href=<?= sprintf("\"%s\"", htmlspecialchars($_SERVER['REQUEST_URI']), ENT_QUOTES) ?>>obnoviť stránku.</a>
 		<?php ; endif ?>
 			<?php } else {
 				call_user_func($fuckable_404);

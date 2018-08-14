@@ -31,7 +31,7 @@ while($topic = mysql_fetch_object($resource)) {
 	$el = $sitemap->createElement('url'); // URL container
 
 	$el->appendChild($sitemap->createElement('loc'))->appendChild(
-		$sitemap->createTextNode(getTopicUrl($topic->id, $topic->category_id))
+		$sitemap->createTextNode(getTopicUrl($topic->id))
 	);
 
 	$el->appendChild($sitemap->createElement('lastmod',
@@ -95,7 +95,7 @@ function reportSitemap($dom) {
  * @param int category ID
  * @return string the URL
  */
-function getTopicUrl($tid, $cid) {
+function getTopicUrl($tid) {
 	static $pattern = NULL;
 
 	if(!isset($pattern)) {
@@ -107,8 +107,8 @@ function getTopicUrl($tid, $cid) {
 			$host = php_uname('n');
 		}
 
-		$pattern = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http') . "://$host/view_topic.php?cid=%d&tid=%d";
+		$pattern = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http') . "://$host/view_topic.php?tid=%d";
 	}
 
-	return sprintf($pattern, $cid, $tid);
+	return sprintf($pattern, $tid);
 }
