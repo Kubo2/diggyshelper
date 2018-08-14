@@ -1,5 +1,7 @@
 <?php
 
+require __DIR__ . '/functions.php';
+
 /**
  * Category topics listing page.
  *
@@ -7,13 +9,15 @@
  */
 
 
+$dbContext = require __DIR__ . '/connect.php';
+
+
+// headers
 header('Content-Type: text/html; charset=UTF-8');
 header('X-Robots-Tag: noindex, follow');
 
 session_start();
 
-require __DIR__ . '/functions.php';
-require __DIR__ . '/connect.php';
 
 /** @var stdClass Current listing view context */
 $forum = new stdClass;
@@ -34,7 +38,7 @@ select id,
 from categories
 where id = {$forum->id}
 SQL
-);
+, $dbContext);
 
 if(!is_resource($forumResource) || !mysql_num_rows($forumResource)) {
 	renderNonExisting(); // implies exit() ======>
@@ -65,7 +69,7 @@ group by
 order by
 	t.topic_reply_date desc
 SQL
-);
+, $dbContext);
 
 if(!is_resource($topicsResource) || !mysql_num_rows($topicsResource)) {
 	$forum->topics = array();

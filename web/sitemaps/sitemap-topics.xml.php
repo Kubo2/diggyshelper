@@ -7,9 +7,9 @@
  */
 
 
-require __DIR__ . '/../connect.php';
+$dbContext = require __DIR__ . '/../connect.php';
 
-if(!defined('DB_CONNECTED')) {
+if(!$dbContext) {
 	reportUnavailable();
 }
 
@@ -17,7 +17,7 @@ $resource = mysql_query(<<< SQL
 	select * from topics
 	order by topic_reply_date
 SQL
-);
+, $dbContext);
 
 if(!is_resource($resource) || !mysql_num_rows($resource)) {
 	reportUnavailable();

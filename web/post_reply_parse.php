@@ -1,64 +1,70 @@
 <?php
 
+require __DIR__ . '/functions.php';
+
 /**
  * @todo učesať a zrefaktorovať kód
  * @internal requires PHP >= 5.4
  */
 
+
+$dbContext = require __DIR__ . '/connect.php';
+
 session_start();
 
-require __DIR__ . '/functions.php';
 
-if(isset($_SESSION['uid']) && intval($_SESSION['uid'])) { // iba ak je užívateľ prihlásený
+if(loggedIn()) { // iba ak je užívateľ prihlásený
 	if(isset($_POST['prispevok'])) { // iba ak existuje príspevok
-		$error  = false;
+		$error = FALSE;
 
-		if(false === require('./connect.php'))
+		if(!$dbContext)
 			$error = "!db";
 		elseif(empty($_POST["tid"]) || empty($_POST["cid"]))
 			$error = "!id";
 		elseif(!trim($_POST["prispevok"]))
 			$error = "!post";
 
-		if((bool) $error) goto error_occured;
+		if($error) goto error_occured;
 
 		list($c, $t, $u) = [ intval($_POST["cid"]), intval($_POST["tid"]), intval($_SESSION["uid"]) ];
-		$post = mysql_real_escape_string($_POST['prispevok']); // TODO: kontrola badwords
+		$post = mysql_real_escape_string($_POST['prispevok'], $dbContext); // TODO: kontrola badwords
 
 		$markup = 'bb'; // default for non-admin users
+		$type = getUser($dbContext, $u, 'access');
 
-		if(getUser($u, 'access') == 'admin' && !empty($_POST['post-markup']) && in_array($_POST['post-markup'], ['html', 'bb']))
-			$markup = $_POST['post-markup'];
+		if($type === 'admin' && !empty($_POST['post-markup'])) {
+			$markup = in_array($_POST['post-markup'], ['html', 'bb']) ? $_POST['post-markup'] : $markup;
+		}
 
-		mysql_query("LOCK TABLES `posts` WRITE");
-		mysql_query("START TRANSACTION");
-			$updated= 
-				mysql_query( "
+		mysql_query('LOCK TABLES `posts` WRITE', $dbContext);
+		mysql_query('START TRANSACTION', $dbContext);
+			$updated = 
+				mysql_query("
 					UPDATE `categories`
 					SET `last_post_date` = NOW(), `last_user_posted` = $u 
 					WHERE `id` = $c
-			" ) &&
-				mysql_query( "
+			", $dbContext) &&
+				mysql_query("
 					UPDATE `topics`
 					SET `topic_reply_date` = NOW(), `topic_last_user` = $u
 					WHERE `id` = $t
-			" );
+			", $dbContext);
 			if(!$updated) goto db_error;
 			
-			$inserted= mysql_query( "
+			$inserted = mysql_query("
 				INSERT INTO posts (`category_id`, `topic_id`, `post_creator`, `post_content`, `post_markup`, `post_date`)
 				VALUES ($c, $t, $u, '$post', '$markup', NOW())
-			" );
+			", $dbContext);
 			if(!$inserted) goto db_error;
-		mysql_query("COMMIT");
-		mysql_query("UNLOCK TABLES");
+		mysql_query('COMMIT', $dbContext);
+		mysql_query('UNLOCK TABLES', $dbContext);
 		// success
 		header("Location: http://$_SERVER[SERVER_NAME]" . dirname($_SERVER["PHP_SELF"]) . "/view_topic.php?tid=$t&cid=$c", true, 302);
 		exit;
 
 		db_error:
-		mysql_query("ROLLBACK");
-		mysql_query("UNLOCK TABLES");
+		mysql_query('ROLLBACK', $dbContext);
+		mysql_query('UNLOCK TABLES', $dbContext);
 		$error = "!ins";
 	} else {
 		$error = "!post";

@@ -541,11 +541,8 @@ body .pages {
 	color: #222;
 }
 
-#content .category {
-	background-color: #666;
-	border-radius: 5px;
-	padding: 0;
-	margin: 5px 0 5px;
+#content ul.category {
+	margin: 0 auto;
 }
 
 .light #content .category {
@@ -556,11 +553,19 @@ body .pages {
 }
 
 #content .category li {
-	color: #fff;
-	margin: 5px;
+	margin: 5px 0 10px;
+	background-color: #666;
+	border-radius: 5px;
+	padding: 0;
 }
 
-#content .category li b {
+#content .category a {
+	display: block;
+	padding: 5px;
+	color: #FFF;
+}
+
+#content .category b {
 	color: #151515;
 }
 
@@ -1861,13 +1866,6 @@ body .pages {
 		text-decoration: none;
 	}
 
-	#content .category {
-		background-color: #666;
-		border-radius: 5px;
-		padding: 0;
-		margin: 0 0 5px;
-	}
-
 	.light #content .category {
 		background-color: #106CB5;
 		border-radius: 5px;
@@ -1876,12 +1874,7 @@ body .pages {
 	}
 
 	#content .category li {
-		color: #fff;
-		margin: 5px;
-	}
-
-	#content .category li b {
-		color: #151515;
+		margin: 0 0 5px;
 	}
 
 	#content table tr td img {

@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * Summaries and statistical data about dh Forum usage.
+ */
+
+
+$dbContext = require __DIR__ . '/connect.php';
+
+
+// headers
 header('Content-Type: text/html; charset=UTF-8', TRUE, 200);
 
 session_start();
@@ -38,27 +47,27 @@ session_start();
 	<div id="statistiky">
 
 	<?php
-	require_once("connect.php");
-	$membersCount = mysql_query("SELECT COUNT(*) FROM `users`");
+
+	$membersCount = mysql_query("SELECT COUNT(*) FROM `users`", $dbContext);
 	$newestMember = mysql_query("SELECT `username`
 FROM `users`
 WHERE `registerdate` = (
 	SELECT MAX(`registerdate`)
 	FROM `users`
 )
-");
+", $dbContext);
 	$mostActiveMember = mysql_query("SELECT u.username, p.post_creator AS id, COUNT(p.post_creator) AS posts_count
 FROM posts p
 JOIN users u on u.id = p.post_creator
 GROUP BY post_creator
 ORDER BY posts_count DESC
-LIMIT 1");
+LIMIT 1", $dbContext);
 	$newestTopic = mysql_query("SELECT id, category_id, topic_title
 from topics
 where topic_date = (
 	select max(topic_date)
 	from topics
-)");
+)", $dbContext);
 
 	$membersCount = $membersCount ? mysql_fetch_row($membersCount) : array(-1);
 	if($newestMember)
@@ -101,7 +110,7 @@ where topic_date = (
 	<h3>O používateľoch fóra Diggy's Helper</h3>
 		<p>Administrátormi fóra sú: <a class="memberusers" href="profile.php?user=WladinQ">WladinQ</a> &amp; <a class="memberusers" href="profile.php?user=Kubo2">Kubo2</a></p>
 		<?php
-		$admins =  mysql_query("SELECT `username` FROM `users` WHERE `access` IN ('admin', 'moderator') AND NOT `username` IN ('Kubo2', 'WladinQ')"); # intentionally hardcoded
+		$admins =  mysql_query("SELECT `username` FROM `users` WHERE `access` IN ('admin', 'moderator') AND NOT `username` IN ('Kubo2', 'WladinQ')", $dbContext); # intentionally hardcoded
 		if($admins) {
 			echo "<h4>Moderátori fóra</h4>\n<ul>\n";
 			while(($admin = mysql_fetch_assoc($admins)) !== false) {

@@ -1,9 +1,6 @@
 <?php
 
 
-/**
- * @internal here in this test we rely on $tester->haveDbContext() to be the last opened 'mysql link'
- */
 class getUserTest extends \Codeception\Test\Unit {
 
 	/**
@@ -24,24 +21,30 @@ class getUserTest extends \Codeception\Test\Unit {
 
 	// tests
 	public function testGetById() {
-		$this->assertSame('Kubo2', getUser(1, 'username'));
+		$dbContext = $this->tester->grabDbContext();
+
+		$this->assertSame('Kubo2', getUser($dbContext, 1, 'username'));
 		$this->assertSame(
 			['username' => 'WladinQ', 'access' => 'admin', 'email' => 'vladimir.jacko.ml@gmail.com'],
-			getUser(3, ['username', 'access', 'email'])
+			getUser($dbContext, 3, ['username', 'access', 'email'])
 		);
-		$this->assertSame('admin', getUser(2, ['access']));
-		$this->assertSame('member', getUser(4, 'access'));
+		$this->assertSame('admin', getUser($dbContext, 2, ['access']));
+		$this->assertSame('member', getUser($dbContext, 4, 'access'));
 	}
 
 
 	public function testNullOnNull() {
-		$this->assertNull(getUser(4, 'description'));
+		$dbContext = $this->tester->grabDbContext();
+
+		$this->assertNull(getUser($dbContext, 4, 'description'));
 	}
 
 
 	public function testGetNonexistent() {
+		$dbContext = $this->tester->grabDbContext();
+
 		$this->tester->dontSeeInDatabase('users', ['id' => 5]);
-		$this->assertFalse(getUser(5, 'username'));
+		$this->assertFalse(getUser($dbContext, 5, 'username'));
 	}
 
 }

@@ -28,6 +28,7 @@ Sometime in one of the future v1.5 patches but before the full new v1.6 minor.
 
 * Transform our TODOlist to make it significantly more readable ([@Kubo2][0])
 + Port all tests from php-src's run-tests.php to [Codeception](https://codeception.com/), a powerful PHP testing framework ([@Kubo2][0])
++ Make all files use $dbContext returned by connect.php to explicitly describe their database dependency ([@Kubo2][0])
 
 
 ## v1.5.3

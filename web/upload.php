@@ -1,5 +1,7 @@
 <?php
 
+$dbContext = require __DIR__ . '/connect.php';
+
 /* Session sa musí inicializovať ešte *pred* odoslaním akéhokoľvek výstupu */
 // @see http://php.net/session-start
 session_start();
@@ -46,13 +48,8 @@ header("Content-Type: text/html; charset=utf-8", true, 200);
 
 <?php
 
+exit(); // ======>
 
-//include the connect.php file because we are going to write
-//the mysql info there.
-//add some quotes in ().. I had forgotten to write them in the previuos part of this
-//tutorial
-
-include ("connect.php");
 
 //we want all the script
 //part of code

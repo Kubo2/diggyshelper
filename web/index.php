@@ -1,12 +1,13 @@
 <?php
 
+require __DIR__ . '/functions.php';
+
 /**
  * Front page.
  */
 
 
-require __DIR__ . '/functions.php';
-require __DIR__ . '/connect.php';
+$dbContext = require __DIR__ . '/connect.php';
 
 // database query for topic metadata
 $theQuery = <<< SQL
@@ -66,7 +67,7 @@ SQL;
 
 
 $topics = array();
-if(DB_CONNECTED && ($theData = mysql_query($theQuery, DB_CONNECTED))) {
+if($dbContext && ($theData = mysql_query($theQuery, $dbContext))) {
 	while(FALSE !== ($thread = mysql_fetch_object($theData))) {
 		$topics[] = (object) [
 			'topicID' => intval($thread->topic_id),

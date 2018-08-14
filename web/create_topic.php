@@ -1,5 +1,12 @@
 <?php
 
+require __DIR__ . '/functions.php';
+
+/**
+ * Insert a topic record into the database.
+ */
+
+
 define(
 	'ABSURL',
 	"http://" . 
@@ -8,42 +15,47 @@ define(
 	"/"
 );
 
+$dbContext = require __DIR__ . '/connect.php';
+
 session_start();
 
-require __DIR__ . '/functions.php';
-
-if(empty($_SESSION['uid'])) {
+if(!loggedIn()) {
 	header("Location:" . ABSURL . "index.php", true, 302);
 	exit();
 }
 
+// topic form submitted?
 if(isset($_POST['topic_submit'])) {
-	if(empty($_POST['topic_title']) && empty($_POST['prispevok'])) {
+	if(empty($_POST['topic_title']) || empty($_POST['prispevok'])) {
 		echo "Nevyplnili ste všetky polia. Prosím, vráťte sa na predchádzajúcu stránku.";
-		exit;
+		exit();
+	} elseif(!$dbContext) {
+		echo 'Ospravedlň nás! Máme dočasné problémy s vytváraním tém. Prejdi naspäť a skús to znova!';
+		exit();
 	} else {
-		include_once("connect.php");
 
 		$markup = 'bb'; // default for non-admin users
+		$type = getUser($dbContext, $_SESSION['uid'], 'access');
 
-		if(getUser($_SESSION['uid'], 'access') == 'admin' && !empty($_POST['post-markup']) && in_array($_POST['post-markup'], ['html', 'bb']))
-			$markup = $_POST['post-markup'];
+		if($type === 'admin' && !empty($_POST['post-markup'])) {
+			$markup = in_array($_POST['post-markup'], ['html', 'bb']) ? $_POST['post-markup'] : $markup;
+		}
 
 		/**
 		 * @internal {2} a {3} by mohli byť riešené trigermi vyvolanými pri {1}
 		 * @todo zaistiť atomicitu operácií
 		 */
 		$cid = intval($_POST['cid']);
-		$title = mysql_real_escape_string($_POST['topic_title']);
-		$content = mysql_real_escape_string($_POST['prispevok']);
+		$title = mysql_real_escape_string($_POST['topic_title'], $dbContext);
+		$content = mysql_real_escape_string($_POST['prispevok'], $dbContext);
 		$creator = intval($_SESSION['uid']);
 		$sql = "INSERT INTO topics (category_id, topic_title, topic_creator, topic_date, topic_reply_date) VALUES ($cid, '$title', $creator, now(), now())"; // 1
-		$res = mysql_query($sql);
-		$new_topic_id = mysql_insert_id();
+		$res = mysql_query($sql, $dbContext);
+		$new_topic_id = mysql_insert_id($dbContext);
 		$sql2 = "INSERT INTO posts (category_id, topic_id, post_creator, post_content, post_markup, post_date) VALUES ($cid, $new_topic_id, '$creator', '$content', '$markup', now())"; // 2
-		$res2 = mysql_query($sql2);
+		$res2 = mysql_query($sql2, $dbContext);
 		$sql3 = "UPDATE categories SET last_post_date = now(), last_user_posted = $creator WHERE id = $cid LIMIT 1"; // 3
-		$res3 = mysql_query($sql3);
+		$res3 = mysql_query($sql3, $dbContext);
 
 		if(($res) && ($res2) && ($res3)) {
 			header(sprintf("Location: %s", sprintf(ABSURL . "view_topic.php?cid=%d&tid=%d", $cid, $new_topic_id)));
