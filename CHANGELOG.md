@@ -45,6 +45,7 @@ Expected release date: as per the [release cycle](#release-cycle).
 Expected release date: the next third lunar quarter, which will be on September 3rd, 2018.
 
 + Setup continuous integration testing for unit tests with Travis CI ([@Kubo2][0])
++ [Feature] Add Schema.org structured content for better crawler-experience ([@Kubo2][0])
 - Remove the .light style declarations from `css/style.css`: the _design toggle_ feature is not happening ([@Kubo2][0])
 
 

@@ -88,18 +88,18 @@ set_include_path("./includes/");
 	include('menu.php');
 	include('submenu.php');
 		?>
-<div id="pages" >
+<div id="pages">
 	<?php if($httpStatus == 200): ?>
-	<div class="user-profil">
+	<div class="user-profil" itemscope itemtype='https://schema.org/Person'>
 			<div class="user-info">
-				<h2 class="no-center">Profil používateľa <big><?= SanitizeLib\escape($userinfo['user-name'], 'html') ?></big></h2>
+				<h2 class="no-center">Profil používateľa <big itemprop='name'><?= SanitizeLib\escape($userinfo['user-name'], 'html') ?></big></h2>
 				
 				<div id="mob-yes" class="foto"><img src="images/thumb/no-avatar.jpg"></div>
 				
 				<table style="table-layout: fixed; width: 100%" border="0px">
 					<!--style scoped>table td {text-align: left !important}</style-->
 					<tr>
-						<td colspan="3"><?=( SanitizeLib\escape((string) $userinfo['description'], 'HTML') )?><hr></td>
+						<td colspan="3" itemprop='description'><?=( SanitizeLib\escape((string) $userinfo['description'], 'HTML') )?><hr></td>
 					</tr>
 					<tr id="mob-no">
 						<td rowspan="6">
@@ -112,7 +112,7 @@ set_include_path("./includes/");
 					</tr>
 					<tr>
 						<td class='even'>E-mail:</td>
-						<td class='odd'><?= SanitizeLib\escape(sk_sanitizeEmail($userinfo['user-email']), 'html') ?></td>
+						<td class='odd' itemprop='email'><?= SanitizeLib\escape(sk_sanitizeEmail($userinfo['user-email']), 'html') ?></td>
 					</tr>
 					<tr>
 						<td class='even'>Počet príspevkov:</td>
@@ -124,7 +124,7 @@ set_include_path("./includes/");
 					</tr>
 					<tr>
 						<td class='even'>Deň registrácie:</td>
-						<td class='odd'><?= $userinfo['user-register-date'] ?></td>
+						<td class='odd' itemprop='birthDate'><?= $userinfo['user-register-date'] ?></td>
 					</tr>
 					<?php if(loggedIn() && $_SESSION['username'] === $userinfo['user-name']): // je užívateľ prihlásený a je to jeho profil?>
 					<tfoot>

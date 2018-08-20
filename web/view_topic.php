@@ -32,7 +32,7 @@ header('Content-Type: text/html; charset=UTF-8', TRUE, 200);
 		include 'includes/submenu.php';
 			?>
 	
-<div id="forum"><div id="content"><?php
+<div id="forum" itemscope itemtype='https://schema.org/Question'><div id="content"><?php
 	function _render_reply_anch_tpl($topicId) { ?>
 <a rel='nofollow' class='input_button2' href=<?php
 		printf("'./post_reply.php?tid=%d'", $topicId)
@@ -105,7 +105,7 @@ SQL;
 				if(!$posts = mysql_query(sprintf($postsSql, $qs->tid), $dbContext)) goto suckableFail;
 				$topic = mysql_fetch_object($topic) ?>
 
-	<h2 class='no-center' ><?= htmlspecialchars($topic->title) ?></h2>
+	<h2 class='no-center' itemprop='name'><?= htmlspecialchars($topic->title) ?></h2>
 	<table border=0 style='width: 100%'>
 		<tr>
 			<td colspan=2>
@@ -117,19 +117,27 @@ SQL;
 				
 			</td>
 		</tr>
+		<?php $dhPrimary = TRUE // is this the very first loopthrough?>
 		<?php while(($post = mysql_fetch_object($posts)) !== false): ?>
 		<tr>
-			<td valign='top' id='topiccolor'>
-				<nobr class="post-meta line">Pridal/a: <a 
-					class='memberusers' 
-					href=<?=( sprintf("'./profile.php?user=%s'", urlencode($post->author)) ) // handles also ' " < > ?>><?=(
-						htmlspecialchars($post->author)
-					)?></a> dňa <time datetime=<?=(
-						id(new DateTime($post->added))->format("'c'")
-					)?> style='color: #FFF'><?=( id(new DateTime($post->added))->format("d.m.Y / H:i:s") )?></time>
+			<?php $answer = $dhPrimary ? NULL : 'itemprop=suggestedAnswer itemscope itemtype="https://schema.org/Answer"' ?>
+			<td valign='top' id='topiccolor' <?= $answer ?>>
+				<nobr class="post-meta line">
+					<schema itemprop='author' itemscope itemtype='https://schema.org/Person'>Pridal/a:
+						<a
+							itemprop='url'
+							class='memberusers'
+							href='<?= sprintf('./profile.php?user=%s', urlencode($post->author)) // handles also ' " < > ?>'>
+								<?= htmlspecialchars($post->author) ?>
+						</a>
+					</schema> dňa <time
+						itemprop='<?= $dhPrimary ? 'datePublished' : 'dateCreated' ?>'
+						datetime='<?= id(new DateTime($post->added))->format('c') ?>'>
+							<?= id(new DateTime($post->added))->format('d.m.Y / H:i:s') ?>
+					</time>
 				</nobr>
 				<hr>
-				<div class='post post-text'>
+				<div class='post post-text' itemprop='<?= $dhPrimary ? 'description' : 'text' ?>'>
 					<?php
 						if($post->markup == 'html') {
 							echo $post->text;
@@ -141,6 +149,7 @@ SQL;
 			</td>
 		</tr>
 		<tr><td></td></tr>
+		<?php $dhPrimary = FALSE // not the first loopthrough anymore ?>
 		<?php endwhile ?>
 		<tr>
 			<td colspan=2>
