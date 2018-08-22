@@ -7,7 +7,8 @@
 		"files":
 		[
 			"web/functions.php",
-			"web/lib/bbcode.php"
+			"web/lib/bbcode.php",
+			"web/lib/viewTopic.php"
 		]
 	},
 	"scripts": {

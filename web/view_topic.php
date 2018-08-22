@@ -2,6 +2,7 @@
 
 require __DIR__ . '/functions.php';
 require __DIR__ . '/lib/bbcode.php';
+require __DIR__ . '/lib/viewTopic.php';
 
 /**
  * View a single topic thread.
@@ -9,6 +10,16 @@ require __DIR__ . '/lib/bbcode.php';
 
 
 $dbContext = require __DIR__ . '/connect.php';
+
+$visited = new dhForum\viewTopic\VisitedTopicCookie;
+if(!empty($_COOKIE['visitedTopics'])) {
+	try {
+		$visited->decode($_COOKIE['visitedTopics']);
+	} catch(DomainException $e) {
+		// pass
+	}
+}
+
 
 // initialize sessions
 session_start();
@@ -181,6 +192,10 @@ SQL;
 <?php
 
 if(isset($topic) && $topic instanceof \stdClass) {
+	// set “visited topics” cookie
+	$visited->visit($qs->tid, new DateTime);
+	setcookie('visitedTopics', $visited, time() + 3600 * 24 * 90); // expire about three months from now
+
 	// TODO: ↓ is a provisional solution; we must get rid of it in favor of non-PHP templates
 	// we replace the current "universal title" by the name of the topic
 	$html = ob_get_clean();

@@ -1,6 +1,7 @@
 <?php
 
 require __DIR__ . '/functions.php';
+require __DIR__ . '/lib/viewTopic.php';
 
 /**
  * Front page.
@@ -8,6 +9,14 @@ require __DIR__ . '/functions.php';
 
 
 $dbContext = require __DIR__ . '/connect.php';
+
+if(!empty($_COOKIE['visitedTopics'])) {
+	try {
+		$visited = new dhForum\viewTopic\VisitedTopicCookie($_COOKIE['visitedTopics']);
+	} catch(DomainException $e) {
+		setcookie('visitedTopics', 'unset', 1); // one second after the Unix epoch
+	}
+}
 
 // database query for topic metadata
 $theQuery = <<< SQL
@@ -22,7 +31,7 @@ SELECT
 	lp.username last_post_username
 FROM topics t
 
-LEFT JOIN
+LEFT JOIN  -- get count numbers of posts
 (
 	SELECT
 		COUNT(id) - 1 post_count,
@@ -32,7 +41,7 @@ LEFT JOIN
 ) p
 ON t.id = p.topic_id
 
-LEFT JOIN
+LEFT JOIN  -- get metadata about the most recent posts
 (
 	SELECT
 		p.topic_id,
@@ -56,7 +65,7 @@ LEFT JOIN
 ) lp
 ON t.id = lp.topic_id
 
-ORDER BY
+ORDER BY  -- sort appropriately
 	last_post_date DESC,
 	p.post_count ASC,
 	t.topic_date DESC
@@ -69,7 +78,7 @@ SQL;
 $topics = array();
 if($dbContext && ($theData = mysql_query($theQuery, $dbContext))) {
 	while(FALSE !== ($thread = mysql_fetch_object($theData))) {
-		$topics[] = (object) [
+		$thread = (object) [
 			'topicID' => intval($thread->topic_id),
 			'categoryID' => intval($thread->category_id),
 			'topicDate' => new DateTime($thread->topic_date),
@@ -78,11 +87,20 @@ if($dbContext && ($theData = mysql_query($theQuery, $dbContext))) {
 			'lastPostDate' => new DateTime($thread->last_post_date),
 			'lastPostUser' => intval($thread->last_post_user), // user ID
 			'lastPostUsername' => $thread->last_post_username,
+			'topicVisited' => FALSE, // topic visited in the past?
 		];
+
+		if(!isset($visited) || !$visited->was($thread->topicID) || $thread->lastPostDate < $visited->when($thread->topicID)) {
+			array_push($topics, $thread);
+		} else { // topic visited before by the user and new replies are present
+			$thread->topicVisited = TRUE;
+			array_unshift($topics, $thread);
+		}
 	} unset($thread);
 
 	mysql_free_result($theData);
 }
+
 
 // ====== template start ======
 page_template:
@@ -124,9 +142,14 @@ date_default_timezone_set("Europe/Bratislava");
 	}
 
 	.newest-topics th {
+		color: #FFF;
 		background: #CCA440;
 		font-weight: normal;
-		color: #FFF;
+	}
+
+	.unread-posts {
+		color: #11A815;
+		cursor: default;
 	}
 	</style>
 	<h1>Vítame ťa na stránke Diggy's Helper</h1>
@@ -152,6 +175,7 @@ date_default_timezone_set("Europe/Bratislava");
 			<?php foreach($topics as $thread): ?>
 			<tr>
 				<td id="mob-name">
+					<?= $thread->topicVisited ? "<span class='unread-posts' title='nové odpovede'>●</span>" : NULL ?>
 					<a href='<?= "view_topic.php?tid={$thread->topicID}" ?>' class='memberusers'>
 						<?= htmlspecialchars($thread->topicTitle) ?>
 					</a>
@@ -182,7 +206,10 @@ date_default_timezone_set("Europe/Bratislava");
 			<a href='<?= "view_topic.php?tid={$thread->topicID}" ?>'>
 				<li>
 					<?= htmlspecialchars($thread->topicTitle) ?>
-					<time datetime=<?= $thread->lastPostDate->format('"c"') ?>><?= $thread->lastPostDate->format('d. m. Y H:i') ?></time>
+					<time datetime=<?= $thread->lastPostDate->format('"c"') ?>>
+						<?= $thread->topicVisited ? "<span class='unread-posts'>●</span>" : NULL ?>
+						<?= $thread->lastPostDate->format('d. m. Y H:i') ?>
+					</time>
 				</li>
 			</a>
 		</ul>

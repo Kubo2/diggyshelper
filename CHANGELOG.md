@@ -46,6 +46,7 @@ Expected release date: the next third lunar quarter, which will be on September 
 
 + Setup continuous integration testing for unit tests with Travis CI ([@Kubo2][0])
 + [Feature] Add Schema.org structured content for better crawler-experience ([@Kubo2][0])
++ [Feature] Témy s novými príspevkami, predtým navštívené používateľom, sa na hlavnej stránke zvýraznia zelenou guľôčkou ● ([@Kubo2][0])
 - Remove the .light style declarations from `css/style.css`: the _design toggle_ feature is not happening ([@Kubo2][0])
 
 

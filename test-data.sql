@@ -54,11 +54,11 @@ INSERT INTO `categories` (
 -- Dummy topics (threads).
 --changeset Kubo2:topic1
 INSERT INTO `topics` (
-	`topic_title`, `category_id`, `topic_creator`, `topic_date`, `topic_reply_date`
+	`id`, `topic_title`, `category_id`, `topic_creator`, `topic_date`, `topic_reply_date`
 ) VALUES (
-	'Testovacie vlákno', 1, 2, NOW(), NOW()
+	1, 'Testovacie vlákno', 1, 2, NOW(), NOW()
 ), (
-	'Debata 1', 2, 1, NOW(), NOW()
+	2, 'Debata 1', 2, 1, NOW(), NOW()
 );
 
 --rollback TRUNCATE TABLE `topics`;
