@@ -16,7 +16,7 @@
 		"dh:test":
 		[
 			"@dh:version",
-			"codecept run --colors --no-interaction --steps"
+			"codecept run --colors --no-interaction --steps unit"
 		],
 		"dh:database":
 		[

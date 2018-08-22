@@ -20,6 +20,11 @@ For more information about _planned features_, please check out our [TODO list](
 Expected release date: within the next two years.
 
 
+## Proposed to v1.5.x
+
++ Setup continuous integration testing for unit tests with Travis CI ([@Kubo2][0])
+
+
 ## v1.5.4
 
 Released on 2018-08-14.
