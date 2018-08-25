@@ -23,6 +23,7 @@ Expected release date: within the next two years.
 ## Proposed to v1.5.x
 
 + Setup continuous integration testing for unit tests with Travis CI ([@Kubo2][0])
+- Remove the .light style declarations from `css/style.css`: the _design toggle_ feature is not happening ([@Kubo2][0])
 
 
 ## v1.5.4

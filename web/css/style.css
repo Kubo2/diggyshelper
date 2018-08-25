@@ -5,12 +5,12 @@
  * This stylesheet was originally written for the Diggy's Helper website.
  *
  * @project dh Forum
- * @author Vladimír WladinQ Jacko <vladimir.jacko.ml@gmail.com>
- * @author Kubo2 <kubo2@diggyshelper.net>
- * @copyright 2013-2017 dh Forum workgroup
+ * @author  WladinQ <wladinq@diggyshelper.net>
+ * @author  Kubo2 <kubo2@diggyshelper.net>
+ * @copyright 2013-2018 dh Forum workgroup
  *
  * For more information on the dh Forum workgroup, please read
- * the article located at {@link http://diggyshelper.net/authors.php}.
+ * the article located at {@link https://diggyshelper.net/authors.php}.
  */
 
 
@@ -26,12 +26,6 @@ body {
 	margin: 0;
 	background-color: #222;
 	color: #FFF;
-}
-
-.light body {
-    background: #FFF;
-	margin: 0;
-	color: #000;
 }
 
 h1 {
@@ -86,27 +80,11 @@ body .pages {
 	border-right: 1px solid #151515;
 }
 
-.light body .pages {
-	width: 85%;
-	padding: 0 0.5% 0 0.5%;
-	margin: 0.5% 7% 0.5% 7%;
-	float: left;
-	border-left: 1px solid #B0B0B0;
-	border-right: 1px solid #B0B0B0;
-}
-
 /* ------------------ button ------------------ */
 
 .button-header {
 	background-color: #cca440;
 	border: 2px #cca440 solid;
-	font-size: 14px;
-	padding-left: 4px;
-}
-
-.light .button-header {
-	background-color: #33CC00;
-	border: 2px #33CC00 solid;
 	font-size: 14px;
 	padding-left: 4px;
 }
@@ -117,21 +95,7 @@ body .pages {
 	color: #222;
 }
 
-.light .button-header:hover {
-	background-color: #71DC4D;
-	border: 2px #71DC4D solid;
-	color: #FFF;
-}
-
 .button_logout {
-	background-color: #d44d4d;
-	border: 2px #d44d4d solid;
-	font-size: 14px;
-	padding-left: 4px;
-	padding-right: 4px;
-}
-
-.light .button_logout {
 	background-color: #d44d4d;
 	border: 2px #d44d4d solid;
 	font-size: 14px;
@@ -145,12 +109,6 @@ body .pages {
 	color: #222;
 }
 
-.light .button_logout:hover {
-	background-color: #DE7F7F;
-	border: 2px #DE7F7F solid;
-	color: #FFF;
-}
-
 .button_reg {
 	background: #cca440;
 	border: 2px #cca440 solid;
@@ -161,42 +119,15 @@ body .pages {
 	bottom: 0;
 }
 
-.light .button_reg {
-	background: #106CB5;
-	border: 2px #106CB5 solid;
-	font-size: 14px;
-	padding-left: 4px;
-	padding-right: 4px;
-	position: relative;
-	bottom: 0;
-	color: #FFF;
-}
-
 .button_reg:hover {
 	background-color: #cca440;
 	border: 2px #cca440 solid;
 	color: #222;
 }
 
-.light .button_reg:hover {
-	background-color: #5F9CCC;
-	border: 2px #5F9CCC solid;
-	color: #FFF;
-}
-
 .button_register {
 	background-color: #cca440;
 	border: 2px #cca440 solid;
-	font-size: 14px;
-	padding-left: 4px;
-	padding-right: 4px;
-	padding-top: 1px;
-	padding-bottom: 1px;
-}
-
-.light .button_register {
-	background-color: #33CC00;
-	border: 2px #33CC00 solid;
 	font-size: 14px;
 	padding-left: 4px;
 	padding-right: 4px;
@@ -210,12 +141,6 @@ body .pages {
 	color: #151515;
 }
 
-.light .button_register:hover {
-	background-color: #71DC4D;
-	border: 2px #71DC4D solid;
-	color: #fff;
-}
-
 .button_repair {
 	background-color: #cca440;
 	border: 2px #cca440 solid;
@@ -226,27 +151,10 @@ body .pages {
 	width: 50%;
 }
 
-.light .button_repair {
-	background-color: #33CC00;
-	border: 2px #33CC00 solid;
-	font-size: 14px;
-	padding-left: 4px;
-	padding-right: 4px;
-	margin: 5px 0 5px;
-	width: 50%;
-	color: #FFF;
-}
-
 .button_repair:hover {
 	background-color: #cca440;
 	border: 2px #cca440 solid;
 	color: #222;
-}
-
-.light .button_repair:hover {
-	background-color: #71DC4D;
-	border: 2px #71DC4D solid;
-	color: #FFF;
 }
 
 .button_repair2 {
@@ -258,26 +166,10 @@ body .pages {
 	margin: 2px 0 0;
 }
 
-.light .button_repair2 {
-	background-color: #106CB5;
-	border: 2px #106CB5 solid;
-	font-size: 14px;
-	padding-left: 4px;
-	padding-right: 4px;
-	margin: 5px 0 5px;
-	color: #FFF;
-}
-
 .button_repair2:hover {
 	background-color: #cca440;
 	border: 2px #cca440 solid;
 	color: #222;
-}
-
-.light .button_repair2:hover {
-	background-color: #5F9CCC;
-	border: 2px #5F9CCC solid;
-	color: #FFF;
 }
 
 /* ------------------ koniec button ------------------ */
@@ -302,45 +194,15 @@ body .pages {
 	bottom: 5px;
 }
 
-.light .input_button {
-	background: #106CB5;
-	border: 2px #106CB5 solid;
-	cursor: pointer;
-	font-size: 14px;
-	padding-left: 4px;
-	padding-right: 4px;
-	position: relative;
-	bottom: 5px;
-	color: #FFF;
-}
-
 .input_button:hover {
 	background-color: #cca440;
 	border: 2px #cca440 solid;
 	color: #222;
 }
 
-.light .input_button:hover {
-	background-color: #5F9CCC;
-	border: 2px #5F9CCC solid;
-	color: #FFF;
-}
-
 .input_log {
 	background-color: #cca440;
 	border: 2px #cca440 solid;
-	cursor: pointer;
-	text-decoration: none;
-	border-radius: 5px;
-	font-size: 14px;
-	padding-left: 4px;
-	padding-right: 4px;
-	color: #fff;
-}
-
-.light .input_log {
-	background-color: #33CC00;
-	border: 2px #33CC00 solid;
 	cursor: pointer;
 	text-decoration: none;
 	border-radius: 5px;
@@ -356,24 +218,10 @@ body .pages {
 	color: #151515;
 }
 
-.light .input_log:hover {
-	background-color: #71DC4D;
-	border: 2px #71DC4D solid;
-	color: #fff;
-}
-
 .input_reg {
 	width: 90%;
 	padding: 5px;
 	border: 2px #fff solid;
-	border-radius: 5px;
-	margin: 0;
-}
-
-.light .input_reg {
-	width: 90%;
-	padding: 5px;
-	border: 2px #106CB5 solid;
 	border-radius: 5px;
 	margin: 0;
 }
@@ -413,25 +261,9 @@ body .pages {
 	border-right: 1px solid #151515;
 }
 
-.light #coako {
-	width: 85%;
-	padding: 0 0.5% 0 0.5%;
-	margin: 0.5% 7% 0.5% 7%;
-	float: left;
-	border-left: 1px solid #B0B0B0;
-	border-right: 1px solid #B0B0B0;
-}
-
 #coako h3 {
 	margin-bottom: 7px;
 	background: #cca440;
-	color: #fff;
-	padding: 0 10px;
-}
-
-.light #coako h3 {
-	margin-bottom: 7px;
-	background: #106CB5;
 	color: #fff;
 	padding: 0 10px;
 }
@@ -492,16 +324,6 @@ body .pages {
 	border: 2px solid #cca440;
 }
 
-.light #content .button {
-	color: #fff;
-	text-decoration: none;
-	border-radius: 5px;
-	cursor: pointer;
-	font-size: 14px;
-	background-color: #106CB5;
-	border: 2px solid #106CB5;
-}
-
 #content .button:hover {
 	color: #222;
 	text-decoration: none;
@@ -511,16 +333,6 @@ body .pages {
 	background-color: #cca440;
 	border: 2px solid #cca440;
 	color: #FFF;
-}
-
-.light #content .button:hover {
-	color: #FFF;
-	text-decoration: none;
-	border-radius: 5px;
-	font-size: 14px;
-	cursor: pointer;
-	background-color: #5F9CCC;
-	border: 2px solid #5F9CCC;
 }
 
 #content .input_button2 {
@@ -543,13 +355,6 @@ body .pages {
 
 #content ul.category {
 	margin: 0 auto;
-}
-
-.light #content .category {
-	background-color: #5F9CCC;
-	border-radius: 5px;
-	padding: 0;
-	margin: 5px 0 5px;
 }
 
 #content .category li {
@@ -576,24 +381,10 @@ body .pages {
 	margin: 10px 0 10px;
 }
 
-.light #content form input[name=topic_title] {
-	width: 50%;
-	padding: 5px;
-	border: 1px solid #106CB5;
-	margin: 10px 0 10px;
-}
-
 #content form textarea {
 	resize: none;
 	width: 99%;
 	border: 1px solid #CECECE;
-	margin: 10px 0 10px;
-}
-
-.light #content form textarea {
-	resize: none;
-	width: 99%;
-	border: 1px solid #106CB5;
 	margin: 10px 0 10px;
 }
 
@@ -617,29 +408,10 @@ body .pages {
 	bottom: 4px;
 }
 
-.light #content table tr:first-child .input_button2 {
-	background: #106CB5;
-	border: 2px #106CB5 solid;
-	cursor: pointer;
-	font-size: 14px;
-	padding-left: 4px;
-	padding-right: 4px;
-	float: right;
-	color: #FFF;
-	position: relative;
-	bottom: 4px;
-}
-
 #content table tr:first-child .input_button2:hover {
 	background-color: #cca440;
 	border: 2px #cca440 solid;
 	color: #222;
-}
-
-.light #content table tr:first-child .input_button2:hover {
-	background-color: #5F9CCC;
-	border: 2px #5F9CCC solid;
-	color: #FFF;
 }
 
 #content table tr:last-child .input_button2 {
@@ -654,29 +426,10 @@ body .pages {
 	bottom: 0;
 }
 
-.light #content table tr:last-child .input_button2 {
-	background: #106CB5;
-	border: 2px #106CB5 solid;
-	cursor: pointer;
-	font-size: 14px;
-	padding-left: 4px;
-	padding-right: 4px;
-	float: right;
-	position: relative;
-	bottom: 0;
-	color: #FFF;
-}
-
 #content table tr:last-child .input_button2:hover {
 	background-color: #cca440;
 	border: 2px #cca440 solid;
 	color: #222;
-}
-
-.light #content table tr:last-child .input_button2:hover {
-	background-color: #5F9CCC;
-	border: 2px #5F9CCC solid;
-	color: #FFF;
 }
 
 #content table tr:first-child .button {
@@ -689,27 +442,10 @@ body .pages {
 	bottom: 4px;
 }
 
-.light #content table tr:first-child .button {
-	background: #106CB5;
-	border: 2px #106CB5 solid;
-	font-size: 14px;
-	padding-left: 4px;
-	padding-right: 4px;
-	position: relative;
-	bottom: 4px;
-	color: #FFF;
-}
-
 #content table tr:first-child .button:hover {
 	background-color: #cca440;
 	border: 2px #cca440 solid;
 	color: #222;
-}
-
-.light #content table tr:first-child .button:hover {
-	background-color: #5F9CCC;
-	border: 2px #5F9CCC solid;
-	color: #FFF;
 }
 
 #content table tr:last-child .button {
@@ -722,27 +458,10 @@ body .pages {
 	bottom: 0;
 }
 
-.light #content table tr:last-child .button {
-	background: #106CB5;
-	border: 2px #106CB5 solid;
-	font-size: 14px;
-	padding-left: 4px;
-	padding-right: 4px;
-	position: relative;
-	bottom: 0;
-	color: #FFF;
-}
-
 #content table tr:last-child .button:hover {
 	background-color: #cca440;
 	border: 2px #cca440 solid;
 	color: #222;
-}
-
-.light #content table tr:last-child .button:hover {
-	background-color: #5F9CCC;
-	border: 2px #5F9CCC solid;
-	color: #FFF;
 }
 
 #content table tr td h3 {
@@ -763,14 +482,6 @@ body .pages {
 
 #footer {
 	background-color: #151515;
-	width: 98%;
-	float: left;
-	padding: 1%;
-	color: #fff;
-}
-
-.light #footer {
-	background-color: #33CC00;
 	width: 98%;
 	float: left;
 	padding: 1%;
@@ -820,30 +531,9 @@ body .pages {
 	border-right: 1px solid #151515;
 }
 
-.light #forum {
-	width: 85%;
-	padding: 0 0.5% 0 0.5%;
-	margin: 0.5% 7% 0.5% 7%;
-	float: left;
-	border-left: 1px solid #B0B0B0;
-	border-right: 1px solid #B0B0B0;
-}
-
-.light #header {
-	background-color: #106CB5;
-}
-
 #header a.logo {
     display: inline-block;
     background: #222 url(../images/bg/logo.png) no-repeat;
-	height: 150px;
-	width: 450px;
-	color: transparent;
-}
-
-.light #header a.logo {
-    display: inline-block;
-    background: #106CB5 url(../images/bg/logo.png) no-repeat;
 	height: 150px;
 	width: 450px;
 	color: transparent;
@@ -882,19 +572,6 @@ body .pages {
 	color: #fff;
 }
 
-.light #loginprovizor {
-	background: #5F9CCC;
-	height: 126px;
-	width: 330px;
-	float: right;
-	font-size: 14px;
-	border-radius: 5px;
-	margin-right: 5px;
-	margin-top: 5px;
-	padding: 7px;
-	color: #fff;
-}
-
 #loginprovizor .buttonmenu {
 	width: 100%;
 	float: left;
@@ -914,17 +591,6 @@ body .pages {
 	width: 85px;
 	border-radius: 5px;
 	border: 2px #cca440 solid;
-	display: block;
-}
-
-.light #loginprovizor img[type=userimages] {
-	margin-top: 0px;
-	margin-bottom: 0px;
-	margin-right: 7px;
-	height: 85px;
-	width: 85px;
-	border-radius: 5px;
-	border: 2px #106CB5 solid;
 	display: block;
 }
 
@@ -970,24 +636,7 @@ body .pages {
 	width: auto;
 }
 
-.light #menu {
-	background: #33CC00;
-	text-align: center;
-	padding: 5px;
-	height: 26px;
-	width: auto;
-}
-
 #menu a {
-	text-decoration: none;
-	color: #fff;
-	padding: 2px;
-	margin: 7px;
-	margin: 0.4375em;
-	border-radius: 5px;
-}
-
-.light #menu a {
 	text-decoration: none;
 	color: #fff;
 	padding: 2px;
@@ -999,12 +648,6 @@ body .pages {
 #menu a:hover {
 	background: #666;
 	border-radius: 5px;
-}
-
-.light #menu a:hover {
-	text-decoration: none;
-	border-radius: 5px;
-	background: #71DC4D;
 }
 
 #mmenu-state, #mmenu-state + label {
@@ -1071,15 +714,6 @@ body .pages {
 	text-align: center;
 }
 
-.light #pages .user-profil .zakladne, .light #pages .user-profil .zmenahesla, .light #pages .user-profil .zmenastylu {
-	width: 32%;
-	float: left;
-	background-color: #5F9CCC;
-	border-radius: 5px;
-	margin: 1% 0.5% 0 0.5%;
-	text-align: center;
-}
-
 #pages .user-profil .zakladne h3, #pages .user-profil .zmenahesla h3, #pages .user-profil .zmenastylu h3 {
 	margin: 0;
 	font-size: 15px;
@@ -1088,21 +722,8 @@ body .pages {
 	text-align: center;
 }
 
-.light #pages .user-profil .zakladne h3, .light #pages .user-profil .zmenahesla h3, .light #pages .user-profil .zmenastylu h3 {
-	margin: 0;
-	font-size: 15px;
-	color: #FFF;
-	width: 100%;
-	text-align: center;
-}
-
 #pages .user-profil .zakladne hr, #pages .user-profil .zmenahesla hr, #pages .user-profil .zmenastylu hr {
 	border: 1px solid #151515;
-	margin: 0 0 5px;
-}
-
-.light #pages .user-profil .zakladne hr, .light #pages .user-profil .zmenahesla hr, .light #pages .user-profil .zmenastylu hr {
-	border: 1px solid #FFF;
 	margin: 0 0 5px;
 }
 
@@ -1114,28 +735,12 @@ body .pages {
 	border: 1px solid #fff;
 }
 
-.light #pages .user-profil .zakladne input[type=text], .light #pages .user-profil .zakladne input[type=email], .light #pages .user-profil .zakladne textarea {
-	width: 90%;
-	margin: 0 0 5px;
-	padding: 5px;
-	border-radius: 5px;
-	border: 1px solid #106CB5;
-}
-
 #pages .user-profil .zmenahesla input[type=password], #pages .user-profil .zmenahesla input[type=text] {
 	width: 90%;
 	margin: 0 0 5px;
 	padding: 5px;
 	border-radius: 5px;
 	border: 1px solid #fff;
-}
-
-.light #pages .user-profil .zmenahesla input[type=password], .light #pages .user-profil .zmenahesla input[type=text] {
-	width: 90%;
-	margin: 0 0 5px;
-	padding: 5px;
-	border-radius: 5px;
-	border: 1px solid #106CB5;
 }
 
 #profilinfo {
@@ -1208,15 +813,6 @@ body .pages {
 	border-right: 1px solid #151515;
 }
 
-.light #statistiky {
-	width: 85%;
-	padding: 0 0.5% 0 0.5%;
-	margin: 0.5% 7% 0.5% 7%;
-	float: left;
-	border-left: 1px solid #B0B0B0;
-	border-right: 1px solid #B0B0B0;
-}
-
 #sutaz {
 	position: fixed;
 	right: 0;
@@ -1254,22 +850,9 @@ body .pages {
 	border-radius: 5px;
 }
 
-.light #topiccolor {
-	background-color: #5F9CCC;
-	color: #FFF;
-	border: 0;
-	padding: 1%;
-	width: 98%;
-	border-radius: 5px;
-}
-
 #topiccolor hr {
 	margin: 5px 0 5px;
 	border: 1px solid #222;
-}
-
-.light #topiccolor hr {
-	border: 1px solid #FFF;
 }
 
 #topiccolor a {
@@ -1279,17 +862,8 @@ body .pages {
     font-weight: bold;
 }
 
-.light #topiccolor a {
-	color: #106CB5;
-}
-
 #topiccolor a:hover {
 	color: #cca440;
-}
-
-.light #topiccolor a:hover {
-	text-decoration: underline;
-	color: #106CB5;
 }
 
 #topiccolor .book {
@@ -1343,15 +917,6 @@ body .pages {
 	border-right: 1px solid #151515;
 }
 
-.light #zaujimavosti {
-	width: 85%;
-	padding: 0 0.5% 0 0.5%;
-	margin: 0.5% 7% 0.5% 7%;
-	float: left;
-	border-left: 1px solid #B0B0B0;
-	border-right: 1px solid #B0B0B0;
-}
-
 #zaujimavosti hr {
 	border: 1px solid #151515;
 }
@@ -1368,22 +933,10 @@ body .pages {
 	border: 0;
 }
 
-.light #zaujimavosti table {
-	width: 100%;
-	color: #000;
-}
-
 #zaujimavosti table tr td {
 	text-align: center;
 	font-size: 15px;
 	background: #cca440;
-	color: #fff;
-}
-
-.light #zaujimavosti table tr td {
-	text-align: center;
-	font-size: 15px;
-	background: #5F9CCC;
 	color: #fff;
 }
 
@@ -1471,29 +1024,14 @@ body .pages {
 	text-decoration: none;
 }
 
-.light .memberusers {
-	color: #106CB5;
-	text-decoration: none;
-}
-
 .memberusers:hover {
 	text-decoration: underline;
 	color: #cca440;
 }
 
-.light .memberusers:hover {
-	text-decoration: underline;
-	color: #106CB5;
-}
-
 .naj {
 	text-decoration: none;
 	color: #cca440;
-}
-
-.light .naj {
-	text-decoration: none;
-	color: #106CB5;
 }
 
 .naj:hover {
@@ -1514,10 +1052,6 @@ body .pages {
 	color: #cca440;
 }
 
-.light .user-profil .user-info h2 {
-	color: #106CB5;
-}
-
 .user-profil .user-info hr {
 	border: 1px solid #151515;
 }
@@ -1533,19 +1067,8 @@ body .pages {
 	width: 150px;
 }
 
-.light .user-profil .user-info table tr td img {
-	border: 2px solid #106CB5;
-	border-radius: 5px;
-	height: 150px;
-	width: 150px;
-}
-
 .user-profil .user-info table hr {
 	border: 1px solid #151515;
-}
-
-.light .user-profil .user-info table hr {
-	border: 1px solid #000;
 }
 
 .user-profil .user-info .foto {
@@ -1554,11 +1077,6 @@ body .pages {
 
 .pages .newest-topics th {
 	background: #CCA440;
-	font-weight: normal;
-}
-
-.light .pages .newest-topics th {
-	background: #106CB5;
 	font-weight: normal;
 }
 
@@ -1587,21 +1105,8 @@ body .pages {
 		border: 0;
 	}
 
-	.light body .pages {
-		width: 95%;
-		padding: 0 0.5% 0 0.5%;
-		margin: 0.5% 2% 0.5% 2%;
-		float: left;
-		border: 0;
-	}
-
 	body .pages h1 {
 		color: #cca440;
-		text-align: center;
-	}
-
-	.light body .pages h1 {
-		color: #000;
 		text-align: center;
 	}
 
@@ -1842,13 +1347,6 @@ body .pages {
 		padding: 0;
 	}
 
-	.light #coako {
-		border: 0;
-		width: 98%;
-		margin: 0 1% 0 1%;
-		padding: 0;
-	}
-
 	#coako h3 {
 		border: 0;
 		background-color: #cca440;
@@ -1864,13 +1362,6 @@ body .pages {
 
 	#content ul a {
 		text-decoration: none;
-	}
-
-	.light #content .category {
-		background-color: #106CB5;
-		border-radius: 5px;
-		padding: 0;
-		margin: 0 0 5px;
 	}
 
 	#content .category li {
@@ -1898,13 +1389,6 @@ body .pages {
 		margin: 5px 0 5px;
 	}
 
-	.light #content form input[name=topic_title] {
-		width: 97%;
-		padding: 5px;
-		border: 1px solid #106CB5;
-		margin: 5px 0 5px;
-	}
-
 	#content form textarea {
 		width: 97%;
 		padding: 5px;
@@ -1913,21 +1397,8 @@ body .pages {
 		margin: 5px 0 5px;
 	}
 
-	.light #content form textarea {
-		width: 97%;
-		padding: 5px;
-		resize: none;
-		border: 1px solid #106CB5;
-		margin: 5px 0 5px;
-	}
-
 	#content form table caption h2 {
 		color: #cca440;
-		margin: 10px 0 10px;
-	}
-
-	.light #content form table caption h2 {
-		color: #106CB5;
 		margin: 10px 0 10px;
 	}
 
@@ -1957,13 +1428,6 @@ body .pages {
 		width: 99%;
 	}
 
-	.light #forum {
-		border: 0;
-		padding: 0;
-		margin: 0.5% 0.5% 0 0.5%;
-		width: 99%;
-	}
-
 	#header {
 		background-image: none;
 		background-color: #222;
@@ -1974,23 +1438,7 @@ body .pages {
 		display: none;
 	}
 
-	.light #header a.logo {
-		display: none;
-	}
-
 	#loginprovizor {
-		width: 97%;
-		float: left;
-		background: none;
-		margin: 0;
-		padding: 5px;
-		border-radius: 0px;
-		background: url(../images/bg/logo-mob.png) no-repeat;
-		background-position: right;
-		background-size: auto 95%;
-	}
-
-	.light #loginprovizor {
 		width: 97%;
 		float: left;
 		background: none;
@@ -2011,10 +1459,6 @@ body .pages {
 		display: none;
 	}
 
-	.light #loginprovizor img[type=userimages] {
-		display: none;
-	}
-
 	/* mobilné štýly pre menu */
 
 	/* štýly pre zavreté menu */
@@ -2022,12 +1466,6 @@ body .pages {
 		background: url(../images/icon/mmenu.png) #151515 right top no-repeat;
 		margin: 0 0 3px;
 		box-shadow: 0px 3px 10px #151515;
-	}
-
-	.light #menu {
-		background: url(../images/icon/mmenu-light.png) #33CC00 right top no-repeat;
-		margin: 0 0 3px;
-		box-shadow: 0px 3px 10px #33CC00;
 	}
 
 	#menu a {
@@ -2111,11 +1549,6 @@ body .pages {
 		color: #fff;
 	}
 
-	.light #mob-prispevky b {
-		font-weight: normal;
-		color: #000;
-	}
-
 	#mob-prispevky ul {
 		padding: 0;
 		margin: 5px 0 5px;
@@ -2128,12 +1561,6 @@ body .pages {
 		font-size: 15px;
 	}
 
-	.light #mob-prispevky ul a {
-		text-decoration: none;
-		color: #FFF;
-		font-size: 15px;
-	}
-
 	#mob-prispevky ul a:hover {
 		text-decoration: none;
 		color: #cca440;
@@ -2142,11 +1569,6 @@ body .pages {
 
 	#mob-prispevky ul a li {
 		background-color: #151515;
-		list-style-type: none;
-	}
-
-	.light #mob-prispevky ul a li {
-		background-color: #106CB5;
 		list-style-type: none;
 	}
 
@@ -2205,21 +1627,8 @@ body .pages {
 		text-align: center;
 	}
 
-	.light #pages .user-profil .zakladne, .light #pages .user-profil .zmenahesla, .light #pages .user-profil .zmenastylu {
-		width: 100%;
-		float: left;
-		background-color: #106CB5;
-		border-radius: 5px;
-		margin: 0 0 2%;
-		text-align: center;
-	}
-
 	#provizorne {
 		display: none;
-	}
-
-	.light #provizorne {
-		background-color: #106CB5;
 	}
 
 	#provizorne p {
@@ -2231,19 +1640,7 @@ body .pages {
 		border-radius: 5px;
 	}
 
-	.light #regAlog {
-		background-color: #106CB5;
-		border-radius: 5px;
-	}
-
 	#statistiky {
-		border: 0;
-		width: 98%;
-		margin: 0 1% 0 1%;
-		padding: 0;
-	}
-
-	.light #statistiky {
 		border: 0;
 		width: 98%;
 		margin: 0 1% 0 1%;
@@ -2276,13 +1673,6 @@ body .pages {
 	}
 
 	#zaujimavosti {
-		border: 0;
-		width: 98%;
-		margin: 0 1% 0 1%;
-		padding: 0;
-	}
-
-	.light #zaujimavosti {
 		border: 0;
 		width: 98%;
 		margin: 0 1% 0 1%;
@@ -2408,13 +1798,6 @@ div.dialog.profile img {
 		text-align: center;
 	}
 
-	.light .user-profil .user-info h2 > big {
-		color: #106CB5;
-		float: left;
-		width: 100%;
-		text-align: center;
-	}
-
 	.user-profil .user-info table {
 		width: 100% !important;
 		table-layout: auto !important;
@@ -2439,18 +1822,8 @@ div.dialog.profile img {
 		opacity: 0.8;
 	}
 
-	.light .user-profil .user-info table td.even {
-		color: #000;
-		opacity: 0.8;
-	}
-
 	.user-profil .user-info table td.odd {
 		background: #cca440;
-		border-radius: 5px;
-	}
-
-	.light .user-profil .user-info table td.odd {
-		background: #5F9CCC;
 		border-radius: 5px;
 	}
 
@@ -2476,16 +1849,6 @@ div.dialog.profile img {
 		border: 2px solid #cca440;
 		border-radius: 5px;
 	}
-
-	.light .user-profil .user-info .foto img {
-		width: 160px;
-		height: 160px;
-		border: 2px solid #106CB5;
-		border-radius: 5px;
-	}
-}
-
-@media (max-width: 700px) {
 
 }
 
