@@ -27,7 +27,7 @@ require_once __DIR__ . '/../sanitize.lib.php';
 <title><?=
 			! empty( $titleConst )
 			? htmlspecialchars(html_entity_decode($titleConst, ENT_HTML5, 'UTF-8'), ENT_NOQUOTES | ENT_HTML5)
-			: "Diggy's Helper &ndash; Česko-slovenské Diggy's Adventure fórum"
+			: 'Diggy\'s Adventure: česko-slovenské diskusné fórum'
 ?></title>
 
 <script>
