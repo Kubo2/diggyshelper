@@ -6,13 +6,28 @@ This changelog contains all the changes released in the major, minor and patch v
 [0]: https://github.com/Kubo2
 [1]: https://github.com/WladinQ
 
-So far we are approaching the grand __v2.0__, step-by-step, with several minors and their patches. But this release will
-mark the beginning of real development, instead of the current rewriting of each and every piece of code.
+
+# Release Cycle
+
+So far we are approaching the grand __v2.0__, step-by-step, with several minors and their patches. But v2.0 is expected
+to be the final milestone for this project to reach, at which point it should become an internally consistent, feature rich
+and extensible community forum software, capable of competition on the market.
+
+At the time, a new patch version with new features is released on every _third lunar quarter_, a few days after a full moon but
+some more before the next new moon. A new minor is released twice a year:
+
+* on _August 15th_ (India's Independence Day),
+* on _February 28th_ (the second-to-last day of February every four years).
+
+The minor releases feature backwards incompatible changes and other major changes to the codebase, that aren't necessarily one feature.
+
+The inspiration for this is taken from the [Principia project](https://github.com/mockingbirdnest/Principia#readme). A lunar phase calendar can be found [here (in Slovak)](http://kalendar.azet.sk/lunarny/).
 
 
-# Features
+# New features
 
-For more information about _planned features_, please check out our [TODO list](TODOlist.md).
+For more information about _planned features_, please check out our [TODO list](TODOlist.md). We also keep an internal
+Board on Trello as well as a few GitHub Projects, which is to be frank, a _mess_, so we plan for this to change in the near future to simplify our workflow.
 
 
 ## Proposed to v1.6
@@ -21,6 +36,13 @@ Expected release date: within the next two years.
 
 
 ## Proposed to v1.5.x
+
+Expected release date: as per the [release cycle](#release-cycle).
+
+
+## Proposed to v1.5.5
+
+Expected release date: the next third lunar quarter, which will be on September 3rd, 2018.
 
 + Setup continuous integration testing for unit tests with Travis CI ([@Kubo2][0])
 - Remove the .light style declarations from `css/style.css`: the _design toggle_ feature is not happening ([@Kubo2][0])

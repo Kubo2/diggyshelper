@@ -9,6 +9,8 @@ Originálne zdrojáky pochádzajú z nemenovaného tutoriálu na <!-- [YouTube][
 * [v CHANGELOGu](CHANGELOG.md), kde sú popísané zmeny softvéru v každej _stable_ verzii, ktorá vyšla;
 * [v TODO zozname](TODOlist.md), ktorý obsahuje podrobné opisy plánovaných a pripravovaných zmien a ich vzťahov k rôznym verziám.
 
+Zistite tiež, [kedy a ako vychádzajú nové verzie](CHANGELOG.md#release-cycle). Každá verzia má aj svoj charakteristický názov.
+
 
 [1]: https://diggyshelper.net
 [2]: http://www.php.net
