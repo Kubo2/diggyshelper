@@ -39,10 +39,21 @@ Expected release date: within the next two years.
 
 Expected release date: as per the [release cycle](#release-cycle).
 
+* Upraviť náš CHANGELOG.md, aby sa viac ponášal na štandardný formát „[Udržuj changelog](https://keepachangelog.com/sk/)“
+- Remove the deprecated data sanitization library which had been deadborn child: SanitizeLib
++ Umiestniť na stránky okienko s odkazom na Google Forms, cez ktoré mienime istý čas zbierať spätnú väzbu od používateľov
++ V rámci plánovanej novej črty „tagy namiesto kategórií“ začať zobrazovať v téme lištu s nápisom „Týka sa: “ + názov kategórie
+* Namiesto dátumu a času na hlavnej stránke začať zobrazovať frázy typu „pred minútou“, „pred 2 hodinami“ či „dávno“
++ [internal] Add `lib/urls.php` to decouple the real-world URLs from source code (no more hardcoding of URLs); this is not a router yet, just a `sprintf()` wrapper
+* Ešte rýchlejšie načítavanie: preloaded font and perhaps also a HTTP/2 server push of `css/style.css` and `diggyshelper.js`
+* Prívetivý jazyk: 1s a 2s, akoby to bol dialóg medzi mnou a tebou
+* Lepšia štatistika: overhaul stránky `statistics.php`
++ Použiť composer autoload namiesto individuálneho `require`ovania jednotlivých súborov
 
-## Proposed to v1.5.5
 
-Expected release date: the next third lunar quarter, which will be on September 3rd, 2018.
+## v1.5.5
+
+Released on 2018-09-03.
 
 + Setup continuous integration testing for unit tests with Travis CI ([@Kubo2][0])
 + [Feature] Add Schema.org structured content for better crawler-experience ([@Kubo2][0])
@@ -72,7 +83,7 @@ Released on 2018-03-11.
 
 * Make the footer links look more technical ([@Kubo2][0])
 + Povolený BB kód `[img]https://obrazok[/img]` do používateľských príspevkov ([@Kubo2][0])
-* rel=canonical now points to the https: version ([@Kubo2][0])
+* rel=canonical now points to the https:// version ([@Kubo2][0])
 * Deprecate SanitizeLib
 
 
@@ -101,7 +112,7 @@ Released on 2017-03-15.
 
 Released on 2017-02-28.
 
-* (Supposedly) Fix issue [#8](https://github.com/Kubo2/diggyshelper/issues/8) where the mobile menu couldn't be opened in Android Browser 4.0 and older ([@Kubo2][0])
+* Fix issue [#8](https://github.com/Kubo2/diggyshelper/issues/8) where the mobile menu couldn't be opened in Android Browser 4.0 and older ([@Kubo2][0])
 
 
 ## v1.5-beta2
