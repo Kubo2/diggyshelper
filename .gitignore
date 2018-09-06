@@ -1,36 +1,29 @@
-# miscellanous
+# ignore logs
 *.log
-log.*
 
-# really? ignore temporary files
+# ignore temporary files
+*.backup
 Thumbs.db
-tmp/*
 temp/*
 cache/*
 *.cache
 *.temp
 *.tmp
-*.OLD
-*-OLD
 
-# ignore archives (especially used for receiving patches from others)
+# ignore archives (non-git sourcecode patches)
 *.zip
 *.rar
+*.tar.gz
+*.7z
 
-# internals
+# ignore customized and generated objects
 images/upload
-.ftp
 .db.cfg
 
 # Composer the dependency manager
 vendor/*
 !composer.lock
 
-## Liquibase is a database schema migration tool
-# see http://www.sitepoint.com/versioning-your-database-with-liquibase/
+# Liquibase the database versioning tool
 !liquibase/*
 liquibase.local.properties
-
-## githelp.txt is WladinQ's help file with useful git commands
-# we won't include this one (even if he's supposed to exclude this one in his own repo)
-githelp.txt

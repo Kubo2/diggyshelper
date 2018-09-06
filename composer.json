@@ -1,4 +1,7 @@
 {
+	"require": {
+		"php": "^5.5"
+	},
 	"require-dev": {
 		"codeception/codeception": "^2.4",
 		"mikey179/vfsStream": "^1.6"
