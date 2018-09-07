@@ -54,7 +54,7 @@ Expected release date: as per the [release cycle](#release-cycle).
 
 Expected release date: 2018-10-02.
 
-- Remove the deprecated data sanitization library which was a deadborn child: SanitizeLib
+- Remove the legacy data sanitization library which was a deadborn child and has been deprecated [since v1.5.3](#v153): SanitizeLib
 
 
 ## v1.5.5
