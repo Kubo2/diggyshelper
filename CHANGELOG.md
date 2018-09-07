@@ -40,7 +40,6 @@ Expected release date: within the next two years.
 Expected release date: as per the [release cycle](#release-cycle).
 
 * Upraviť náš CHANGELOG.md, aby sa viac ponášal na štandardný formát „[Udržuj changelog](https://keepachangelog.com/sk/)“
-- Remove the deprecated data sanitization library which had been deadborn child: SanitizeLib
 + Umiestniť na stránky okienko s odkazom na Google Forms, cez ktoré mienime istý čas zbierať spätnú väzbu od používateľov
 + V rámci plánovanej novej črty „tagy namiesto kategórií“ začať zobrazovať v téme lištu s nápisom „Týka sa: “ + názov kategórie
 * Namiesto dátumu a času na hlavnej stránke začať zobrazovať frázy typu „pred minútou“, „pred 2 hodinami“ či „dávno“
@@ -49,6 +48,13 @@ Expected release date: as per the [release cycle](#release-cycle).
 * Prívetivý jazyk: 1s a 2s, akoby to bol dialóg medzi mnou a tebou
 * Lepšia štatistika: overhaul stránky `statistics.php`
 + Použiť composer autoload namiesto individuálneho `require`ovania jednotlivých súborov
+
+
+## v1.5.6
+
+Expected release date: 2018-10-02.
+
+- Remove the legacy data sanitization library which was a deadborn child and has been deprecated [since v1.5.3](#v153): SanitizeLib
 
 
 ## v1.5.5

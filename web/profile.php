@@ -14,7 +14,6 @@ $id = $dbContext && !empty($_GET['user']) ? mysql_real_escape_string($_GET['user
 $userinfo = [
 	"user-name" => null,
 	"user-email" => null,
-	//"user-email-sanitized" => null,
 	"description" => null,
 	"user-group" => null,
 	"user-register-date" => null,
@@ -73,9 +72,6 @@ page_template:
 session_start();
 header('Content-Type: text/html; charset=UTF-8', TRUE, (int) $httpStatus);
 
-// template components
-require_once("sanitize.lib.php");
-
 // template settings
 set_include_path("./includes/");
 
@@ -92,14 +88,14 @@ set_include_path("./includes/");
 	<?php if($httpStatus == 200): ?>
 	<div class="user-profil" itemscope itemtype='https://schema.org/Person'>
 			<div class="user-info">
-				<h2 class="no-center">Profil používateľa <big itemprop='name'><?= SanitizeLib\escape($userinfo['user-name'], 'html') ?></big></h2>
+				<h2 class="no-center">Profil používateľa <big itemprop='name'><?= htmlspecialchars($userinfo['user-name']) ?></big></h2>
 				
 				<div id="mob-yes" class="foto"><img src="images/thumb/no-avatar.jpg"></div>
 				
 				<table style="table-layout: fixed; width: 100%" border="0px">
 					<!--style scoped>table td {text-align: left !important}</style-->
 					<tr>
-						<td colspan="3" itemprop='description'><?=( SanitizeLib\escape((string) $userinfo['description'], 'HTML') )?><hr></td>
+						<td colspan="3" itemprop='description'><?= htmlspecialchars($userinfo['description']) ?><hr></td>
 					</tr>
 					<tr id="mob-no">
 						<td rowspan="6">
@@ -112,7 +108,7 @@ set_include_path("./includes/");
 					</tr>
 					<tr>
 						<td class='even'>E-mail:</td>
-						<td class='odd' itemprop='email'><?= SanitizeLib\escape(sk_sanitizeEmail($userinfo['user-email']), 'html') ?></td>
+						<td class='odd' itemprop='email'><?= htmlspecialchars(sk_sanitizeEmail($userinfo['user-email'])) ?></td>
 					</tr>
 					<tr>
 						<td class='even'>Počet príspevkov:</td>

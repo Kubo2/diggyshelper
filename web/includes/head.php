@@ -15,10 +15,6 @@ $curUrl = $_SERVER['REQUEST_URI'];
 /** @var array(hostname, request URI) */
 $requestLoc = array(1 => $curUrl, 0 => isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : $_SERVER['SERVER_NAME']);
 
-
-// data sanitization library
-require_once __DIR__ . '/../sanitize.lib.php';
-
 ?>
 <meta charset='UTF-8'>
 <meta name='theme-color' content='#151515'>

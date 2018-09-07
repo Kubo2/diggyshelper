@@ -101,9 +101,6 @@ page_template: {
 header('Content-Type: text/html; charset=UTF-8');
 header('Vary: User-Agent');
 
-// template components
-require __DIR__ . '/sanitize.lib.php';
-
 // template settings
 set_include_path(__DIR__ . '/includes/');
 extract($data);
@@ -143,11 +140,11 @@ $isMobile = !empty($ua = & $_SERVER['HTTP_USER_AGENT']) && preg_match('~mobile~i
 				
 				<hr>
 				Používateľské meno:<br>
-				<input type="text" value="<?= SanitizeLib\escape($username, 'html') ?>" disabled><br>
+				<input type="text" value="<?= htmlspecialchars($username) ?>" disabled><br>
 				E-mailová adresa:<br>
-				<input type="email" name="user[email]" value="<?= SanitizeLib\escape($email, 'html') ?>"><br>
+				<input type="email" name="user[email]" value="<?= htmlspecialchars($email) ?>"><br>
 				Stručný popis používateľa:<br>
-				<textarea name="user[description]" style="height: 70px; resize: none"><?= SanitizeLib\sanitize($description, SanitizeLib\HTML) ?></textarea><br>
+				<textarea name="user[description]" style="height: 70px; resize: none"><?= htmlspecialchars($description) ?></textarea><br>
 				<input type="submit" class="button_repair" name="basic-info-change" value="Uložiť informácie">
 			</div>
 		</form>
