@@ -1,10 +1,23 @@
 <?php
 
-require dirname(__FILE__) . '/lib-core.php';
-
 /**
  * Functions library.
+ *
+ * @author  Kubo2
  */
+
+
+/**
+ * Identity of an object. Returns the passed value unchanged.
+ *
+ * @author  Jakub Vrána <jakub@vrana.cz>
+ * @since v1.5-beta
+ * @param  mixed
+ * @return mixed
+ */
+function id($o) {
+	return $o;
+}
 
 
 /**
@@ -19,8 +32,8 @@ require dirname(__FILE__) . '/lib-core.php';
  *
  * @since v1.5
  *
- * @param callable|NULL
- * @param array(string, ...)|...string
+ * @param  callable|NULL
+ * @param  array(string, ...)|...string
  * @return array(string => mixed, ...)
  */
 function getUriParam(callable $filter = NULL, $params) {
@@ -96,28 +109,14 @@ function getUser($dbContext, $id, $fieldList) {
 
 
 /**
- * Prepares an email address passed as argument for future rendering on the HTML webpage.
- *
- * @lang sk-sk
- * @see diggyshelper.js
- *
- * @param string
- * @return string
- */
-function sk_sanitizeEmail($email) {
-	return str_replace(['.', '@'], [' (bodka) ', ' (zavináč) '], $email);
-}
-
-
-/**
  * Records a line to the log.
  * (Trying to log a newline will result in logging everything BEFORE
  * the newline character and raising a E_USER_NOTICE.)
  *
- * @param string description of the information
- * @param string error level, used as a prefix for the line
- * @param string topic of the error, if provided, used as a prefix for the log filename
- * @param string
+ * @param  string description of the information
+ * @param  string error level, used as a prefix for the line
+ * @param  string topic of the error, if provided, used as a prefix for the log filename
+ * @param  string
  * @return bool TRUE on success, FALSE on failure
  */
 function recordLog($message, $level, $section = NULL, $logdir = NULL) {
@@ -144,9 +143,21 @@ function recordLog($message, $level, $section = NULL, $logdir = NULL) {
 
 
 /**
+ * Return elements from $array whose keys are present in $keys.
+ *
+ * @author Taylor Barstow <taylorbarstow@gmail.com>
+ * @see http://php.net/array-slice#64122
+ *
+ * @return array
+ */
+function array_slice_assoc(array $array, array $keys) {
+	return array_intersect_key($array, array_flip($keys));
+}
+
+
+/**
  * Checks whether at least one of an array's elements is empty().
  *
- * @param array
  * @return bool
  *         TRUE if at least one of the array's elements is empty,
  *         FALSE otherwise (even if there are no elements in the array)

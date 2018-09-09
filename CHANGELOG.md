@@ -42,7 +42,6 @@ Expected release date: as per the [release cycle](#release-cycle).
 * Upraviť náš CHANGELOG.md, aby sa viac ponášal na štandardný formát „[Udržuj changelog](https://keepachangelog.com/sk/)“
 + Umiestniť na stránky okienko s odkazom na Google Forms, cez ktoré mienime istý čas zbierať spätnú väzbu od používateľov
 + V rámci plánovanej novej črty „tagy namiesto kategórií“ začať zobrazovať v téme lištu s nápisom „Týka sa: “ + názov kategórie
-* Namiesto dátumu a času na hlavnej stránke začať zobrazovať frázy typu „pred minútou“, „pred 2 hodinami“ či „dávno“
 + [internal] Add `lib/urls.php` to decouple the real-world URLs from source code (no more hardcoding of URLs); this is not a router yet, just a `sprintf()` wrapper
 * Ešte rýchlejšie načítavanie: preloaded font and perhaps also a HTTP/2 server push of `css/style.css` and `diggyshelper.js`
 * Prívetivý jazyk: 1s a 2s, akoby to bol dialóg medzi mnou a tebou
@@ -55,6 +54,8 @@ Expected release date: as per the [release cycle](#release-cycle).
 Expected release date: 2018-10-02.
 
 - Remove the legacy data sanitization library which was a deadborn child and has been deprecated [since v1.5.3](#v153): SanitizeLib
+- Remove the deprecated `lib-core.php` (with refactoring)
+* Namiesto dátumu a času na hlavnej stránke sa zobrazujú frázy typu „pred minútou“, „pred 2 hodinami“ či „dávno“
 
 
 ## v1.5.5

@@ -1,6 +1,7 @@
 <?php
 
 require __DIR__ . '/functions.php';
+require __DIR__ . '/lib/template.php';
 
 /**
  * Show a user's profile.

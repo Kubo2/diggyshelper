@@ -2,6 +2,7 @@
 
 require __DIR__ . '/functions.php';
 require __DIR__ . '/lib/bbcode.php';
+require __DIR__ . '/lib/template.php';
 require __DIR__ . '/lib/viewTopic.php';
 
 /**
@@ -141,10 +142,10 @@ SQL;
 							href='<?= sprintf('./profile.php?user=%s', urlencode($post->author)) // handles also ' " < > ?>'>
 								<?= htmlspecialchars($post->author) ?>
 						</a>
-					</schema> dňa <time
+					</schema><time
 						itemprop='<?= $dhPrimary ? 'datePublished' : 'dateCreated' ?>'
-						datetime='<?= id(new DateTime($post->added))->format('c') ?>'>
-							<?= id(new DateTime($post->added))->format('d.m.Y / H:i:s') ?>
+						datetime='<?= (new DateTimeImmutable($post->added))->format('c') ?>'>
+							(<?= sk_relativeDateFormat(new DateTimeImmutable($post->added), new DateTimeImmutable) ?>)
 					</time>
 				</nobr>
 				<hr>

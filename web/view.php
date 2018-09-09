@@ -1,6 +1,7 @@
 <?php
 
 require __DIR__ . '/functions.php';
+require __DIR__ . '/lib/template.php';
 
 /**
  * Category topics listing page.
@@ -170,7 +171,7 @@ function renderForum($context) {
 				<a class='topic topic-link' href='<?= getTopicUrl($topic->id) ?>'>&nbsp;<strong style='color: #000'><?= htmlspecialchars($topic->title) ?></strong></a><br>
 				<span class='post_info'>
 					&nbsp;Pridal/a: <a class='memberusers' href='<?= getProfileUrl($topic->author) ?>'><?= htmlspecialchars($topic->author) ?></a>
-					<font color='#FFF'>dňa <?= $topic->postDate->format('d.m.Y / H:i:s') ?></font>
+					<time datetime='<?= $topic->postDate->format('c') ?>'>(<?= sk_relativeDateFormat($topic->postDate, new DateTimeImmutable) ?>)</time>
 				</span>
 			</td>
 			<td style='text-align: center'><?= $topic->postCount ?></td>

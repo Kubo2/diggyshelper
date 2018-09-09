@@ -1,6 +1,7 @@
 <?php
 
 require __DIR__ . '/functions.php';
+require __DIR__ . '/lib/template.php';
 require __DIR__ . '/lib/viewTopic.php';
 
 /**
@@ -168,7 +169,7 @@ date_default_timezone_set("Europe/Bratislava");
 			<tr>
 				<th width="50%" id="mob-no">Meno vlákna</th>
 				<th width="16%" id="mob-no">Posledný príspevok pridal</th>
-				<th width="12%" id="mob-no">dňa</th>
+				<th width="12%" id="mob-no">kedy</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -187,7 +188,7 @@ date_default_timezone_set("Europe/Bratislava");
 				</td>
 				<td id="mob-date">
 					<time datetime=<?= $thread->lastPostDate->format('"c"') ?>>
-						<?= $thread->lastPostDate->format('d. m. Y H:i') ?>
+						<?= sk_relativeDateFormat($thread->lastPostDate, new DateTimeImmutable) ?>
 					</time>
 				</td>
 			</tr>
@@ -198,7 +199,7 @@ date_default_timezone_set("Europe/Bratislava");
 	<div id="mob-prispevky">
 		<b>Najnovšia diskusia</b>
 		<div class="hlavicka">
-			<p class="left">Meno vlákna</p><p class="right">pridané dňa</p>
+			<p class="left">Meno vlákna</p><p class="right">pridané</p>
 		</div>
 		<br><br>
 		<?php foreach($topics as $thread): ?>
@@ -208,7 +209,7 @@ date_default_timezone_set("Europe/Bratislava");
 					<?= htmlspecialchars($thread->topicTitle) ?>
 					<time datetime=<?= $thread->lastPostDate->format('"c"') ?>>
 						<?= $thread->topicVisited ? "<span class='unread-posts'>●</span>" : NULL ?>
-						<?= $thread->lastPostDate->format('d. m. Y H:i') ?>
+						<?= sk_relativeDateFormat($thread->lastPostDate, new DateTimeImmutable) ?>
 					</time>
 				</li>
 			</a>
