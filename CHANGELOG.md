@@ -51,7 +51,7 @@ Expected release date: as per the [release cycle](#release-cycle).
 
 ## v1.5.6
 
-Expected release date: 2018-10-02.
+Released on 2018-10-06.
 
 - Remove the legacy data sanitization library which was a deadborn child and has been deprecated [since v1.5.3](#v153): SanitizeLib
 - Remove the deprecated `lib-core.php` (with refactoring)
